@@ -17,28 +17,30 @@ export const CookiePolicyPage: React.FC = () => {
       </section>
 
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 space-y-6 leading-relaxed">
-          <div>
-            <h2 className="text-lg font-bold text-navy-midnight mb-2">1. What Are Cookies?</h2>
-            <p>
-              Cookies are small text files placed on your device by websites you visit. They are widely used to make websites function efficiently and to provide basic preference recognition.
-            </p>
-          </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 space-y-6 leading-relaxed">
+            <div>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">1. What Are Cookies?</h2>
+              <p>
+                Cookies are small text files placed on your device by websites you visit. They are widely used to make websites function efficiently and to provide basic preference recognition.
+              </p>
+            </div>
 
-          <div>
-            <h2 className="text-lg font-bold text-navy-midnight mb-2">2. How Coral Swift Uses Cookies</h2>
-            <p>We use cookies strictly for:</p>
-            <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Essential / Technical Cookies:</strong> Required for site navigation, form state retention during multi-step submissions, and remembering cookie consent preferences.</li>
-              <li><strong>Performance & Analytics Cookies:</strong> Aggregate, anonymized traffic counts to understand which service pages and resources are accessed most frequently.</li>
-            </ul>
-          </div>
+            <div>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">2. How Coral Swift Uses Cookies</h2>
+              <p>We use cookies strictly for:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li><strong>Essential / Technical Cookies:</strong> Required for site navigation, form state retention during multi-step submissions, and remembering cookie consent preferences.</li>
+                <li><strong>Performance & Analytics Cookies:</strong> Aggregate, anonymized traffic counts to understand which service pages and resources are accessed most frequently.</li>
+              </ul>
+            </div>
 
-          <div>
-            <h2 className="text-lg font-bold text-navy-midnight mb-2">3. Managing Your Preferences</h2>
-            <p>
-              You can modify your browser settings to decline cookies or receive notifications when a cookie is placed. Note that disabling essential cookies may impact certain interactive features such as multi-step form previews.
-            </p>
+            <div>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">3. Managing Your Preferences</h2>
+              <p>
+                You can modify your browser settings to decline cookies or receive notifications when a cookie is placed. Note that disabling essential cookies may impact certain interactive features such as multi-step form previews.
+              </p>
+            </div>
           </div>
         </div>
       </section>
