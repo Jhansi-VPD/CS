@@ -66,6 +66,7 @@ export const App: React.FC = () => {
             <Route path="/strategic-discussions" element={<StrategicDiscussionsPage />} />
             <Route path="/insights" element={<InsightsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/schedule" element={<ContactPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />

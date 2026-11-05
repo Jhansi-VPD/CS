@@ -19,8 +19,8 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
     companyName: '',
     timeZone: 'Eastern Time (US & Canada) - EST/EDT',
     preferredDate: '',
-    preferredTimeSlot: '10:00 AM - 10:30 AM (Target Timezone)',
-    meetingPurpose: 'Initial Project Scoping Discussion'
+    preferredTimeSlot: '09:00 AM - 09:30 AM',
+    meetingPurpose: 'Initial Project Scoping'
   });
 
   const [isBooked, setIsBooked] = useState(false);
@@ -58,6 +58,15 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
   const handleReset = () => {
     setIsBooked(false);
     setBookingRef('');
+    setFormData({
+      fullName: '',
+      businessEmail: '',
+      companyName: '',
+      timeZone: 'Eastern Time (US & Canada) - EST/EDT',
+      preferredDate: '',
+      preferredTimeSlot: '09:00 AM - 09:30 AM',
+      meetingPurpose: 'Initial Project Scoping'
+    });
     onClose();
   };
 
@@ -89,8 +98,16 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
               <span>{formData.fullName}</span>
             </div>
             <div className="flex justify-between">
+              <span className="font-semibold text-slate-700">Email:</span>
+              <span>{formData.businessEmail}</span>
+            </div>
+            <div className="flex justify-between">
               <span className="font-semibold text-slate-700">Selected Date:</span>
               <span>{formData.preferredDate}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="font-semibold text-slate-700">Time Window:</span>
+              <span>{formData.preferredTimeSlot}</span>
             </div>
             <div className="flex justify-between">
               <span className="font-semibold text-slate-700">Time Zone:</span>
@@ -108,9 +125,9 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label className="block text-xs font-semibold text-navy-midnight mb-1">
+              <label className="block text-xs font-semibold text-navy-midnight mb-1.5">
                 Your Full Name *
               </label>
               <input
@@ -119,12 +136,12 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 placeholder="Name"
-                className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 focus:ring-2 focus:ring-coral-bright/20"
+                className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-coral-bright/25 focus:border-coral-bright transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-navy-midnight mb-1">
+              <label className="block text-xs font-semibold text-navy-midnight mb-1.5">
                 Corporate Email *
               </label>
               <input
@@ -133,14 +150,14 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
                 value={formData.businessEmail}
                 onChange={(e) => setFormData({ ...formData, businessEmail: e.target.value })}
                 placeholder="corporate@domain.com"
-                className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 focus:ring-2 focus:ring-coral-bright/20"
+                className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-coral-bright/25 focus:border-coral-bright transition-all"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label className="block text-xs font-semibold text-navy-midnight mb-1">
+              <label className="block text-xs font-semibold text-navy-midnight mb-1.5">
                 Company Name
               </label>
               <input
@@ -148,20 +165,20 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
                 value={formData.companyName}
                 onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                 placeholder="Organization"
-                className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 focus:ring-2 focus:ring-coral-bright/20"
+                className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-coral-bright/25 focus:border-coral-bright transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-navy-midnight mb-1">
+              <label className="block text-xs font-semibold text-navy-midnight mb-1.5">
                 Meeting Purpose
               </label>
               <select
                 value={formData.meetingPurpose}
                 onChange={(e) => setFormData({ ...formData, meetingPurpose: e.target.value })}
-                className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white"
+                className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-coral-bright/25 focus:border-coral-bright transition-all cursor-pointer"
               >
-                <option value="Initial Project Scoping Discussion">Initial Project Scoping</option>
+                <option value="Initial Project Scoping">Initial Project Scoping</option>
                 <option value="Delivery Partnership Briefing">Delivery Partnership Briefing</option>
                 <option value="Strategic Merger / M&A Discussion">Strategic Merger / M&A</option>
                 <option value="Other Corporate Inquiry">Other Corporate Inquiry</option>
@@ -170,14 +187,14 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-navy-midnight mb-1 flex items-center gap-1">
+            <label className="block text-xs font-semibold text-navy-midnight mb-1.5 flex items-center gap-1.5">
               <Globe2 className="w-3.5 h-3.5 text-coral-bright" />
               <span>Select Your Time Zone</span>
             </label>
             <select
               value={formData.timeZone}
               onChange={(e) => setFormData({ ...formData, timeZone: e.target.value })}
-              className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white"
+              className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-coral-bright/25 focus:border-coral-bright transition-all cursor-pointer"
             >
               {timeZones.map((tz) => (
                 <option key={tz} value={tz}>
@@ -187,9 +204,9 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
             </select>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label className="block text-xs font-semibold text-navy-midnight mb-1 flex items-center gap-1">
+              <label className="block text-xs font-semibold text-navy-midnight mb-1.5 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-coral-bright" />
                 <span>Preferred Date *</span>
               </label>
@@ -198,19 +215,19 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
                 required
                 value={formData.preferredDate}
                 onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white"
+                className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-coral-bright/25 focus:border-coral-bright transition-all cursor-pointer"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-navy-midnight mb-1 flex items-center gap-1">
+              <label className="block text-xs font-semibold text-navy-midnight mb-1.5 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-coral-bright" />
                 <span>Preferred Window</span>
               </label>
               <select
                 value={formData.preferredTimeSlot}
                 onChange={(e) => setFormData({ ...formData, preferredTimeSlot: e.target.value })}
-                className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white"
+                className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-coral-bright/25 focus:border-coral-bright transition-all cursor-pointer"
               >
                 {timeSlots.map((ts) => (
                   <option key={ts} value={ts}>
@@ -221,7 +238,7 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
             </div>
           </div>
 
-          <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <div className="pt-3.5 flex items-center justify-end gap-2.5 border-t border-slate-100">
             <Button variant="ghost" size="sm" type="button" onClick={onClose}>
               Cancel
             </Button>
@@ -234,4 +251,3 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
     </Modal>
   );
 };
-

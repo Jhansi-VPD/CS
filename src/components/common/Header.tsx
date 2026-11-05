@@ -4,12 +4,14 @@ import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { headerNavItems } from '../../data/navigationData';
 import { Button } from './Button';
 import { Logo } from './Logo';
+import { MeetingRequestModal } from '../forms/MeetingRequestModal';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({});
+  const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -19,6 +21,19 @@ export const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Listen for #schedule or ?type=meeting / ?schedule=true
+  useEffect(() => {
+    if (
+      location.hash === '#schedule' ||
+      location.hash === '#meeting' ||
+      location.search.includes('modal=meeting') ||
+      location.search.includes('type=meeting') ||
+      location.search.includes('schedule=true')
+    ) {
+      setIsMeetingModalOpen(true);
+    }
+  }, [location.hash, location.search]);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -132,13 +147,13 @@ export const Header: React.FC = () => {
             })}
           </nav>
 
-          {/* Prominent CTA: Get in Touch */}
+          {/* Prominent CTA: Get in Touch (Opens Schedule Discussion Modal) */}
           <div className="hidden lg:flex items-center">
             <Button
-              to="/contact"
               variant="primary"
               size="sm"
-              className="shadow-sm hover:shadow-md transition-all font-bold px-4 py-2"
+              onClick={() => setIsMeetingModalOpen(true)}
+              className="shadow-sm hover:shadow-md transition-all font-bold px-4 py-2 cursor-pointer"
               icon={<ArrowRight className="w-3.5 h-3.5" />}
             >
               Get in Touch
@@ -240,10 +255,13 @@ export const Header: React.FC = () => {
             {/* Mobile Prominent CTA */}
             <div className="pt-4 border-t border-slate-100">
               <Button
-                to="/contact"
                 variant="primary"
                 size="md"
-                className="w-full justify-center shadow-md font-bold"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsMeetingModalOpen(true);
+                }}
+                className="w-full justify-center shadow-md font-bold cursor-pointer"
                 icon={<ArrowRight className="w-4 h-4" />}
               >
                 Get in Touch
@@ -252,6 +270,17 @@ export const Header: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Schedule Introductory Discussion Modal */}
+      <MeetingRequestModal
+        isOpen={isMeetingModalOpen}
+        onClose={() => {
+          setIsMeetingModalOpen(false);
+          if (location.hash === '#schedule' || location.hash === '#meeting') {
+            window.history.replaceState(null, '', location.pathname + location.search);
+          }
+        }}
+      />
     </header>
   );
 };

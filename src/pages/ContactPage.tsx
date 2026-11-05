@@ -25,12 +25,26 @@ export const ContactPage: React.FC = () => {
       : 'general'
   );
 
-  const [isMeetingOpen, setIsMeetingOpen] = useState(false);
+  const [isMeetingOpen, setIsMeetingOpen] = useState(
+    initialType === 'meeting' ||
+    initialType === 'schedule' ||
+    searchParams.get('schedule') === 'true' ||
+    searchParams.get('modal') === 'meeting'
+  );
 
   useEffect(() => {
     document.title = 'Contact & Business Enquiries | Coral Swift';
     window.scrollTo(0, 0);
-  }, []);
+
+    if (
+      searchParams.get('type') === 'meeting' ||
+      searchParams.get('type') === 'schedule' ||
+      searchParams.get('schedule') === 'true' ||
+      searchParams.get('modal') === 'meeting'
+    ) {
+      setIsMeetingOpen(true);
+    }
+  }, [searchParams]);
 
   return (
     <div className="bg-white">
