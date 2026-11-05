@@ -10,7 +10,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
   options: ScrollRevealOptions = {}
 ) {
   const {
-    threshold = 0.1,
+    threshold = 0.15,
     rootMargin = '0px 0px -40px 0px',
     triggerOnce = true
   } = options;
@@ -19,14 +19,20 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    // Failsafe: if IntersectionObserver is not supported, reveal immediately
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+    // If running in non-browser or prefers reduced motion, show immediately
+    if (typeof window === 'undefined') {
       setIsVisible(true);
       return;
     }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const element = ref.current;
+    if (!element) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,4 +59,3 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
 
   return { ref, isVisible };
 }
-

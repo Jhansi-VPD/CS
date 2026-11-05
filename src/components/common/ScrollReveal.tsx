@@ -15,7 +15,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   className = '',
   delay = 0,
   direction = 'up',
-  threshold = 0.1,
+  threshold = 0.12,
   as: Component = 'div',
 }) => {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>({ threshold });
@@ -24,15 +24,15 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     if (isVisible) return 'none';
     switch (direction) {
       case 'up':
-        return 'translateY(24px)';
+        return 'translate3d(0, 24px, 0)';
       case 'down':
-        return 'translateY(-24px)';
+        return 'translate3d(0, -24px, 0)';
       case 'left':
-        return 'translateX(24px)';
+        return 'translate3d(24px, 0, 0)';
       case 'right':
-        return 'translateX(-24px)';
+        return 'translate3d(-24px, 0, 0)';
       case 'scale':
-        return 'scale(0.96) translateY(12px)';
+        return 'scale(0.97) translate3d(0, 14px, 0)';
       default:
         return 'none';
     }
@@ -41,7 +41,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   const style: React.CSSProperties = {
     opacity: isVisible ? 1 : 0,
     transform: getTransformStyle(),
-    transition: `opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+    transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
     willChange: 'opacity, transform',
   };
 
@@ -51,4 +51,3 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     </Component>
   );
 };
-

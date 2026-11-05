@@ -35,6 +35,18 @@ export const Header: React.FC = () => {
     }
   }, [location.hash, location.search]);
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -58,8 +70,8 @@ export const Header: React.FC = () => {
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 py-2'
-          : 'bg-white border-b border-slate-100 py-2'
+          ? 'bg-white/95 backdrop-blur-md shadow-xs border-b border-slate-200/80 py-2.5 sm:py-3'
+          : 'bg-white border-b border-slate-100 py-3 sm:py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,8 +85,6 @@ export const Header: React.FC = () => {
               const active = isActive(item.href);
 
               if (item.children) {
-                const isDropdownOpen = activeDropdown === item.title;
-
                 return (
                   <div
                     key={item.title}
@@ -84,43 +94,43 @@ export const Header: React.FC = () => {
                   >
                     <button
                       type="button"
-                      className={`flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-xl transition-all duration-150 ${
+                      className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright ${
                         active
                           ? 'text-coral-bright bg-coral-50/70 font-bold'
                           : 'text-navy-midnight hover:text-coral-bright hover:bg-slate-50'
                       }`}
-                      aria-expanded={isDropdownOpen}
+                      aria-expanded={activeDropdown === item.title}
                     >
                       <span>{item.title}</span>
                       <ChevronDown
                         className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          isDropdownOpen ? 'rotate-180 text-coral-bright' : 'text-slate-400'
+                          activeDropdown === item.title ? 'rotate-180 text-coral-bright' : 'text-slate-400'
                         }`}
                       />
                     </button>
 
-                    {/* Short & Clean Dropdown Menu */}
-                    {isDropdownOpen && (
-                      <div className="absolute top-full left-0 w-72 pt-2 z-50 animate-fadeIn">
-                        <div className="bg-white rounded-2xl shadow-xl border border-slate-200/90 p-2 overflow-hidden ring-1 ring-black/5">
-                          {item.children.map((subItem) => (
+                    {/* Desktop Dropdown Mega-Panel */}
+                    {activeDropdown === item.title && (
+                      <div className="absolute top-full left-0 pt-2 w-80 z-50 animate-fadeIn">
+                        <div className="rounded-2xl bg-white p-3 shadow-xl border border-slate-200/90 ring-1 ring-black/5 space-y-1">
+                          {item.children.map((child) => (
                             <Link
-                              key={subItem.title}
-                              to={subItem.href}
-                              className="block p-2.5 rounded-xl hover:bg-slate-50 transition-colors group"
+                              key={child.title}
+                              to={child.href}
+                              className="group block p-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                             >
                               <div className="flex items-center justify-between">
                                 <span className="text-xs font-bold text-navy-midnight group-hover:text-coral-bright transition-colors">
-                                  {subItem.title}
+                                  {child.title}
                                 </span>
-                                {subItem.badge && (
-                                  <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-coral-50 text-coral-bright border border-coral-200">
-                                    {subItem.badge}
+                                {child.badge && (
+                                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-coral-50 text-coral-bright">
+                                    {child.badge}
                                   </span>
                                 )}
                               </div>
-                              <p className="text-[11px] text-slate-500 mt-0.5 leading-snug line-clamp-1">
-                                {subItem.description}
+                              <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5 leading-snug">
+                                {child.description}
                               </p>
                             </Link>
                           ))}
@@ -135,7 +145,7 @@ export const Header: React.FC = () => {
                 <Link
                   key={item.title}
                   to={item.href}
-                  className={`px-3 py-2 text-sm font-semibold rounded-xl transition-all duration-150 ${
+                  className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     active
                       ? 'text-coral-bright bg-coral-50/70 font-bold'
                       : 'text-navy-midnight hover:text-coral-bright hover:bg-slate-50'
@@ -164,7 +174,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-navy-midnight hover:text-coral-bright hover:bg-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
+              className="p-2.5 rounded-xl text-navy-midnight hover:text-coral-bright hover:bg-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -174,83 +184,77 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Clean Mobile Drawer Menu */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white shadow-2xl max-h-[85vh] overflow-y-auto animate-fadeIn">
-          <div className="px-4 pt-3 pb-6 space-y-2">
-            <div className="pb-3 mb-2 border-b border-slate-100 flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                Navigation
-              </span>
-              <span className="text-[10px] font-bold text-coral-bright uppercase tracking-wider bg-coral-50 px-2 py-0.5 rounded">
-                Menu
-              </span>
-            </div>
+        <div className="lg:hidden fixed inset-x-0 top-[61px] bottom-0 bg-navy-midnight/40 backdrop-blur-xs z-50 animate-fadeIn">
+          <div className="bg-white border-b border-slate-200 px-4 py-6 space-y-4 max-h-[calc(100vh-65px)] overflow-y-auto shadow-2xl">
+            <nav className="space-y-1">
+              {headerNavItems.map((item) => {
+                const active = isActive(item.href);
 
-            {headerNavItems.map((item) => {
-              const active = isActive(item.href);
+                if (item.children) {
+                  const expanded = mobileExpanded[item.title];
+                  return (
+                    <div key={item.title} className="space-y-1">
+                      <button
+                        type="button"
+                        onClick={() => toggleMobileSubmenu(item.title)}
+                        className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-left transition-colors min-h-[44px] ${
+                          active
+                            ? 'bg-coral-50 text-coral-bright font-bold'
+                            : 'text-navy-midnight hover:bg-slate-50'
+                        }`}
+                      >
+                        <span>{item.title}</span>
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180 text-coral-bright' : 'text-slate-400'}`}
+                        />
+                      </button>
 
-              if (item.children) {
-                const isSubmenuOpen = !!mobileExpanded[item.title];
+                      {expanded && (
+                        <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-50/80 rounded-xl">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.title}
+                              to={child.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block py-2.5 px-3 rounded-lg text-xs font-medium text-slate-700 hover:text-coral-bright hover:bg-white transition-colors"
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="font-semibold">{child.title}</span>
+                                {child.badge && (
+                                  <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-coral-50 text-coral-bright font-bold">
+                                    {child.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">
+                                {child.description}
+                              </p>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
 
                 return (
-                  <div key={item.title} className="border-b border-slate-100 pb-1">
-                    <button
-                      type="button"
-                      onClick={() => toggleMobileSubmenu(item.title)}
-                      className="w-full flex items-center justify-between px-3 py-2.5 text-base font-semibold text-navy-midnight hover:text-coral-bright transition-colors rounded-xl"
-                    >
-                      <span className={active ? 'text-coral-bright font-bold' : ''}>
-                        {item.title}
-                      </span>
-                      <ChevronDown
-                        className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                          isSubmenuOpen ? 'rotate-180 text-coral-bright' : ''
-                        }`}
-                      />
-                    </button>
-
-                    {isSubmenuOpen && (
-                      <div className="pl-3 pr-1 py-1 space-y-1 bg-slate-50 rounded-xl mb-1">
-                        {item.children.map((subItem) => (
-                          <Link
-                            key={subItem.title}
-                            to={subItem.href}
-                            className="block px-3 py-2 text-xs font-semibold text-navy-midnight hover:text-coral-bright rounded-lg transition-colors"
-                          >
-                            <div className="flex items-center justify-between">
-                              <span>{subItem.title}</span>
-                              {subItem.badge && (
-                                <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-coral-50 text-coral-bright">
-                                  {subItem.badge}
-                                </span>
-                              )}
-                            </div>
-                            <span className="text-[11px] text-slate-500 font-normal block mt-0.5">
-                              {subItem.description}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  <Link
+                    key={item.title}
+                    to={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-3.5 py-3 rounded-xl text-base font-semibold transition-colors min-h-[44px] flex items-center ${
+                      active
+                        ? 'bg-coral-50 text-coral-bright font-bold'
+                        : 'text-navy-midnight hover:text-coral-bright hover:bg-slate-50'
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
                 );
-              }
-
-              return (
-                <Link
-                  key={item.title}
-                  to={item.href}
-                  className={`block px-3 py-2.5 text-base font-semibold rounded-xl transition-colors ${
-                    active
-                      ? 'bg-coral-50 text-coral-bright font-bold'
-                      : 'text-navy-midnight hover:text-coral-bright hover:bg-slate-50'
-                  }`}
-                >
-                  {item.title}
-                </Link>
-              );
-            })}
+              })}
+            </nav>
 
             {/* Mobile Prominent CTA */}
             <div className="pt-4 border-t border-slate-100">

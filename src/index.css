@@ -146,3 +146,38 @@
     animation: none !important;
   }
 }
+
+/* Coral Swift Assistant — chat widget */
+@keyframes chatPop {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-chat-pop {
+  animation: chatPop 0.24s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+  transform-origin: bottom right;
+}
+
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+.animate-typing-dot {
+  animation: typingDot 1s infinite ease-in-out;
+}
+
+.chat-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 94, 71, 0.4) transparent;
+}
+.chat-scroll::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: rgba(240, 94, 71, 0.35);
+  border-radius: 9999px;
+}
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+

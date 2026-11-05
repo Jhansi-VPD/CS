@@ -28,7 +28,6 @@ export const Footer: React.FC = () => {
               <p className="text-xs text-slate-400 leading-relaxed max-w-md">
                 A US-oriented IT and Non-IT project solutions and partnership platform connecting international project requirements with qualified delivery organizations in India and global markets.
               </p>
-
             </div>
 
             {/* Solutions Column */}
@@ -91,9 +90,11 @@ export const Footer: React.FC = () => {
         </ScrollReveal>
 
         {/* Bottom Bar */}
-        <div className="mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} Coral Swift / CoralSwift Technologies. All rights reserved.</p>
-          <div className="flex items-center space-x-6">
+        <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p className="text-center sm:text-left">
+            © {new Date().getFullYear()} Coral Swift / CoralSwift Technologies. All rights reserved.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <Link to="/privacy-policy" className="hover:text-slate-200 transition-colors">
               Privacy Policy
             </Link>

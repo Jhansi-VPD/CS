@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { CookieBanner } from './components/common/CookieBanner';
+import { Chatbot } from './components/chatbot/Chatbot';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -76,6 +77,7 @@ export const App: React.FC = () => {
         </main>
         <Footer />
         <CookieBanner />
+        <Chatbot />
       </div>
     </BrowserRouter>
   );
