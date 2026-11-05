@@ -181,3 +181,121 @@
   background: transparent;
 }
 
+/* Coral Swift Assistant — animated mascot */
+@keyframes mascotBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes mascotWave {
+  0%, 100% { transform: rotate(4deg); }
+  20% { transform: rotate(-22deg); }
+  45% { transform: rotate(10deg); }
+  70% { transform: rotate(-16deg); }
+}
+@keyframes mascotBlink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  94% { transform: scaleY(0.12); }
+}
+@keyframes mascotTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.7) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
+}
+.mascot-bob { animation: mascotBob 3s ease-in-out infinite; }
+.mascot-wave {
+  transform-box: view-box;
+  transform-origin: 82px 60px;
+  animation: mascotWave 1.6s ease-in-out infinite;
+}
+.mascot-blink {
+  transform-box: view-box;
+  transform-origin: 60px 37px;
+  animation: mascotBlink 4.6s ease-in-out infinite;
+}
+.mascot-twinkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascotTwinkle 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mascot-bob,
+  .mascot-wave,
+  .mascot-blink,
+  .mascot-twinkle {
+    animation: none !important;
+  }
+}
+
+/* Coral Swift Assistant — welcome orb + hero */
+@keyframes csOrbFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+@keyframes csOrbSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes csOrbGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.1); }
+}
+@keyframes csSparkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.7) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.15) rotate(25deg); }
+}
+@keyframes csHeroIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.cs-orb {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background:
+    radial-gradient(120% 120% at 30% 25%, #FFD9C2 0%, #F98F33 22%, #F05E47 46%, #D21D61 74%, #6D0A57 100%);
+  box-shadow:
+    inset -8px -10px 22px rgba(8, 11, 46, 0.28),
+    inset 8px 8px 18px rgba(255, 255, 255, 0.35),
+    0 18px 40px -12px rgba(210, 29, 97, 0.5);
+  animation: csOrbFloat 6s ease-in-out infinite;
+}
+.cs-orb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg,
+    rgba(255, 255, 255, 0.28),
+    rgba(255, 255, 255, 0) 22%,
+    rgba(149, 11, 109, 0.4) 50%,
+    rgba(255, 255, 255, 0) 78%,
+    rgba(255, 255, 255, 0.28));
+  mix-blend-mode: screen;
+  animation: csOrbSpin 16s linear infinite;
+}
+.cs-orb-glow {
+  position: absolute;
+  inset: -32%;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 50% 50%, rgba(240, 94, 71, 0.5), rgba(210, 29, 97, 0.28) 45%, transparent 70%);
+  filter: blur(16px);
+  animation: csOrbGlow 5s ease-in-out infinite;
+}
+.cs-sparkle {
+  position: absolute;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: csSparkle 2.8s ease-in-out infinite;
+}
+.cs-hero-in {
+  animation: csHeroIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-orb,
+  .cs-orb::before,
+  .cs-orb-glow,
+  .cs-sparkle,
+  .cs-hero-in {
+    animation: none !important;
+  }
+}

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { illustrativeOpportunities } from '../data/opportunitiesData';

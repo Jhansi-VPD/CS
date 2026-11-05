@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Button } from '../components/common/Button';
@@ -65,6 +67,9 @@ export const FAQPage: React.FC = () => {
               <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
+                id="faq-search"
+                name="faq-search"
+                aria-label="Search frequently asked questions"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search questions by keyword (e.g. screening criteria, ERP, Hyderabad, turnover)..."

@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { headerNavItems } from '../../data/navigationData';
 import { Button } from './Button';
@@ -12,7 +15,7 @@ export const Header: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({});
   const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,16 +27,18 @@ export const Header: React.FC = () => {
 
   // Listen for #schedule or ?type=meeting / ?schedule=true
   useEffect(() => {
+    const hash = window.location.hash;
+    const search = window.location.search;
     if (
-      location.hash === '#schedule' ||
-      location.hash === '#meeting' ||
-      location.search.includes('modal=meeting') ||
-      location.search.includes('type=meeting') ||
-      location.search.includes('schedule=true')
+      hash === '#schedule' ||
+      hash === '#meeting' ||
+      search.includes('modal=meeting') ||
+      search.includes('type=meeting') ||
+      search.includes('schedule=true')
     ) {
       setIsMeetingModalOpen(true);
     }
-  }, [location.hash, location.search]);
+  }, [pathname]);
 
   // Prevent background scrolling when mobile menu is open
   useEffect(() => {
@@ -52,11 +57,11 @@ export const Header: React.FC = () => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
     setMobileExpanded({});
-  }, [location.pathname]);
+  }, [pathname]);
 
   const isActive = (itemHref: string) => {
-    if (itemHref === '/') return location.pathname === '/';
-    return location.pathname.startsWith(itemHref);
+    if (itemHref === '/') return pathname === '/';
+    return pathname.startsWith(itemHref);
   };
 
   const toggleMobileSubmenu = (title: string) => {
@@ -116,7 +121,7 @@ export const Header: React.FC = () => {
                           {item.children.map((child) => (
                             <Link
                               key={child.title}
-                              to={child.href}
+                              href={child.href}
                               className="group block p-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                             >
                               <div className="flex items-center justify-between">
@@ -144,7 +149,7 @@ export const Header: React.FC = () => {
               return (
                 <Link
                   key={item.title}
-                  to={item.href}
+                  href={item.href}
                   className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     active
                       ? 'text-coral-bright bg-coral-50/70 font-bold'
@@ -216,7 +221,7 @@ export const Header: React.FC = () => {
                           {item.children.map((child) => (
                             <Link
                               key={child.title}
-                              to={child.href}
+                              href={child.href}
                               onClick={() => setMobileMenuOpen(false)}
                               className="block py-2.5 px-3 rounded-lg text-xs font-medium text-slate-700 hover:text-coral-bright hover:bg-white transition-colors"
                             >
@@ -242,7 +247,7 @@ export const Header: React.FC = () => {
                 return (
                   <Link
                     key={item.title}
-                    to={item.href}
+                    href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block px-3.5 py-3 rounded-xl text-base font-semibold transition-colors min-h-[44px] flex items-center ${
                       active
@@ -280,8 +285,9 @@ export const Header: React.FC = () => {
         isOpen={isMeetingModalOpen}
         onClose={() => {
           setIsMeetingModalOpen(false);
-          if (location.hash === '#schedule' || location.hash === '#meeting') {
-            window.history.replaceState(null, '', location.pathname + location.search);
+          const hash = window.location.hash;
+          if (hash === '#schedule' || hash === '#meeting') {
+            window.history.replaceState(null, '', window.location.pathname + window.location.search);
           }
         }}
       />

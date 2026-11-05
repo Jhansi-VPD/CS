@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -54,7 +54,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   if (to) {
     return (
-      <Link to={to} className={combinedStyles}>
+      <Link href={to} className={combinedStyles}>
         {content}
       </Link>
     );

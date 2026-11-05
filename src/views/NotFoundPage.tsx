@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Home, HelpCircle } from 'lucide-react';
 import { Button } from '../components/common/Button';
 
 export const NotFoundPage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Page Not Found | Coral Swift';
-  }, []);
-
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-white px-4 py-20">
       <div className="text-center max-w-md space-y-6 animate-fadeIn">

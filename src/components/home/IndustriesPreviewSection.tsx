@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Code, HeartPulse, Landmark, Building2 } from 'lucide-react';
 import { Button } from '../common/Button';
 import { ScrollReveal } from '../common/ScrollReveal';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface IndustrySector {
   id: string;
@@ -92,7 +92,7 @@ export const IndustriesPreviewSection: React.FC = () => {
                 className="h-full"
               >
                 <Link
-                  to={`/industries#${ind.id}`}
+                  href={`/industries#${ind.id}`}
                   className="group relative flex flex-col justify-between h-full min-h-[340px] rounded-3xl overflow-hidden border border-slate-200/90 shadow-card-soft hover-lift transition-all duration-300"
                 >
                   {/* Background Photography */}

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2, ShieldCheck, Database, Server, HeartPulse, FileSpreadsheet, Lock } from 'lucide-react';
 

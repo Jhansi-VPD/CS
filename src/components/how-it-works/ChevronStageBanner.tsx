@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { LucideIcon, ChevronDown, CheckCircle2, Users, ArrowRight } from 'lucide-react';
 

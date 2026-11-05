@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { AlertCircle } from 'lucide-react';
 
 export const TermsOfServicePage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Terms & Conditions | Coral Swift';
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="bg-white">
       <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">

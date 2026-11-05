@@ -1,5 +1,7 @@
+'use client';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 import { assistantEngine } from '../../data/chatbot/chatbotAssistant';
 import { resolvePage } from '../../data/chatbot/chatbotKnowledge';
 import { ChatMessage, ConversationState, AssistantReply, createInitialConversationState, Suggestion } from '../../data/chatbot/chatbotTypes';
@@ -21,8 +23,8 @@ export interface UseChatbot {
 }
 
 export const useChatbot = (): UseChatbot => {
-  const location = useLocation();
-  const page = useMemo(() => resolvePage(location.pathname), [location.pathname]);
+  const pathname = usePathname();
+  const page = useMemo(() => resolvePage(pathname), [pathname]);
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);

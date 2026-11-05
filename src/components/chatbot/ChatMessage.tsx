@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { ChatMessage as ChatMessageType } from '../../data/chatbot/chatbotTypes';
 
@@ -30,7 +30,7 @@ export const ChatMessage: React.FC<{ message: ChatMessageType }> = ({ message })
             {message.links.map((l) => (
               <Link
                 key={l.to + l.label}
-                to={l.to}
+                href={l.to}
                 className="inline-flex items-center gap-1 text-xs font-medium text-coral-bright hover:text-coral-magenta bg-coral-50 hover:bg-coral-100 border border-coral-200/70 rounded-full px-2.5 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
               >
                 {l.label}

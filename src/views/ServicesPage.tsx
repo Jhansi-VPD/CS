@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
@@ -11,16 +13,15 @@ import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ServicesPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'all' | 'it' | 'non-it' | 'partnership'>('all');
-  const location = useLocation();
 
   useEffect(() => {
     document.title = 'Solutions & Capabilities | Coral Swift';
     window.scrollTo(0, 0);
 
-    if (location.hash === '#partnership-services') {
+    if (window.location.hash === '#partnership-services') {
       setActiveTab('partnership');
     }
-  }, [location.hash]);
+  }, []);
 
   return (
     <div className="bg-white">
@@ -128,7 +129,7 @@ export const ServicesPage: React.FC = () => {
 
                       <div className="pt-4 border-t border-slate-100 mt-4">
                         <Link
-                          to={`/services/it-solutions#${service.id}`}
+                          href={`/services/it-solutions#${service.id}`}
                           className="text-xs font-bold text-coral-bright hover:text-coral-rose inline-flex items-center gap-1 group"
                         >
                           <span>View Technical Scope</span>
@@ -201,7 +202,7 @@ export const ServicesPage: React.FC = () => {
 
                       <div className="pt-4 border-t border-slate-100 mt-4">
                         <Link
-                          to={`/services/non-it-solutions#${service.id}`}
+                          href={`/services/non-it-solutions#${service.id}`}
                           className="text-xs font-bold text-coral-magenta hover:text-coral-purple inline-flex items-center gap-1 group"
                         >
                           <span>View Operations Scope</span>

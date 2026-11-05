@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect } from 'react';
 import { HeroSection } from '../components/home/HeroSection';
 import { CompanyIntroSection } from '../components/home/CompanyIntroSection';

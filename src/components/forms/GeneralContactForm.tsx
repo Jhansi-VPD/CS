@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle2, RefreshCw, MessageSquare } from 'lucide-react';
 import { Button } from '../common/Button';

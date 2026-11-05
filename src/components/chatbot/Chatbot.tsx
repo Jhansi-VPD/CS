@@ -1,7 +1,9 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
-import { MessageSquare } from 'lucide-react';
 import { useChatbot } from './useChatbot';
 import { ChatPanel } from './ChatPanel';
+import { AssistantMascot } from './AssistantMascot';
 import { Suggestion } from '../../data/chatbot/chatbotTypes';
 
 export const Chatbot: React.FC = () => {
@@ -76,8 +78,8 @@ export const Chatbot: React.FC = () => {
             raised ? 'bottom-28 sm:bottom-[9.5rem]' : 'bottom-5'
           }`}
         >
-          <span className="relative flex items-center justify-center w-8 h-8 rounded-full bg-white/20">
-            <MessageSquare className="w-5 h-5" />
+          <span className="relative flex items-center justify-center w-9 h-9 rounded-full bg-white/25">
+            <AssistantMascot variant="head" className="w-8 h-8" />
             <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-white animate-pulse-subtle" />
           </span>
           <span className="text-sm font-semibold font-heading hidden sm:inline">Ask Coral Swift</span>

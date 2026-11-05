@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
 
 export interface BreadcrumbItem {
@@ -24,7 +24,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       className={`flex items-center text-xs font-medium space-x-2 py-3 overflow-x-auto whitespace-nowrap ${className}`}
     >
       <Link
-        to="/"
+        href="/"
         className={`flex items-center transition-colors ${
           dark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-coral-bright'
         }`}
@@ -52,7 +52,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
               </span>
             ) : (
               <Link
-                to={item.href}
+                href={item.href}
                 className={`transition-colors truncate ${
                   dark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-coral-bright'
                 }`}

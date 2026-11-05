@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect } from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Button } from '../components/common/Button';

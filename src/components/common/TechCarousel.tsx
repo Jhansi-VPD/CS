@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Server, Cloud, Code, Database, ShieldCheck, HeartPulse, Landmark, Layers } from 'lucide-react';
 

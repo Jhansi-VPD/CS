@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowUp } from 'lucide-react';
 import { footerLinks } from '../../data/navigationData';
 import { Logo } from './Logo';
@@ -39,7 +41,7 @@ export const Footer: React.FC = () => {
                 {footerLinks.solutions.map((link) => (
                   <li key={link.label}>
                     <Link
-                      to={link.href}
+                      href={link.href}
                       className="text-slate-400 hover:text-coral-orange transition-colors"
                     >
                       {link.label}
@@ -58,7 +60,7 @@ export const Footer: React.FC = () => {
                 {footerLinks.partnerships.map((link) => (
                   <li key={link.label}>
                     <Link
-                      to={link.href}
+                      href={link.href}
                       className="text-slate-400 hover:text-coral-orange transition-colors"
                     >
                       {link.label}
@@ -77,7 +79,7 @@ export const Footer: React.FC = () => {
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
                     <Link
-                      to={link.href}
+                      href={link.href}
                       className="text-slate-400 hover:text-coral-orange transition-colors"
                     >
                       {link.label}
@@ -95,13 +97,13 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} Coral Swift / CoralSwift Technologies. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <Link to="/privacy-policy" className="hover:text-slate-200 transition-colors">
+            <Link href="/privacy-policy" className="hover:text-slate-200 transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-service" className="hover:text-slate-200 transition-colors">
+            <Link href="/terms-of-service" className="hover:text-slate-200 transition-colors">
               Terms & Conditions
             </Link>
-            <Link to="/cookie-policy" className="hover:text-slate-200 transition-colors">
+            <Link href="/cookie-policy" className="hover:text-slate-200 transition-colors">
               Cookie Policy
             </Link>
             <button

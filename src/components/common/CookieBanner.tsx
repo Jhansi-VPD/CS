@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ShieldCheck, X } from 'lucide-react';
 import { Button } from './Button';
 
@@ -40,7 +42,7 @@ export const CookieBanner: React.FC = () => {
           <h4 className="text-sm font-semibold text-white">Privacy & Cookie Preferences</h4>
           <p className="text-xs text-slate-300 mt-1 leading-relaxed">
             Coral Swift uses necessary cookies to ensure proper website functionality. We respect data minimization and do not track sensitive personal information.{' '}
-            <Link to="/cookie-policy" className="text-coral-orange hover:underline">
+            <Link href="/cookie-policy" className="text-coral-orange hover:underline">
               Read Cookie Policy
             </Link>
             .

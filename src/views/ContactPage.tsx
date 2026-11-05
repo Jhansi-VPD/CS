@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
@@ -12,7 +15,7 @@ import { Mail, Phone, MapPin, Calendar, ShieldAlert, ArrowRight, MessageSquare, 
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ContactPage: React.FC = () => {
-  const [searchParams] = useSearchParams();
+  const searchParams = useSearchParams();
   const initialType = searchParams.get('type') || 'general';
 
   const [activeForm, setActiveForm] = useState<'general' | 'project' | 'partner' | 'strategic'>(
@@ -138,7 +141,7 @@ export const ContactPage: React.FC = () => {
                 <p className="text-slate-500">
                   Find fast answers regarding partner eligibility, scopes, and engagement models:
                 </p>
-                <Link to="/faq" className="text-coral-bright font-bold hover:underline inline-flex items-center gap-1 pt-1">
+                <Link href="/faq" className="text-coral-bright font-bold hover:underline inline-flex items-center gap-1 pt-1">
                   <span>Visit Knowledge Base & FAQs</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>

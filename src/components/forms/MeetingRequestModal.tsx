@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Calendar, Clock, Globe2, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Modal } from '../common/Modal';

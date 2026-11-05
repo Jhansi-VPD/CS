@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export interface LogoProps {
   variant?: 'horizontal' | 'emblem-only' | 'stacked';
@@ -56,7 +56,7 @@ export const Logo: React.FC<LogoProps> = ({
     if (asLink) {
       return (
         <Link
-          to="/"
+          href="/"
           className={`inline-flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright rounded-lg ${className}`}
           aria-label="Coral Swift Home"
         >
@@ -91,7 +91,7 @@ export const Logo: React.FC<LogoProps> = ({
 
   if (asLink) {
     return (
-      <Link to="/" className={containerClasses} aria-label="Coral Swift Home">
+      <Link href="/" className={containerClasses} aria-label="Coral Swift Home">
         {emblemElement}
         {textContent}
       </Link>
