@@ -16,10 +16,10 @@ export const ChatMessage: React.FC<{ message: ChatMessageType }> = ({ message })
       )}
       <div className={`max-w-[80%] flex flex-col ${isVisitor ? 'items-end' : 'items-start'}`}>
         <div
-          className={`px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-line break-words shadow-card-soft ${
+          className={`px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-line break-words ${
             isVisitor
-              ? 'bg-swift-gradient text-white rounded-2xl rounded-br-md'
-              : 'bg-slate-100 text-navy-secondary rounded-2xl rounded-bl-md'
+              ? 'bg-swift-gradient text-white rounded-2xl rounded-br-md shadow-glow-coral'
+              : 'bg-white/85 backdrop-blur-sm text-navy-secondary rounded-2xl rounded-bl-md ring-1 ring-slate-200/50 shadow-card-soft'
           }`}
         >
           {message.content}

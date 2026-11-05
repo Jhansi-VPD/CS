@@ -39,7 +39,7 @@ export const WelcomeHero: React.FC<Props> = ({ suggestions, onSelectSuggestion, 
                 key={s.label}
                 type="button"
                 onClick={() => onSelectSuggestion(s)}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-navy-secondary bg-white border border-slate-200 hover:border-coral-bright/70 hover:text-coral-bright rounded-full pl-2.5 pr-3.5 py-2 shadow-card-soft hover:shadow-card-hover hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-navy-secondary bg-white/70 backdrop-blur border border-white/60 hover:border-coral-bright/60 hover:bg-white/90 hover:text-coral-bright rounded-full pl-2.5 pr-3.5 py-2 shadow-card-soft hover:shadow-card-hover hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
               >
                 <span className="w-2 h-2 rounded-full bg-swift-gradient shrink-0" aria-hidden="true" />
                 {s.label}

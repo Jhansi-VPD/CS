@@ -43,8 +43,8 @@ export const ChatInput: React.FC<Props> = ({ onSend, disabled, inputRef }) => {
   };
 
   return (
-    <div className="px-3 pb-1.5 pt-1 bg-white">
-      <div className="flex items-end gap-2 rounded-2xl border border-slate-200 bg-slate-50/80 pl-3.5 pr-2 py-2 shadow-card-soft focus-within:border-coral-bright focus-within:bg-white focus-within:ring-2 focus-within:ring-coral-bright/25 transition-all">
+    <div className="px-3 pb-1.5 pt-2.5 bg-transparent border-t border-white/60">
+      <div className="flex items-end gap-2 rounded-2xl border border-slate-200/70 bg-white/60 backdrop-blur-md pl-3.5 pr-2 py-2 shadow-card-soft focus-within:border-coral-bright focus-within:bg-white/85 focus-within:ring-2 focus-within:ring-coral-bright/25 transition-all">
         <textarea
           ref={taRef}
           id="coral-swift-assistant-input"
