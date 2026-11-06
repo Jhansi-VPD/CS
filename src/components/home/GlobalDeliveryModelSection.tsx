@@ -150,10 +150,10 @@ export const GlobalDeliveryModelSection: React.FC = () => {
         }
       }
 
-      // Compute scroll progression across the section
-      const topThreshold = windowHeight * 0.75;
-      const bottomThreshold = windowHeight * 0.15;
-      const scrollRange = (topThreshold - bottomThreshold) + rect.height * 0.5;
+      // Compute scroll progression across the section with relaxed scroll range
+      const topThreshold = windowHeight * 0.72;
+      const bottomThreshold = windowHeight * 0.12;
+      const scrollRange = Math.max(windowHeight * 0.85, rect.height);
       const currentScroll = topThreshold - rect.top;
       const progress = Math.min(1, Math.max(0, currentScroll / scrollRange));
 
@@ -246,7 +246,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
             aria-hidden="true"
           >
             <div
-              className="h-full bg-swift-gradient transition-all duration-500 ease-out"
+              className="h-full bg-swift-gradient transition-all duration-700 ease-out"
               style={{
                 width: isRevealed
                   ? `${(displayedIndex / (stages.length - 1)) * 100}%`
@@ -263,7 +263,8 @@ export const GlobalDeliveryModelSection: React.FC = () => {
             {stages.map((stage, index) => {
               const isActive = index === displayedIndex;
               const isPassed = index <= displayedIndex;
-              const staggerDelay = index * 100; // 0ms, 100ms, 200ms, 300ms, 400ms, 500ms
+              // Relaxed, noticeable stagger: ~260ms per stage (total entrance ~1.3s)
+              const staggerDelay = index * 260;
 
               return (
                 <li
@@ -275,10 +276,10 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                     transform:
                       isRevealed || prefersReducedMotion
                         ? 'translateY(0)'
-                        : 'translateY(18px)',
+                        : 'translateY(22px)',
                     transition: prefersReducedMotion
                       ? 'none'
-                      : `opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) ${staggerDelay}ms, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) ${staggerDelay}ms`
+                      : `opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${staggerDelay}ms, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${staggerDelay}ms`
                   }}
                 >
                   <button
@@ -294,7 +295,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                     onClick={() => handleSelectStage(index)}
                     onMouseEnter={() => handleSelectStage(index)}
                     onKeyDown={(e) => onKeyDown(e, index)}
-                    className={`group relative flex w-full items-center gap-3 rounded-2xl p-3 text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright lg:flex-col lg:items-center lg:text-center ${
+                    className={`group relative flex w-full items-center gap-3 rounded-2xl p-3 text-left transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright lg:flex-col lg:items-center lg:text-center ${
                       isActive
                         ? 'bg-white shadow-md border border-slate-300/90 -translate-y-0.5 ring-2 ring-coral-bright/20'
                         : isPassed
@@ -303,7 +304,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                     }`}
                   >
                     <span
-                      className="w-8 h-8 shrink-0 rounded-full grid place-items-center font-mono text-xs font-bold transition-all duration-300"
+                      className="w-8 h-8 shrink-0 rounded-full grid place-items-center font-mono text-xs font-bold transition-all duration-500"
                       style={
                         isActive
                           ? {
@@ -327,7 +328,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
 
                     <span className="min-w-0">
                       <span
-                        className={`block text-xs sm:text-sm font-heading font-bold leading-snug transition-colors ${
+                        className={`block text-xs sm:text-sm font-heading font-bold leading-snug transition-colors duration-300 ${
                           isActive
                             ? 'text-navy-midnight'
                             : isPassed
@@ -338,7 +339,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                         {stage.name}
                       </span>
                       <span
-                        className="block font-mono text-[10px] uppercase tracking-wider leading-tight mt-0.5 transition-colors"
+                        className="block font-mono text-[10px] uppercase tracking-wider leading-tight mt-0.5 transition-colors duration-300"
                         style={{ color: isActive ? stage.color : '#94A3B8' }}
                       >
                         {stage.tagline}
@@ -356,16 +357,16 @@ export const GlobalDeliveryModelSection: React.FC = () => {
           role="tabpanel"
           id="home-stage-panel"
           aria-labelledby={`home-stage-tab-${displayedIndex}`}
-          className="mt-6 rounded-2xl bg-white border border-slate-200/90 shadow-sm p-6 sm:p-7 relative overflow-hidden transition-all duration-500"
+          className="mt-6 rounded-2xl bg-white border border-slate-200/90 shadow-sm p-6 sm:p-7 relative overflow-hidden transition-all duration-700"
           style={{
             opacity: isRevealed || prefersReducedMotion ? 1 : 0,
             transform:
               isRevealed || prefersReducedMotion
                 ? 'translateY(0)'
-                : 'translateY(16px)',
+                : 'translateY(20px)',
             transition: prefersReducedMotion
               ? 'none'
-              : 'opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) 350ms, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 350ms'
+              : 'opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 450ms, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 450ms'
           }}
         >
           {/* Subtle Top Accent Stripe matching active stage color */}
