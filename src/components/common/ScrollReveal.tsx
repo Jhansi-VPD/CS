@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export interface ScrollRevealProps {
@@ -12,6 +12,11 @@ export interface ScrollRevealProps {
   as?: React.ElementType;
 }
 
+// Horizontal slide-in offsets are clamped on narrow viewports so the off-screen
+// position never pushes content past the page's own side padding.
+const DESKTOP_OFFSET = 24;
+const MOBILE_OFFSET = 10;
+
 export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   className = '',
@@ -21,20 +26,32 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   as: Component = 'div',
 }) => {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>({ threshold });
+  // Starts at the narrow-viewport offset: server-rendered markup has no media
+  // query, so the initial (pre-hydration) transform must never exceed the page's
+  // own side padding.
+  const [offset, setOffset] = useState(MOBILE_OFFSET);
+
+  useEffect(() => {
+    const query = window.matchMedia('(min-width: 640px)');
+    const apply = () => setOffset(query.matches ? DESKTOP_OFFSET : MOBILE_OFFSET);
+    apply();
+    query.addEventListener('change', apply);
+    return () => query.removeEventListener('change', apply);
+  }, []);
 
   const getTransformStyle = () => {
     if (isVisible) return 'none';
     switch (direction) {
       case 'up':
-        return 'translate3d(0, 24px, 0)';
+        return `translate3d(0, ${offset}px, 0)`;
       case 'down':
-        return 'translate3d(0, -24px, 0)';
+        return `translate3d(0, -${offset}px, 0)`;
       case 'left':
-        return 'translate3d(24px, 0, 0)';
+        return `translate3d(${offset}px, 0, 0)`;
       case 'right':
-        return 'translate3d(-24px, 0, 0)';
+        return `translate3d(-${offset}px, 0, 0)`;
       case 'scale':
-        return 'scale(0.97) translate3d(0, 14px, 0)';
+        return `scale(0.97) translate3d(0, ${Math.round(offset * 0.6)}px, 0)`;
       default:
         return 'none';
     }

@@ -28,25 +28,14 @@ export const ContactPage: React.FC = () => {
       : 'general'
   );
 
-  const [isMeetingOpen, setIsMeetingOpen] = useState(
-    initialType === 'meeting' ||
-    initialType === 'schedule' ||
-    searchParams.get('schedule') === 'true' ||
-    searchParams.get('modal') === 'meeting'
-  );
+  // Only this page's own button opens this instance. The ?modal=meeting /
+  // #schedule URLs are handled by the single header-owned instance, so the two
+  // can never stack into duplicate dialogs.
+  const [isMeetingOpen, setIsMeetingOpen] = useState(false);
 
   useEffect(() => {
     document.title = 'Contact & Business Enquiries | Coral Swift';
     window.scrollTo(0, 0);
-
-    if (
-      searchParams.get('type') === 'meeting' ||
-      searchParams.get('type') === 'schedule' ||
-      searchParams.get('schedule') === 'true' ||
-      searchParams.get('modal') === 'meeting'
-    ) {
-      setIsMeetingOpen(true);
-    }
   }, [searchParams]);
 
   return (
@@ -141,7 +130,7 @@ export const ContactPage: React.FC = () => {
                 <p className="text-slate-500">
                   Find fast answers regarding partner eligibility, scopes, and engagement models:
                 </p>
-                <Link href="/faq" className="text-coral-bright font-bold hover:underline inline-flex items-center gap-1 pt-1">
+                <Link href="/faq" className="text-coral-bright font-bold hover:underline inline-flex tap-link items-center gap-1 pt-1">
                   <span>Visit Knowledge Base & FAQs</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>

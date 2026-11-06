@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
@@ -9,13 +10,41 @@ import { Button } from './Button';
 import { Logo } from './Logo';
 import { MeetingRequestModal } from '../forms/MeetingRequestModal';
 
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled])';
+
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({});
   const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(61);
+  const headerRef = useRef<HTMLElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // The mobile drawer is portal-mounted outside the header, and the scroll-pinned
+  // "How we work" section has to sit exactly below the bar, so both read the
+  // header's measured height rather than a hardcoded offset.
+  useEffect(() => {
+    const node = headerRef.current;
+    if (!node) return undefined;
+    const measure = () => {
+      const height = node.getBoundingClientRect().height;
+      setHeaderHeight(height);
+      document.documentElement.style.setProperty('--cs-header-h', `${height}px`);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +81,35 @@ export const Header: React.FC = () => {
     };
   }, [mobileMenuOpen]);
 
+  // Escape to close, focus management, and Tab containment while the drawer is open
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+    drawerRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const nodes = drawerRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+      if (!nodes || nodes.length === 0) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -73,9 +131,10 @@ export const Header: React.FC = () => {
 
   return (
     <header
+      ref={headerRef}
       className={`sticky top-0 z-40 w-full transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-xs border-b border-slate-200/80 py-2.5 sm:py-3'
+          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 py-2.5 sm:py-3'
           : 'bg-white border-b border-slate-100 py-3 sm:py-3.5'
       }`}
     >
@@ -96,9 +155,16 @@ export const Header: React.FC = () => {
                     className="relative"
                     onMouseEnter={() => setActiveDropdown(item.title)}
                     onMouseLeave={() => setActiveDropdown(null)}
+                    onFocus={() => setActiveDropdown(item.title)}
+                    onBlur={(event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+                        setActiveDropdown(null);
+                      }
+                    }}
                   >
                     <button
                       type="button"
+                      aria-haspopup="true"
                       className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright ${
                         active
                           ? 'text-coral-bright bg-coral-50/70 font-bold'
@@ -116,7 +182,7 @@ export const Header: React.FC = () => {
 
                     {/* Desktop Dropdown Mega-Panel */}
                     {activeDropdown === item.title && (
-                      <div className="absolute top-full left-0 pt-2 w-80 z-50 animate-fadeIn">
+                      <div className="absolute top-full left-0 pt-2 w-80 z-50 animate-fade-in">
                         <div className="rounded-2xl bg-white p-3 shadow-xl border border-slate-200/90 ring-1 ring-black/5 space-y-1">
                           {item.children.map((child) => (
                             <Link
@@ -178,10 +244,12 @@ export const Header: React.FC = () => {
           {/* Mobile Hamburger Button */}
           <div className="flex items-center lg:hidden">
             <button
+              ref={menuButtonRef}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 rounded-xl text-navy-midnight hover:text-coral-bright hover:bg-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
+              aria-controls="cs-mobile-nav"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -189,10 +257,28 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[61px] bottom-0 bg-navy-midnight/40 backdrop-blur-xs z-50 animate-fadeIn">
-          <div className="bg-white border-b border-slate-200 px-4 py-6 space-y-4 max-h-[calc(100vh-65px)] overflow-y-auto shadow-2xl">
+      {/* Mobile Navigation Drawer — portal-mounted so that the scrolled header's
+          backdrop-filter can never become its containing block. */}
+      {mounted &&
+        mobileMenuOpen &&
+        createPortal(
+          <div
+            ref={drawerRef}
+            id="cs-mobile-nav"
+            tabIndex={-1}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) setMobileMenuOpen(false);
+            }}
+            style={{ top: headerHeight }}
+            className="lg:hidden fixed inset-x-0 bottom-0 z-[70] flex flex-col bg-navy-midnight/40 animate-fade-in focus:outline-none"
+          >
+            <div
+              role="navigation"
+              className="min-h-0 max-h-full overflow-y-auto overscroll-contain bg-white border-b border-slate-200 px-4 py-6 space-y-4 shadow-2xl"
+            >
             <nav className="space-y-1">
               {headerNavItems.map((item) => {
                 const active = isActive(item.href);
@@ -204,6 +290,7 @@ export const Header: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => toggleMobileSubmenu(item.title)}
+                        aria-expanded={!!expanded}
                         className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-left transition-colors min-h-[44px] ${
                           active
                             ? 'bg-coral-50 text-coral-bright font-bold'
@@ -223,17 +310,17 @@ export const Header: React.FC = () => {
                               key={child.title}
                               href={child.href}
                               onClick={() => setMobileMenuOpen(false)}
-                              className="block py-2.5 px-3 rounded-lg text-xs font-medium text-slate-700 hover:text-coral-bright hover:bg-white transition-colors"
+                              className="flex min-h-[44px] w-full flex-col items-start justify-center py-2.5 px-3 rounded-lg text-sm font-medium text-slate-700 hover:text-coral-bright hover:bg-white transition-colors"
                             >
-                              <div className="flex items-center justify-between">
+                              <div className="flex items-center justify-between w-full">
                                 <span className="font-semibold">{child.title}</span>
                                 {child.badge && (
-                                  <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-coral-50 text-coral-bright font-bold">
+                                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-coral-50 text-coral-bright font-bold">
                                     {child.badge}
                                   </span>
                                 )}
                               </div>
-                              <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">
+                              <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
                                 {child.description}
                               </p>
                             </Link>
@@ -276,9 +363,10 @@ export const Header: React.FC = () => {
                 Get in Touch
               </Button>
             </div>
-          </div>
-        </div>
-      )}
+            </div>
+          </div>,
+          document.body
+        )}
 
       {/* Schedule Introductory Discussion Modal */}
       <MeetingRequestModal

@@ -264,17 +264,19 @@ export const GlobalDeliveryModelSection: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-[300vh] lg:min-h-[330vh]"
+      className="cs-pin-track relative min-h-[300vh] lg:min-h-[330vh]"
       id="stages-section"
     >
       {/* Sticky Viewport Container */}
-      <section className="sticky top-[61px] sm:top-[65px] h-[calc(100vh-65px)] min-h-[540px] max-h-[960px] flex flex-col justify-between py-4 sm:py-5 lg:py-7 bg-[#F8FAFC] border-y border-slate-200/80 overflow-y-auto lg:overflow-hidden select-none">
+      <section className="cs-pin-panel sticky top-[var(--cs-header-h)] h-[calc(100dvh-var(--cs-header-h))] min-h-[min(540px,calc(100dvh-var(--cs-header-h)))] max-h-[960px] flex flex-col justify-between py-4 sm:py-5 lg:py-7 bg-[#F8FAFC] border-y border-slate-200/80 overflow-y-auto lg:overflow-hidden select-none">
         {/* Subtle Ambient Background Gradient Lighting */}
-        <div
-          className="absolute -top-32 -right-32 w-96 h-96 rounded-full blur-3xl opacity-20 pointer-events-none transition-colors duration-700"
-          style={{ backgroundColor: activeStage.color }}
-        />
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-navy-midnight/5 blur-3xl pointer-events-none" />
+        <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute -top-32 -right-32 w-96 h-96 rounded-full blur-3xl opacity-20 transition-colors duration-700"
+            style={{ backgroundColor: activeStage.color }}
+          />
+          <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-navy-midnight/5 blur-3xl" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-between relative z-10">
           {/* 1. Header Bar */}
@@ -304,7 +306,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
 
               <Link
                 href="/how-it-works"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-coral-bright hover:text-coral-magenta transition-colors group"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-coral-bright hover:text-coral-magenta transition-colors group max-sm:min-h-[44px]"
               >
                 <span>Full Methodology</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

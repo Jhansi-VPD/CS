@@ -197,25 +197,30 @@ export const PartnershipsPage: React.FC = () => {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={150}>
-            <div className="mt-10 overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
-              <table className="w-full text-left border-collapse text-xs sm:text-sm">
+            <div
+              className="h-scroll mt-10 overflow-x-auto rounded-2xl border border-slate-200 shadow-sm"
+              role="region"
+              aria-label="Proposed partner screening criteria"
+              tabIndex={0}
+            >
+              <table className="w-full min-w-[560px] text-left border-collapse text-xs sm:text-sm">
                 <thead>
                   <tr className="bg-navy-midnight text-white">
-                    <th className="py-4 px-6 font-bold uppercase tracking-wider text-xs">Evaluation Criterion</th>
-                    <th className="py-4 px-6 font-bold uppercase tracking-wider text-xs">Source-Profile Threshold</th>
-                    <th className="py-4 px-6 font-bold uppercase tracking-wider text-xs">Verifiable Evidence Required</th>
+                    <th scope="col" className="py-4 px-4 sm:px-6 font-bold uppercase tracking-wider text-xs">Evaluation Criterion</th>
+                    <th scope="col" className="py-4 px-4 sm:px-6 font-bold uppercase tracking-wider text-xs">Source-Profile Threshold</th>
+                    <th scope="col" className="py-4 px-4 sm:px-6 font-bold uppercase tracking-wider text-xs">Verifiable Evidence Required</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
                   {proposedScreeningCriteria.map((c, idx) => (
                     <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
-                      <td className="py-4 px-6 font-bold text-navy-midnight align-top">
+                      <td className="py-4 px-4 sm:px-6 font-bold text-navy-midnight align-top">
                         {c.criterion}
                       </td>
-                      <td className="py-4 px-6 font-semibold text-coral-bright align-top">
+                      <td className="py-4 px-4 sm:px-6 font-semibold text-coral-bright align-top">
                         {c.sourceThreshold}
                       </td>
-                      <td className="py-4 px-6 text-slate-600 align-top leading-relaxed">
+                      <td className="py-4 px-4 sm:px-6 text-slate-600 align-top leading-relaxed">
                         {c.evidenceRequired}
                       </td>
                     </tr>

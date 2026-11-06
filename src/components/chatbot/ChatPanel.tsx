@@ -8,6 +8,7 @@ import { SuggestionChips } from './SuggestionChips';
 import { TypingIndicator } from './TypingIndicator';
 import { WelcomeHero } from './WelcomeHero';
 import { ChatMessage as ChatMessageType, Suggestion } from '../../data/chatbot/chatbotTypes';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 interface Props {
   messages: ChatMessageType[];
@@ -37,6 +38,7 @@ export const ChatPanel: React.FC<Props> = ({
   dragging,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
   const [dismissedSuggestions, setDismissedSuggestions] = useState(false);
 
   const hasEngaged = messages.some((m) => m.role === 'visitor');
@@ -51,8 +53,8 @@ export const ChatPanel: React.FC<Props> = ({
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
-  }, [messages, isTyping, suggestions, showHero, dismissedSuggestions]);
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: reducedMotion ? 'auto' : 'smooth' });
+  }, [messages, isTyping, suggestions, showHero, dismissedSuggestions, reducedMotion]);
 
   return (
     <section

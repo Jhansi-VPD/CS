@@ -153,7 +153,7 @@ export const ITSolutionsPage: React.FC = () => {
                     </div>
                     <a
                       href="#enquiry-form"
-                      className="inline-flex items-center gap-1 font-bold text-coral-bright hover:underline whitespace-nowrap"
+                      className="inline-flex tap-link items-center gap-1 font-bold text-coral-bright hover:underline whitespace-nowrap"
                     >
                       <span>Request Scoping for this Service</span>
                       <ArrowRight className="w-3.5 h-3.5" />

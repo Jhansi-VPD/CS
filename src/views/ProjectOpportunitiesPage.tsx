@@ -102,7 +102,7 @@ export const ProjectOpportunitiesPage: React.FC = () => {
         </span>
         <a
           href="#enquiry-form"
-          className="inline-flex items-center gap-1 text-xs font-bold text-coral-bright hover:underline self-start sm:self-auto"
+          className="inline-flex tap-link items-center gap-1 text-xs font-bold text-coral-bright hover:underline self-start sm:self-auto"
         >
           <span>Submit Similar Requirement</span>
           <ArrowRight className="w-3.5 h-3.5" />

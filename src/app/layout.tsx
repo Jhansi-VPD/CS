@@ -41,6 +41,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  viewportFit: 'cover',
   themeColor: '#080B2E',
 };
 
@@ -55,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="bg-white text-navy-midnight font-sans antialiased selection:bg-coral-bright selection:text-white min-h-screen flex flex-col">
+      <body className="bg-white text-navy-midnight font-sans antialiased selection:bg-coral-bright selection:text-white min-h-dvh flex flex-col">
         <Header />
         <main className="flex-grow relative z-10 bg-white parallax-footer-shadow">{children}</main>
         <Footer />

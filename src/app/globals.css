@@ -11,6 +11,8 @@
     --color-coral-purple: #950B6D;
     --color-midnight-navy: #080B2E;
     --color-secondary-navy: #25294D;
+    /* Corrected at runtime by Header once the real bar height is measured. */
+    --cs-header-h: 61px;
   }
 
   html {
@@ -25,7 +27,6 @@
   body {
     color: #080B2E;
     background-color: #FFFFFF;
-    overflow-x: hidden;
   }
 
   /* Accessible focus indicators */
@@ -37,13 +38,33 @@
     outline: 2px solid #F05E47;
     outline-offset: 2px;
   }
+
+  /* Touch keyboards zoom into any control under 16px, and a landscape phone is
+     wider than 640px, so the rule keys off both narrow viewports and touch. */
+  @media (max-width: 639px), (pointer: coarse) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]),
+    select,
+    textarea {
+      font-size: 1rem !important;
+    }
+  }
 }
 
 /* Custom Swift Ribbon & Gradient Utilities */
 .swift-gradient-text {
   background: linear-gradient(120deg, #F98F33 0%, #F05E47 30%, #E73B50 55%, #D21D61 78%, #950B6D 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* High-contrast mode cannot render clipped gradients: keep the text legible. */
+@media (forced-colors: active) {
+  .swift-gradient-text {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    text-fill-color: currentColor;
+  }
 }
 
 /* Subtle clean card hover */
@@ -122,6 +143,71 @@
 
 *::-webkit-scrollbar {
   display: none;
+}
+
+/* ...but horizontally scrollable regions keep a visible affordance on touch devices,
+   where an off-screen column would otherwise be undiscoverable. */
+.h-scroll {
+  scrollbar-width: thin;
+}
+
+.h-scroll::-webkit-scrollbar {
+  display: block;
+  height: 6px;
+}
+
+.h-scroll::-webkit-scrollbar-track {
+  background: rgba(8, 11, 46, 0.06);
+}
+
+.h-scroll::-webkit-scrollbar-thumb {
+  background: rgba(8, 11, 46, 0.28);
+  border-radius: 9999px;
+}
+
+/* Small text rows that are tappable controls (card CTAs, breadcrumb crumbs,
+   pillar links) render at 16-20px high, below the 24px WCAG minimum target.
+   On touch they become a 44px tap row; desktop layout is unchanged. */
+@media (max-width: 639px), (pointer: coarse) {
+  .tap-link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* Padding variant for links that must keep their own inline text handling
+     (ellipsis truncation), where switching to a flex box would break it. */
+  .tap-pad {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  /* Icon-only and dot-style controls: keep the visible mark, grow the button. */
+  .tap-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 24px;
+  }
+}
+
+/* A scroll-pinned panel that is shorter than its own content needs an inner
+   scrollbar, and scrollbars are hidden site-wide, so the overflow would be
+   unreachable. On narrow or short viewports these panels flow in page scroll
+   instead of pinning. */
+@media (max-width: 639px), (max-height: 680px) {
+  .cs-pin-panel {
+    position: static;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .cs-pin-track {
+    min-height: 0;
+  }
 }
 
 /* Reduced motion preference */

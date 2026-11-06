@@ -16,7 +16,8 @@ export const HashScroll: React.FC = () => {
       if (hash) {
         const el = document.getElementById(hash.replace('#', ''));
         if (el) {
-          window.setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+          const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.setTimeout(() => el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }), 100);
           return true;
         }
       }

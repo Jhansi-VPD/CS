@@ -21,11 +21,11 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`flex items-center text-xs font-medium space-x-2 py-3 overflow-x-auto whitespace-nowrap ${className}`}
+      className={`h-scroll flex items-center text-xs font-medium space-x-2 py-3 overflow-x-auto whitespace-nowrap ${className}`}
     >
       <Link
         href="/"
-        className={`flex items-center transition-colors ${
+        className={`flex tap-link items-center transition-colors ${
           dark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-coral-bright'
         }`}
       >
@@ -53,7 +53,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
             ) : (
               <Link
                 href={item.href}
-                className={`transition-colors truncate ${
+                className={`transition-colors truncate tap-pad ${
                   dark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-coral-bright'
                 }`}
               >

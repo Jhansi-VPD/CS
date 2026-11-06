@@ -12,7 +12,7 @@ interface Props {
 }
 
 const iconBtn =
-  'p-2 rounded-lg text-slate-400 hover:text-coral-bright hover:bg-coral-50/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright';
+  'flex items-center justify-center p-2 max-sm:min-h-[44px] max-sm:min-w-[44px] rounded-lg text-slate-400 hover:text-coral-bright hover:bg-coral-50/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright';
 
 export const ChatHeader: React.FC<Props> = ({ pageLabel, onRestart, onClose, onDragStart, dragging }) => (
   <div

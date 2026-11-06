@@ -52,7 +52,19 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
 
     observer.observe(element);
 
+    // Safety net for content that is already on screen when it mounts: if the
+    // observer never reports it (a backgrounded tab, or iOS recomputing
+    // rootMargin while the URL bar collapses), the element would stay at
+    // opacity 0 forever. Below-the-fold elements keep their scroll trigger.
+    const failSafe = window.setTimeout(() => {
+      const node = ref.current;
+      if (node && node.getBoundingClientRect().top < window.innerHeight) {
+        setIsVisible(true);
+      }
+    }, 1200);
+
     return () => {
+      window.clearTimeout(failSafe);
       observer.disconnect();
     };
   }, [threshold, rootMargin, triggerOnce]);

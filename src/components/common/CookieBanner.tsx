@@ -28,17 +28,25 @@ export const CookieBanner: React.FC = () => {
     setIsVisible(false);
   };
 
+  // Dismissing records a choice; otherwise the banner returns on every navigation
+  // and the chatbot launcher stays permanently raised to avoid it.
+  const handleDismiss = () => {
+    localStorage.setItem('cs_cookie_consent', 'dismissed');
+    window.dispatchEvent(new Event('cs-cookie-consent-changed'));
+    setIsVisible(false);
+  };
+
   if (!isVisible) return null;
 
   return (
     <div
       role="region"
       aria-label="Cookie consent banner"
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 bg-navy-midnight text-white p-5 rounded-2xl shadow-2xl border border-navy-border animate-slide-up"
+      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 max-h-[calc(100dvh-6rem)] overflow-y-auto bg-navy-midnight text-white p-5 rounded-2xl shadow-2xl border border-navy-border animate-slide-up"
     >
       <div className="flex items-start gap-3">
         <ShieldCheck className="w-5 h-5 text-coral-orange shrink-0 mt-0.5" />
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <h4 className="text-sm font-semibold text-white">Privacy & Cookie Preferences</h4>
           <p className="text-xs text-slate-300 mt-1 leading-relaxed">
             Coral Swift uses necessary cookies to ensure proper website functionality. We respect data minimization and do not track sensitive personal information.{' '}
@@ -47,7 +55,7 @@ export const CookieBanner: React.FC = () => {
             </Link>
             .
           </p>
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
             <Button
               variant="primary"
               size="sm"
@@ -67,8 +75,8 @@ export const CookieBanner: React.FC = () => {
           </div>
         </div>
         <button
-          onClick={() => setIsVisible(false)}
-          className="text-slate-400 hover:text-white p-1 rounded-md transition-colors"
+          onClick={handleDismiss}
+          className="shrink-0 -m-2 p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white rounded-md transition-colors"
           aria-label="Dismiss cookie notice"
         >
           <X className="w-4 h-4" />

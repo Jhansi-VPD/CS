@@ -138,16 +138,18 @@ export const TechCarousel: React.FC = () => {
           {/* Carousel Arrows */}
           <div className="flex items-center gap-2 self-start sm:self-auto">
             <button
+              type="button"
               onClick={prevSlide}
               aria-label="Previous capabilities slide"
-              className="p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 hover:text-coral-bright text-navy-midnight transition-colors shadow-xs"
+              className="flex items-center justify-center p-2.5 max-sm:min-h-[44px] max-sm:min-w-[44px] rounded-xl border border-slate-200 bg-white hover:bg-slate-100 hover:text-coral-bright text-navy-midnight transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
+              type="button"
               onClick={nextSlide}
               aria-label="Next capabilities slide"
-              className="p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 hover:text-coral-bright text-navy-midnight transition-colors shadow-xs"
+              className="flex items-center justify-center p-2.5 max-sm:min-h-[44px] max-sm:min-w-[44px] rounded-xl border border-slate-200 bg-white hover:bg-slate-100 hover:text-coral-bright text-navy-midnight transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -228,12 +230,17 @@ export const TechCarousel: React.FC = () => {
               key={idx}
               onClick={() => setCurrentIndex(idx)}
               aria-label={`Go to slide ${idx + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                currentIndex === idx
-                  ? 'w-7 bg-coral-bright shadow-xs'
-                  : 'w-2 bg-slate-300 hover:bg-slate-400'
-              }`}
-            />
+              aria-current={currentIndex === idx}
+              className="tap-btn"
+            >
+              <span
+                className={`block h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === idx
+                    ? 'w-7 bg-coral-bright'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

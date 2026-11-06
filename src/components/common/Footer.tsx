@@ -6,10 +6,13 @@ import { ArrowUp } from 'lucide-react';
 import { footerLinks } from '../../data/navigationData';
 import { Logo } from './Logo';
 import { ScrollReveal } from './ScrollReveal';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export const Footer: React.FC = () => {
+  const reducedMotion = useReducedMotion();
+
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
   };
 
   return (
@@ -37,12 +40,12 @@ export const Footer: React.FC = () => {
               <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
                 Solutions & Delivery
               </h3>
-              <ul className="space-y-2.5 text-xs">
+              <ul className="space-y-1">
                 {footerLinks.solutions.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-slate-400 hover:text-coral-orange transition-colors"
+                      className="inline-flex min-h-[36px] items-center text-sm text-slate-400 hover:text-coral-orange transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -56,12 +59,12 @@ export const Footer: React.FC = () => {
               <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
                 Delivery Partnerships
               </h3>
-              <ul className="space-y-2.5 text-xs">
+              <ul className="space-y-1">
                 {footerLinks.partnerships.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-slate-400 hover:text-coral-orange transition-colors"
+                      className="inline-flex min-h-[36px] items-center text-sm text-slate-400 hover:text-coral-orange transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -75,12 +78,12 @@ export const Footer: React.FC = () => {
               <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
                 Company & Legal
               </h3>
-              <ul className="space-y-2.5 text-xs">
+              <ul className="space-y-1">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-slate-400 hover:text-coral-orange transition-colors"
+                      className="inline-flex min-h-[36px] items-center text-sm text-slate-400 hover:text-coral-orange transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -97,18 +100,18 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} Coral Swift / CoralSwift Technologies. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <Link href="/privacy-policy" className="hover:text-slate-200 transition-colors">
+            <Link href="/privacy-policy" className="inline-flex min-h-[36px] items-center hover:text-slate-200 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="hover:text-slate-200 transition-colors">
+            <Link href="/terms-of-service" className="inline-flex min-h-[36px] items-center hover:text-slate-200 transition-colors">
               Terms & Conditions
             </Link>
-            <Link href="/cookie-policy" className="hover:text-slate-200 transition-colors">
+            <Link href="/cookie-policy" className="inline-flex min-h-[36px] items-center hover:text-slate-200 transition-colors">
               Cookie Policy
             </Link>
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-lg bg-navy-surface text-slate-400 hover:text-white hover:bg-navy-secondary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-navy-surface text-slate-400 hover:text-white hover:bg-navy-secondary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
               aria-label="Back to top"
             >
               <ArrowUp className="w-4 h-4" />

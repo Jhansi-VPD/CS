@@ -130,7 +130,7 @@ export const ServicesPage: React.FC = () => {
                       <div className="pt-4 border-t border-slate-100 mt-4">
                         <Link
                           href={`/services/it-solutions#${service.id}`}
-                          className="text-xs font-bold text-coral-bright hover:text-coral-rose inline-flex items-center gap-1 group"
+                          className="text-xs font-bold text-coral-bright hover:text-coral-rose inline-flex tap-link items-center gap-1 group"
                         >
                           <span>View Technical Scope</span>
                           <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -203,7 +203,7 @@ export const ServicesPage: React.FC = () => {
                       <div className="pt-4 border-t border-slate-100 mt-4">
                         <Link
                           href={`/services/non-it-solutions#${service.id}`}
-                          className="text-xs font-bold text-coral-magenta hover:text-coral-purple inline-flex items-center gap-1 group"
+                          className="text-xs font-bold text-coral-magenta hover:text-coral-purple inline-flex tap-link items-center gap-1 group"
                         >
                           <span>View Operations Scope</span>
                           <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AssistantOrb } from './AssistantOrb';
 import { Suggestion } from '../../data/chatbot/chatbotTypes';
 
@@ -15,7 +15,9 @@ const greetingFor = (hour: number): string =>
   hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
 
 export const WelcomeHero: React.FC<Props> = ({ suggestions, onSelectSuggestion, welcomeText, pageLabel }) => {
-  const greeting = typeof window !== 'undefined' ? greetingFor(new Date().getHours()) : 'Welcome';
+  // Resolved after mount so the server and client markup match on the first render.
+  const [greeting, setGreeting] = useState('Welcome');
+  useEffect(() => setGreeting(greetingFor(new Date().getHours())), []);
 
   return (
     <div className="cs-hero-in flex flex-col items-center text-center px-5 pt-7 pb-5">
@@ -39,7 +41,7 @@ export const WelcomeHero: React.FC<Props> = ({ suggestions, onSelectSuggestion, 
                 key={s.label}
                 type="button"
                 onClick={() => onSelectSuggestion(s)}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-navy-secondary bg-white/70 backdrop-blur border border-white/60 hover:border-coral-bright/60 hover:bg-white/90 hover:text-coral-bright rounded-full pl-2.5 pr-3.5 py-2 shadow-card-soft hover:shadow-card-hover hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-navy-secondary bg-white/70 backdrop-blur border border-white/60 hover:border-coral-bright/60 hover:bg-white/90 hover:text-coral-bright rounded-full pl-2.5 pr-3.5 py-2 max-sm:min-h-[44px] shadow-card-soft hover:shadow-card-hover hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
               >
                 <span className="w-2 h-2 rounded-full bg-swift-gradient shrink-0" aria-hidden="true" />
                 {s.label}

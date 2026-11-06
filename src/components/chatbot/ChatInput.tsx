@@ -63,7 +63,7 @@ export const ChatInput: React.FC<Props> = ({ onSend, disabled, inputRef }) => {
           onClick={submit}
           disabled={disabled || !value.trim()}
           aria-label="Send message"
-          className="shrink-0 w-9 h-9 rounded-full bg-swift-gradient hover:bg-swift-gradient-hover text-white flex items-center justify-center shadow-glow-coral transition-all disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright focus-visible:ring-offset-1"
+          className="shrink-0 w-9 h-9 max-sm:w-11 max-sm:h-11 rounded-full bg-swift-gradient hover:bg-swift-gradient-hover text-white flex items-center justify-center shadow-glow-coral transition-all disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright focus-visible:ring-offset-1"
         >
           <Send className="w-4 h-4" />
         </button>

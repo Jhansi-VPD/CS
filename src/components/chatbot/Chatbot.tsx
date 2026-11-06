@@ -11,18 +11,52 @@ const PANEL_H = 560;
 const MARGIN = 8;
 const TOP_MIN = 72;
 
-const clampPos = (x: number, y: number) => ({
-  x: Math.min(Math.max(MARGIN, x), Math.max(MARGIN, window.innerWidth - PANEL_W - MARGIN)),
-  y: Math.min(Math.max(TOP_MIN, y), Math.max(TOP_MIN, window.innerHeight - PANEL_H - MARGIN)),
-});
+// Keep the dragged panel fully on screen using its rendered size, which is
+// viewport-capped in short (landscape) windows.
+const clampPos = (x: number, y: number, rect?: DOMRect | null) => {
+  const w = rect?.width || PANEL_W;
+  const h = rect?.height || PANEL_H;
+  return {
+    x: Math.min(Math.max(MARGIN, x), Math.max(MARGIN, window.innerWidth - w - MARGIN)),
+    y: Math.min(Math.max(TOP_MIN, y), Math.max(TOP_MIN, window.innerHeight - h - MARGIN)),
+  };
+};
 
 export const Chatbot: React.FC = () => {
   const { isOpen, messages, isTyping, suggestions, pageLabel, open, close, toggle, send, restart } = useChatbot();
   const inputRef = useRef<{ focus: () => void } | null>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  // While the cookie banner may be showing, lift the launcher so the two never overlap.
-  const [raised, setRaised] = useState(false);
+  // While the cookie banner is showing the launcher steps out of the way: the
+  // banner is taller than any safe raise offset on a phone.
+  const [consentPending, setConsentPending] = useState(false);
+  // On phones the on-screen keyboard occupies the bottom of the viewport, so the
+  // launcher steps aside while a form field holds focus.
+  const [fieldFocused, setFieldFocused] = useState(false);
+
+  useEffect(() => {
+    const isField = (target: EventTarget | null): target is HTMLElement =>
+      target instanceof HTMLElement &&
+      target.matches('input:not([type="hidden"]),select,textarea');
+
+    const onFocusIn = (event: FocusEvent) => {
+      if (!isField(event.target)) return;
+      // The assistant's own composer must not hide the launcher.
+      if (panelRef.current?.contains(event.target)) return;
+      if (window.innerWidth < 640) setFieldFocused(true);
+    };
+    const onFocusOut = (event: FocusEvent) => {
+      if (!isField(event.target)) return;
+      if (!isField(event.relatedTarget)) setFieldFocused(false);
+    };
+
+    document.addEventListener('focusin', onFocusIn);
+    document.addEventListener('focusout', onFocusOut);
+    return () => {
+      document.removeEventListener('focusin', onFocusIn);
+      document.removeEventListener('focusout', onFocusOut);
+    };
+  }, []);
 
   // Draggable panel (desktop only). pos stays null until the visitor first drags,
   // so the CSS default anchor is used and there is no positioning flash on open.
@@ -31,7 +65,7 @@ export const Chatbot: React.FC = () => {
   const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 640px)');
+    const mq = window.matchMedia('(min-width: 640px) and (min-height: 620px)');
     const apply = () => setIsDesktop(mq.matches);
     apply();
     mq.addEventListener('change', apply);
@@ -39,9 +73,14 @@ export const Chatbot: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const onResize = () => setPos((p) => (p ? clampPos(p.x, p.y) : p));
+    const onResize = () =>
+      setPos((p) => (p ? clampPos(p.x, p.y, panelRef.current?.getBoundingClientRect()) : p));
     window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('orientationchange', onResize);
+    };
   }, []);
 
   const onDragStart = (e: React.PointerEvent) => {
@@ -56,28 +95,42 @@ export const Chatbot: React.FC = () => {
     setDragging(true);
     const onMove = (ev: PointerEvent) => {
       ev.preventDefault();
-      setPos(clampPos(originX + (ev.clientX - pointerX), originY + (ev.clientY - pointerY)));
+      setPos(clampPos(originX + (ev.clientX - pointerX), originY + (ev.clientY - pointerY), rect));
     };
-    const onUp = () => {
+    const onEnd = () => {
       setDragging(false);
       window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointerup', onEnd);
+      window.removeEventListener('pointercancel', onEnd);
     };
     window.addEventListener('pointermove', onMove);
-    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointerup', onEnd);
+    window.addEventListener('pointercancel', onEnd);
   };
 
   useEffect(() => {
-    const check = () => setRaised(!localStorage.getItem('cs_cookie_consent'));
+    const check = () => setConsentPending(!localStorage.getItem('cs_cookie_consent'));
     check();
-    const onConsent = () => setRaised(false);
+    const onConsent = () => setConsentPending(false);
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === 'cs_cookie_consent') onConsent();
+    };
     window.addEventListener('cs-cookie-consent-changed', onConsent);
-    window.addEventListener('storage', onConsent);
+    window.addEventListener('storage', onStorage);
     return () => {
       window.removeEventListener('cs-cookie-consent-changed', onConsent);
-      window.removeEventListener('storage', onConsent);
+      window.removeEventListener('storage', onStorage);
     };
   }, []);
+
+  // Re-anchor to the CSS default position whenever the panel is closed so a
+  // stale dragged offset can never leave it off-screen after a rotation.
+  useEffect(() => {
+    if (!isOpen) {
+      setPos(null);
+      setFieldFocused(false);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -104,10 +157,10 @@ export const Chatbot: React.FC = () => {
     setTimeout(() => inputRef.current?.focus(), 60);
   };
 
+  // Only the anchor changes while dragging; width/height stay driven by CSS so the
+  // panel keeps its viewport cap in short (landscape) windows.
   const wrapperStyle: React.CSSProperties | undefined =
-    isDesktop && pos
-      ? { left: pos.x, top: pos.y, right: 'auto', bottom: 'auto', width: PANEL_W, height: PANEL_H, maxHeight: 'none' }
-      : undefined;
+    isDesktop && pos ? { left: pos.x, top: pos.y, right: 'auto', bottom: 'auto' } : undefined;
 
   return (
     <>
@@ -115,7 +168,7 @@ export const Chatbot: React.FC = () => {
         <div
           ref={panelRef}
           style={wrapperStyle}
-          className={`fixed z-[60] left-2 right-2 top-16 bottom-24 sm:left-auto sm:right-6 sm:top-auto sm:bottom-24 sm:w-[380px] sm:h-[560px] sm:max-h-[calc(100vh-8rem)] ${
+          className={`fixed z-[60] left-2 right-2 top-[calc(var(--cs-header-h)+0.5rem)] bottom-[calc(6rem+env(safe-area-inset-bottom))] sm:left-auto sm:right-6 sm:top-auto sm:bottom-24 sm:w-[380px] sm:h-[560px] sm:max-h-[calc(100dvh-var(--cs-header-h)-6rem)] ${
             dragging ? 'select-none' : ''
           }`}
         >
@@ -135,15 +188,13 @@ export const Chatbot: React.FC = () => {
         </div>
       )}
 
-      {!isOpen && (
+      {!isOpen && !fieldFocused && !consentPending && (
         <button
           ref={launcherRef}
           type="button"
           onClick={toggle}
           aria-label="Open the Coral Swift Assistant"
-          className={`group fixed z-[60] right-5 flex items-center justify-center w-14 h-14 rounded-full bg-white/70 backdrop-blur-xl ring-1 ring-slate-200/70 shadow-[0_10px_30px_-8px_rgba(8,11,46,0.25)] hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright focus-visible:ring-offset-2 ${
-            raised ? 'bottom-28 sm:bottom-[9.5rem]' : 'bottom-5'
-          }`}
+          className="group fixed z-[60] right-5 bottom-[calc(1.25rem+env(safe-area-inset-bottom))] flex items-center justify-center w-14 h-14 rounded-full bg-white/70 backdrop-blur-xl ring-1 ring-slate-200/70 shadow-[0_10px_30px_-8px_rgba(8,11,46,0.25)] hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright focus-visible:ring-offset-2"
         >
           <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-swift-gradient ring-2 ring-white shadow-glow-coral">
             <AssistantMascot variant="head" className="w-8 h-8" />

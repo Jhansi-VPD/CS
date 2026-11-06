@@ -93,7 +93,7 @@ export const FAQPage: React.FC = () => {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3.5 py-1.5 max-sm:min-h-[44px] rounded-full text-xs font-semibold transition-all ${
                   selectedCategory === cat
                     ? 'bg-navy-midnight text-white shadow-sm'
                     : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'

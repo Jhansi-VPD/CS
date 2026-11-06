@@ -194,7 +194,7 @@ export const AboutPage: React.FC = () => {
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Requirement discovery, technical translation, scoping, and milestone formulation across ERP, web applications, and operational workflows.
                 </p>
-                <Link href="/services" className="inline-flex items-center gap-1 text-xs font-bold text-coral-bright hover:underline pt-1">
+                <Link href="/services" className="inline-flex tap-link items-center gap-1 text-xs font-bold text-coral-bright hover:underline pt-1">
                   <span>Explore Solutions</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -210,7 +210,7 @@ export const AboutPage: React.FC = () => {
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Vendor due diligence against proposed baselines (3-year age, 50-personnel, turnover), skill matrix matching, and pod onboarding.
                 </p>
-                <Link href="/partnerships" className="inline-flex items-center gap-1 text-xs font-bold text-coral-magenta hover:underline pt-1">
+                <Link href="/partnerships" className="inline-flex tap-link items-center gap-1 text-xs font-bold text-coral-magenta hover:underline pt-1">
                   <span>Partner Ecosystem</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -226,7 +226,7 @@ export const AboutPage: React.FC = () => {
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Commercial alignment, SLA oversight, independent quality audits, continuous process optimization, and long-term partnership scale.
                 </p>
-                <Link href="/how-it-works" className="inline-flex items-center gap-1 text-xs font-bold text-coral-purple hover:underline pt-1">
+                <Link href="/how-it-works" className="inline-flex tap-link items-center gap-1 text-xs font-bold text-coral-purple hover:underline pt-1">
                   <span>Delivery Lifecycle</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>

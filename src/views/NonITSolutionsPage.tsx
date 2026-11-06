@@ -153,7 +153,7 @@ export const NonITSolutionsPage: React.FC = () => {
                     </div>
                     <a
                       href="#enquiry-form"
-                      className="inline-flex items-center gap-1 font-bold text-coral-magenta hover:underline whitespace-nowrap"
+                      className="inline-flex tap-link items-center gap-1 font-bold text-coral-magenta hover:underline whitespace-nowrap"
                     >
                       <span>Request Operations Scoping</span>
                       <ArrowRight className="w-3.5 h-3.5" />

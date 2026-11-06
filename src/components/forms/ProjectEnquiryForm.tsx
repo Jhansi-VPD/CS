@@ -446,14 +446,14 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
           Attach Scope Document / RFP (Optional)
         </label>
         <div className="flex items-center gap-3">
-          <label className="flex items-center gap-2 px-4 py-2.5 border border-dashed border-slate-300 hover:border-coral-bright rounded-lg cursor-pointer bg-slate-50 hover:bg-coral-50/30 transition-colors text-xs font-medium text-slate-700">
+          <label className="flex items-center gap-2 px-4 py-2.5 max-sm:min-h-[44px] border border-dashed border-slate-300 hover:border-coral-bright rounded-lg cursor-pointer bg-slate-50 hover:bg-coral-50/30 transition-colors text-xs font-medium text-slate-700">
             <Upload className="w-4 h-4 text-coral-bright" />
             <span>{selectedFile ? 'Change File' : 'Select Scope File'}</span>
             <input
               type="file"
               onChange={handleFileChange}
               accept=".pdf,.doc,.docx,.xlsx,.txt"
-              className="hidden"
+              className="sr-only"
             />
           </label>
           {selectedFile && (

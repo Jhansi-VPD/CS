@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 
 export interface ModalProps {
@@ -20,6 +21,14 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   maxWidth = 'xl'
 }) => {
+  const titleId = useId();
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -27,18 +36,19 @@ export const Modal: React.FC<ModalProps> = ({
 
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      dialogRef.current?.focus();
       window.addEventListener('keydown', handleKeyDown);
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
   const maxWidthClasses = {
     sm: 'max-w-sm',
@@ -49,17 +59,22 @@ export const Modal: React.FC<ModalProps> = ({
     '3xl': 'max-w-3xl',
   };
 
-  return (
+  // Portal-mounted: a modal nested in JSX under the header would be positioned by
+  // the header's scrolled backdrop-filter instead of the viewport.
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+      ref={dialogRef}
+      tabIndex={-1}
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6 overflow-y-auto focus:outline-none"
       role="dialog"
       aria-modal="true"
-      aria-labelledby={title ? 'modal-title' : undefined}
+      aria-labelledby={title ? titleId : undefined}
     >
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-navy-midnight/70 backdrop-blur-sm transition-opacity"
         onClick={onClose}
+        aria-hidden="true"
       />
 
       {/* Modal Dialog Box */}
@@ -68,10 +83,10 @@ export const Modal: React.FC<ModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-start justify-between p-6 border-b border-slate-100 bg-slate-50/50">
+        <div className="flex items-start justify-between p-5 sm:p-6 border-b border-slate-100 bg-slate-50/50">
           <div>
             {title && (
-              <h3 id="modal-title" className="text-xl font-heading font-bold text-navy-midnight">
+              <h3 id={titleId} className="text-lg sm:text-xl font-heading font-bold text-navy-midnight">
                 {title}
               </h3>
             )}
@@ -79,7 +94,7 @@ export const Modal: React.FC<ModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/70 transition-colors ml-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/70 transition-colors ml-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -87,9 +102,9 @@ export const Modal: React.FC<ModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 max-h-[calc(85vh-120px)] overflow-y-auto">{children}</div>
+        <div className="p-5 sm:p-6 max-h-[min(70dvh,560px)] overflow-y-auto">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
-

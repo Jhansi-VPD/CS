@@ -1,13 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { CheckCircle2, AlertCircle, Building, Users, FileCheck, ArrowRight, ArrowLeft, RefreshCw, ShieldCheck, Check } from 'lucide-react';
 import { Button } from '../common/Button';
 import { PartnerApplicationFormData } from '../../types';
 import { submissionChecklist } from '../../data/partnerCriteriaData';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export const PartnerApplicationForm: React.FC = () => {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
+  const formRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   const [formData, setFormData] = useState<PartnerApplicationFormData>({
     contactPersonName: '',
@@ -105,16 +108,23 @@ export const PartnerApplicationForm: React.FC = () => {
     return Object.keys(errs).length === 0;
   };
 
+  const scrollFormIntoView = () => {
+    formRef.current?.scrollIntoView({
+      behavior: reducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
+  };
+
   const handleNext = () => {
     if (validateStep(step)) {
       setStep((prev) => (prev < 4 ? ((prev + 1) as 1 | 2 | 3 | 4) : prev));
-      window.scrollTo({ top: 400, behavior: 'smooth' });
+      scrollFormIntoView();
     }
   };
 
   const handleBack = () => {
     setStep((prev) => (prev > 1 ? ((prev - 1) as 1 | 2 | 3 | 4) : prev));
-    window.scrollTo({ top: 400, behavior: 'smooth' });
+    scrollFormIntoView();
   };
 
   const toggleExpertise = (item: string) => {
@@ -258,7 +268,7 @@ export const PartnerApplicationForm: React.FC = () => {
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-card-soft">
+    <div ref={formRef} className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-card-soft scroll-mt-24">
       {/* Multi-step Progress Bar */}
       <div className="mb-8">
         <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-2">

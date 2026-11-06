@@ -138,14 +138,20 @@ export const CardSlider: React.FC<CardSliderProps> = ({
         {items.map((_, idx) => (
           <button
             key={idx}
+            type="button"
             onClick={() => setActiveIndex(idx)}
             aria-label={`Go to slide ${idx + 1}`}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              activeIndex === idx
-                ? 'w-7 bg-coral-bright shadow-xs'
-                : 'w-2 bg-slate-300 hover:bg-slate-400'
-            }`}
-          />
+            aria-current={activeIndex === idx}
+            className="tap-btn"
+          >
+            <span
+              className={`block h-2 rounded-full transition-all duration-300 ${
+                activeIndex === idx
+                  ? 'w-7 bg-coral-bright'
+                  : 'w-2 bg-slate-300 hover:bg-slate-400'
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>
