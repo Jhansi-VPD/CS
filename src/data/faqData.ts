@@ -89,7 +89,7 @@ export const faqData: FaqItem[] = [
     id: 'faq-14',
     category: 'Screening Criteria',
     question: 'Are the proposed criteria mandatory for all partners?',
-    answer: 'As stated in the corporate profile and PRD, these criteria are proposed screening requirements, not a promise of merger approval or project award. Exceptions and project-specific requirements may be evaluated by administrators based on specialized technical capabilities or specific scope demands.'
+    answer: 'These criteria are proposed screening requirements, not a promise of merger approval or project award. Exceptions and project-specific requirements may be evaluated based on specialized technical capabilities or specific scope demands.'
   },
   // Engagement Process
   {
@@ -112,4 +112,3 @@ export const faqData: FaqItem[] = [
     answer: 'Confidential strategic documents, audited financial statements, and proprietary capability data are processed under strict access-controlled protocols, never published publicly, and safeguarded through mutual non-disclosure agreements.'
   }
 ];
-

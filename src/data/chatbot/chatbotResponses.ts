@@ -1,6 +1,6 @@
 // Response assembly for each intent. Every answer is built only from approved
 // Coral Swift knowledge, uses real routes for links, and appends the mandatory
-// accuracy / privacy / safety guardrails where relevant (PRD section 8).
+// Accuracy, privacy, and safety guardrails where relevant.
 import {
   COMPANY, ROUTES, SAFETY,
   serviceRoute, getService, serviceLists,

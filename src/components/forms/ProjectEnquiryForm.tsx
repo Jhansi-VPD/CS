@@ -211,10 +211,6 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
           </div>
         </div>
 
-        <p className="text-xs text-slate-500 leading-relaxed max-w-lg mx-auto">
-          <strong>Interactive Notice:</strong> This is a validated frontend simulation for Coral Swift’s Phase 1 public portal. In production, this record routes directly to the Business Development Queue for scoping and delivery center matching.
-        </p>
-
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button variant="outline" size="sm" onClick={handleReset} icon={<RefreshCw className="w-3.5 h-3.5" />}>
             Submit Another Requirement
@@ -509,4 +505,3 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
     </form>
   );
 };
-

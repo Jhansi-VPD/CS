@@ -1,6 +1,6 @@
 // Structured Coral Swift knowledge base for the assistant.
-// Source of truth: the Consolidated Master PRD + Corporate Profile, mirrored through
-// the existing site data modules so the assistant never drifts from published pages.
+// Source of truth: the existing site data modules so the assistant stays aligned
+// with the published pages.
 import { itServices, nonItServices, partnershipServices } from '../servicesData';
 import { proposedScreeningCriteria, engagementPathways, submissionChecklist, globalDeliverySteps, sixStageEvaluation } from '../partnerCriteriaData';
 import { illustrativeOpportunities } from '../opportunitiesData';
@@ -101,7 +101,7 @@ export const evaluationStages = sixStageEvaluation;
 export const opportunities = illustrativeOpportunities;
 export const industries = industriesData;
 
-/** Global quick questions (PRD section 5). */
+/** Global quick questions. */
 export const QUICK_SUGGESTIONS: Suggestion[] = [
   { label: 'Explore IT Solutions', intentId: 'it-services-list' },
   { label: 'Explore Non-IT Services', intentId: 'non-it-services-list' },
@@ -188,7 +188,7 @@ const PAGE_LABELS: Record<string, string> = {
   generic: 'Coral Swift',
 };
 
-/** Resolve page context from the current pathname (PRD section 9). */
+/** Resolve page context from the current pathname. */
 export const resolvePage = (pathname: string): PageContext => {
   const p = pathname.replace(/\/+$/, '') || '/';
   let key = 'generic';

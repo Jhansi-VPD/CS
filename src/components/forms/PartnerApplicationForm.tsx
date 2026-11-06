@@ -657,7 +657,7 @@ export const PartnerApplicationForm: React.FC = () => {
                 4. Initial Partner Submission Checklist & Confirmation
               </h3>
               <p className="text-xs text-slate-500">
-                Confirm available verification items per PRD Section 8. Document uploads are simulated for this Phase 1 public portal demo.
+                Confirm available verification items. Document uploads are simulated for this public portal.
               </p>
             </div>
 
@@ -771,4 +771,3 @@ export const PartnerApplicationForm: React.FC = () => {
     </div>
   );
 };
-

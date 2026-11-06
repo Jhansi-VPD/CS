@@ -7,7 +7,7 @@ import { VisitorType } from './chatbotTypes';
 
 const allServices = [...itServices, ...nonItServices, ...partnershipServices];
 
-/** Common spelling mistakes / simple variations (PRD section 4). */
+/** Common spelling mistakes and simple variations. */
 const MISSPELLINGS: Record<string, string> = {
   cral: 'coral', corral: 'coral', swif: 'swift', swiftf: 'swift',
   partener: 'partner', patner: 'partner', parteners: 'partners', patnership: 'partnership', partenership: 'partnership', partnerhip: 'partnership',
@@ -143,7 +143,7 @@ export const classifyPathway = (raw: string): string => {
   const n = normalize(raw);
   if (STRATEGIC.test(n)) return 'pathway-strategic-merger';
   if (DIRECT.test(n)) return 'pathway-direct-project';
-  // Software / IT / tech providers map to vendor / subcontracting (per PRD example).
+  // Software, IT, and technology providers map to vendor/subcontracting.
   return 'pathway-subcontracting';
 };
 

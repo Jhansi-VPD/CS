@@ -119,9 +119,6 @@ export const ContactPage: React.FC = () => {
                   </div>
                 </div>
 
-                <p className="text-[11px] text-slate-400 italic pt-2 border-t border-slate-100">
-                  * All official registry details and physical locations are managed in our corporate validation register per PRD Section 25.
-                </p>
               </Card>
 
               {/* Quick Links */}

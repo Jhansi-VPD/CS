@@ -7,7 +7,7 @@ import { SectionHeader } from '../components/common/SectionHeader';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
 import { Logo } from '../components/common/Logo';
-import { ShieldCheck, Target, Compass, ArrowRight, Layers, BookOpen, HelpCircle } from 'lucide-react';
+import { Target, Compass, ArrowRight, Layers, BookOpen, HelpCircle } from 'lucide-react';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const AboutPage: React.FC = () => {
@@ -256,25 +256,6 @@ export const AboutPage: React.FC = () => {
                 </Link>
               </div>
             </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Section 4: Publication Governance */}
-      <section id="verification" className="py-14 bg-slate-50 border-t border-slate-200/70">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="scale">
-            <Card variant="white" className="p-6 sm:p-7 border border-slate-200 space-y-3">
-              <div className="flex items-center gap-2.5">
-                <ShieldCheck className="w-5 h-5 text-coral-bright shrink-0" />
-                <h3 className="text-base font-heading font-bold text-navy-midnight">
-                  Corporate Governance & Publication Control Standard
-                </h3>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                In strict adherence to corporate governance guidelines (PRD Section 10 & 24), Coral Swift represents a business-development profile. Entity registration details, physical presence, and partner references are subject to documentary verification before external publication. Hyderabad is proposed as a key partner and delivery ecosystem.
-              </p>
-            </Card>
           </ScrollReveal>
         </div>
       </section>

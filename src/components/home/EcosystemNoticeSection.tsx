@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { Card } from '../common/Card';
 import { ScrollReveal } from '../common/ScrollReveal';
 
@@ -32,12 +32,6 @@ export const EcosystemNoticeSection: React.FC = () => {
               Hyderabad is proposed as our primary partner and delivery ecosystem, providing deep capability across Enterprise ERP, web applications, healthcare coding, and financial back-office operations.
             </p>
 
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 text-xs text-slate-500 flex items-start gap-2.5">
-              <ShieldCheck className="w-4 h-4 text-coral-bright shrink-0 mt-0.5" />
-              <p className="leading-relaxed">
-                <strong>Publication Governance Standard:</strong> Partner candidate names, historical projects, and references undergo corporate verification and formal consent prior to public listing per PRD Section 10.
-              </p>
-            </div>
           </Card>
         </ScrollReveal>
       </div>

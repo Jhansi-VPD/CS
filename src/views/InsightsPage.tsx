@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
-import { Download, Clock, Calendar, ShieldCheck } from 'lucide-react';
+import { Download, Clock, Calendar } from 'lucide-react';
 
 export const InsightsPage: React.FC = () => {
   const [downloadSuccess, setDownloadSuccess] = useState(false);
@@ -163,13 +163,6 @@ export const InsightsPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Governance Notice */}
-          <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-500 flex items-start gap-3">
-            <ShieldCheck className="w-5 h-5 text-coral-bright shrink-0 mt-0.5" />
-            <p className="leading-relaxed">
-              <strong>Editorial Governance:</strong> All resource articles adhere to verified corporate information. Market analyses avoid unsupported statistics and reflect the documented business model outlined in Coral Swift PRD Version 2.0/3.0.
-            </p>
-          </div>
         </div>
       </section>
     </div>

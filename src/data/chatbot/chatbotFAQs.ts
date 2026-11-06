@@ -1,4 +1,4 @@
-// Predefined questions + natural-language variations (PRD sections 2, 3 and 4).
+// Predefined questions and natural-language variations.
 // Each FAQ maps a question (and alternate phrasings) to a canonical intentId used by
 // the matching engine and by the click-through suggestion chips.
 

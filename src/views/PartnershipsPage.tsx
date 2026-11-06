@@ -7,7 +7,7 @@ import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
 import { proposedScreeningCriteria, engagementPathways, submissionChecklist } from '../data/partnerCriteriaData';
 import { PartnerApplicationForm } from '../components/forms/PartnerApplicationForm';
-import { CheckCircle2, FileCheck, AlertCircle, Layers, Lock, Briefcase, Handshake } from 'lucide-react';
+import { CheckCircle2, FileCheck, Layers, Lock, Briefcase, Handshake } from 'lucide-react';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const PartnershipsPage: React.FC = () => {
@@ -229,13 +229,6 @@ export const PartnershipsPage: React.FC = () => {
               </table>
             </div>
 
-            {/* Explicit Notice */}
-            <div className="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start gap-3">
-              <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-              <p className="leading-relaxed">
-                <strong>Evaluation Policy Disclaimer:</strong> These are proposed screening baselines. Direct project allocation and strategic discussions require documentary validation. Partner reviewers evaluate exceptions or project-specific requirements on a case-by-case basis through approved internal workflows.
-              </p>
-            </div>
           </ScrollReveal>
         </div>
       </section>

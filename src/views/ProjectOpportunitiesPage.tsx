@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { illustrativeOpportunities } from '../data/opportunitiesData';
-import { AlertTriangle, ArrowRight, Check, SlidersHorizontal, LayoutList } from 'lucide-react';
+import { ArrowRight, Check, SlidersHorizontal, LayoutList } from 'lucide-react';
 import { ProjectEnquiryForm } from '../components/forms/ProjectEnquiryForm';
 import { CardSlider } from '../components/common/CardSlider';
 import { ScrollReveal } from '../components/common/ScrollReveal';
@@ -130,13 +130,6 @@ export const ProjectOpportunitiesPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Mandatory Publication Safeguard Notice */}
-          <div className="mt-8 p-4 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-start gap-3 max-w-3xl text-xs text-amber-900">
-            <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-            <p className="leading-relaxed">
-              <strong>Publication Safeguard Notice (PRD Section 9 & 24):</strong> The categories listed on this page are sample illustrative scopes designed to demonstrate typical requirements. They do not constitute a representation of live, unassigned contracts or guaranteed project awards. Live allocations occur following client contracting and formal partner due diligence.
-            </p>
-          </div>
         </div>
       </section>
 

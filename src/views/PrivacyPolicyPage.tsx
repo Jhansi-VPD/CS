@@ -1,6 +1,6 @@
 import React from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
-import { AlertCircle, ShieldCheck } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export const PrivacyPolicyPage: React.FC = () => {
   return (
@@ -12,20 +12,13 @@ export const PrivacyPolicyPage: React.FC = () => {
             Privacy Policy
           </h1>
           <p className="text-xs text-slate-500 mt-2 font-mono">
-            Last Updated: November 2026 • Legal Draft for Corporate Validation
+            Last Updated: November 2026
           </p>
         </div>
       </section>
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200/80 text-xs text-amber-900 mb-8 flex items-start gap-2.5">
-            <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-            <p className="leading-relaxed">
-              <strong>Legal Notice:</strong> This document represents a proposed operational privacy policy draft for Coral Swift’s Phase 1 public portal. Final legal entity registration, jurisdiction selection, and specific regulatory disclosures will be inserted upon corporate validation.
-            </p>
-          </div>
-
           <div className="prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 space-y-6 leading-relaxed">
             <div>
               <h2 className="text-lg font-bold text-navy-midnight mb-2">1. Scope and Purpose</h2>
@@ -37,7 +30,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             <div>
               <h2 className="text-lg font-bold text-navy-midnight mb-2">2. Principle of Data Minimization</h2>
               <p>
-                In strict compliance with our corporate governance guidelines (PRD Section 19 & 28), Coral Swift enforces strict data minimization:
+                Coral Swift enforces strict data minimization:
               </p>
               <ul className="list-disc pl-5 space-y-1">
                 <li>We collect only business-level capability and contact information necessary to evaluate project scoping and delivery partner eligibility.</li>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
-import { AlertCircle } from 'lucide-react';
 
 export const TermsOfServicePage: React.FC = () => {
   return (
@@ -12,20 +11,13 @@ export const TermsOfServicePage: React.FC = () => {
             Terms & Conditions of Website Use
           </h1>
           <p className="text-xs text-slate-500 mt-2 font-mono">
-            Last Updated: November 2026 • Legal Draft for Corporate Validation
+            Last Updated: November 2026
           </p>
         </div>
       </section>
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200/80 text-xs text-amber-900 mb-8 flex items-start gap-2.5">
-            <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-            <p className="leading-relaxed">
-              <strong>Notice:</strong> These terms govern your access to the public website of Coral Swift. They clarify the scope of published information, illustrative categories, and screening requirements.
-            </p>
-          </div>
-
           <div className="prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 space-y-6 leading-relaxed">
             <div>
               <h2 className="text-lg font-bold text-navy-midnight mb-2">1. Nature of Published Information</h2>
