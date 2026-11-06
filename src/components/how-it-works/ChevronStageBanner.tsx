@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { LucideIcon, ChevronDown, CheckCircle2, Users, ArrowRight } from 'lucide-react';
 
 export interface StageTheme {
@@ -36,52 +36,71 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
   icon: Icon
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const drawerId = useId();
   const formattedStep = step < 10 ? `0${step}` : `${step}`;
 
+  const toggleExpanded = () => setIsExpanded((value) => !value);
+
   return (
-    <div className="w-full my-5 transition-all duration-300">
+    <div className="w-full my-5 transition-all duration-300 group">
       {/* Outer Row: Left Icon Column + Origami Fold & Chevron Ribbon */}
-      <div className="flex items-center gap-3 sm:gap-6">
+      <div className="flex items-center gap-2.5 sm:gap-6">
         {/* 1. Left Icon Container (Clean Outline Icon with matching color) */}
         <div className="shrink-0 flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16">
           <div
-            className={`w-11 h-11 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 duration-200 ${theme.bgLight}`}
+            className={`w-11 h-11 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-md ${theme.bgLight}`}
             style={{ color: theme.iconColor }}
           >
-            <Icon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.75]" />
+            <Icon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.75] transition-transform duration-300 group-hover:rotate-6" />
           </div>
         </div>
 
         {/* 2. Origami Ribbon Wrapper with 3D Drop Shadow */}
-        <div className="flex-grow relative filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)]">
+        <div className="min-w-0 flex-grow relative filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_14px_28px_rgba(0,0,0,0.22)] transition-all duration-300">
           {/* Background Fold Shadow overlay for left 3D slant */}
           <div
-            className="absolute -left-2 top-0 bottom-0 w-8 bg-black/20 -skew-x-[25deg] blur-xs -z-10 pointer-events-none"
+            className="absolute -left-2 top-0 bottom-0 w-8 bg-black/20 -skew-x-[25deg] -z-10 pointer-events-none transition-all duration-300 group-hover:bg-black/30"
             aria-hidden="true"
           />
 
           {/* The Colored Ribbon Body with Diagonal Left & Chevron Right Point */}
           <div
-            onClick={() => setIsExpanded(!isExpanded)}
-            className={`relative cursor-pointer transition-all duration-300 hover:brightness-105 active:scale-[0.99] text-white py-3.5 sm:py-5 pl-7 sm:pl-10 pr-14 sm:pr-20 bg-gradient-to-r ${theme.gradient}`}
+            role="button"
+            tabIndex={0}
+            aria-expanded={isExpanded}
+            aria-controls={drawerId}
+            onClick={toggleExpanded}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleExpanded();
+              }
+            }}
+            className={`relative cursor-pointer overflow-hidden transition-all duration-300 group-hover:translate-x-2 sm:group-hover:translate-x-3.5 group-hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white active:scale-[0.99] text-white py-3.5 sm:py-5 pl-7 sm:pl-10 pr-14 sm:pr-20 bg-gradient-to-r ${theme.gradient}`}
             style={{
               clipPath:
                 'polygon(28px 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%)'
             }}
           >
+            {/* Shimmer / Gloss Light Sweep across the ribbon on hover */}
+            <div
+              className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none"
+              aria-hidden="true"
+            />
+
             {/* Top-Left Origami Fold White Triangle Flap */}
             <div
-              className="absolute left-0 top-0 w-7 h-full bg-white/20 backdrop-blur-xs pointer-events-none"
+              className="absolute left-0 top-0 w-7 h-full bg-white/20 pointer-events-none transition-opacity duration-300 group-hover:bg-white/30"
               style={{
                 clipPath: 'polygon(0% 0%, 28px 0%, 0% 100%)'
               }}
             />
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-3 sm:gap-4 relative z-10">
               {/* Text Info */}
               <div className="space-y-0.5 sm:space-y-1 min-w-0 pr-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-white/80">
+                  <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-white/80 group-hover:text-white transition-colors">
                     Stage {formattedStep}
                   </span>
                   <span className="hidden sm:inline-block text-white/60">•</span>
@@ -90,20 +109,20 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
                   </span>
                 </div>
 
-                <h3 className="text-sm sm:text-lg lg:text-xl font-heading font-extrabold text-white truncate leading-snug">
+                <h3 className="text-sm sm:text-lg lg:text-xl font-heading font-extrabold text-white leading-snug sm:truncate transition-transform duration-200 group-hover:translate-x-0.5">
                   {name}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-white/90 line-clamp-1 sm:line-clamp-2 max-w-2xl leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-white/90 line-clamp-2 max-w-2xl leading-relaxed font-normal">
                   {description}
                 </p>
               </div>
 
-              {/* Right Diamond Badge with Step Number (as in reference image) */}
-              <div className="shrink-0 flex items-center mr-1 sm:mr-3">
-                <div className="relative w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-lg sm:rounded-xl shadow-lg rotate-45 flex items-center justify-center transition-transform hover:scale-105">
+              {/* Right Diamond Badge with Step Number (rotates slightly on hover) */}
+              <div className="shrink-0 flex items-center">
+                <div className="relative w-9 h-9 sm:w-11 sm:h-11 sm:mr-3 bg-white rounded-lg sm:rounded-xl shadow-lg rotate-45 flex items-center justify-center transition-all duration-300 group-hover:rotate-[55deg] group-hover:scale-110 group-hover:shadow-xl">
                   <span
-                    className="font-extrabold text-xs sm:text-sm -rotate-45"
+                    className="font-extrabold text-xs sm:text-sm -rotate-45 transition-transform duration-300 group-hover:-rotate-[55deg]"
                     style={{ color: theme.iconColor }}
                   >
                     {formattedStep}
@@ -113,9 +132,13 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
             </div>
 
             {/* Click to expand/collapse micro-hint */}
-            <div className="absolute bottom-1 right-10 text-[9px] text-white/70 font-mono hidden md:flex items-center gap-1">
-              <span>{isExpanded ? 'Hide Details' : 'View Details'}</span>
-              <ChevronDown className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+            <div className="absolute bottom-1 right-7 sm:right-10 text-[9px] text-white/70 group-hover:text-white font-mono flex items-center gap-1 transition-colors">
+              <span className="hidden sm:inline">{isExpanded ? 'Hide Details' : 'View Details'}</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 sm:w-3 sm:h-3 transition-transform duration-300 group-hover:translate-x-0.5 ${
+                  isExpanded ? 'rotate-180' : ''
+                }`}
+              />
             </div>
           </div>
         </div>
@@ -123,10 +146,14 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
 
       {/* 3. Expandable Deep-Dive Drawer (Reveals Deliverables, Stakeholders & Next Steps) */}
       {isExpanded && (
-        <div className="ml-14 sm:ml-22 mr-4 sm:mr-8 mt-2 p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm animate-fadeIn">
+        <div
+          id={drawerId}
+          className="mt-2 sm:mt-2 sm:ml-[88px] sm:mr-8 p-4 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm animate-fade-in"
+        >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
             {/* Left: Deliverables */}
             <div className="md:col-span-7 space-y-2">
+              <p className="sm:hidden text-xs text-slate-600 leading-relaxed">{description}</p>
               <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 block">
                 Key Stage Deliverables:
               </span>
@@ -175,4 +202,3 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
 };
 
 export default ChevronStageBanner;
-
