@@ -41,7 +41,7 @@ export const ContactPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Contact Us' }]} />
 
@@ -53,7 +53,7 @@ export const ContactPage: React.FC = () => {
               Connect with Coral Swift
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
-              Submit your project requirement, request a partner evaluation, explore strategic discussions, or schedule an introductory meeting with our business development team.
+              Tell us what you need: a project, a partnership, a strategic discussion, or a meeting request.
             </p>
           </div>
         </div>
@@ -71,9 +71,9 @@ export const ContactPage: React.FC = () => {
                   <Calendar className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white">Schedule Introductory Call</h3>
+                  <h3 className="text-base font-bold text-white">Request an Introductory Call</h3>
                   <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                    Book a time-zone aware virtual introductory discussion directly with our team.
+                    Send a meeting request for a time-zone aware introductory call with our team.
                   </p>
                 </div>
                 <Button
@@ -82,7 +82,7 @@ export const ContactPage: React.FC = () => {
                   onClick={() => setIsMeetingOpen(true)}
                   className="w-full justify-center"
                 >
-                  Choose Time Slot
+                  Request a Meeting
                 </Button>
               </Card>
 
@@ -90,31 +90,31 @@ export const ContactPage: React.FC = () => {
               <Card variant="white" className="p-6 space-y-4 border border-slate-200 hover-lift">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-navy-midnight">
                   <ShieldAlert className="w-4 h-4 text-coral-bright" />
-                  <span>Verified Contact Channels</span>
+                  <span>Contact Details</span>
                 </div>
 
                 <div className="space-y-3.5 text-xs text-slate-600">
                   <div className="flex items-start gap-2.5">
                     <Mail className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-navy-midnight block">Corporate Email:</strong>
-                      <span className="text-slate-500">Official domain email to be activated upon corporate registry finalization.</span>
+                      <strong className="text-navy-midnight block">Email:</strong>
+                      <span className="text-slate-500">Official domain email coming once the corporate registry is confirmed.</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-2.5">
                     <MapPin className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-navy-midnight block">Primary Delivery Hub:</strong>
-                      <span className="text-slate-500">Hyderabad Partner Ecosystem, Telangana, India.</span>
+                      <strong className="text-navy-midnight block">Delivery Partner Network:</strong>
+                      <span className="text-slate-500">Partner delivery ecosystem based in Hyderabad, Telangana, India.</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-2.5">
                     <Phone className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-navy-midnight block">Telephone:</strong>
-                      <span className="text-slate-500">Authorized corporate representative lines pending validation update.</span>
+                      <strong className="text-navy-midnight block">Phone:</strong>
+                      <span className="text-slate-500">Corporate lines to be confirmed.</span>
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export const ContactPage: React.FC = () => {
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-xs space-y-2">
                 <h4 className="font-bold text-navy-midnight">Need Immediate Answers?</h4>
                 <p className="text-slate-500">
-                  Find fast answers regarding partner eligibility, scopes, and engagement models:
+                  Answers on partner eligibility, scope, and engagement models:
                 </p>
                 <Link href="/faq" className="text-coral-bright font-bold hover:underline inline-flex tap-link items-center gap-1 pt-1">
                   <span>Visit Knowledge Base & FAQs</span>

@@ -45,19 +45,19 @@ export const FAQPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs items={[{ label: 'Knowledge Base & FAQ' }]} />
+          <Breadcrumbs items={[{ label: 'FAQ' }]} />
 
           <div className="mt-6 max-w-3xl animate-fadeIn">
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
-              Help & Information
+              Help
             </span>
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-3 tracking-tight">
               Frequently Asked Questions
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
-              Find transparent answers regarding our business positioning, service portfolio, proposed partner screening baselines, and cross-border engagement models.
+              How we work, the services we cover, and the screening standards we propose for delivery partners.
             </p>
           </div>
 
@@ -72,7 +72,7 @@ export const FAQPage: React.FC = () => {
                 aria-label="Search frequently asked questions"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search questions by keyword (e.g. screening criteria, ERP, Hyderabad, turnover)..."
+                placeholder="Search by keyword, such as screening, ERP, Hyderabad, or turnover"
                 className="w-full pl-12 pr-10 py-3.5 rounded-2xl border border-slate-300 text-sm text-navy-midnight bg-white shadow-sm focus:ring-2 focus:ring-coral-bright/20 focus:border-coral-bright transition-all"
               />
               {searchQuery && (
@@ -121,7 +121,7 @@ export const FAQPage: React.FC = () => {
                 }}
                 className="text-coral-bright font-bold hover:underline"
               >
-                Clear Search & Filters
+                Clear search
               </button>
             )}
           </div>
@@ -129,9 +129,9 @@ export const FAQPage: React.FC = () => {
           {filteredFaqs.length === 0 ? (
             <div className="text-center py-16 p-8 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
               <HelpCircle className="w-10 h-10 text-slate-400 mx-auto" />
-              <h3 className="text-base font-bold text-navy-midnight">No matching questions found</h3>
+              <h3 className="text-base font-bold text-navy-midnight">No matching questions</h3>
               <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                Try refining your keyword search or select a broader category. You can also contact our team directly.
+                Try another keyword or a broader category. You can also contact our team directly.
               </p>
               <Button
                 variant="outline"
@@ -192,10 +192,10 @@ export const FAQPage: React.FC = () => {
           {/* Need More Assistance */}
           <div className="mt-16 p-8 rounded-3xl bg-slate-50 border border-slate-200/80 text-center space-y-4">
             <h3 className="text-lg font-heading font-bold text-navy-midnight">
-              Have a Specific Business Question Not Addressed Here?
+              Still have a question?
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto">
-              Our business development desk is available to clarify project scoping parameters, partnership criteria, and bilateral commercial structures.
+              Ask us about project scope, partner criteria, or commercial terms.
             </p>
             <div className="pt-2">
               <Button to="/contact" variant="primary" size="sm" icon={<ArrowRight className="w-3.5 h-3.5" />}>

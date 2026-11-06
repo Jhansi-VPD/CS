@@ -19,26 +19,26 @@ export const PartnershipsPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Delivery Partnerships' }]} />
 
           <div className="mt-6 max-w-3xl animate-fadeIn">
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
-              Partner Ecosystem
+              Partners
             </span>
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-3 tracking-tight">
-              Delivery Partner Ecosystem
+              Delivery Partners
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
-              We invite established IT software companies, BPO operators, healthcare process centers, and banking operations providers in India to collaborate on international enterprise delivery opportunities.
+              We work with established IT, BPO, healthcare, and banking operations companies in India on international projects.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button to="#apply" variant="primary" size="md">
-                Apply as a Delivery Partner
+                Apply as a Partner
               </Button>
               <Button to="#criteria" variant="outline" size="md">
-                Review Screening Baselines
+                See Screening Criteria
               </Button>
             </div>
           </div>
@@ -54,16 +54,16 @@ export const PartnershipsPage: React.FC = () => {
               <div className="lg:col-span-7 space-y-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-coral-bright bg-coral-50 px-2.5 py-1 rounded-full border border-coral-200/60 inline-flex items-center gap-1.5">
                   <Handshake className="w-3.5 h-3.5" />
-                  <span>Merit-Based Qualification</span>
+                  <span>Merit-Based Review</span>
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-navy-midnight">
-                  Structured International Project Allocation & Growth
+                  Structured Project Allocation
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Coral Swift provides qualified Indian delivery centers with direct access to US and international enterprise clients without the overhead of maintaining overseas sales desks. Our model focuses on clear milestones, verifiable technical requirements, and transparent commercial governance.
+                  We connect qualified Indian delivery centers to US enterprise projects with clear milestones and transparent commercial terms.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-1">
-                  {['Direct Project Allocation', 'Cross-Border Governance', 'Audited Due Diligence', 'Transparent SLAs'].map((item) => (
+                  {['Direct Project Allocation', 'Cross-Border Governance', 'Documented Due Diligence', 'Clear Commercial Terms'].map((item) => (
                     <span key={item} className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-navy-midnight">
                       {item}
                     </span>
@@ -74,13 +74,13 @@ export const PartnershipsPage: React.FC = () => {
                 <div className="relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white group aspect-[16/10]">
                   <img
                     src="/images/partnerships-handshake.jpg"
-                    alt="Strategic Partnership Collaboration and Qualification"
+                    alt="Delivery partner collaboration"
                     loading="lazy"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/80 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 text-white text-[11px] font-semibold flex items-center justify-between">
-                    <span>Bilateral Mutual Alignment</span>
+                    <span>Mutual Alignment</span>
                     <span className="text-coral-orange font-mono">Governed Delivery</span>
                   </div>
                 </div>
@@ -92,17 +92,17 @@ export const PartnershipsPage: React.FC = () => {
             <SectionHeader
               badge="Partner Profiles"
               title="Who Can Become a"
-              highlightText="Coral Swift Delivery Partner?"
-              subtitle="Our partner network is designed for mature organizations capable of disciplined execution, verified security posture, and scalable capacity."
+              highlightText="Delivery Partner?"
+              subtitle="Built for mature organizations with verified delivery capability, strong security practices, and scalable capacity. Each profile maps to one of our supported sectors on the industries page."
             />
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {[
-              { num: '01', title: 'IT & Software Houses', color: 'text-coral-bright', text: 'Specialized in Enterprise ERP, custom web and cloud applications, QA test automation, and infrastructure maintenance.' },
-              { num: '02', title: 'Healthcare Process Operators', color: 'text-coral-rose', text: 'Proficient in medical coding (ICD-10/CPT), billing reconciliation, claims scrub, and patient authorization workflows.' },
-              { num: '03', title: 'Financial Process Teams', color: 'text-coral-magenta', text: 'Experienced in banking KYC customer review, mortgage loan file packaging, title check audits, and mutual fund accounting.' },
-              { num: '04', title: 'High-Volume BPO Centers', color: 'text-coral-purple', text: 'Equipped with double-key verification, OCR data cleanup, XML indexing, and flexible shift operations.' }
+              { num: '01', title: 'IT & Software Houses', color: 'text-coral-bright', text: 'Enterprise ERP, custom web and cloud applications, QA automation, and infrastructure support.' },
+              { num: '02', title: 'Healthcare Process Operators', color: 'text-coral-rose', text: 'Medical coding, billing reconciliation, claims scrub, and patient authorization workflows.' },
+              { num: '03', title: 'Financial Process Teams', color: 'text-coral-magenta', text: 'Banking KYC review, mortgage file packaging, title checks, and fund accounting.' },
+              { num: '04', title: 'High-Volume BPO Centers', color: 'text-coral-purple', text: 'High-volume data entry, OCR cleanup, document indexing, and flexible shift operations.' }
             ].map((p, idx) => (
               <ScrollReveal key={p.num} direction="up" delay={idx * 80} className="h-full">
                 <Card variant="white" className="p-6 space-y-3 hover-lift h-full">
@@ -126,9 +126,9 @@ export const PartnershipsPage: React.FC = () => {
           <ScrollReveal direction="up">
             <SectionHeader
               badge="Pathways"
-              title="Three Structured"
-              highlightText="Collaboration Pathways"
-              subtitle="Choose the partnership model matching your company's operational scale and strategic objectives."
+              title="Three Ways To"
+              highlightText="Work With Us"
+              subtitle="Pick the model that fits your company's scale and goals."
             />
           </ScrollReveal>
 
@@ -139,7 +139,7 @@ export const PartnershipsPage: React.FC = () => {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-coral-bright bg-coral-50 px-2.5 py-1 rounded-full border border-coral-200">
-                        {path.id === 'strategic-merger' ? 'M&A / Structural' : path.id === 'direct-project' ? 'Direct Allocation' : 'Modular / Pod'}
+                        {path.id === 'strategic-merger' ? 'Strategic Discussion' : path.id === 'direct-project' ? 'Project Engagement' : 'Vendor Partnership'}
                       </span>
                     </div>
 
@@ -157,7 +157,7 @@ export const PartnershipsPage: React.FC = () => {
                     </div>
 
                     <div className="space-y-1.5">
-                      <span className="text-xs font-bold text-navy-midnight block">Key Pathway Benefits:</span>
+                      <span className="text-xs font-bold text-navy-midnight block">Benefits:</span>
                       <ul className="space-y-1 text-xs text-slate-600">
                         {path.keyBenefits.map((b, i) => (
                           <li key={i} className="flex items-start gap-2">
@@ -174,7 +174,7 @@ export const PartnershipsPage: React.FC = () => {
                       href="#apply"
                       className="w-full inline-flex items-center justify-center text-xs font-bold py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-coral-50 hover:text-coral-bright text-navy-midnight transition-colors"
                     >
-                      Select this Pathway in Application
+                      Select this Pathway
                     </a>
                   </div>
                 </Card>
@@ -189,10 +189,10 @@ export const PartnershipsPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <SectionHeader
-              badge="Eligibility Baselines"
+              badge="Eligibility"
               title="Proposed Partner"
               highlightText="Screening Criteria"
-              subtitle="The following criteria are proposed screening requirements from the Corporate Profile, not a promise of merger approval or project award."
+              subtitle="These are proposed screening baselines, not a promise of approval or a project award."
             />
           </ScrollReveal>
 
@@ -239,9 +239,9 @@ export const PartnershipsPage: React.FC = () => {
           <ScrollReveal direction="up">
             <SectionHeader
               badge="Checklist"
-              title="8-Point Initial"
-              highlightText="Partner Submission Checklist"
-              subtitle="Ensure your organization has the following documentation ready when initiating an evaluation."
+              title="Partner"
+              highlightText="Submission Checklist"
+              subtitle="Have these documents ready before you apply."
             />
           </ScrollReveal>
 
@@ -264,8 +264,8 @@ export const PartnershipsPage: React.FC = () => {
           <ScrollReveal direction="up" delay={200}>
             <div className="mt-12 p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="space-y-1 text-center md:text-left">
-                <h4 className="text-sm font-bold text-navy-midnight">Explore the 6-Stage Evaluation Lifecycle & Strategic M&A</h4>
-                <p className="text-xs text-slate-500">Understand the exact due diligence stages or explore structural equity alignment.</p>
+                <h4 className="text-sm font-bold text-navy-midnight">See the Six-Stage Evaluation & Strategic Pathway</h4>
+                <p className="text-xs text-slate-500">Review the evaluation stages or explore strategic options.</p>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
                 <Button to="/how-it-works" variant="outline" size="sm" icon={<Layers className="w-3.5 h-3.5" />}>
@@ -288,10 +288,10 @@ export const PartnershipsPage: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <SectionHeader
-              badge="Application Portal"
-              title="Submit Your Expression of"
-              highlightText="Interest & Profile"
-              subtitle="Complete the 4-step partner evaluation form below. Submissions are processed through our structured review workflow."
+              badge="Apply"
+              title="Submit Your"
+              highlightText="Expression of Interest"
+              subtitle="Complete the 4-step form below. Every submission goes through structured review."
             />
           </ScrollReveal>
 

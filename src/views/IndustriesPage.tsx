@@ -23,22 +23,22 @@ export const IndustriesPage: React.FC = () => {
   const industryImages: Record<string, { src: string; alt: string; badge: string }> = {
     'it-software': {
       src: '/images/industry-it-software.jpg',
-      alt: 'Enterprise IT Architecture and Software Development Pods',
+      alt: 'IT architecture and software development teams',
       badge: 'Software & Cloud Engineering'
     },
     'healthcare-operations': {
       src: '/images/industry-healthcare.jpg',
-      alt: 'Healthcare Operations, Clinical Billing and Medical Data Workflows',
+      alt: 'Healthcare billing and medical data operations',
       badge: 'Clinical Billing & RCM'
     },
     'banking-financial-services': {
       src: '/images/industry-bfsi.jpg',
-      alt: 'Banking, Financial Services KYC and Mortgage Review Operations',
+      alt: 'Banking KYC and mortgage document review',
       badge: 'KYC & Mortgage Verification'
     },
     'enterprise-operations': {
       src: '/images/industry-enterprise-ops.jpg',
-      alt: 'High-Volume Enterprise Back-Office Operations and Facilities',
+      alt: 'Enterprise back-office operations',
       badge: 'Back-Office Scalability'
     }
   };
@@ -46,19 +46,19 @@ export const IndustriesPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Target Industries' }]} />
 
           <div className="mt-6 max-w-3xl animate-fadeIn">
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
-              Sector Expertise
+              Core Sectors
             </span>
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-3 tracking-tight">
-              Industries & Target Sectors
+              Industries We Support
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
-              Aligning cross-border technology capabilities and specialized operational pods with the distinct regulatory, technical, and volume demands of four core enterprise sectors.
+              We match US project requirements with qualified delivery partners in India across four core sectors.
             </p>
           </div>
         </div>
@@ -193,14 +193,14 @@ export const IndustriesPage: React.FC = () => {
           <ScrollReveal direction="scale">
             <div className="p-8 sm:p-10 rounded-3xl bg-navy-midnight text-white text-center space-y-4 shadow-xl">
               <h3 className="text-2xl font-heading font-extrabold text-white">
-                Do Your Industry Requirements Span Multiple Disciplines?
+                Need Help Across Several Sectors?
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
-                We structure custom cross-border pods that combine software engineering with specialized back-office support under unified project governance.
+                We combine engineering teams with back-office support under one coordinated delivery model.
               </p>
               <div className="pt-2">
                 <Button to="/contact?type=project" variant="primary" size="md">
-                  Initiate Cross-Disciplinary Scoping
+                  Start a Conversation
                 </Button>
               </div>
             </div>

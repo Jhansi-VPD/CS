@@ -7,7 +7,7 @@ import { Lock, ShieldCheck, Handshake } from 'lucide-react';
 
 export const StrategicDiscussionsPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Strategic Discussions & M&A | Coral Swift';
+    document.title = 'Strategic Discussions | Coral Swift';
     window.scrollTo(0, 0);
   }, []);
 
@@ -27,13 +27,13 @@ export const StrategicDiscussionsPage: React.FC = () => {
           <div className="mt-6 max-w-3xl space-y-4 animate-fadeIn">
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-navy-surface text-coral-orange border border-navy-border inline-flex items-center gap-1.5">
               <Lock className="w-3.5 h-3.5" />
-              <span>Restricted Executive Pathway</span>
+              <span>Restricted enquiry</span>
             </span>
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-              Strategic Merger & Enterprise Integration
+              Strategic Merger & Integration
             </h1>
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-              Preliminary discussions with established IT organizations and delivery operators seeking deeper structural relationships, equity alignment, and unified cross-border market presence.
+              For established IT and delivery organizations exploring deeper structural alignment, equity participation, or shared cross-border delivery. An enquiry starts a review only; it does not confirm a discussion or an outcome.
             </p>
           </div>
         </div>
@@ -49,7 +49,7 @@ export const StrategicDiscussionsPage: React.FC = () => {
               <div className="relative rounded-3xl overflow-hidden shadow-card-soft border border-slate-200/90 bg-white group aspect-[16/9]">
                 <img
                   src="/images/strategic-mna-boardroom.jpg"
-                  alt="Executive Boardroom for Strategic Mergers and Corporate Integration"
+                  alt="Boardroom used for confidential merger and integration enquiries"
                   loading="lazy"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
@@ -57,10 +57,10 @@ export const StrategicDiscussionsPage: React.FC = () => {
                 <div className="absolute bottom-4 left-4 right-4 text-white flex items-center justify-between">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-coral-orange px-2 py-0.5 rounded-full bg-navy-surface border border-navy-border inline-block mb-1">
-                      Executive Dialogue
+                      Executive dialogue
                     </span>
                     <p className="text-xs font-bold">
-                      Confidential Due Diligence & Structural Alliance
+                      Confidential merger review
                     </p>
                   </div>
                   <span className="text-[11px] font-mono text-slate-300 bg-navy-surface px-2.5 py-1 rounded-lg border border-navy-border hidden sm:inline-block">
@@ -71,17 +71,17 @@ export const StrategicDiscussionsPage: React.FC = () => {
 
               <div className="space-y-3">
                 <span className="text-xs font-bold uppercase tracking-wider text-coral-magenta">
-                  Structural Pathways
+                  The pathway
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-navy-midnight">
-                  Beyond Traditional Subcontracting
+                  More Than Subcontracting
                 </h2>
                 <div className="prose prose-slate text-sm text-slate-600 leading-relaxed space-y-3">
                   <p>
-                    Coral Swift’s Strategic Discussion pathway is formulated for established technology enterprises seeking more than tactical project outsourcing. We explore collaborative structural models that combine delivery capacity, US market channels, and shared operational governance.
+                    This pathway is for established technology companies looking beyond project outsourcing. We explore models that combine delivery capacity, US market access, and shared operational governance.
                   </p>
                   <p>
-                    Organizations participating in strategic discussions typically possess deep domain expertise, a stable workforce of full-time technical personnel, and clean audited financials.
+                    Organizations that apply usually have deep domain expertise, full-time technical staff, and clean audited financials.
                   </p>
                 </div>
               </div>
@@ -90,24 +90,24 @@ export const StrategicDiscussionsPage: React.FC = () => {
               <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-4 shadow-card-soft">
                 <h3 className="text-sm font-bold text-navy-midnight uppercase tracking-wider flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-coral-magenta" />
-                  <span>Proposed Strategic Eligibility Framework:</span>
+                  <span>Proposed eligibility checks, not approval promises:</span>
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600">
                   <div className="p-3.5 bg-white rounded-2xl border border-slate-200">
-                    <strong className="text-navy-midnight block mb-0.5">Operating Longevity:</strong>
-                    <span>At least 3 years of audited corporate operational history.</span>
+                    <strong className="text-navy-midnight block mb-0.5">Experience:</strong>
+                    <span>3+ years of established operations, with audited history.</span>
                   </div>
                   <div className="p-3.5 bg-white rounded-2xl border border-slate-200">
-                    <strong className="text-navy-midnight block mb-0.5">Workforce Scale:</strong>
-                    <span>50+ employed full-time technical specialists with senior practice leads.</span>
+                    <strong className="text-navy-midnight block mb-0.5">Team size:</strong>
+                    <span>50+ employed personnel with verifiable payroll or statutory records.</span>
                   </div>
                   <div className="p-3.5 bg-white rounded-2xl border border-slate-200">
-                    <strong className="text-navy-midnight block mb-0.5">Financial Standing:</strong>
-                    <span>Audited financial statements and statutory compliance filings.</span>
+                    <strong className="text-navy-midnight block mb-0.5">Finances:</strong>
+                    <span>Audited financial statements and statutory filings.</span>
                   </div>
                   <div className="p-3.5 bg-white rounded-2xl border border-slate-200">
-                    <strong className="text-navy-midnight block mb-0.5">Governance Maturity:</strong>
-                    <span>Verifiable delivery track record, IP controls, and secure physical infrastructure.</span>
+                    <strong className="text-navy-midnight block mb-0.5">Governance:</strong>
+                    <span>Verified delivery history, IP controls, and secure facilities.</span>
                   </div>
                 </div>
               </div>
@@ -116,7 +116,7 @@ export const StrategicDiscussionsPage: React.FC = () => {
               <div className="p-4 rounded-2xl bg-coral-50/40 border border-coral-200/80 text-xs text-slate-700 flex items-start gap-3">
                 <Lock className="w-5 h-5 text-coral-magenta shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
-                  <strong>Strict Confidentiality Assurance:</strong> Strategic discussions are handled under bilateral Non-Disclosure Agreements (NDAs). Uploaded financial statements and proprietary organizational data are restricted exclusively to authorized executive leadership.
+                  <strong>Confidential:</strong> Submissions are handled under mutual non-disclosure agreements. Financial statements and company data stay access-restricted to authorized reviewers and are never published.
                 </p>
               </div>
             </div>

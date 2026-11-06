@@ -71,7 +71,7 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
         </div>
 
         {/* 2. Origami Ribbon Wrapper with 3D Drop Shadow */}
-        <div className="flex-grow relative filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out">
+        <div className="flex-grow min-w-0 relative filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out">
           {/* Background Fold Shadow overlay for left 3D slant */}
           <div
             className="absolute -left-2 top-0 bottom-0 w-8 bg-black/20 -skew-x-[25deg] blur-xs -z-10 pointer-events-none"

@@ -15,13 +15,13 @@ export const NotFoundPage: React.FC = () => {
             Page Not Found
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-            The page you are looking for may have been moved, renamed, or is temporarily unavailable.
+            This page may have moved, been renamed, or is temporarily unavailable.
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           <Button to="/" variant="primary" size="md" icon={<Home className="w-4 h-4" />}>
-            Return to Homepage
+            Back to Home
           </Button>
           <Button to="/faq" variant="outline" size="md" icon={<HelpCircle className="w-4 h-4" />}>
             Visit FAQ

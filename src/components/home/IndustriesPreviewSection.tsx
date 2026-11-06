@@ -18,8 +18,8 @@ const industries: IndustrySector[] = [
   {
     id: 'it-software',
     name: 'IT & Enterprise Software',
-    tagline: 'ERP, Cloud & Agile Pods',
-    description: 'Cloud native architectures, enterprise ERP migrations, full-stack web platforms, and automated regression testing.',
+    tagline: 'ERP, Web & Custom Software',
+    description: 'ERP implementations, business portals, custom software and application testing.',
     image: '/images/industry-it-software.jpg',
     icon: Code,
     badge: 'Technology'
@@ -27,8 +27,8 @@ const industries: IndustrySector[] = [
   {
     id: 'healthcare-operations',
     name: 'Healthcare & Life Sciences',
-    tagline: 'RCM & Certified Medical Coding',
-    description: 'HIPAA-compliant revenue cycle management, certified medical coding (ICD-10 / CPT-4), and claims scrubbing.',
+    tagline: 'Coding & Billing Support',
+    description: 'Medical coding, medical billing and healthcare documentation workflows.',
     image: '/images/industry-healthcare.jpg',
     icon: HeartPulse,
     badge: 'Healthcare'
@@ -36,8 +36,8 @@ const industries: IndustrySector[] = [
   {
     id: 'banking-financial-services',
     name: 'Banking & Financial Services',
-    tagline: 'KYC, AML & Loan Audits',
-    description: 'Customer KYC remediation, anti-money laundering (AML) screening, mortgage loan audits, and escrow reconciliation.',
+    tagline: 'KYC & Mortgage Processing',
+    description: 'Banking KYC review, mortgage documentation and mutual-fund operations support.',
     image: '/images/industry-bfsi.jpg',
     icon: Landmark,
     badge: 'BFSI'
@@ -45,8 +45,8 @@ const industries: IndustrySector[] = [
   {
     id: 'enterprise-operations',
     name: 'Enterprise Operations & BPO',
-    tagline: 'High-Volume Transaction Desks',
-    description: 'High-volume data processing, document OCR indexing, and 24/7 rotational back-office operational desks.',
+    tagline: 'Data & Back-Office Support',
+    description: 'Data entry, document processing, indexing and quality control.',
     image: '/images/industry-enterprise-ops.jpg',
     icon: Building2,
     badge: 'Operations'
@@ -65,17 +65,17 @@ export const IndustriesPreviewSection: React.FC = () => {
               <span>Target Industries</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-navy-midnight tracking-tight leading-tight">
-              Calibrated Across Four{' '}
-              <span className="swift-gradient-text">Core Enterprise Verticals.</span>
+              Four Industries We{' '}
+              <span className="swift-gradient-text">Focus On.</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
-              Every vertical demands strict compliance, domain-specific security, and audited workflows.
+              Project work spans IT and business operations across these sectors.
             </p>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={100} className="shrink-0">
             <Button to="/industries" variant="outline" size="sm" icon={<ArrowRight className="w-4 h-4" />}>
-              All Industry Use Cases
+              View All Industries
             </Button>
           </ScrollReveal>
         </div>
@@ -124,7 +124,7 @@ export const IndustriesPreviewSection: React.FC = () => {
                       {ind.description}
                     </p>
                     <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-coral-orange group-hover:translate-x-1 transition-transform">
-                      <span>Explore Vertical</span>
+                      <span>Explore Industry</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </div>
                   </div>

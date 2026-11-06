@@ -20,23 +20,23 @@ const PANELS: CapabilityPanel[] = [
   {
     index: '01',
     label: 'Technology',
-    title: 'IT Solutions & Custom Software',
-    description: 'Engineering enterprise platforms, custom applications and scalable digital systems.',
-    capabilities: ['SAP & Oracle ERP', 'React & Node.js SaaS', 'Automated QA & CI/CD', 'Client-Owned Repositories'],
+    title: 'IT Services',
+    description: 'Custom software, ERP, business portals, cloud support and testing.',
+    capabilities: ['ERP and business portals', 'Custom software development', 'Cloud and infrastructure support', 'Testing and maintenance'],
     image: '/images/solutions-it-engineering.jpg',
-    imageAlt: 'Enterprise technology and custom software engineering',
+    imageAlt: 'Software engineering team at work',
     href: '/services/it-solutions',
-    cta: 'Explore IT Solutions',
+    cta: 'Explore IT Services',
     span: 'lg:col-span-4',
   },
   {
     index: '02',
     label: 'Operations',
     title: 'Non-IT & Business Operations',
-    description: 'Structured operational support for complex business processes.',
-    capabilities: ['Medical Coding', 'Banking KYC & AML', 'Title Review', 'Business Process Support'],
+    description: 'Healthcare, banking and back-office processes run by assessed partners.',
+    capabilities: ['Medical coding and billing', 'Banking KYC and mortgage processing', 'Data entry and document processing', 'Back-office support'],
     image: '/images/solutions-non-it-operations.jpg',
-    imageAlt: 'Regulated business process operations desk',
+    imageAlt: 'Business process operations desk',
     href: '/services/non-it-solutions',
     cta: 'Explore Operations',
     span: 'lg:col-span-3',
@@ -44,11 +44,11 @@ const PANELS: CapabilityPanel[] = [
   {
     index: '03',
     label: 'Collaboration',
-    title: 'Delivery Partnerships',
-    description: 'Structured delivery relationships built on assessment, governance and collaboration.',
-    capabilities: ['Delivery Center Assessment', 'Partner Due Diligence', 'Commercial Alignment', 'Delivery Governance'],
+    title: 'Partnership Services',
+    description: 'We find, screen and coordinate delivery partners for defined project scope.',
+    capabilities: ['Vendor discovery and assessment', 'Staffing and project alignment', 'Reporting and quality assurance', 'Commercial engagement support'],
     image: '/images/hero-enterprise-collab.jpg',
-    imageAlt: 'International enterprise delivery collaboration',
+    imageAlt: 'International delivery collaboration',
     href: '/partnerships',
     cta: 'Explore Partnerships',
     span: 'md:col-span-2 lg:col-span-3',
@@ -64,14 +64,14 @@ export const ServicesOverviewSection: React.FC = () => {
           <div className="max-w-2xl">
             <p className="mb-3 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-coral-bright">
               <span className="h-px w-5 bg-coral-bright/50" />
-              Our Capabilities
+              Our Services
             </p>
             <h2 className="font-heading text-2xl font-extrabold leading-tight tracking-tight text-navy-midnight sm:text-3xl">
               Technology<span className="text-coral-bright">.</span> Operations<span className="text-coral-bright">.</span> Partnerships
               <span className="text-coral-bright">.</span>
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-[15px]">
-              Three connected capabilities for enterprise growth.
+              Three service areas: technology, business operations and delivery partnerships.
             </p>
           </div>
           <Link

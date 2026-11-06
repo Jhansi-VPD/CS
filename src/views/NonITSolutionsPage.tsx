@@ -9,14 +9,14 @@ import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const NonITSolutionsPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Non-IT Solutions & Operations | Coral Swift';
+    document.title = 'Non-IT Solutions | Coral Swift';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs
             items={[
@@ -27,13 +27,13 @@ export const NonITSolutionsPage: React.FC = () => {
 
           <div className="mt-6 max-w-3xl animate-fadeIn">
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-magenta border border-coral-200">
-              Business Process Operations
+              Business Operations
             </span>
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-3 tracking-tight">
-              Operational & Back-Office Solutions
+              Non-IT & Back-Office Solutions
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
-              Disciplined business process operations covering medical coding, revenue cycle support, banking KYC, mortgage documentation, and high-volume data transcription under client-defined quality parameters.
+              We connect you with Indian operations partners for medical coding and billing, healthcare support, data entry, banking KYC and mortgage processing, mutual-fund operations, and back-office services.
             </p>
           </div>
         </div>
@@ -48,16 +48,16 @@ export const NonITSolutionsPage: React.FC = () => {
               <div className="lg:col-span-7 space-y-4">
                 <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-coral-magenta bg-coral-50 px-2.5 py-1 rounded-full border border-coral-200/60">
                   <FileSpreadsheet className="w-3.5 h-3.5" />
-                  <span>Process Governance & Quality Controls</span>
+                  <span>Quality Checks & Reporting</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-navy-midnight">
-                  High-Volume Precision Backed by Rigorous SOPs
+                  High-Volume Work with Clear Quality Controls
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Operating under strict confidentiality standards, our partner delivery centers execute specialized back-office processes across healthcare RCM, financial compliance, and document indexing. Workflows feature double-key data entry, statistical sampling, and daily SLA dashboards.
+                  Partner teams handle healthcare, banking, and document work with security-aligned processes. Common controls include double-key entry, sample checks, and daily progress reports.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-1">
-                  {['ICD-10/CPT Billing', 'Banking KYC Reviews', 'Mortgage File Audits', 'Double-Key Data Entry', 'HIPAA Alignable VDI'].map((tag) => (
+                  {['Medical Coding & Billing', 'Banking KYC', 'Mortgage Processing', 'Double-Key Data Entry', 'Secure Workspaces'].map((tag) => (
                     <span key={tag} className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-navy-midnight">
                       {tag}
                     </span>
@@ -68,14 +68,14 @@ export const NonITSolutionsPage: React.FC = () => {
                 <div className="relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white group aspect-[16/10]">
                   <img
                     src="/images/solutions-non-it-operations.jpg"
-                    alt="High-Volume Operations and Data Verification Workstation"
+                    alt="Operations team reviewing documents"
                     loading="lazy"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/80 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 text-white text-[11px] font-semibold flex items-center justify-between">
-                    <span>SLA-Governed Shift Operations</span>
-                    <span className="text-coral-orange font-mono">99%+ Accuracy Target</span>
+                    <span>Quality-Checked Shifts</span>
+                    <span className="text-coral-orange font-mono">Sample-Checked Output</span>
                   </div>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export const NonITSolutionsPage: React.FC = () => {
                       </div>
                     </div>
                     <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-full self-start sm:self-auto">
-                      SLA-Governed Shifts
+                      Managed Shifts
                     </span>
                   </div>
 
@@ -117,7 +117,7 @@ export const NonITSolutionsPage: React.FC = () => {
                     {/* Common Requirements */}
                     <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
                       <h3 className="text-xs font-bold text-navy-midnight uppercase tracking-wider mb-2.5">
-                        Process Scope & Workflows:
+                        Typical Tasks:
                       </h3>
                       <ul className="space-y-2 text-xs text-slate-600">
                         {service.useCases.map((uc, i) => (
@@ -132,7 +132,7 @@ export const NonITSolutionsPage: React.FC = () => {
                     {/* Capabilities */}
                     <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
                       <h3 className="text-xs font-bold text-navy-midnight uppercase tracking-wider mb-2.5">
-                        Quality & Operational Controls:
+                        Quality Controls:
                       </h3>
                       <ul className="space-y-2 text-xs text-slate-600">
                         {service.capabilities.map((cap, i) => (
@@ -148,14 +148,14 @@ export const NonITSolutionsPage: React.FC = () => {
                   {/* Engagement Approach */}
                   <div className="p-4 rounded-xl bg-coral-50/20 border border-coral-200/60 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
                     <div>
-                      <span className="font-bold text-navy-midnight block">Operating Setup:</span>
+                      <span className="font-bold text-navy-midnight block">How It Works:</span>
                       <span className="text-slate-600">{service.engagementApproach}</span>
                     </div>
                     <a
                       href="#enquiry-form"
                       className="inline-flex tap-link items-center gap-1 font-bold text-coral-magenta hover:underline whitespace-nowrap"
                     >
-                      <span>Request Operations Scoping</span>
+                      <span>Discuss This Service</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   </div>

@@ -6,10 +6,10 @@ import { CookieBanner } from '@/components/common/CookieBanner';
 import { Chatbot } from '@/components/chatbot/Chatbot';
 import { HashScroll } from '@/components/common/HashScroll';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coralswift.com';
 
 export const metadata: Metadata = {
-  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  metadataBase: new URL(siteUrl),
   title: 'Coral Swift | Connecting Global Opportunities with Delivery Excellence',
   description:
     'Coral Swift is a US-oriented IT and Non-IT project solutions and partnership platform connecting international project requirements with qualified delivery organizations.',

@@ -4,7 +4,7 @@ import { NonITSolutionsPage } from '@/views/NonITSolutionsPage';
 export const metadata: Metadata = {
   title: 'Non-IT Solutions & Operations | Coral Swift',
   description:
-    'Medical coding, revenue cycle billing, banking KYC, mortgage documentation and high-volume back-office execution.',
+    'Medical coding and billing, healthcare support, banking KYC, mortgage processing and back-office services.',
 };
 
 export default function Page() {

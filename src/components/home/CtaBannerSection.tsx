@@ -27,13 +27,13 @@ export const CtaBannerSection: React.FC = () => {
 
               {/* Bold Executive Headline */}
               <h2 className="font-heading text-3xl sm:text-4xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                Ready to Connect Your Requirements with{' '}
-                <span className="swift-gradient-text">Delivery Excellence?</span>
+                Let&apos;s Talk About{' '}
+                <span className="swift-gradient-text">Your Project.</span>
               </h2>
 
               {/* Concise Supporting Copy */}
               <p className="text-base text-slate-300 leading-relaxed max-w-xl mx-auto font-normal">
-                Schedule a direct introductory discussion with our leadership team or explore our vetted IT and operations delivery capabilities.
+                Tell us what you need. We will arrange an introductory discussion and explain the next steps.
               </p>
 
               {/* Clear Primary & Secondary CTAs */}
@@ -45,7 +45,7 @@ export const CtaBannerSection: React.FC = () => {
                   icon={<Calendar className="w-4 h-4" />}
                   className="font-bold shadow-xs hover:shadow-md cursor-pointer"
                 >
-                  Schedule Introductory Discussion
+                  Request an Introductory Call
                 </Button>
                 <Button
                   to="/services"
@@ -61,15 +61,15 @@ export const CtaBannerSection: React.FC = () => {
               <div className="pt-8 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
                 <div className="flex items-center gap-2">
                   <Lock className="w-3.5 h-3.5 text-coral-orange" />
-                  <span>Bilateral NDA Protection</span>
+                  <span>Confidential Discussions</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-3.5 h-3.5 text-coral-bright" />
-                  <span>100% Client IP Rights</span>
+                  <span>Clear Scope And Terms</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>1 Business Day Response</span>
+                  <span>Structured Six-Stage Process</span>
                 </div>
               </div>
             </div>

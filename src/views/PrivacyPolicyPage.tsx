@@ -21,57 +21,59 @@ export const PrivacyPolicyPage: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 space-y-6 leading-relaxed">
             <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">1. Scope and Purpose</h2>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">1. What This Covers</h2>
               <p>
-                Coral Swift (“we,” “our,” or “the Platform”) operates as a business solutions and partnership platform connecting international project requirements with qualified delivery organizations. This Privacy Policy outlines how we collect, process, and protect corporate and business contact information submitted through our public website.
+                Coral Swift (“we”) is a project solutions and partnership platform. This policy explains what information we collect through our website, how we use it, how long we keep it, and your choices.
               </p>
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">2. Principle of Data Minimization</h2>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">2. Minimal Data Collection</h2>
               <p>
-                Coral Swift enforces strict data minimization:
+                We collect as little as possible:
               </p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>We collect only business-level capability and contact information necessary to evaluate project scoping and delivery partner eligibility.</li>
-                <li><strong>Prohibition on Sensitive Personal Data:</strong> Public website forms do NOT collect or accept sensitive personal health records, patient data, personal financial account credentials, credit card details, or social security numbers.</li>
-                <li>Operational scopes in healthcare or banking are discussed at an institutional capability level only.</li>
+                <li>Only the business and contact details needed to assess a project or a partner.</li>
+                <li><strong>No sensitive personal data:</strong> Our public forms never accept health records, patient data, financial account credentials, card details, or social security numbers.</li>
+                <li>Healthcare and banking work is discussed at company capability level only.</li>
               </ul>
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">3. Information We Collect</h2>
-              <p>We may collect the following categories of information submitted voluntarily by visitors:</p>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">3. What We Collect</h2>
+              <p>Information you choose to submit:</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li><strong>Contact Details:</strong> Full name, authorized corporate email address, business telephone number, and job title.</li>
-                <li><strong>Organizational Profile:</strong> Company legal name, country of incorporation, website URL, operational scale, year of establishment, and headcount.</li>
-                <li><strong>Project Scoping Data:</strong> High-level business requirements, target technology stacks, desired shift volumes, and estimated timelines.</li>
-                <li><strong>Partner Due Diligence Evidence:</strong> Verification document categories selected by prospective delivery partners.</li>
+                <li><strong>Contact:</strong> name, business email, phone number, job title.</li>
+                <li><strong>Company:</strong> legal name, country, website, size, founding year, headcount.</li>
+                <li><strong>Project scope:</strong> requirements, target technology, volumes, timelines.</li>
+                <li><strong>Partner evidence:</strong> the verification documents an applicant selects.</li>
               </ul>
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">4. How We Use Collected Information</h2>
-              <p>Submitted information is used exclusively for:</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Reviewing and responding to project and business inquiries.</li>
-                <li>Evaluating partner eligibility against proposed screening thresholds (3 years age, 50+ staff, turnover).</li>
-                <li>Conducting preliminary bilateral introductory calls and scheduling meetings.</li>
-                <li>Executing mutual Non-Disclosure Agreements (NDAs) prior to detailed technical or financial discovery.</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">5. Confidentiality & Third-Party Disclosure</h2>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">4. How We Use It</h2>
               <p>
-                Coral Swift does not sell, rent, or trade business contact information. Data is shared with prospective delivery organizations only after formal mutual consent, project scoping validation, and execution of confidentiality agreements.
+                We use it only to:
+              </p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>To review and reply to project and business enquiries.</li>
+                <li>To screen partners against proposed baselines: 3+ years of operations, 50+ personnel, annual turnover.</li>
+                <li>To schedule introductory calls.</li>
+                <li>To put a mutual NDA in place before detailed technical or financial discussion.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">5. Who We Share It With</h2>
+              <p>
+                We do not sell, rent, or trade business contact information. We share it with a delivery organization only after both sides agree, the scope is validated, and confidentiality terms are in place.
               </p>
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">6. Retention & Data Rights</h2>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">6. Retention and Your Rights</h2>
               <p>
-                Business inquiries and partner expressions of interest are retained for the duration of the evaluation lifecycle. You may request review, correction, or deletion of your corporate contact record by writing to our designated privacy desk.
+                We keep enquiries and partner applications for as long as the evaluation runs. You can ask us to review, correct, or delete your record by contacting us.
               </p>
             </div>
           </div>

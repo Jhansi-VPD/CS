@@ -4,26 +4,26 @@ export const proposedScreeningCriteria: ScreeningCriterion[] = [
   {
     criterion: 'Business Age',
     sourceThreshold: 'At least 3 years of established operations',
-    evidenceRequired: 'Certificate of incorporation / company registration proof showing date of establishment.',
-    statusNotes: 'Proposed screening baseline to ensure operational maturity and organizational stability.'
+    evidenceRequired: 'Certificate of incorporation or company registration showing the founding date.',
+    statusNotes: 'Proposed baseline to confirm operational maturity.'
   },
   {
     criterion: 'Workforce Strength',
-    sourceThreshold: 'Minimum 50 employed candidates / personnel',
-    evidenceRequired: 'Verifiable payroll records, statutory contribution filings (e.g. PF / ESI records), or verified headcount rosters.',
-    statusNotes: 'Evaluates immediate staffing capability and capacity to absorb enterprise project demand.'
+    sourceThreshold: 'Minimum 50 employed personnel',
+    evidenceRequired: 'Verifiable payroll records, statutory filings (e.g. PF/ESI), or verified headcount rosters.',
+    statusNotes: 'Confirms capacity to handle enterprise project demand.'
   },
   {
     criterion: 'Financial Turnover (Direct Allocation)',
-    sourceThreshold: 'Minimum annual turnover of INR 2 Crore (or equivalent)',
-    evidenceRequired: 'Audited financial statements, tax filings, or certified chartered accountant declarations for the latest fiscal years.',
-    statusNotes: 'Specific threshold proposed for Direct Project Allocation. Discretionary exceptions reviewed per project scope.'
+    sourceThreshold: 'Minimum annual turnover of INR 2 Crore',
+    evidenceRequired: 'Audited financial statements, tax filings, or CA turnover certificates.',
+    statusNotes: 'Proposed threshold for Direct Project Allocation. Exceptions reviewed per project scope.'
   },
   {
     criterion: 'Technical & Operational Governance',
-    sourceThreshold: 'Demonstrated delivery history, security protocols, and client references',
-    evidenceRequired: 'Detailed service portfolio, physical/cloud infrastructure overview, information security measures, and two verifiable client references.',
-    statusNotes: 'Comprehensive capability assessment conducted by evaluation team before project assignment.'
+    sourceThreshold: 'Demonstrated delivery history, security practices, and client references',
+    evidenceRequired: 'Service portfolio, infrastructure overview, data security measures, and two client references.',
+    statusNotes: 'Assessed by the evaluation team before project assignment.'
   }
 ];
 
@@ -31,53 +31,53 @@ export const engagementPathways: PartnerPathway[] = [
   {
     id: 'strategic-merger',
     title: 'Strategic Merger / Integration Discussion',
-    tagline: 'Deep structural collaboration for mature technology organizations',
-    targetProfile: 'Established IT organizations seeking deeper commercial integration, capital alignment, or unified cross-border market positioning.',
+    tagline: 'Structural collaboration for mature IT organizations',
+    targetProfile: 'Established IT firms exploring a deeper structural relationship.',
     turnoverRequirement: 'Strong balance sheet with verifiable audited growth history',
     workforceRequirement: '50+ full-time technical specialists with senior leadership',
     experienceRequirement: '3+ years of operating track record with specialized capabilities',
-    description: 'Coral Swift invites preliminary discussions with mature IT companies exploring structural mergers, equity alignments, or joint enterprise platforms. All discussions are conducted under mutual non-disclosure agreements.',
+    description: 'Preliminary discussions on a possible merger or integration, subject to legal, financial and operational due diligence.',
     keyBenefits: [
-      'Access to international enterprise demand pipeline',
-      'Structural integration and shared operational governance',
-      'Expanded market footprint across US and overseas territories',
-      'Coordinated capital, technology, and leadership alignment'
+      'Access to international enterprise project pipelines',
+      'Shared operational governance after integration',
+      'Wider US and international market reach',
+      'Aligned capital, technology, and leadership'
     ],
-    processSummary: 'Initial confidential inquiry → NDA execution → Financial & operational due diligence → Structural term sheet.'
+    processSummary: 'Confidential inquiry → Preliminary review → Due diligence → Term sheet discussion.'
   },
   {
     id: 'direct-project',
     title: 'Direct Project Engagement',
-    tagline: 'Direct delivery allocation for established, financially qualified partners',
-    targetProfile: 'Companies meeting the INR 2 Crore turnover threshold with ready capacity to lead enterprise project execution.',
+    tagline: 'Project allocation for financially qualified partners',
+    targetProfile: 'Companies meeting the INR 2 Crore turnover threshold with capacity to lead enterprise delivery.',
     turnoverRequirement: 'Minimum INR 2 Crore annual turnover (verified via audited records)',
     workforceRequirement: 'Minimum 50 employed personnel with domain specialization',
     experienceRequirement: 'Minimum 3 years of continuous corporate operations',
-    description: 'Qualified delivery organizations meeting the baseline financial and workforce thresholds are considered for direct project allocation across enterprise ERP, application development, and business operations.',
+    description: 'Qualified organizations meeting the financial and workforce baselines are considered for direct project allocation across ERP, application development, and business operations.',
     keyBenefits: [
-      'Direct project allocation coordination with international clients',
-      'Milestone-based commercial arrangements with predictable cash flows',
-      'Transparent scope boundaries and structured requirement packages',
-      'Opportunity to build long-term repeat client delivery pipelines'
+      'Direct coordination with international clients',
+      'Milestone-based commercial arrangements',
+      'Clear scope and structured requirement packages',
+      'Path to repeat client delivery pipelines'
     ],
-    processSummary: 'Expression of interest → Financial & workforce verification → Capability audit → Master Services Agreement (MSA).'
+    processSummary: 'Expression of interest → Financial and workforce verification → Capability review → Commercial agreement.'
   },
   {
     id: 'subcontracting',
     title: 'Vendor / Subcontracting Partnership',
-    tagline: 'Specialized modular delivery for agile teams and domain experts',
-    targetProfile: 'Specialized technology or BPO providers with proven domain expertise seeking modular project assignments.',
-    turnoverRequirement: 'Evaluated based on specific modular project scope and financial health',
-    workforceRequirement: 'Dedicated team availability matching specific project pods',
+    tagline: 'Modular delivery for specialized teams and domain experts',
+    targetProfile: 'Specialized technology or BPO providers seeking modular project assignments.',
+    turnoverRequirement: 'Evaluated based on project scope and financial health',
+    workforceRequirement: 'Team availability matching specific project needs',
     experienceRequirement: 'Verifiable technical track record and client portfolio',
-    description: 'For companies that demonstrate exceptional capability in specific niche areas (e.g. automated QA, specialized medical coding, data annotation, cloud security) without necessarily meeting uniform enterprise thresholds.',
+    description: 'For firms with strong niche capability (e.g. QA automation, medical coding, data annotation, cloud services) that may not meet uniform enterprise thresholds.',
     keyBenefits: [
-      'Participation in modular components of large international programs',
-      'Flexible subcontracting terms with clear delivery milestones',
-      'Support with international client communications and governance',
-      'Path to elevate partnership tier as delivery history matures'
+      'Modules within large international programs',
+      'Flexible subcontracting with clear milestones',
+      'Support with client communication and governance',
+      'Path to a higher partnership tier'
     ],
-    processSummary: 'Capability statement submission → Skill & technical evaluation → Vendor agreement → Pilot module allocation.'
+    processSummary: 'Capability statement → Technical evaluation → Vendor agreement → Pilot module.'
   }
 ];
 
@@ -85,42 +85,42 @@ export const submissionChecklist = [
   {
     id: 'doc-reg',
     name: 'Company Registration Proof',
-    description: 'Certificate of incorporation, GST/Tax registration, or jurisdictional operating license.'
+    description: 'Certificate of incorporation, GST/tax registration, or operating license.'
   },
   {
     id: 'doc-history',
     name: 'Three-Year Operating History',
-    description: 'Documentation confirming at least three years of continuous corporate business operations.'
+    description: 'Proof of at least three years of continuous business operations.'
   },
   {
     id: 'doc-workforce',
     name: 'Employee-Strength Evidence',
-    description: 'Payroll records, statutory filings (PF/ESI/statutory returns), or certified headcount statement confirming 50+ staff.'
+    description: 'Payroll or statutory filings (PF/ESI) confirming 50+ employees.'
   },
   {
     id: 'doc-financials',
     name: 'Latest Financial Statements',
-    description: 'Audited balance sheets, profit & loss statements, or CA turnover certificate for direct allocation review.'
+    description: 'Audited statements or a CA turnover certificate for allocation review.'
   },
   {
     id: 'doc-portfolio',
     name: 'Service Portfolio & Case Studies',
-    description: 'Comprehensive presentation detailing core technology stacks, methodologies, and past project categories.'
+    description: 'Core services, technology stacks, and past project categories.'
   },
   {
     id: 'doc-infra',
     name: 'Infrastructure & Security Summary',
-    description: 'Overview of physical facility, network security, data protection controls, backup policies, and workstations.'
+    description: 'Facilities, network security, data protection, and backup controls.'
   },
   {
     id: 'doc-references',
     name: 'Two Client References',
-    description: 'Verifiable reference contacts or sanitized case studies demonstrating past project completion.'
+    description: 'Verifiable references or sanitized case studies of past projects.'
   },
   {
     id: 'doc-contact',
     name: 'Authorized Contact Details',
-    description: 'Official representative name, corporate email address, phone number, and designation.'
+    description: 'Representative name, corporate email, phone, and designation.'
   }
 ];
 
@@ -129,8 +129,8 @@ export const sixStageEvaluation: ProcessStage[] = [
     step: 1,
     name: 'Expression of Interest',
     headline: 'Application & Profile Submission',
-    description: 'Prospective delivery partners submit their company profile, core service offerings, and selected partnership pathway via the public portal.',
-    deliverables: ['Partner Application Form', 'Executive Overview', 'Pathway Preference'],
+    description: 'Partners submit their company profile, core services, and preferred pathway through the portal.',
+    deliverables: ['Partner Application Form', 'Company Overview', 'Pathway Preference'],
     stakeholders: ['Applicant Leadership', 'Coral Swift Partner Desk'],
     nextStep: 'Eligibility Verification'
   },
@@ -138,7 +138,7 @@ export const sixStageEvaluation: ProcessStage[] = [
     step: 2,
     name: 'Eligibility Verification',
     headline: 'Documentation & Threshold Review',
-    description: 'The partner evaluation desk reviews incorporation documents, employee strength records, and financial statements against proposed screening baselines.',
+    description: 'The review desk checks registration, employee-strength, and financial records against the proposed baselines.',
     deliverables: ['Document Completeness Check', 'Verification Checklist', 'Initial Status Memo'],
     stakeholders: ['Partner Review Desk', 'Financial Analyst'],
     nextStep: 'Capability Review'
@@ -147,7 +147,7 @@ export const sixStageEvaluation: ProcessStage[] = [
     step: 3,
     name: 'Capability Review',
     headline: 'Technical Depth & Operational Audit',
-    description: 'In-depth assessment of the organization’s technical skills, infrastructure security, management structure, and client reference feedback.',
+    description: 'Assessment of technical skills, infrastructure security, management strength, and client reference feedback.',
     deliverables: ['Technical Due Diligence Report', 'Infrastructure Assessment', 'Reference Verification'],
     stakeholders: ['Technical Evaluators', 'Delivery Practice Leads'],
     nextStep: 'Commercial & Legal Review'
@@ -155,9 +155,9 @@ export const sixStageEvaluation: ProcessStage[] = [
   {
     step: 4,
     name: 'Commercial & Legal Review',
-    headline: 'Agreement Structuring & NDA',
-    description: 'Drafting and negotiating the Master Services Agreement (MSA), Non-Disclosure Agreement (NDA), intellectual property safeguards, and payment milestones.',
-    deliverables: ['Mutual NDA', 'Master Services Agreement', 'Governance Charter'],
+    headline: 'Agreement Structuring',
+    description: 'Agreeing the master services agreement, confidentiality terms, intellectual property safeguards and payment milestones.',
+    deliverables: ['Confidentiality Terms', 'Master Services Agreement', 'Governance Charter'],
     stakeholders: ['Legal Counsel', 'Commercial Operations'],
     nextStep: 'Controlled Pilot / Onboarding'
   },
@@ -165,17 +165,17 @@ export const sixStageEvaluation: ProcessStage[] = [
     step: 5,
     name: 'Pilot / Onboarding',
     headline: 'Controlled Kickoff & Milestone Validation',
-    description: 'Executing an initial controlled assignment or pilot module with clear milestones, quality criteria, and active communication routines.',
-    deliverables: ['Pilot Project Plan', 'SLA Baseline Tracking', 'First Milestone Delivery'],
-    stakeholders: ['Delivery Pod', 'Project Governance Manager'],
+    description: 'An initial pilot assignment with clear milestones, quality criteria, and active communication.',
+    deliverables: ['Pilot Project Plan', 'Service-Level Tracking', 'First Milestone Delivery'],
+    stakeholders: ['Delivery Team', 'Project Governance Manager'],
     nextStep: 'Scale-Up & Full Allocation'
   },
   {
     step: 6,
     name: 'Scale-Up',
     headline: 'Expanded Assignment & Long-Term Growth',
-    description: 'Following successful pilot acceptance, expanding project allocation, deepening team integration, and scheduling recurring business reviews.',
-    deliverables: ['Expanded SOW', 'Quarterly Business Reviews (QBR)', 'Capacity Roadmaps'],
+    description: 'After pilot acceptance, project allocation expands and recurring business reviews are scheduled.',
+    deliverables: ['Expanded SOW', 'Business Review Schedule', 'Capacity Roadmaps'],
     stakeholders: ['Executive Sponsors', 'Account Steering Committee'],
     nextStep: 'Continuous Partnership'
   }
@@ -186,7 +186,7 @@ export const globalDeliverySteps: ProcessStage[] = [
     step: 1,
     name: 'International Demand Discovery',
     headline: 'Capturing Global Business Requirements',
-    description: 'Identifying and structuring IT and Non-IT business requirements from international enterprises seeking reliable offshore delivery capabilities.',
+    description: 'Structuring IT and Non-IT requirements from international enterprises seeking offshore delivery.',
     deliverables: ['Business Requirement Brief', 'Preliminary Feasibility Assessment'],
     stakeholders: ['International Client', 'Coral Swift Business Development'],
     nextStep: 'Requirement Validation & Scoping'
@@ -195,7 +195,7 @@ export const globalDeliverySteps: ProcessStage[] = [
     step: 2,
     name: 'Requirement Validation',
     headline: 'Technical & Operational Translation',
-    description: 'Translating high-level business goals into rigorous technical specifications, SLA benchmarks, skill requirements, and compliance boundaries.',
+    description: 'Translating business goals into technical specifications, skill requirements, and compliance boundaries.',
     deliverables: ['Technical Specification Document', 'Skill Matrix', 'Resource Sizing Model'],
     stakeholders: ['Solutions Architect', 'Project Coordinator'],
     nextStep: 'Partner Due Diligence & Alignment'
@@ -204,7 +204,7 @@ export const globalDeliverySteps: ProcessStage[] = [
     step: 3,
     name: 'Partner Due Diligence',
     headline: 'Matching with Qualified Delivery Centers',
-    description: 'Matching validated project specifications with vetted delivery partners possessing proven capability, required headcount, and audited track records.',
+    description: 'Matching validated requirements with vetted partners based on capability, headcount, and track record.',
     deliverables: ['Partner Shortlist', 'Capability Matching Dossier', 'Client Presentation'],
     stakeholders: ['Partner Evaluation Team', 'Delivery Partner Leads'],
     nextStep: 'Project Scoping & Contracting'
@@ -212,29 +212,28 @@ export const globalDeliverySteps: ProcessStage[] = [
   {
     step: 4,
     name: 'Project Scoping & Contracting',
-    headline: 'Transparent Commercials & IP Protection',
-    description: 'Establishing transparent milestone schedules, IP protections, non-disclosure terms, and clear acceptance criteria prior to any code or operational kickoff.',
-    deliverables: ['Statement of Work (SOW)', 'Commercial Contract', 'SLA Schedule'],
+    headline: 'Transparent Commercials',
+    description: 'Agreeing milestone schedules, commercial terms and acceptance criteria before kickoff.',
+    deliverables: ['Statement of Work (SOW)', 'Commercial Contract', 'Service-Level Schedule'],
     stakeholders: ['Legal Teams', 'Commercial Managers', 'Client Stakeholders'],
     nextStep: 'Coordinated Delivery & QA'
   },
   {
     step: 5,
     name: 'Delivery & QA',
-    headline: 'Disciplined Execution & Independent Oversight',
-    description: 'Structured sprint execution or daily shift delivery with regular demos, milestone verification, automated test validation, and client reviews.',
-    deliverables: ['Sprint Deliverables', 'QA Test Reports', 'Daily/Weekly Shift Logs'],
-    stakeholders: ['Dedicated Delivery Pod', 'QA Lead', 'Client Project Manager'],
+    headline: 'Disciplined Execution & Quality Checks',
+    description: 'Structured execution with regular demos, milestone verification, testing, and client reviews.',
+    deliverables: ['Sprint Deliverables', 'QA Test Reports', 'Delivery Shift Logs'],
+    stakeholders: ['Dedicated Delivery Team', 'QA Lead', 'Client Project Manager'],
     nextStep: 'Reporting & Continuous Improvement'
   },
   {
     step: 6,
     name: 'Reporting & Continuous Improvement',
     headline: 'Governance, Metrics & Sustainable Scale',
-    description: 'Regular operational governance, SLA reporting, retrospective audits, and capacity scale-up to support long-term partnership value.',
-    deliverables: ['Monthly Governance Dashboard', 'Quality Audit Scores', 'Scale-up Roadmap'],
+    description: 'Ongoing governance, service-level reporting and capacity planning to support long-term partnerships.',
+    deliverables: ['Governance Reporting', 'Quality Audit Reports', 'Scale-up Roadmap'],
     stakeholders: ['Steering Committee', 'Operations Leads'],
     nextStep: 'Long-term Growth'
   }
 ];
-

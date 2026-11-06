@@ -4,14 +4,14 @@ export const industriesData: IndustryItem[] = [
   {
     id: 'it-software',
     title: 'Information Technology & Software',
-    subtitle: 'Scalable engineering pods and enterprise application solutions for technology companies and digital innovators.',
-    overview: 'Technology businesses face persistent shortages of senior engineering capacity and high domestic development overheads. Coral Swift connects international software organizations with vetted Indian delivery centers equipped to build, test, and maintain modern software systems.',
+    subtitle: 'Software engineering and application teams for technology companies.',
+    overview: 'We connect software organizations with screened Indian delivery centers that build, test, and maintain modern applications.',
     iconName: 'Code',
     businessRequirements: [
-      'Rapid ramp-up of dedicated development pods without long local hiring cycles',
-      'Modern web application and cloud architecture engineering',
-      'Comprehensive automated QA, regression suites, and CI/CD pipelines',
-      'Legacy software modernization and ongoing maintenance support'
+      'Quick ramp-up of dedicated development teams',
+      'Web application and cloud architecture engineering',
+      'Automated QA, regression suites, and CI/CD pipelines',
+      'Legacy modernization and ongoing maintenance'
     ],
     applicableSolutions: [
       'Custom Software Development',
@@ -20,22 +20,22 @@ export const industriesData: IndustryItem[] = [
       'Application Testing & Maintenance'
     ],
     collaborationOpportunities: [
-      'Dedicated engineering pods under agile sprint management',
-      'Fixed-scope milestone delivery for portals and core applications',
-      'Tier-2 and tier-3 maintenance SLAs for enterprise products'
+      'Dedicated teams under agreed delivery management',
+      'Fixed-scope milestone delivery for applications',
+      'Maintenance support for enterprise products'
     ]
   },
   {
     id: 'healthcare-operations',
     title: 'Healthcare & Medical Support',
-    subtitle: 'Revenue cycle support, medical coding, billing, and administrative workflows for healthcare systems.',
-    overview: 'Healthcare organizations must manage complex payer guidelines, rising administrative costs, and stringent accuracy demands. Coral Swift bridges healthcare administrative needs with disciplined operational centers providing trained coding, billing, and documentation professionals.',
+    subtitle: 'Revenue cycle support, medical coding, billing, and admin workflows.',
+    overview: 'We connect healthcare organizations with disciplined centers providing trained coding, billing, and documentation professionals.',
     iconName: 'HeartPulse',
     businessRequirements: [
-      'High-accuracy ICD-10 and CPT coding from clinical records',
-      'Accounts receivable management and denial mitigation',
-      'Payer prior authorization and benefits verification support',
-      'Electronic health record (EHR) data indexing and chart consolidation'
+      'Accurate ICD-10 and CPT coding from clinical records',
+      'Accounts receivable and denial management support',
+      'Prior authorization and benefits verification',
+      'EHR data indexing and chart consolidation'
     ],
     applicableSolutions: [
       'Medical Coding & Medical Billing',
@@ -43,22 +43,22 @@ export const industriesData: IndustryItem[] = [
       'High-Volume Document Indexing'
     ],
     collaborationOpportunities: [
-      'Turnaround-driven daily chart coding and claim scrub teams',
-      'Specialized denial management and AR recovery support',
-      'Prior authorization and patient intake administrative pods'
+      'Daily chart coding and claim scrub teams',
+      'Denial management and AR recovery support',
+      'Prior authorization and patient intake teams'
     ]
   },
   {
     id: 'banking-financial-services',
     title: 'Banking, Financial Services & Mortgage',
-    subtitle: 'Checklist-driven documentation review, KYC validation, loan processing, and fund accounting back-office support.',
-    overview: 'Financial institutions, mortgage originators, and fund administrators require meticulous accuracy in customer onboarding, documentation audits, and ledger reconciliations. We connect these operational demands with skilled back-office teams operating under strict operational security.',
+    subtitle: 'KYC validation, loan processing, and fund accounting back-office support.',
+    overview: 'We connect financial institutions with skilled back-office teams that review documentation under strict operational security.',
     iconName: 'Landmark',
     businessRequirements: [
       'KYC/AML customer onboarding document verification',
-      'Mortgage loan package audits, title review, and closing document checks',
-      'Daily custodian statement and transaction break reconciliations',
-      'Routine financial statement formatting and verification'
+      'Mortgage loan package and title document review',
+      'Daily statement and transaction reconciliations',
+      'Financial statement formatting and verification'
     ],
     applicableSolutions: [
       'Banking KYC & Mortgage Processing',
@@ -66,22 +66,22 @@ export const industriesData: IndustryItem[] = [
       'Enterprise Back-Office Services'
     ],
     collaborationOpportunities: [
-      'Dedicated compliance and KYC document audit teams',
-      'Mortgage pipeline packaging and document review shifts',
-      'Daily mutual fund reconciliation and accounting support'
+      'Dedicated KYC and compliance document audit teams',
+      'Mortgage document packaging and review shifts',
+      'Daily mutual fund reconciliation support'
     ]
   },
   {
     id: 'enterprise-operations',
     title: 'Enterprise Operations & High-Volume Data',
-    subtitle: 'Streamlined back-office workflows, ERP implementations, and large-scale data digitization.',
-    overview: 'Established enterprises managing distributed branches, vast paper archives, or fragmented legacy tools require structured modernization and reliable back-office execution. Coral Swift aligns these requirements with enterprise ERP delivery partners and high-capacity data processing centers.',
+    subtitle: 'Back-office workflows, ERP implementations, and large-scale digitization.',
+    overview: 'We match established enterprises with ERP delivery partners and high-capacity data processing centers.',
     iconName: 'Building2',
     businessRequirements: [
-      'Enterprise Resource Planning (ERP) consolidation across HR and finance',
-      'Mass paper-to-digital document conversion, XML tagging, and OCR cleanup',
-      'Accounts payable invoice processing and vendor database maintenance',
-      'Routine customer ticket routing and operational support'
+      'ERP consolidation across HR and finance',
+      'Large-scale paper-to-digital conversion and OCR cleanup',
+      'Invoice processing and vendor database maintenance',
+      'Routine customer ticket routing and support'
     ],
     applicableSolutions: [
       'Enterprise Resource Planning (ERP)',
@@ -91,9 +91,8 @@ export const industriesData: IndustryItem[] = [
     ],
     collaborationOpportunities: [
       'Full ERP deployment and data migration programs',
-      'Multi-year high-volume data transcription contracts',
-      'Continuous back-office administrative service agreements'
+      'High-volume data transcription programs',
+      'Continuous back-office administrative support'
     ]
   }
 ];
-

@@ -527,7 +527,7 @@ export const PartnerApplicationForm: React.FC = () => {
                   {
                     id: 'Vendor / Subcontracting Partnership',
                     title: 'Vendor Subcontracting',
-                    subtitle: 'For domain specialists providing modular delivery, testing pods, or operational shifts.'
+                    subtitle: 'For domain specialists providing modular delivery, testing teams, or operational shifts.'
                   }
                 ].map((p) => (
                   <div
@@ -637,7 +637,7 @@ export const PartnerApplicationForm: React.FC = () => {
                 rows={4}
                 value={formData.companyOverview}
                 onChange={(e) => setFormData({ ...formData, companyOverview: e.target.value })}
-                placeholder="Highlight your delivery pods, existing tools, past client scopes, quality management routines, and capacity to scale..."
+                placeholder="Highlight your delivery teams, existing tools, past client scopes, quality management routines, and capacity to scale..."
                 className={`w-full px-3.5 py-2.5 rounded-lg border text-sm text-navy-midnight focus:ring-2 focus:ring-coral-bright/20 ${
                   errors.companyOverview ? 'border-coral-bright bg-coral-50/20' : 'border-slate-300'
                 }`}

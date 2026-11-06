@@ -19,7 +19,7 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'About Coral Swift' }]} />
           
@@ -50,10 +50,10 @@ export const AboutPage: React.FC = () => {
               </h2>
               <div className="text-sm sm:text-base text-slate-600 leading-relaxed space-y-3">
                 <p>
-                  International organizations frequently face friction in vetting offshore technical capabilities, managing risk, and maintaining delivery accountability. Concurrently, established Indian delivery centers possess world-class operational maturity, but lack direct channels to international enterprise opportunities.
+                  Finding the right delivery partner takes time and carries risk. Established delivery centers in India often lack direct access to international projects.
                 </p>
                 <p>
-                  Coral Swift bridges this gap. Our operating model combines structured project sourcing, vendor due diligence, pod allocation, and milestone governance into a unified platform.
+                  Coral Swift bridges this gap. We source projects, screen partners, and coordinate delivery from start to finish.
                 </p>
               </div>
 
@@ -68,17 +68,17 @@ export const AboutPage: React.FC = () => {
               <div className="relative rounded-3xl overflow-hidden shadow-card-soft border border-slate-200/80 bg-white group aspect-[16/10]">
                 <img
                   src="/images/about-global-delivery.jpg"
-                  alt="Coral Swift Global Delivery Architecture and Leadership"
+                  alt="Global delivery coordination with partner locations"
                   loading="lazy"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/80 via-navy-midnight/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-coral-orange px-2 py-0.5 rounded-full bg-navy-surface border border-navy-border inline-block mb-1">
-                    Leadership Alignment
+                    Delivery Model
                   </span>
                   <p className="text-xs font-bold">
-                    Structured Governance Across Delivery Hubs
+                    Coordinated Delivery Across Partner Locations
                   </p>
                 </div>
               </div>
@@ -95,11 +95,11 @@ export const AboutPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-2 text-xs text-slate-300">
                   <div className="p-2 rounded-xl bg-navy-surface border border-navy-border">
                     <strong className="text-white block font-bold text-[11px] mb-0.5">Technology</strong>
-                    <span className="text-[10px] text-slate-400 block leading-tight">Architectural rigor & resilience.</span>
+                    <span className="text-[10px] text-slate-400 block leading-tight">Sound engineering practices.</span>
                   </div>
                   <div className="p-2 rounded-xl bg-navy-surface border border-navy-border">
                     <strong className="text-white block font-bold text-[11px] mb-0.5">Operations</strong>
-                    <span className="text-[10px] text-slate-400 block leading-tight">SLA sampling & confidentiality.</span>
+                    <span className="text-[10px] text-slate-400 block leading-tight">Quality checks and confidentiality.</span>
                   </div>
                   <div className="p-2 rounded-xl bg-navy-surface border border-navy-border">
                     <strong className="text-white block font-bold text-[11px] mb-0.5">Partnerships</strong>
@@ -107,7 +107,7 @@ export const AboutPage: React.FC = () => {
                   </div>
                   <div className="p-2 rounded-xl bg-navy-surface border border-navy-border">
                     <strong className="text-white block font-bold text-[11px] mb-0.5">Growth</strong>
-                    <span className="text-[10px] text-slate-400 block leading-tight">Predictable international scale.</span>
+                    <span className="text-[10px] text-slate-400 block leading-tight">Sustainable, long-term growth.</span>
                   </div>
                 </div>
               </Card>
@@ -117,14 +117,14 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* Section 2: Vision & Mission */}
-      <section className="py-16 sm:py-20 bg-slate-50 border-y border-slate-200/70">
+      <section className="py-16 sm:py-20 bg-gradient-to-b from-[#FFF7F2]/60 via-slate-50 to-[#FAF5F9]/60 border-y border-slate-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <SectionHeader
-              badge="Strategic Mandate"
+              badge="Our Purpose"
               title="Our Vision &"
               highlightText="Mission"
-              subtitle="The foundational principles guiding our partner ecosystem and cross-border client delivery."
+              subtitle="What we aim to build and how we work."
             />
           </ScrollReveal>
 
@@ -144,7 +144,7 @@ export const AboutPage: React.FC = () => {
                   “To build a trusted international ecosystem where qualified technology and operations companies can access scalable project opportunities.”
                 </p>
                 <p className="text-xs text-slate-500 leading-relaxed pt-2 border-t border-slate-100">
-                  Enabling frictionless cross-border collaboration powered by verified credentials and transparent commercial terms.
+                  Transparent commercial terms and clear qualification standards.
                 </p>
               </Card>
             </ScrollReveal>
@@ -164,7 +164,7 @@ export const AboutPage: React.FC = () => {
                   “To enable disciplined project execution across IT and Non-IT domains through partner screening, structured onboarding, operational governance and outcome-based delivery.”
                 </p>
                 <p className="text-xs text-slate-500 leading-relaxed pt-2 border-t border-slate-100">
-                  Delivered through strict eligibility screening, milestone schedules, bi-weekly sprint reviews, and independent QA.
+                  Delivered through partner screening, structured onboarding and operational governance.
                 </p>
               </Card>
             </ScrollReveal>
@@ -180,7 +180,7 @@ export const AboutPage: React.FC = () => {
               badge="Our Approach"
               title="How We Structure"
               highlightText="Delivery Value"
-              subtitle="Three foundational pillars connecting international demand with scalable execution."
+              subtitle="Three areas that connect international demand with qualified delivery."
             />
           </ScrollReveal>
 
@@ -192,7 +192,7 @@ export const AboutPage: React.FC = () => {
                 </div>
                 <h3 className="text-base font-bold text-navy-midnight">Project Solutions</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Requirement discovery, technical translation, scoping, and milestone formulation across ERP, web applications, and operational workflows.
+                  We help define requirements, scope projects and set milestones across IT and Non-IT work.
                 </p>
                 <Link href="/services" className="inline-flex tap-link items-center gap-1 text-xs font-bold text-coral-bright hover:underline pt-1">
                   <span>Explore Solutions</span>
@@ -208,10 +208,10 @@ export const AboutPage: React.FC = () => {
                 </div>
                 <h3 className="text-base font-bold text-navy-midnight">Partner Ecosystem</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Vendor due diligence against proposed baselines (3-year age, 50-personnel, turnover), skill matrix matching, and pod onboarding.
+                  We screen delivery partners against proposed criteria for history, workforce and financial strength.
                 </p>
                 <Link href="/partnerships" className="inline-flex tap-link items-center gap-1 text-xs font-bold text-coral-magenta hover:underline pt-1">
-                  <span>Partner Ecosystem</span>
+                  <span>See Partner Pathways</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -224,10 +224,10 @@ export const AboutPage: React.FC = () => {
                 </div>
                 <h3 className="text-base font-bold text-navy-midnight">Governance & Growth</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Commercial alignment, SLA oversight, independent quality audits, continuous process optimization, and long-term partnership scale.
+                  We agree commercial terms, monitor delivery and report on quality for long-term partnerships.
                 </p>
                 <Link href="/how-it-works" className="inline-flex tap-link items-center gap-1 text-xs font-bold text-coral-purple hover:underline pt-1">
-                  <span>Delivery Lifecycle</span>
+                  <span>See How It Works</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -238,8 +238,8 @@ export const AboutPage: React.FC = () => {
           <ScrollReveal direction="up" delay={250}>
             <div className="mt-12 p-6 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="space-y-1 text-center md:text-left">
-                <h4 className="text-sm font-bold text-navy-midnight">Explore Associated Frameworks & Insights</h4>
-                <p className="text-xs text-slate-500">Access our delivery lifecycle workflows, corporate insights, and FAQ knowledge base.</p>
+                <h4 className="text-sm font-bold text-navy-midnight">Explore More</h4>
+                <p className="text-xs text-slate-500">Our delivery process, insights and frequently asked questions.</p>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-2.5 shrink-0">
                 <Link href="/how-it-works" className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-xs font-bold text-navy-midnight inline-flex items-center gap-1.5 transition-colors">
@@ -252,7 +252,7 @@ export const AboutPage: React.FC = () => {
                 </Link>
                 <Link href="/faq" className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-xs font-bold text-navy-midnight inline-flex items-center gap-1.5 transition-colors">
                   <HelpCircle className="w-3.5 h-3.5 text-coral-purple" />
-                  <span>Knowledge Base</span>
+                  <span>FAQ</span>
                 </Link>
               </div>
             </div>
@@ -261,14 +261,16 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-navy-midnight text-white text-center">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <section className="py-16 sm:py-20 bg-[#080B2E] text-white text-center relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-80 h-80 bg-coral-bright/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-coral-purple/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 relative z-10">
           <ScrollReveal direction="up">
             <h2 className="text-2xl sm:text-3xl font-heading font-extrabold">
-              Ready to Collaborate with Coral Swift?
+              Ready to Work With Us?
             </h2>
             <p className="text-xs sm:text-sm text-slate-300">
-              Discuss your enterprise technology requirements or apply to join our verified delivery ecosystem.
+              Discuss a project, or apply to become a delivery partner.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               <Button to="/services" variant="primary" size="md">

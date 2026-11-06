@@ -48,7 +48,7 @@ export const ProjectOpportunitiesPage: React.FC = () => {
         {/* Sample Scope */}
         <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2">
           <h3 className="text-xs font-bold text-navy-midnight uppercase tracking-wider">
-            Representative Scope Components:
+            Typical Scope:
           </h3>
           <ul className="space-y-1.5 text-xs text-slate-600">
             {opp.sampleScope.map((sc, i) => (
@@ -71,7 +71,7 @@ export const ProjectOpportunitiesPage: React.FC = () => {
 
           <div className="pt-2 border-t border-slate-200/60">
             <span className="font-bold text-navy-midnight block mb-1">
-              Relevant Technical / Operational Skills:
+              Key Skills:
             </span>
             <div className="flex flex-wrap gap-1.5">
               {opp.requiredSkills.map((sk, i) => (
@@ -87,7 +87,7 @@ export const ProjectOpportunitiesPage: React.FC = () => {
 
           <div className="pt-2 border-t border-slate-200/60">
             <span className="font-bold text-navy-midnight block mb-1">
-              Information Security Requirements:
+              Security Requirements:
             </span>
             <span className="text-slate-500 text-[11px] leading-relaxed">
               {opp.securityRequirements}
@@ -98,13 +98,13 @@ export const ProjectOpportunitiesPage: React.FC = () => {
 
       <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-slate-100">
         <span className="text-xs text-slate-400 italic">
-          Have an enterprise requirement matching this profile?
+          Need a project like this?
         </span>
         <a
           href="#enquiry-form"
           className="inline-flex tap-link items-center gap-1 text-xs font-bold text-coral-bright hover:underline self-start sm:self-auto"
         >
-          <span>Submit Similar Requirement</span>
+          <span>Submit a Requirement</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </a>
       </div>
@@ -114,19 +114,19 @@ export const ProjectOpportunitiesPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Project Opportunities' }]} />
 
           <div className="mt-6 max-w-3xl animate-fadeIn">
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
-              Sample Project Categories
+              Sample Project Types
             </span>
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-3 tracking-tight">
               Illustrative Project Scopes
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
-              Representative examples of technology and operational project requirements structured through Coral Swift. These samples illustrate typical volume, skill profiles, and security frameworks.
+              Examples of the projects we structure, with typical scope, skills, and volumes. These are illustrative samples, not live contracts.
             </p>
           </div>
 
@@ -139,7 +139,7 @@ export const ProjectOpportunitiesPage: React.FC = () => {
           {/* Mode Switcher */}
           <ScrollReveal direction="up" className="flex items-center justify-between pb-4 border-b border-slate-200">
             <div className="text-xs font-bold uppercase tracking-wider text-slate-500">
-              Showing {illustrativeOpportunities.length} Illustrative Specifications
+              {illustrativeOpportunities.length} Illustrative Examples
             </div>
             <div className="inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200 text-xs">
               <button

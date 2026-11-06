@@ -17,38 +17,38 @@ export const InsightsPage: React.FC = () => {
   const articles = [
     {
       id: 'article-1',
-      title: 'Governance in Cross-Border IT Delivery: Mitigating Risk in Multi-Vendor Pods',
+      title: 'Governing Cross-Border IT Delivery',
       category: 'Delivery Governance',
-      date: 'October 2026',
-      readTime: '6 min read',
-      summary: 'Why traditional offshore contracting fails without milestone-based verification, transparent code repository visibility, and bi-weekly sprint demos.',
-      tags: ['Governance', 'Agile Pods', 'Enterprise IT']
+      date: 'Pending validation',
+      readTime: 'Draft outline',
+      summary: 'Why offshore contracting needs milestone verification, visible code repositories, and regular sprint demos.',
+      tags: ['Governance', 'Delivery Teams', 'Enterprise IT']
     },
     {
       id: 'article-2',
-      title: 'Evaluating Delivery Partner Maturity: The 8-Point Submission Due Diligence Standard',
+      title: 'How We Screen Delivery Partners',
       category: 'Partner Ecosystem',
-      date: 'September 2026',
-      readTime: '5 min read',
-      summary: 'A detailed look at why Coral Swift mandates 3-year operating baselines, statutory payroll records, and audited financial statements before project allocation.',
+      date: 'Pending validation',
+      readTime: 'Draft outline',
+      summary: 'Why we propose a 3-year operating baseline, verifiable payroll records, and audited financials before project allocation.',
       tags: ['Due Diligence', 'Screening Criteria', 'Operational Maturity']
     },
     {
       id: 'article-3',
-      title: 'Operational Excellence in Healthcare Revenue Cycle Management & Medical Coding',
+      title: 'Medical Coding and Billing Support',
       category: 'Non-IT Operations',
-      date: 'August 2026',
-      readTime: '7 min read',
-      summary: 'How dedicated operational centers in India maintain high accuracy across ICD-10/CPT coding, denial analysis, and payer prior authorizations under secure VDI protocols.',
+      date: 'Pending validation',
+      readTime: 'Draft outline',
+      summary: 'How secure delivery teams handle ICD-10/CPT coding, denial analysis, and payer prior authorizations.',
       tags: ['Healthcare BPO', 'Revenue Cycle', 'Information Security']
     },
     {
       id: 'article-4',
-      title: 'Financial Process Operations: Maintaining Quality in KYC & Mortgage Verification',
+      title: 'KYC and Mortgage Document Review',
       category: 'Financial Operations',
-      date: 'July 2026',
-      readTime: '5 min read',
-      summary: 'Structuring checklist-driven back-office teams for financial document audits, KYC onboarding reviews, and loan package validation.',
+      date: 'Pending validation',
+      readTime: 'Draft outline',
+      summary: 'Checklist-driven back-office review of KYC onboarding, loan packages, and financial documents.',
       tags: ['Banking KYC', 'Mortgage Review', 'Compliance Checklist']
     }
   ];
@@ -69,19 +69,19 @@ export const InsightsPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs items={[{ label: 'Insights & Resources' }]} />
+          <Breadcrumbs items={[{ label: 'Insights' }]} />
 
           <div className="mt-6 max-w-3xl animate-fadeIn">
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
-              Knowledge & Governance
+              Resources
             </span>
             <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-3 tracking-tight">
-              Corporate Insights & Resources
+              Insights & Resources
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">
-              Perspectives on cross-border delivery governance, partner qualification frameworks, and operational quality management from Coral Swift.
+              Draft notes on cross-border delivery, partner screening, and quality. These are outlines for discussion, not published research.
             </p>
           </div>
         </div>
@@ -94,13 +94,13 @@ export const InsightsPage: React.FC = () => {
           <div className="p-6 sm:p-8 rounded-3xl bg-navy-midnight text-white border border-navy-border flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
             <div className="space-y-2 max-w-2xl">
               <span className="text-[10px] font-bold uppercase tracking-wider text-coral-orange px-2.5 py-0.5 rounded-full bg-navy-surface border border-navy-border">
-                Approved Document
+                Validation Draft
               </span>
               <h3 className="text-xl font-heading font-extrabold text-white">
-                Download Official Corporate Profile (Validation Draft)
+                Download the Corporate Profile
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Review the comprehensive business framework, proposed screening criteria, and service portfolio in a consolidated PDF.
+                One PDF covering our services, proposed screening criteria, and engagement model. Draft, pending validation.
               </p>
             </div>
             <Button
@@ -111,7 +111,7 @@ export const InsightsPage: React.FC = () => {
               icon={<Download className="w-4 h-4" />}
               className="shrink-0"
             >
-              Download PDF Profile
+              Download PDF
             </Button>
           </div>
 
@@ -156,7 +156,7 @@ export const InsightsPage: React.FC = () => {
                     <span>{art.date}</span>
                   </span>
                   <span className="font-semibold text-coral-bright hover:underline cursor-pointer">
-                    Read Executive Summary →
+                    Full article pending
                   </span>
                 </div>
               </Card>

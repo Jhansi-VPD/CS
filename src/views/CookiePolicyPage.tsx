@@ -20,25 +20,25 @@ export const CookiePolicyPage: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 space-y-6 leading-relaxed">
             <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">1. What Are Cookies?</h2>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">1. What Cookies Are</h2>
               <p>
-                Cookies are small text files placed on your device by websites you visit. They are widely used to make websites function efficiently and to provide basic preference recognition.
+                Cookies are small text files a website places on your device. They help sites work properly and remember basic choices.
               </p>
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">2. How Coral Swift Uses Cookies</h2>
-              <p>We use cookies strictly for:</p>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">2. How We Use Cookies</h2>
+              <p>We use cookies only to:</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li><strong>Essential / Technical Cookies:</strong> Required for site navigation, form state retention during multi-step submissions, and remembering cookie consent preferences.</li>
-                <li><strong>Performance & Analytics Cookies:</strong> Aggregate, anonymized traffic counts to understand which service pages and resources are accessed most frequently.</li>
+                <li><strong>Essential:</strong> site navigation, keeping your progress in multi-step forms, and remembering your consent choice.</li>
+                <li><strong>Analytics:</strong> anonymized, aggregate traffic counts, so we can see which pages are used most.</li>
               </ul>
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-navy-midnight mb-2">3. Managing Your Preferences</h2>
+              <h2 className="text-lg font-bold text-navy-midnight mb-2">3. Your Choices</h2>
               <p>
-                You can modify your browser settings to decline cookies or receive notifications when a cookie is placed. Note that disabling essential cookies may impact certain interactive features such as multi-step form previews.
+                Your browser can decline cookies or alert you when one is set. Blocking essential cookies may disable features such as multi-step form previews.
               </p>
             </div>
           </div>

@@ -31,40 +31,40 @@ const techItems: TechItem[] = [
     category: 'Product Engineering',
     technologies: ['React & Next.js', 'Node.js & Python', 'TypeScript', 'PostgreSQL'],
     icon: Code,
-    highlight: 'Agile Pods'
+    highlight: 'Agile Delivery'
   },
   {
     domain: 'Automated QA & Testing',
     category: 'Quality Engineering',
     technologies: ['Selenium Grid', 'Cypress & Playwright', 'Postman API Testing'],
     icon: Database,
-    highlight: 'Zero Regressions'
+    highlight: 'Quality Focus'
   },
   {
-    domain: 'Healthcare Coding & RCM',
+    domain: 'Healthcare Coding & Billing',
     category: 'Non-IT Operations',
     technologies: ['ICD-10-CM / CPT-4', 'HL7 & FHIR Standards', 'Payer Portal EDI'],
     icon: HeartPulse,
-    highlight: '99%+ Accuracy'
+    highlight: 'Quality Checks'
   },
   {
     domain: 'Banking KYC & Mortgage Review',
     category: 'Financial Operations',
-    technologies: ['AML Screening Checklists', 'Encompass LOS', 'Escrow & Title Verification'],
+    technologies: ['KYC Checklists', 'Encompass LOS', 'Mortgage Documentation Review'],
     icon: Landmark,
-    highlight: 'SLA-Governed'
+    highlight: 'Process-Governed'
   },
   {
     domain: 'Security & Delivery Governance',
-    category: 'Compliance & Audits',
-    technologies: ['SOC 2 Type II Alignable', 'HIPAA VDI Protocols', 'Milestone Code Audits'],
+    category: 'Delivery Governance',
+    technologies: ['Access Controls', 'Confidential Workspaces', 'Milestone Reviews'],
     icon: ShieldCheck,
-    highlight: 'Strict IP Protection'
+    highlight: 'Clear Commercial Terms'
   },
   {
     domain: 'High-Volume Data Operations',
     category: 'BPO Workflows',
-    technologies: ['Double-Key Data Entry', 'OCR Indexing & Tagging', '24/7 Shift Coverage'],
+    technologies: ['Double-Key Data Entry', 'OCR Indexing & Tagging', 'Shift-Based Coverage'],
     icon: Layers,
     highlight: 'Scalable Shifts'
   }
@@ -213,8 +213,8 @@ export const TechCarousel: React.FC = () => {
                     </div>
 
                     <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                      <span>Milestone Verified</span>
-                      <span className="text-coral-bright font-semibold">Active Pod Capability →</span>
+                      <span>Milestone-Checked</span>
+                      <span className="text-coral-bright font-semibold">Team Capability →</span>
                     </div>
                   </div>
                 </div>

@@ -4,152 +4,152 @@ export const itServices: ServiceItem[] = [
   {
     id: 'erp-implementation',
     category: 'it',
-    title: 'Enterprise Resource Planning (ERP)',
-    shortDescription: 'Core ERP implementations, HRMS, financial accounting, and automated enterprise integrations.',
-    fullDescription: 'We connect global enterprises with verified delivery partners specializing in end-to-end ERP deployment. From HRMS consolidation to multi-currency financial reporting, our model ensures milestone-driven technical execution.',
+    title: 'ERP',
+    shortDescription: 'ERP implementation, HRMS, financial accounting, and system integrations.',
+    fullDescription: 'We connect you with Indian delivery partners for end-to-end ERP work. Teams handle HRMS rollouts, finance modules, and reporting, with delivery tracked against agreed milestones.',
     iconName: 'Layers',
     useCases: [
       'Multi-entity HRMS and payroll consolidation',
       'Finance and procurement workflow automation',
-      'Legacy database migration and custom ERP integrations'
+      'Legacy data migration and custom ERP integrations'
     ],
     capabilities: [
-      'Architecture planning & data schema design',
-      'Custom module engineering & secure API integration',
-      'Post-deployment maintenance and tier-2/3 support'
+      'Architecture planning and data design',
+      'Custom module builds and API integration',
+      'Post-launch maintenance and support'
     ],
-    engagementApproach: 'Scoping workshop → Architecture roadmap → Partner due diligence → Milestone sprint delivery.',
+    engagementApproach: 'Scoping workshop → Architecture roadmap → Partner checks → Milestone-based delivery.',
     informationRequired: [
-      'Current system landscape and target ERP platform',
-      'Scope of modules (HR, Finance, Operations)',
-      'Estimated user counts and target timeline'
+      'Current systems and target ERP platform',
+      'Modules in scope (HR, Finance, Operations)',
+      'Estimated user counts and timeline'
     ],
-    disclaimer: 'Partner delivery teams and software licenses are verified on a per-project basis.'
+    disclaimer: 'Partner teams and license needs are reviewed for each project.'
   },
   {
     id: 'web-applications-portals',
     category: 'it',
     title: 'Web Applications & Business Portals',
-    shortDescription: 'High-performance customer portals, client extranets, API architectures, and responsive web platforms.',
-    fullDescription: 'Deploy modern, scalable web applications with vetted engineering teams. We structure dedicated agile pods proficient in React, Next.js, and secure microservices to deliver reliable digital experiences.',
+    shortDescription: 'Customer portals, client extranets, APIs, and responsive web platforms.',
+    fullDescription: 'Build modern web applications with matched engineering teams. We align dedicated teams skilled in React, Next.js, and clean API design to ship reliable products.',
     iconName: 'Globe',
     useCases: [
       'Customer self-service portals and account hubs',
-      'Internal executive dashboards and operations reporting',
-      'Partner extranets with role-based document access'
+      'Internal dashboards and operations reporting',
+      'Partner extranets with role-based access'
     ],
     capabilities: [
-      'Modern frontend architecture (React, Next.js, TypeScript)',
-      'Secure REST & GraphQL API microservices',
-      'Automated testing suites and continuous delivery pipelines'
+      'Modern frontend builds (React, Next.js, TypeScript)',
+      'REST and GraphQL API services',
+      'Automated testing and continuous delivery'
     ],
-    engagementApproach: 'Interactive UX prototyping → Technical feasibility audit → Sprint delivery → Handover.',
+    engagementApproach: 'UX prototyping → Feasibility check → Sprint delivery → Handover.',
     informationRequired: [
-      'Core user personas and primary workflows',
-      'Integration points with existing APIs',
-      'User concurrency and security parameters'
+      'Core users and main workflows',
+      'Existing systems to integrate with',
+      'Expected traffic and security needs'
     ],
-    disclaimer: 'Architecture recommendations adhere to industry standard security frameworks.'
+    disclaimer: 'Security practices follow common industry standards.'
   },
   {
     id: 'custom-software-development',
     category: 'it',
     title: 'Custom Software Development',
-    shortDescription: 'Tailored software solutions built to match proprietary workflows, specialized algorithms, and business logic.',
-    fullDescription: 'Custom engineering designed for enterprise competitive advantage. We align dedicated full-stack development pods to build, test, and maintain proprietary platforms under transparent code ownership.',
+    shortDescription: 'Software built around your workflows, business logic, and processes.',
+    fullDescription: 'We align dedicated full-stack teams to build, test, and maintain custom platforms. Code ownership terms are agreed with you up front.',
     iconName: 'Code',
     useCases: [
-      'Proprietary business logic and automation engines',
-      'Monolith-to-microservices refactoring',
-      'Cross-platform enterprise utilities'
+      'Custom business logic and automation tools',
+      'Legacy system modernization',
+      'Cross-platform business utilities'
     ],
     capabilities: [
-      'Clean domain-driven design and cloud-native backends',
-      'Comprehensive unit and integration test coverage',
-      'Version-controlled Git workflows and CI/CD deployment'
+      'Domain-driven design and cloud-native backends',
+      'Unit and integration testing',
+      'Version-controlled workflows and CI/CD releases'
     ],
-    engagementApproach: 'Discovery → Architecture blueprint → Dedicated pod allocation → Iterative sprint releases.',
+    engagementApproach: 'Discovery → Architecture blueprint → Dedicated team → Iterative releases.',
     informationRequired: [
-      'Functional specifications or user stories',
-      'Technology preferences and infrastructure constraints',
-      'Timeline milestones and team composition requirements'
+      'Requirements or user stories',
+      'Technology preferences and constraints',
+      'Timeline and team size needs'
     ],
-    disclaimer: 'Delivery pods adhere to strict client IP ownership and confidentiality agreements.'
+    disclaimer: 'Code and IP ownership terms are set in each project contract.'
   },
   {
     id: 'cloud-infrastructure-support',
     category: 'it',
     title: 'Cloud & Infrastructure Support',
-    shortDescription: 'Scalable cloud migration, container orchestration, systems monitoring, and SLA-backed maintenance.',
-    fullDescription: 'Reliable cloud systems engineering delivered through certified delivery centers. We coordinate migration, infrastructure as code, automated backup policies, and proactive 24/7 reliability monitoring.',
+    shortDescription: 'Cloud migration, container setups, systems monitoring, and ongoing maintenance.',
+    fullDescription: 'We coordinate cloud migration, infrastructure as code, backup policies, and round-the-clock monitoring through experienced delivery centers.',
     iconName: 'Cloud',
     useCases: [
-      'Cloud migration and multi-cloud configurations (AWS, Azure, GCP)',
+      'Cloud migration and multi-cloud setups (AWS, Azure, GCP)',
       'Containerization and orchestration (Docker, Kubernetes)',
-      '24/7 infrastructure monitoring and incident escalation'
+      'Infrastructure monitoring and incident escalation'
     ],
     capabilities: [
       'Infrastructure as Code (Terraform, CloudFormation)',
-      'System performance tuning and auto-scaling setups',
-      'Patch management, log auditing, and environment hardening'
+      'Performance tuning and auto-scaling',
+      'Patch management, log reviews, and environment hardening'
     ],
-    engagementApproach: 'Infrastructure audit → Migration roadmap → Staged workload transition → SLA-governed support.',
+    engagementApproach: 'Infrastructure audit → Migration roadmap → Staged transition → Managed support.',
     informationRequired: [
-      'Existing infrastructure footprint (servers, storage, bandwidth)',
-      'Target cloud provider and geographical region requirements',
-      'Coverage window (business hours vs. 24/7/365)'
+      'Current infrastructure (servers, storage, bandwidth)',
+      'Target cloud provider and region',
+      'Coverage window (business hours or round-the-clock)'
     ],
-    disclaimer: 'Cloud licensing and hosting fees are billed directly by respective cloud providers.'
+    disclaimer: 'Cloud licensing and hosting fees are billed by the cloud providers.'
   },
   {
     id: 'application-testing-maintenance',
     category: 'it',
     title: 'Application Testing & Maintenance',
-    shortDescription: 'Automated QA testing, regression suites, performance benchmarking, and application lifecycle support.',
-    fullDescription: 'Ensure software resilience with dedicated quality assurance pods. We provide automated end-to-end regression testing, load testing, security vulnerability scans, and bug-fix SLAs.',
+    shortDescription: 'Automated testing, regression suites, performance checks, and app maintenance.',
+    fullDescription: 'Keep software healthy with dedicated QA teams. We provide automated regression testing, load testing, security scans, and a clear bug-fix process.',
     iconName: 'CheckCircle2',
     useCases: [
-      'Automated regression testing for CI/CD pipelines',
-      'Load, stress, and throughput performance benchmarking',
-      'Legacy software maintenance and SLA-driven remediation'
+      'Automated regression testing for release pipelines',
+      'Load and performance testing',
+      'Legacy software maintenance and fixes'
     ],
     capabilities: [
       'Test automation tools (Playwright, Selenium, Cypress)',
-      'API contract validation and postman test collections',
-      'Defect tracking, test coverage metrics, and root-cause analysis'
+      'API contract validation',
+      'Defect tracking, coverage reports, and root-cause analysis'
     ],
-    engagementApproach: 'QA strategy assessment → Test environment setup → Script authoring → Continuous audit.',
+    engagementApproach: 'QA assessment → Test setup → Script writing → Ongoing checks.',
     informationRequired: [
-      'Application build URL or repository access overview',
-      'Known defects, test scenarios, or test plan documents',
-      'Target browser and device matrix'
+      'Application build or repository access',
+      'Known issues, test scenarios, or test plans',
+      'Target browsers and devices'
     ],
-    disclaimer: 'Testing coverage adheres to client-specified test matrices and acceptance criteria.'
+    disclaimer: 'Testing coverage follows client-specified test plans and acceptance criteria.'
   },
   {
     id: 'digital-transformation',
     category: 'it',
     title: 'Digital Transformation',
-    shortDescription: 'Modernization of legacy business operations through cloud integration, automated workflows, and data visibility.',
-    fullDescription: 'Transition from legacy workflows to modern digital operations with minimal disruption. We facilitate strategic technology roadmaps, partner discovery, and disciplined change execution.',
+    shortDescription: 'Modernize legacy operations through cloud, automation, and better data visibility.',
+    fullDescription: 'Move from manual workflows to digital operations with minimal disruption. We help with technology roadmaps, partner discovery, and phased rollouts.',
     iconName: 'Cpu',
     useCases: [
-      'Paper-based and spreadsheet workflow digitalization',
-      'Centralized operational reporting and real-time BI dashboards',
-      'Cross-departmental process integration'
+      'Paper and spreadsheet workflows moved online',
+      'Centralized reporting and dashboards',
+      'Cross-team process integration'
     ],
     capabilities: [
-      'Process mapping and gap identification',
-      'Technology stack evaluation and partner shortlisting',
-      'Phased rollout management and team documentation'
+      'Process mapping and gap analysis',
+      'Technology evaluation and partner shortlisting',
+      'Phased rollout and team documentation'
     ],
-    engagementApproach: 'Current-state assessment → Future architecture → Phased roadmap → Partner pilot rollout.',
+    engagementApproach: 'Current-state review → Target setup → Phased roadmap → Pilot rollout.',
     informationRequired: [
-      'Strategic transformation goals and primary bottlenecks',
-      'Departments and user personas affected',
-      'Target implementation timeline'
+      'Transformation goals and main bottlenecks',
+      'Teams and users affected',
+      'Target timeline'
     ],
-    disclaimer: 'Digital transformation consulting is conducted in coordination with specialized delivery partners.'
+    disclaimer: 'Transformation work is delivered in coordination with specialist partners.'
   }
 ];
 
@@ -158,108 +158,108 @@ export const nonItServices: ServiceItem[] = [
     id: 'medical-coding-billing',
     category: 'non-it',
     title: 'Medical Coding & Medical Billing',
-    shortDescription: 'Revenue cycle support, ICD-10/CPT coding, charge entry, claims submission, and denial management.',
-    fullDescription: 'Connect with qualified healthcare operational centers in India. Teams operate under client-defined quality audits, secure remote desktop protocols, and disciplined turnaround standards.',
+    shortDescription: 'Revenue cycle support, ICD-10/CPT coding, charge entry, claims, and denial management.',
+    fullDescription: 'We connect you with Indian healthcare operations teams. Work follows client-defined quality checks, secure remote desktops, and agreed turnaround times.',
     iconName: 'FileHeart',
     useCases: [
       'ICD-10-CM, CPT, and HCPCS chart coding',
-      'Demographic entry, charge capture, and claim scrub checks',
+      'Demographic entry, charge capture, and claim checks',
       'Accounts receivable follow-up and denial management'
     ],
     capabilities: [
-      'Certified medical coder pools with specialty expertise',
-      'Multi-tier quality sampling with 95%+ accuracy benchmarks',
-      'Secure remote desktop (VDI) operational protocols'
+      'Medical coders with specialty experience',
+      'Multi-step quality sampling and accuracy checks',
+      'Secure remote desktop access for work'
     ],
-    engagementApproach: 'Chart sample review → Specialty alignment → Secure access setup → Production ramp-up.',
+    engagementApproach: 'Chart sample review → Specialty match → Secure access setup → Ramp-up.',
     informationRequired: [
       'Medical specialty (e.g. radiology, cardiology, inpatient)',
       'Monthly chart or claim volumes',
-      'EHR/Billing platform used and turnaround SLAs'
+      'EHR or billing platform and turnaround expectations'
     ],
-    disclaimer: 'Regulatory compliance (such as HIPAA) is verified with individual delivery facilities prior to engagement.'
+    disclaimer: 'Healthcare privacy and compliance requirements are reviewed with each delivery facility before work begins.'
   },
   {
     id: 'healthcare-support-processes',
     category: 'non-it',
     title: 'Healthcare Support Processes',
-    shortDescription: 'Prior authorization, patient intake documentation, benefits verification, and administrative coordination.',
-    fullDescription: 'Reduce administrative overhead for clinics and healthcare networks. Dedicated specialists manage time-intensive verification and authorization steps following standardized checklists.',
+    shortDescription: 'Prior authorization, patient intake, benefits verification, and admin coordination.',
+    fullDescription: 'Lighten the admin load for clinics and healthcare networks. Dedicated specialists handle verification and authorization steps using clear checklists.',
     iconName: 'Activity',
     useCases: [
       'Prior authorization submission and insurer portal tracking',
-      'Patient insurance eligibility and benefits verification',
-      'Medical records electronic indexing and filing'
+      'Insurance eligibility and benefits verification',
+      'Medical records indexing and filing'
     ],
     capabilities: [
       'Familiarity with major payer guidelines and portals',
-      'Standardized checklists minimizing submission errors',
-      'Detailed interaction logs with full traceability'
+      'Standardized checklists to reduce errors',
+      'Detailed logs for full traceability'
     ],
-    engagementApproach: 'Workflow documentation → SOP standardization → Security verification → Phased handover.',
+    engagementApproach: 'Workflow review → SOP setup → Secure access → Phased handover.',
     informationRequired: [
-      'Daily prior authorization or eligibility volume',
+      'Daily authorization or eligibility volume',
       'Payer mix (Medicare, Medicaid, commercial insurers)',
-      'Standard operating procedures and escalation rules'
+      'Existing procedures and escalation rules'
     ],
-    disclaimer: 'Processes are performed strictly under client-authorized guidelines and systems.'
+    disclaimer: 'Work follows client-approved guidelines and systems.'
   },
   {
     id: 'data-entry-document-processing',
     category: 'non-it',
     title: 'Data Entry & Document Processing',
-    shortDescription: 'High-speed data extraction, indexing, XML/OCR conversion, form keying, and multi-tier verification.',
-    fullDescription: 'High-volume back-office processing for international companies managing scanned or digital documents. Delivery centers apply double-key verification to ensure high precision on large datasets.',
+    shortDescription: 'Data extraction, indexing, format conversion, form keying, and multi-step checks.',
+    fullDescription: 'High-volume back-office processing for scanned or digital documents. Delivery teams use double-key entry to keep large datasets accurate.',
     iconName: 'FileSpreadsheet',
     useCases: [
       'Scanned form transcription and double-entry keying',
-      'XML/JSON conversion, metadata tagging, and catalog indexing',
-      'Database deduplication, cleansing, and validation'
+      'XML/JSON conversion, tagging, and catalog indexing',
+      'Data cleanup, deduplication, and validation'
     ],
     capabilities: [
-      'Double-entry validation algorithms with 99%+ accuracy targets',
-      'Scalable capacity from thousands to millions of monthly records',
-      'Multi-format support (PDF, TIFF, JPEG, structured schemas)'
+      'Double-entry validation for high accuracy',
+      'Capacity that scales from thousands to millions of records per month',
+      'Multi-format support (PDF, TIFF, JPEG, structured files)'
     ],
-    engagementApproach: 'Sample batch audit → Template creation → Pilot testing → Scheduled production delivery.',
+    engagementApproach: 'Sample batch audit → Template setup → Pilot run → Scheduled delivery.',
     informationRequired: [
-      'Document format, resolution, and legibility status',
-      'Estimated monthly record volume and output schema',
-      'Data retention and purging requirements'
+      'Document format, quality, and legibility',
+      'Monthly record volume and output format',
+      'Data retention and deletion rules'
     ],
-    disclaimer: 'Accuracy SLAs and sample testing criteria are agreed upon during formal scoping.'
+    disclaimer: 'Accuracy targets and sample checks are agreed during scoping.'
   },
   {
     id: 'banking-kyc-mortgage',
     category: 'non-it',
     title: 'Banking KYC & Mortgage Processing',
-    shortDescription: 'Customer onboarding documentation review, KYC file validation, and mortgage loan package auditing.',
-    fullDescription: 'Assist financial institutions and mortgage originators with structured document verification. Specialized back-office teams audit credential packages under strict confidentiality and clean-desk policies.',
+    shortDescription: 'Onboarding document review, KYC file checks, and mortgage package audits.',
+    fullDescription: 'Support for financial institutions and mortgage originators. Trained back-office teams review document packages with privacy-first working practices.',
     iconName: 'ShieldCheck',
     useCases: [
-      'KYC/AML customer onboarding file completeness checks',
-      'Mortgage loan package setup, indexing, and disclosure verification',
+      'KYC/AML onboarding file completeness checks',
+      'Mortgage package setup, indexing, and disclosure checks',
       'Title report and insurance document review'
     ],
     capabilities: [
-      'Trained analysts in financial documentation taxonomies',
-      'Checklist-driven validation minimizing defect rates',
-      'Audit-ready processing logs with full traceability'
+      'Analysts trained in financial documents',
+      'Checklist-driven validation',
+      'Audit-ready processing logs'
     ],
-    engagementApproach: 'Checklist review → Analyst training on client SOPs → Secure VDI/VPN setup → Pilot launch.',
+    engagementApproach: 'Checklist review → Analyst training → Secure workspace setup → Pilot launch.',
     informationRequired: [
-      'Types of financial documents to be verified',
-      'Expected monthly application or loan package volume',
-      'Applicable jurisdictional guidelines'
+      'Types of financial documents to review',
+      'Monthly application or loan package volume',
+      'Applicable regional guidelines'
     ],
-    disclaimer: 'Services provide back-office operational support only. Final credit or approval decisions remain exclusively with licensed financial institutions.'
+    disclaimer: 'This is back-office support only. Final credit and approval decisions stay with licensed financial institutions.'
   },
   {
     id: 'mutual-fund-operations',
     category: 'non-it',
     title: 'Mutual-Fund Operations Support',
-    shortDescription: 'Transaction reconciliation, custodian statement audits, trade confirmation matching, and break investigation.',
-    fullDescription: 'Operational support for asset managers and fund administrators. We align specialized accounting teams to handle daily trade data reconciliation, cash balance checks, and reporting workflows.',
+    shortDescription: 'Transaction reconciliation, statement checks, trade matching, and break investigation.',
+    fullDescription: 'Operational support for asset managers and fund administrators. We align accounting-trained teams for daily reconciliation, cash checks, and reporting.',
     iconName: 'TrendingUp',
     useCases: [
       'Daily custodian and bank statement reconciliation',
@@ -267,42 +267,42 @@ export const nonItServices: ServiceItem[] = [
       'Corporate action data capture and verification'
     ],
     capabilities: [
-      'Financial operations personnel with accounting backgrounds',
-      'Standardized exception reporting and escalation routines',
-      'Multi-currency ledger matching workflows'
+      'Operations staff with accounting backgrounds',
+      'Clear exception reporting and escalation',
+      'Multi-currency ledger matching'
     ],
-    engagementApproach: 'Process scoping → Operational SLA definition → Dual-run transition → Live operations.',
+    engagementApproach: 'Process scoping → Operating standards → Dual-run transition → Live operations.',
     informationRequired: [
-      'Types of funds and asset classes supported',
-      'Reconciliation platforms and accounting systems used',
-      'Daily cut-off times and reporting schedules'
+      'Fund types and asset classes',
+      'Reconciliation and accounting systems used',
+      'Daily cut-offs and reporting schedules'
     ],
-    disclaimer: 'Service scope is strictly operational back-office support. Fiduciary duties remain solely with the client.'
+    disclaimer: 'This is operational back-office support only. Fiduciary duties remain with the client.'
   },
   {
     id: 'back-office-services',
     category: 'non-it',
-    title: 'Enterprise Back-Office Services',
-    shortDescription: 'Accounts payable voucher creation, vendor record maintenance, e-commerce catalog curation, and routine operations.',
-    fullDescription: 'Streamline administrative overhead with dedicated operational shifts. Our partner ecosystem delivers flexible staffing aligned to US and international time zones.',
+    title: 'Back-Office Services',
+    shortDescription: 'Accounts payable support, vendor records, e-commerce catalog updates, and routine tasks.',
+    fullDescription: 'Reduce admin overhead with dedicated operational shifts. Partners provide flexible staffing aligned to US and international time zones.',
     iconName: 'Briefcase',
     useCases: [
-      'Accounts payable invoice matching and voucher creation',
-      'E-commerce product catalog updating and tagging',
-      'Routine administrative ticket classification'
+      'Invoice matching and voucher creation',
+      'E-commerce catalog updates and tagging',
+      'Routine admin ticket handling'
     ],
     capabilities: [
-      'Rapid ramp-up of dedicated operational teams',
-      'Flexible coverage aligned to US business hours',
-      'Continuous quality monitoring and weekly KPI reports'
+      'Fast ramp-up of dedicated teams',
+      'Coverage aligned to US business hours',
+      'Ongoing quality checks and weekly reports'
     ],
-    engagementApproach: 'Task catalog creation → Team sizing and scheduling → SOP training → Weekly review.',
+    engagementApproach: 'Task list creation → Team sizing → Training → Weekly reviews.',
     informationRequired: [
-      'Description of routine administrative workflows',
-      'Target shift hours and weekly volume expectations',
-      'Software access and collaboration tools'
+      'Description of routine workflows',
+      'Shift hours and weekly volumes',
+      'Software and collaboration tools'
     ],
-    disclaimer: 'Operational terms and staffing levels are customized to client specifications.'
+    disclaimer: 'Operational terms and staffing levels are set to your specifications.'
   }
 ];
 
@@ -310,102 +310,102 @@ export const partnershipServices: ServiceItem[] = [
   {
     id: 'vendor-discovery',
     category: 'partnership',
-    title: 'Vendor Discovery & Due Diligence',
-    shortDescription: 'Screening delivery organizations across infrastructure, workforce stability, and audited track records.',
-    fullDescription: 'We help international enterprises identify verified delivery partners in India. Rather than relying on unverified claims, we evaluate operational maturity, audited financial standing, and technical depth.',
+    title: 'Vendor Discovery & Capability Assessment',
+    shortDescription: 'Screening delivery organizations on operating history, team size, and financial stability.',
+    fullDescription: 'We help you identify suitable delivery partners in India. Screening uses proposed criteria, such as 3+ years of operating history, 50+ personnel, and INR 2 crore annual turnover, alongside checks on technical depth and financial stability.',
     iconName: 'Search',
     useCases: [
-      'Identifying specialized development agencies for niche stacks',
-      'Vetting BPO operators for healthcare or financial workflows',
-      'Evaluating Indian delivery partners for cross-border collaboration'
+      'Finding specialist agencies for niche technology stacks',
+      'Screening BPO operators for healthcare or finance work',
+      'Evaluating Indian partners for cross-border work'
     ],
     capabilities: [
-      'Standardized 8-point partner submission evaluation',
-      'Infrastructure, facility, and information security reviews',
-      'Workforce and statutory compliance verification'
+      'A clear partner review checklist',
+      'Checks on infrastructure, facilities, and information security',
+      'Workforce and compliance checks'
     ],
-    engagementApproach: 'Requirement profiling → Market screening → Due diligence dossier → Introductions.',
+    engagementApproach: 'Requirement profiling → Market screening → Partner dossier → Introductions.',
     informationRequired: [
-      'Required domain skills and technology stacks',
-      'Desired team scale and geographical preferences',
-      'Commercial model parameters'
+      'Required skills and technology stacks',
+      'Desired team size and location preferences',
+      'Commercial model preferences'
     ],
-    disclaimer: 'Coral Swift provides discovery coordination. Final selections are subject to mutual commercial agreements.'
+    disclaimer: 'Coral Swift coordinates discovery. Final selections depend on agreements between you and the partner.'
   },
   {
     id: 'staffing-alignment',
     category: 'partnership',
-    title: 'Staffing Alignment & Pod Allocation',
-    shortDescription: 'Aligning specialized engineering pods and operational shifts with validated international project scopes.',
-    fullDescription: 'Match project milestones with delivery partner capacity. We coordinate team structures, verify skill matrices, and structure allocations to ensure predictable execution.',
+    title: 'Staffing Alignment & Project Allocation',
+    shortDescription: 'Matching engineering teams and operations shifts to your project scope.',
+    fullDescription: 'Match project milestones with partner capacity. We coordinate team structures, check skill sets, and plan allocations for steady delivery.',
     iconName: 'Users',
     useCases: [
-      'Dedicated agile pods for multi-month ERP or portal projects',
-      'Scalable operator shifts for seasonal document peaks',
+      'Dedicated teams for multi-month ERP or portal projects',
+      'Flexible operator shifts for seasonal document peaks',
       'Multi-vendor delivery coordination'
     ],
     capabilities: [
-      'Skill matrix matching and candidate experience verification',
+      'Skill matching and experience checks',
       'Capacity planning and ramp-up scheduling',
-      'Replacement and backup resource planning'
+      'Backup and replacement planning'
     ],
-    engagementApproach: 'Scope decomposition → Team composition specification → Capacity locking → Kickoff.',
+    engagementApproach: 'Scope breakdown → Team definition → Capacity booking → Kickoff.',
     informationRequired: [
-      'Project statement of work (SOW) or backlog summary',
-      'Required seniority and tech stack familiarity',
-      'Project start date and estimated duration'
+      'Project scope or backlog summary',
+      'Required seniority and tech stack',
+      'Start date and estimated duration'
     ],
-    disclaimer: 'Project allocation is executed under formal agreements between clients and delivery organizations.'
+    disclaimer: 'Allocation happens under formal agreements between clients and delivery organizations.'
   },
   {
     id: 'reporting-quality-assurance',
     category: 'partnership',
-    title: 'Reporting & Operational Governance',
-    shortDescription: 'Milestone verification, transparent SLA monitoring, sprint demos, and continuous process optimization.',
-    fullDescription: 'Maintain accountability across cross-border engagements. We establish transparent governance dashboards, monitor SLA adherence, and facilitate structured sprint reviews.',
+    title: 'Reporting & Quality Assurance',
+    shortDescription: 'Milestone tracking, transparent reporting, sprint demos, and process improvement.',
+    fullDescription: 'Keep cross-border work accountable. We set up clear reporting dashboards, track delivery metrics, and run structured sprint reviews.',
     iconName: 'BarChart3',
     useCases: [
-      'Weekly cross-border status reporting and blocker resolution',
-      'SLA metric tracking and independent quality audits',
+      'Weekly status reporting and blocker resolution',
+      'Delivery metric tracking and quality checks',
       'Continuous improvement reviews'
     ],
     capabilities: [
-      'Standardized KPI and metrics reporting templates',
-      'Objective milestone completion verification',
-      'Early-warning delivery detection and risk mitigation'
+      'Standard reporting templates and KPIs',
+      'Milestone completion checks',
+      'Early warning on delivery risks'
     ],
-    engagementApproach: 'Governance setup → Metric baseline agreement → Bi-weekly reviews → Quarterly reviews.',
+    engagementApproach: 'Governance setup → Baseline metrics → Bi-weekly reviews → Quarterly reviews.',
     informationRequired: [
       'Delivery milestones and acceptance criteria',
-      'Key performance indicators (KPIs) and SLA targets',
-      'Reporting frequency and stakeholder contacts'
+      'Key metrics and delivery targets',
+      'Reporting frequency and stakeholders'
     ],
-    disclaimer: 'Governance reporting reflects verified metrics provided by delivery partners.'
+    disclaimer: 'Reports reflect metrics shared by delivery partners.'
   },
   {
     id: 'commercial-engagement-support',
     category: 'partnership',
     title: 'Commercial Engagement Support',
-    shortDescription: 'Transparent commercial structuring, milestone-based schedules, risk mitigation, and sustainable partnership terms.',
-    fullDescription: 'Facilitate balanced commercial arrangements between international clients and delivery organizations. We provide commercial scoping templates and milestone schedules to prevent scope creep.',
+    shortDescription: 'Clear commercial structures, milestone schedules, and sustainable partnership terms.',
+    fullDescription: 'Support balanced commercial arrangements between clients and delivery partners. We provide scoping templates and milestone schedules to keep projects on track.',
     iconName: 'Handshake',
     useCases: [
-      'Milestone-based fixed price or hybrid dedicated team contracts',
-      'Intellectual property protection and confidentiality terms',
-      'Cross-border payment schedule structuring'
+      'Milestone-based fixed price or dedicated team contracts',
+      'IP and confidentiality terms',
+      'Cross-border payment schedules'
     ],
     capabilities: [
-      'Transparent pricing and margin models',
-      'Balanced risk-sharing contract frameworks',
-      'Change-order management procedures'
+      'Clear pricing and margin models',
+      'Balanced contract frameworks',
+      'Change-order procedures'
     ],
-    engagementApproach: 'Commercial parameters alignment → Agreement draft review → Sign-off → Activation.',
+    engagementApproach: 'Commercial alignment → Agreement review → Sign-off → Activation.',
     informationRequired: [
-      'Preferred pricing model (Fixed-price vs. Dedicated Pod)',
-      'Currency preferences and payment terms',
-      'Target commercial start date'
+      'Preferred pricing model (fixed price or dedicated team)',
+      'Currency and payment terms',
+      'Target start date'
     ],
-    disclaimer: 'Commercial support does not substitute for independent legal counsel.'
+    disclaimer: 'Commercial support does not replace independent legal advice.'
   }
 ];
 

@@ -75,9 +75,9 @@ export const headerNavItems: NavItem[] = [
         description: '6-stage client delivery lifecycle and partner evaluation workflow'
       },
       {
-        title: 'Strategic M&A',
+        title: 'Strategic Discussions',
         href: '/strategic-discussions',
-        description: 'Executive pathway for structural integration and bilateral NDAs'
+        description: 'Confidential merger and integration discussions'
       },
       {
         title: 'Apply as a Partner',
@@ -105,9 +105,9 @@ export const footerLinks = {
   partnerships: [
     { label: 'Delivery Partnership Overview', href: '/partnerships' },
     { label: 'How It Works (6-Stage Model)', href: '/how-it-works' },
-    { label: 'Strategic M&A Discussions', href: '/strategic-discussions' },
+    { label: 'Strategic Discussions', href: '/strategic-discussions' },
     { label: 'Proposed Screening Criteria', href: '/partnerships#criteria' },
-    { label: '8-Point Submission Checklist', href: '/partnerships#checklist' },
+    { label: 'Submission Checklist', href: '/partnerships#checklist' },
     { label: 'Partner Application Form', href: '/partnerships#apply' }
   ],
   company: [

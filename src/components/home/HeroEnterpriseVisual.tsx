@@ -93,17 +93,17 @@ export const HeroEnterpriseVisual: React.FC = () => {
         <div className="p-4 sm:p-5 bg-gradient-to-b from-[#080B2E] to-[#0A0F38] border-t border-slate-800 grid grid-cols-3 gap-2.5 text-center">
           <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] space-y-1">
             <span className="text-[10px] font-mono text-slate-400 block uppercase">Governance</span>
-            <span className="font-bold text-white text-xs sm:text-xs block">Direct SOWs</span>
+            <span className="font-bold text-white text-xs sm:text-xs block">Clear Scope</span>
           </div>
 
           <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] space-y-1">
-            <span className="text-[10px] font-mono text-coral-orange block uppercase">Delivery Hub</span>
-            <span className="font-bold text-white text-xs sm:text-xs block">Hyderabad Center</span>
+            <span className="text-[10px] font-mono text-coral-orange block uppercase">Delivery Network</span>
+            <span className="font-bold text-white text-xs sm:text-xs block">Hyderabad Partners</span>
           </div>
 
           <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] space-y-1">
             <span className="text-[10px] font-mono text-emerald-400 block uppercase">Ownership</span>
-            <span className="font-bold text-white text-xs sm:text-xs block">100% Client IP</span>
+            <span className="font-bold text-white text-xs sm:text-xs block">Client Ownership</span>
           </div>
         </div>
       </div>

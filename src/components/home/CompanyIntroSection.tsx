@@ -13,7 +13,7 @@ export const CompanyIntroSection: React.FC = () => {
             <div className="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3] group">
               <img
                 src="/images/about-global-delivery.jpg"
-                alt="Executive Global Delivery Strategy and Enterprise Governance"
+                alt="Coral Swift global coordination with India-based delivery partners"
                 loading="lazy"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
@@ -22,10 +22,10 @@ export const CompanyIntroSection: React.FC = () => {
               <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-md flex items-center justify-between text-navy-midnight">
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-wider text-coral-bright font-bold block">
-                    Institutional Presence
+                    Delivery Model
                   </span>
                   <p className="text-xs sm:text-sm font-heading font-extrabold text-navy-midnight">
-                    US Corporate Alignment • Tier-1 Indian Delivery
+                    US-oriented coordination • India-based delivery partners
                   </p>
                 </div>
                 <div className="w-9 h-9 rounded-xl bg-coral-50 text-coral-bright flex items-center justify-center shrink-0">
@@ -43,11 +43,11 @@ export const CompanyIntroSection: React.FC = () => {
                 <span>About Coral Swift</span>
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-navy-midnight tracking-tight leading-tight">
-                Bridging Global Demand With{' '}
-                <span className="swift-gradient-text">Verified Execution.</span>
+                We Connect Project Needs With{' '}
+                <span className="swift-gradient-text">Qualified Delivery Partners.</span>
               </h2>
               <p className="text-base text-slate-600 leading-relaxed pt-1">
-                Coral Swift structures transparent, bilateral delivery relationships between North American enterprise organizations and thoroughly vetted delivery centers across India. By enforcing strict operational audits and milestone-based escrow, we eliminate traditional agency risk.
+                Coral Swift is a US-oriented IT and Non-IT project solutions and partnership platform. We validate requirements, screen delivery organisations, and coordinate projects with clear scope and reporting.
               </p>
             </div>
 
@@ -58,9 +58,9 @@ export const CompanyIntroSection: React.FC = () => {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-navy-midnight">Direct Bilateral Contracts</h3>
+                  <h3 className="text-sm font-bold text-navy-midnight">IT and Non-IT Services</h3>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Transparent milestone-defined SOWs without broker markups or hidden margin layers.
+                    Software, ERP, healthcare processes, banking operations and back-office support.
                   </p>
                 </div>
               </div>
@@ -70,9 +70,9 @@ export const CompanyIntroSection: React.FC = () => {
                   <Building2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-navy-midnight">Hyderabad Delivery Ecosystem</h3>
+                  <h3 className="text-sm font-bold text-navy-midnight">Partner Screening</h3>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Audited centers with minimum 3-year operating histories and 50+ verified full-time engineers.
+                    Proposed criteria look at operating history, workforce size and financial strength.
                   </p>
                 </div>
               </div>
@@ -82,9 +82,9 @@ export const CompanyIntroSection: React.FC = () => {
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-navy-midnight">100% Client Intellectual Property Rights</h3>
+                  <h3 className="text-sm font-bold text-navy-midnight">Governed Delivery</h3>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Direct code commits to client repositories under strict non-solicitation covenants.
+                    Scope, quality expectations and reporting are agreed before work starts.
                   </p>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export const CompanyIntroSection: React.FC = () => {
 
             <div className="pt-2">
               <Button to="/about" variant="outline" size="sm" icon={<ArrowRight className="w-4 h-4" />}>
-                Explore Our Governance Model
+                Learn About Our Approach
               </Button>
             </div>
           </ScrollReveal>

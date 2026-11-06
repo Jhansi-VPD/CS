@@ -29,8 +29,8 @@ const stages: Stage[] = [
     number: '01',
     name: 'Requirement',
     tagline: 'Discover',
-    description: 'Understand business goals and define technical project requirements.',
-    deliverable: 'Requirement Matrix & SOW Draft',
+    description: 'Understand the business goal and define what the project needs.',
+    deliverable: 'Documented requirement list',
     icon: FileText,
     color: '#F98F33'
   },
@@ -38,8 +38,8 @@ const stages: Stage[] = [
     number: '02',
     name: 'Validation',
     tagline: 'Validate',
-    description: 'Evaluate technical feasibility and establish operational baselines.',
-    deliverable: 'Technical Feasibility Report',
+    description: 'Check feasibility, expected volume and delivery fit before matching.',
+    deliverable: 'Validated requirement brief',
     icon: CheckCircle2,
     color: '#F05E47'
   },
@@ -47,8 +47,8 @@ const stages: Stage[] = [
     number: '03',
     name: 'Partner Assessment',
     tagline: 'Assess',
-    description: 'Audit delivery centers against workforce, security and tenure standards.',
-    deliverable: 'Partner Assessment Report',
+    description: 'Review partner capability, capacity and delivery history.',
+    deliverable: 'Partner assessment report',
     icon: ShieldCheck,
     color: '#E73B50'
   },
@@ -56,8 +56,8 @@ const stages: Stage[] = [
     number: '04',
     name: 'Scoping',
     tagline: 'Define',
-    description: 'Establish project scope, bilateral responsibilities and commercial terms.',
-    deliverable: 'Bilateral SOW & Milestone Governance',
+    description: 'Agree project scope, responsibilities, timeline and commercial terms.',
+    deliverable: 'Agreed scope and contract',
     icon: FileCheck,
     color: '#D21D61'
   },
@@ -65,8 +65,8 @@ const stages: Stage[] = [
     number: '05',
     name: 'Delivery & QA',
     tagline: 'Execute',
-    description: 'Execute deliverables through structured sprint cycles and automated QA.',
-    deliverable: 'Sprint Releases & CI/CD Records',
+    description: 'The partner team builds and tests against acceptance criteria.',
+    deliverable: 'Reviewed delivery output',
     icon: Cpu,
     color: '#950B6D'
   },
@@ -74,17 +74,17 @@ const stages: Stage[] = [
     number: '06',
     name: 'Continuous Improvement',
     tagline: 'Optimize',
-    description: 'Review SLA performance, retrospectives and opportunities for scaled growth.',
-    deliverable: 'Governance & Performance Review',
+    description: 'Review performance and quality, then plan the next phase.',
+    deliverable: 'Performance and quality review',
     icon: RefreshCw,
     color: '#080B2E'
   }
 ];
 
 const GOVERNANCE_POINTS = [
-  'Client Repository Ownership',
-  'Structured Delivery Governance',
-  'Quality and Performance Reviews'
+  'Scope agreed before work starts',
+  'Quality checked during delivery',
+  'Progress reported to clients'
 ];
 
 export const GlobalDeliveryModelSection: React.FC = () => {
@@ -247,7 +247,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                 href="/how-it-works"
                 className="group inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-bold text-navy-midnight hover:text-coral-bright transition-colors"
               >
-                <span>Full Methodology</span>
+                <span>See How It Works</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
               </Link>
             </div>
