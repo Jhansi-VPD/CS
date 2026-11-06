@@ -35,23 +35,12 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
   theme,
   icon: Icon
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const drawerId = useId();
   const formattedStep = step < 10 ? `0${step}` : `${step}`;
 
-  const isExpanded = isHovered || isClicked;
-
-  const toggleClicked = () => {
-    setIsClicked((prev) => !prev);
-  };
-
   return (
-    <div
-      className="w-full my-4 sm:my-5 group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="w-full my-5 transition-all duration-300 group">
       {/* Outer Row: Left Icon Column + Origami Fold & Chevron Ribbon */}
       <div className="flex items-center gap-3 sm:gap-6">
         {/* 1. Left Icon Container (Clean Outline Icon with matching color) */}
@@ -78,11 +67,11 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
             tabIndex={0}
             aria-expanded={isExpanded}
             aria-controls={drawerId}
-            onClick={toggleClicked}
+            onClick={() => setIsExpanded((prev) => !prev)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
-                toggleClicked();
+                setIsExpanded((prev) => !prev);
               }
             }}
             className={`relative cursor-pointer transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white active:scale-[0.99] text-white py-3.5 sm:py-5 pl-7 sm:pl-10 pr-14 sm:pr-20 bg-gradient-to-r ${theme.gradient}`}
@@ -139,7 +128,7 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
               <span>{isExpanded ? 'Hide Details' : 'View Details'}</span>
               <ChevronDown
                 className={`w-3 h-3 transition-transform duration-300 ${
-                  isExpanded ? 'rotate-180' : 'group-hover:translate-y-0.5'
+                  isExpanded ? 'rotate-180' : ''
                 }`}
               />
             </div>
@@ -147,11 +136,11 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
         </div>
       </div>
 
-      {/* 3. Expandable Deep-Dive Drawer (Reveals Deliverables, Stakeholders & Next Steps) */}
+      {/* 3. Deep-Dive Content (Deliverables, Stakeholders & Next Steps) - Visible by Default */}
       {isExpanded && (
         <div
           id={drawerId}
-          className="ml-14 sm:ml-22 mr-4 sm:mr-8 mt-2 p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm animate-fadeIn"
+          className="ml-14 sm:ml-22 mr-2 sm:mr-6 mt-2.5 p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm animate-fadeIn"
         >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
             {/* Left: Deliverables */}

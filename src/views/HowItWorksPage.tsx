@@ -18,7 +18,6 @@ import {
   FileSignature,
   Rocket
 } from 'lucide-react';
-import { ScrollReveal } from '../components/common/ScrollReveal';
 import { ChevronStageBanner, StageTheme } from '../components/how-it-works/ChevronStageBanner';
 
 const stageThemes: StageTheme[] = [
@@ -137,49 +136,47 @@ export const HowItWorksPage: React.FC = () => {
       <section className="py-16 sm:py-20 bg-[#FBFBFC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Editorial Workflow Feature Card */}
-          <ScrollReveal direction="up">
-            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-card-soft mb-12">
-              <div className="lg:col-span-7 space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-coral-bright bg-coral-50 px-2.5 py-1 rounded-full border border-coral-200/60 inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Disciplined Milestone Gates</span>
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-navy-midnight">
-                  Predictable Outcomes Governed by Clear Stages
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Cross-border technology delivery demands structured milestone verification. Our model enforces formal scoping, skill verification, sandbox testing, weekly sprint demos, and milestone sign-offs.
-                </p>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {['Requirement Discovery', 'Pre-Vetted Pods', 'SLA Calibration', 'Code Repository Audits', 'Milestone Release'].map((item) => (
-                    <span key={item} className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-navy-midnight">
-                      {item}
-                    </span>
-                  ))}
-                </div>
+          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-card-soft mb-12 animate-fadeIn">
+            <div className="lg:col-span-7 space-y-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-coral-bright bg-coral-50 px-2.5 py-1 rounded-full border border-coral-200/60 inline-flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Disciplined Milestone Gates</span>
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-navy-midnight">
+                Predictable Outcomes Governed by Clear Stages
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Cross-border technology delivery demands structured milestone verification. Our model enforces formal scoping, skill verification, sandbox testing, weekly sprint demos, and milestone sign-offs.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1">
+                {['Requirement Discovery', 'Pre-Vetted Pods', 'SLA Calibration', 'Code Repository Audits', 'Milestone Release'].map((item) => (
+                  <span key={item} className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-navy-midnight">
+                    {item}
+                  </span>
+                ))}
               </div>
-              <div className="lg:col-span-5">
-                <div className="relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white group aspect-[16/10]">
-                  <img
-                    src="/images/how-it-works-agile.jpg"
-                    alt="Agile Delivery Lifecycle and Milestone Governance"
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 text-white text-[11px] font-semibold flex items-center justify-between">
-                    <span>Agile Sprint Delivery</span>
-                    <span className="text-coral-orange font-mono">Stage Gates 01 – 06</span>
-                  </div>
+            </div>
+            <div className="lg:col-span-5">
+              <div className="relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white group aspect-[16/10]">
+                <img
+                  src="/images/how-it-works-agile.jpg"
+                  alt="Agile Delivery Lifecycle and Milestone Governance"
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/80 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white text-[11px] font-semibold flex items-center justify-between">
+                  <span>Agile Sprint Delivery</span>
+                  <span className="text-coral-orange font-mono">Stage Gates 01 – 06</span>
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </div>
 
-          {/* Infographic Chevron Ribbon Stage List (matches reference image) */}
-          <div className="space-y-4 sm:space-y-6">
+          {/* Infographic Chevron Ribbon Stage List (matches reference image with full content) */}
+          <div className="space-y-6 sm:space-y-8">
             {stepsToDisplay.map((step, idx) => (
-              <ScrollReveal key={`${activeWorkflow}-${step.step}`} direction="up" delay={idx * 75}>
+              <div key={`${activeWorkflow}-${step.step}`} className="animate-fadeIn">
                 <ChevronStageBanner
                   step={step.step}
                   name={step.name}
@@ -191,26 +188,24 @@ export const HowItWorksPage: React.FC = () => {
                   theme={stageThemes[idx % stageThemes.length]}
                   icon={currentIcons[idx % currentIcons.length]}
                 />
-              </ScrollReveal>
+              </div>
             ))}
           </div>
 
           {/* Action Row */}
-          <ScrollReveal direction="scale">
-            <div className="mt-16 text-center space-y-4">
-              <h3 className="text-xl font-heading font-bold text-navy-midnight">
-                Ready to Initiate the Process?
-              </h3>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button to="/contact?type=project" variant="primary" size="md">
-                  Submit Project Requirement
-                </Button>
-                <Button to="/partnerships#apply" variant="secondary" size="md">
-                  Apply as a Delivery Partner
-                </Button>
-              </div>
+          <div className="mt-16 text-center space-y-4 animate-fadeIn">
+            <h3 className="text-xl font-heading font-bold text-navy-midnight">
+              Ready to Initiate the Process?
+            </h3>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button to="/contact?type=project" variant="primary" size="md">
+                Submit Project Requirement
+              </Button>
+              <Button to="/partnerships#apply" variant="secondary" size="md">
+                Apply as a Delivery Partner
+              </Button>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
     </div>
