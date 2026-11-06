@@ -6,19 +6,31 @@ import { ChatPanel } from './ChatPanel';
 import { AssistantMascot } from './AssistantMascot';
 import { Suggestion } from '../../data/chatbot/chatbotTypes';
 
-const PANEL_W = 380;
-const PANEL_H = 560;
 const MARGIN = 8;
-const TOP_MIN = 72;
 
-// Keep the dragged panel fully on screen using its rendered size, which is
-// viewport-capped in short (landscape) windows.
-const clampPos = (x: number, y: number, rect?: DOMRect | null) => {
-  const w = rect?.width || PANEL_W;
-  const h = rect?.height || PANEL_H;
+const headerHeight = () => {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue('--cs-header-h');
+  const px = parseInt(raw, 10);
+  return Number.isNaN(px) ? 68 : px;
+};
+
+// Dragging stores an offset from the panel's CSS anchor instead of absolute
+// coordinates, so its responsive width/height caps survive at every viewport size.
+// The result is clamped against the un-translated anchor, which keeps the panel
+// fully on screen and below the sticky header.
+const clampOffset = (
+  dx: number,
+  dy: number,
+  rect: DOMRect,
+  base: { x: number; y: number },
+) => {
+  const minDx = MARGIN - base.x;
+  const maxDx = window.innerWidth - rect.width - MARGIN - base.x;
+  const minDy = headerHeight() + MARGIN - base.y;
+  const maxDy = window.innerHeight - rect.height - MARGIN - base.y;
   return {
-    x: Math.min(Math.max(MARGIN, x), Math.max(MARGIN, window.innerWidth - w - MARGIN)),
-    y: Math.min(Math.max(TOP_MIN, y), Math.max(TOP_MIN, window.innerHeight - h - MARGIN)),
+    dx: Math.min(Math.max(minDx, dx), Math.max(minDx, maxDx)),
+    dy: Math.min(Math.max(minDy, dy), Math.max(minDy, maxDy)),
   };
 };
 
@@ -58,23 +70,20 @@ export const Chatbot: React.FC = () => {
     };
   }, []);
 
-  // Draggable panel (desktop only). pos stays null until the visitor first drags,
-  // so the CSS default anchor is used and there is no positioning flash on open.
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
+  // Draggable by the panel header on every viewport; pointer events cover mouse,
+  // touch and pen. offset stays at zero until the visitor first drags, so the CSS
+  // default anchor is used and there is no positioning flash on open.
+  const [offset, setOffset] = useState({ dx: 0, dy: 0 });
   const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 640px) and (min-height: 620px)');
-    const apply = () => setIsDesktop(mq.matches);
-    apply();
-    mq.addEventListener('change', apply);
-    return () => mq.removeEventListener('change', apply);
-  }, []);
-
-  useEffect(() => {
     const onResize = () =>
-      setPos((p) => (p ? clampPos(p.x, p.y, panelRef.current?.getBoundingClientRect()) : p));
+      setOffset((o) => {
+        if (o.dx === 0 && o.dy === 0) return o;
+        const rect = panelRef.current?.getBoundingClientRect();
+        if (!rect) return o;
+        return clampOffset(o.dx, o.dy, rect, { x: rect.left - o.dx, y: rect.top - o.dy });
+      });
     window.addEventListener('resize', onResize);
     window.addEventListener('orientationchange', onResize);
     return () => {
@@ -84,18 +93,22 @@ export const Chatbot: React.FC = () => {
   }, []);
 
   const onDragStart = (e: React.PointerEvent) => {
-    if (!isDesktop || e.button !== 0) return;
+    if (e.button !== 0) return;
     const rect = panelRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const originX = rect.left;
-    const originY = rect.top;
+    const base = { x: rect.left - offset.dx, y: rect.top - offset.dy };
     const pointerX = e.clientX;
     const pointerY = e.clientY;
-    setPos({ x: originX, y: originY });
+    const start = offset;
     setDragging(true);
     const onMove = (ev: PointerEvent) => {
       ev.preventDefault();
-      setPos(clampPos(originX + (ev.clientX - pointerX), originY + (ev.clientY - pointerY), rect));
+      setOffset(clampOffset(
+        start.dx + (ev.clientX - pointerX),
+        start.dy + (ev.clientY - pointerY),
+        rect,
+        base,
+      ));
     };
     const onEnd = () => {
       setDragging(false);
@@ -103,7 +116,7 @@ export const Chatbot: React.FC = () => {
       window.removeEventListener('pointerup', onEnd);
       window.removeEventListener('pointercancel', onEnd);
     };
-    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointermove', onMove, { passive: false });
     window.addEventListener('pointerup', onEnd);
     window.addEventListener('pointercancel', onEnd);
   };
@@ -127,7 +140,7 @@ export const Chatbot: React.FC = () => {
   // stale dragged offset can never leave it off-screen after a rotation.
   useEffect(() => {
     if (!isOpen) {
-      setPos(null);
+      setOffset({ dx: 0, dy: 0 });
       setFieldFocused(false);
     }
   }, [isOpen]);
@@ -157,10 +170,12 @@ export const Chatbot: React.FC = () => {
     setTimeout(() => inputRef.current?.focus(), 60);
   };
 
-  // Only the anchor changes while dragging; width/height stay driven by CSS so the
+  // Only the offset changes while dragging; width/height stay driven by CSS so the
   // panel keeps its viewport cap in short (landscape) windows.
   const wrapperStyle: React.CSSProperties | undefined =
-    isDesktop && pos ? { left: pos.x, top: pos.y, right: 'auto', bottom: 'auto' } : undefined;
+    offset.dx !== 0 || offset.dy !== 0
+      ? { transform: `translate(${offset.dx}px, ${offset.dy}px)` }
+      : undefined;
 
   return (
     <>
@@ -168,7 +183,7 @@ export const Chatbot: React.FC = () => {
         <div
           ref={panelRef}
           style={wrapperStyle}
-          className={`fixed z-[60] left-2 right-2 top-[calc(var(--cs-header-h)+0.5rem)] bottom-[calc(6rem+env(safe-area-inset-bottom))] sm:left-auto sm:right-6 sm:top-auto sm:bottom-24 sm:w-[380px] sm:h-[560px] sm:max-h-[calc(100dvh-var(--cs-header-h)-6rem)] ${
+          className={`fixed z-[60] left-2 right-2 mx-auto max-w-[380px] top-[calc(var(--cs-header-h)+0.5rem)] bottom-[calc(6rem+env(safe-area-inset-bottom))] sm:left-auto sm:right-6 sm:mx-0 sm:top-auto sm:bottom-24 sm:w-[380px] sm:h-[560px] sm:max-h-[calc(100dvh-var(--cs-header-h)-6rem)] ${
             dragging ? 'select-none' : ''
           }`}
         >

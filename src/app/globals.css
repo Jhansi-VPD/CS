@@ -192,24 +192,6 @@
   }
 }
 
-/* A scroll-pinned panel that is shorter than its own content needs an inner
-   scrollbar, and scrollbars are hidden site-wide, so the overflow would be
-   unreachable. On narrow or short viewports these panels flow in page scroll
-   instead of pinning. */
-@media (max-width: 639px), (max-height: 680px) {
-  .cs-pin-panel {
-    position: static;
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    overflow: hidden;
-  }
-
-  .cs-pin-track {
-    min-height: 0;
-  }
-}
-
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *,

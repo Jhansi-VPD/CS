@@ -34,7 +34,7 @@ export const ChatHeader: React.FC<Props> = ({ pageLabel, onRestart, onClose, onD
       </div>
     </div>
     <div className="flex items-center gap-0.5 shrink-0">
-      <GripVertical className="w-4 h-4 text-slate-300 mr-0.5 hidden sm:block" aria-hidden="true" />
+      <GripVertical className="w-4 h-4 text-slate-300 mr-0.5 shrink-0" aria-hidden="true" />
       <button
         type="button"
         onPointerDown={(e) => e.stopPropagation()}
