@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -87,10 +87,34 @@ const GOVERNANCE_POINTS = [
 ];
 
 export const GlobalDeliveryModelSection: React.FC = () => {
-  const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
-  const activeStage = stages[activeStageIndex];
+  const activeIndex = hoveredIndex ?? selectedIndex;
+  const activeStage = stages[activeIndex];
   const ActiveIcon = activeStage.icon;
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const lastIndex = stages.length - 1;
+    let next: number | null = null;
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      next = index === lastIndex ? 0 : index + 1;
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      next = index === 0 ? lastIndex : index - 1;
+    } else if (event.key === 'Home') {
+      next = 0;
+    } else if (event.key === 'End') {
+      next = lastIndex;
+    }
+
+    if (next === null) return;
+    event.preventDefault();
+    setSelectedIndex(next);
+    setHoveredIndex(next);
+    tabRefs.current[next]?.focus();
+  };
 
   return (
     <section className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC] border-y border-slate-200/80 relative overflow-hidden">
@@ -122,85 +146,114 @@ export const GlobalDeliveryModelSection: React.FC = () => {
           </ScrollReveal>
         </div>
 
-        {/* Process Timeline Rail (Simple, Clean, Interactive) */}
+        {/* Process Timeline Rail (Interactive with Smooth Hover & Tap) */}
         <ScrollReveal direction="up" delay={100} className="mt-8">
-          <ol
-            role="tablist"
-            aria-label="Six-stage delivery methodology"
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
-          >
-            {stages.map((stage, index) => {
-              const isActive = index === activeStageIndex;
+          <div className="relative">
+            {/* Desktop Connecting Line between Stage Circles */}
+            <div
+              className="hidden lg:block absolute top-[28px] left-[calc(8.333%)] right-[calc(8.333%)] h-[2px] bg-slate-200 z-0 pointer-events-none"
+              aria-hidden="true"
+            >
+              <div
+                className="h-full bg-swift-gradient transition-all duration-300 ease-out"
+                style={{
+                  width: `${(activeIndex / (stages.length - 1)) * 100}%`
+                }}
+              />
+            </div>
 
-              return (
-                <li key={stage.number} role="none" className="relative">
-                  <button
-                    role="tab"
-                    type="button"
-                    id={`home-stage-tab-${index}`}
-                    aria-selected={isActive}
-                    aria-controls="home-stage-panel"
-                    tabIndex={isActive ? 0 : -1}
-                    onClick={() => setActiveStageIndex(index)}
-                    className={`group relative flex w-full items-center gap-3 rounded-2xl p-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright lg:flex-col lg:items-center lg:text-center ${
-                      isActive
-                        ? 'bg-white shadow-sm border border-slate-300/80 -translate-y-0.5'
-                        : 'bg-white/60 hover:bg-white border border-slate-200/70 hover:border-slate-300'
-                    }`}
-                  >
-                    <span
-                      className="w-8 h-8 shrink-0 rounded-full grid place-items-center font-mono text-xs font-bold transition-all duration-200"
-                      style={
+            <ol
+              role="tablist"
+              aria-label="Six-stage delivery methodology"
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 relative z-10"
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {stages.map((stage, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <li key={stage.number} role="none" className="relative">
+                    <button
+                      role="tab"
+                      type="button"
+                      id={`home-stage-tab-${index}`}
+                      aria-selected={isActive}
+                      aria-controls="home-stage-panel"
+                      tabIndex={0}
+                      ref={(el) => {
+                        tabRefs.current[index] = el;
+                      }}
+                      onMouseEnter={() => setHoveredIndex(index)}
+                      onFocus={() => setHoveredIndex(index)}
+                      onBlur={() => setHoveredIndex(null)}
+                      onClick={() => {
+                        setSelectedIndex(index);
+                        setHoveredIndex(null);
+                      }}
+                      onKeyDown={(e) => onKeyDown(e, index)}
+                      className={`group relative flex w-full items-center gap-3 rounded-2xl p-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright lg:flex-col lg:items-center lg:text-center ${
                         isActive
-                          ? {
-                              backgroundColor: stage.color,
-                              color: '#FFFFFF',
-                              boxShadow: `0 0 0 3px ${stage.color}25`
-                            }
-                          : {
-                              backgroundColor: '#F1F5F9',
-                              color: '#64748B'
-                            }
-                      }
+                          ? 'bg-white shadow-sm border border-slate-300/90 -translate-y-0.5'
+                          : 'bg-white/60 hover:bg-white border border-slate-200/70 hover:border-slate-300'
+                      }`}
                     >
-                      {stage.number}
-                    </span>
-
-                    <span className="min-w-0">
                       <span
-                        className={`block text-xs sm:text-sm font-heading font-bold leading-snug transition-colors ${
-                          isActive ? 'text-navy-midnight' : 'text-slate-600 group-hover:text-navy-midnight'
-                        }`}
+                        className="w-8 h-8 shrink-0 rounded-full grid place-items-center font-mono text-xs font-bold transition-all duration-200"
+                        style={
+                          isActive
+                            ? {
+                                backgroundColor: stage.color,
+                                color: '#FFFFFF',
+                                boxShadow: `0 0 0 3px ${stage.color}25`
+                              }
+                            : {
+                                backgroundColor: '#F1F5F9',
+                                color: '#64748B'
+                              }
+                        }
                       >
-                        {stage.name}
+                        {stage.number}
                       </span>
-                      <span
-                        className="block font-mono text-[10px] uppercase tracking-wider leading-tight mt-0.5"
-                        style={{ color: isActive ? stage.color : '#94A3B8' }}
-                      >
-                        {stage.tagline}
-                      </span>
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
 
-          {/* Active Stage Detail Panel */}
+                      <span className="min-w-0">
+                        <span
+                          className={`block text-xs sm:text-sm font-heading font-bold leading-snug transition-colors ${
+                            isActive ? 'text-navy-midnight' : 'text-slate-600 group-hover:text-navy-midnight'
+                          }`}
+                        >
+                          {stage.name}
+                        </span>
+                        <span
+                          className="block font-mono text-[10px] uppercase tracking-wider leading-tight mt-0.5 transition-colors"
+                          style={{ color: isActive ? stage.color : '#94A3B8' }}
+                        >
+                          {stage.tagline}
+                        </span>
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+
+          {/* Active Stage Detail Panel with Smooth Slide-Up & Fade-In */}
           <div
             role="tabpanel"
             id="home-stage-panel"
-            aria-labelledby={`home-stage-tab-${activeStageIndex}`}
-            className="mt-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm p-5 sm:p-6 transition-all duration-300"
+            aria-labelledby={`home-stage-tab-${activeIndex}`}
+            className="mt-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm p-5 sm:p-6 transition-all duration-300 min-h-[110px] sm:min-h-[96px] flex flex-col justify-center"
           >
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div
+              key={activeStage.number}
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-in-up"
+            >
               <div className="flex items-start gap-3.5 min-w-0">
                 <span
-                  className="w-10 h-10 shrink-0 rounded-xl grid place-items-center transition-colors"
+                  className="w-10 h-10 shrink-0 rounded-xl grid place-items-center transition-colors duration-300"
                   style={{ backgroundColor: `${activeStage.color}15`, color: activeStage.color }}
                 >
-                  <ActiveIcon className="w-5 h-5" />
+                  <ActiveIcon className="w-5 h-5 transition-transform duration-300" />
                 </span>
                 <div className="min-w-0">
                   <h3 className="text-base font-heading font-bold text-navy-midnight leading-snug">
@@ -214,7 +267,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="shrink-0 sm:text-right rounded-xl bg-slate-50 border border-slate-200/80 px-4 py-2.5">
+              <div className="shrink-0 sm:text-right rounded-xl bg-slate-50 border border-slate-200/80 px-4 py-2.5 transition-colors duration-300">
                 <p className="font-mono text-[10px] uppercase tracking-wider text-slate-400">Key Deliverable</p>
                 <p className="text-xs sm:text-sm font-semibold text-navy-midnight leading-snug mt-0.5">
                   {activeStage.deliverable}
