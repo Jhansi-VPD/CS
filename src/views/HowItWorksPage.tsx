@@ -76,11 +76,17 @@ const partnerIcons = [FileText, ShieldCheck, Cpu, FileSignature, Rocket, Trendin
 
 export const HowItWorksPage: React.FC = () => {
   const [activeWorkflow, setActiveWorkflow] = useState<'client' | 'partner'>('client');
+  const [activeStageIndex, setActiveStageIndex] = useState<number | null>(null);
 
   useEffect(() => {
     document.title = 'How It Works | Coral Swift';
     window.scrollTo(0, 0);
   }, []);
+
+  // Reset active stage when switching workflows
+  useEffect(() => {
+    setActiveStageIndex(null);
+  }, [activeWorkflow]);
 
   const stepsToDisplay = activeWorkflow === 'client' ? globalDeliverySteps : sixStageEvaluation;
   const currentIcons = activeWorkflow === 'client' ? clientIcons : partnerIcons;
@@ -173,8 +179,11 @@ export const HowItWorksPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Infographic Chevron Ribbon Stage List (matches reference image with full content) */}
-          <div className="space-y-6 sm:space-y-8">
+          {/* Infographic Chevron Ribbon Stage List (Hover/Tap Interactive Reveal) */}
+          <div
+            className="space-y-4 sm:space-y-6"
+            onMouseLeave={() => setActiveStageIndex(null)}
+          >
             {stepsToDisplay.map((step, idx) => (
               <div key={`${activeWorkflow}-${step.step}`} className="animate-fadeIn">
                 <ChevronStageBanner
@@ -187,6 +196,9 @@ export const HowItWorksPage: React.FC = () => {
                   nextStep={step.nextStep}
                   theme={stageThemes[idx % stageThemes.length]}
                   icon={currentIcons[idx % currentIcons.length]}
+                  isActive={activeStageIndex === idx}
+                  onHover={() => setActiveStageIndex(idx)}
+                  onLeave={() => setActiveStageIndex(null)}
                 />
               </div>
             ))}
