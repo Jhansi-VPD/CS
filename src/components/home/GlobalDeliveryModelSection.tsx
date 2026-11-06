@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -9,16 +9,23 @@ import {
   FileCheck,
   FileText,
   RefreshCw,
-  ShieldCheck
+  ShieldCheck,
+  ChevronLeft,
+  ChevronRight,
+  MousePointer
 } from 'lucide-react';
-import { ScrollReveal } from '../common/ScrollReveal';
 
 interface Stage {
   number: string;
   name: string;
   tagline: string;
+  badge: string;
+  headline: string;
   description: string;
+  activities: string[];
   deliverable: string;
+  deliverableType: string;
+  stakeholders: string;
   icon: React.ElementType;
   color: string;
 }
@@ -28,8 +35,17 @@ const stages: Stage[] = [
     number: '01',
     name: 'Requirement',
     tagline: 'Discover',
-    description: 'Understand business needs and define project requirements.',
+    badge: 'Discovery Phase',
+    headline: 'Requirement Discovery & Baseline Scoping',
+    description: 'Translating high-level business goals into rigorous technical specifications, resource sizing models, and project milestone roadmaps.',
+    activities: [
+      'Business objective mapping & technical baseline',
+      'Requirement matrix formulation & constraint definition',
+      'Resource sizing, skill mapping & timeline estimation'
+    ],
     deliverable: 'Requirement Matrix & SOW Draft',
+    deliverableType: 'Structured Technical Specification',
+    stakeholders: 'Client Leadership & Solutions Architects',
     icon: FileText,
     color: '#F98F33'
   },
@@ -37,8 +53,17 @@ const stages: Stage[] = [
     number: '02',
     name: 'Validation',
     tagline: 'Validate',
-    description: 'Evaluate feasibility and establish the technical baseline.',
+    badge: 'Validation Phase',
+    headline: 'Technical Feasibility & Architecture Baseline',
+    description: 'Rigorous technical feasibility evaluation, architecture reviews, and operational constraint modeling before commercial commitment.',
+    activities: [
+      'Architecture & tech stack suitability review',
+      'Security & compliance feasibility baseline',
+      'Sprint cadence & SLA parameter calibration'
+    ],
     deliverable: 'Technical Feasibility Report',
+    deliverableType: 'Verified Architecture Baseline',
+    stakeholders: 'Technical Evaluators & System Architects',
     icon: CheckCircle2,
     color: '#F05E47'
   },
@@ -46,8 +71,17 @@ const stages: Stage[] = [
     number: '03',
     name: 'Partner Assessment',
     tagline: 'Assess',
-    description: 'Evaluate partner capabilities and delivery readiness.',
-    deliverable: 'Partner Assessment Report',
+    badge: 'Assessment Phase',
+    headline: 'Delivery Partner Audit & Capability Matching',
+    description: 'Auditing qualified Indian delivery centers against 8-point baselines: 3-year operating tenure, 50+ personnel, and dedicated security infrastructure.',
+    activities: [
+      '8-point baseline delivery center audit',
+      'Workforce depth & domain specialization check',
+      'Physical & VDI security infrastructure verification'
+    ],
+    deliverable: 'Partner Assessment Dossier',
+    deliverableType: 'Audited Capability Certification',
+    stakeholders: 'Partner Evaluation Desk & Practice Leads',
     icon: ShieldCheck,
     color: '#E73B50'
   },
@@ -55,8 +89,17 @@ const stages: Stage[] = [
     number: '04',
     name: 'Scoping',
     tagline: 'Define',
-    description: 'Establish project scope, responsibilities and commercial terms.',
-    deliverable: 'Bilateral SOW and agreed commercial documentation',
+    badge: 'Contracting Phase',
+    headline: 'Bilateral Scoping & Governance Contracting',
+    description: 'Establishing transparent milestone-defined SOWs, intellectual property assignment, and bilateral accountability with zero hidden intermediary margins.',
+    activities: [
+      'Milestone-governed Statement of Work (SOW)',
+      'Mutual NDA & 100% client IP ownership terms',
+      'Client-dedicated Git repositories & VDI enclaves'
+    ],
+    deliverable: 'Bilateral SOW & Commercial Agreement',
+    deliverableType: 'Binding Governance Contract',
+    stakeholders: 'Commercial Operations & Legal Governance',
     icon: FileCheck,
     color: '#D21D61'
   },
@@ -64,8 +107,17 @@ const stages: Stage[] = [
     number: '05',
     name: 'Delivery & QA',
     tagline: 'Execute',
-    description: 'Execute deliverables through structured delivery and quality reviews.',
-    deliverable: 'Sprint Releases & CI/CD Records',
+    badge: 'Execution Phase',
+    headline: 'Disciplined Sprint Execution & Automated QA',
+    description: 'Executing structured sprint iterations with bi-weekly demos, automated regression test suites, and transparent daily SLA tracking.',
+    activities: [
+      'Bi-weekly agile sprint demos & release reviews',
+      'Automated CI/CD pipelines & test regressions',
+      'Daily operational SLA tracking & shift reports'
+    ],
+    deliverable: 'Sprint Releases & CI/CD Verification',
+    deliverableType: 'Production Sprint Deployments',
+    stakeholders: 'Dedicated Delivery Pod & Client PMs',
     icon: Cpu,
     color: '#950B6D'
   },
@@ -73,8 +125,17 @@ const stages: Stage[] = [
     number: '06',
     name: 'Continuous Improvement',
     tagline: 'Optimize',
-    description: 'Review performance and identify opportunities for improvement.',
-    deliverable: 'Governance and Performance Review',
+    badge: 'Optimization Phase',
+    headline: 'Governance Retrospectives & Scaled Growth',
+    description: 'Ongoing executive governance, SLA retrospective audits, quality scoring, and structured capacity expansion for sustainable long-term scale.',
+    activities: [
+      'Monthly operational governance dashboards',
+      'Quarterly quality & SLA performance audits',
+      'Capacity roadmaps & team scaling models'
+    ],
+    deliverable: 'Governance & Performance Reviews',
+    deliverableType: 'Long-Term Partnership Health Score',
+    stakeholders: 'Executive Steering Committee',
     icon: RefreshCw,
     color: '#080B2E'
   }
@@ -87,52 +148,94 @@ const GOVERNANCE_POINTS = [
 ];
 
 export const GlobalDeliveryModelSection: React.FC = () => {
-  const [scrollStage, setScrollStage] = useState(0);
-  const [pinnedStage, setPinnedStage] = useState<number | null>(null);
-  const pinnedOriginRef = useRef(0);
-  const journeyRef = useRef<HTMLOListElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const timelineRailRef = useRef<HTMLOListElement | null>(null);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const activeIndex = pinnedStage ?? scrollStage;
-  const activeStage = stages[activeIndex];
-  const ActiveIcon = activeStage.icon;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const selectStage = (index: number) => {
-    setPinnedStage(index);
-    pinnedOriginRef.current = scrollStage;
-  };
+  // Compute scroll progress through the dedicated multi-viewport scroll runway
+  const handleScroll = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-  // Stage progression follows the scroll position while the journey is on screen.
-  // Content changes are not motion; the connector/detail transitions are already
-  // neutralised by the prefers-reduced-motion block in globals.css.
-  useEffect(() => {
-    const apply = () => {
-      const journey = journeyRef.current;
-      if (!journey) return;
-      const viewportHeight = window.innerHeight;
-      const { top } = journey.getBoundingClientRect();
-      // Stage 0 as the journey enters the viewport, stage 5 once it reaches the upper quarter.
-      const span = Math.max(viewportHeight * 0.65, 420);
-      const progress = Math.min(1, Math.max(0, (viewportHeight * 0.9 - top) / span));
-      const next = Math.min(stages.length - 1, Math.floor(progress * stages.length));
-      setScrollStage(next);
-      // A manual selection survives until scrolling moves to a different stage.
-      setPinnedStage((pinned) =>
-        pinned !== null && next !== pinnedOriginRef.current ? null : pinned
-      );
-    };
+    const rect = container.getBoundingClientRect();
+    const headerOffset = 64; // height of sticky header
+    const scrollDistance = container.offsetHeight - window.innerHeight;
 
-    apply();
-    window.addEventListener('scroll', apply, { passive: true });
-    window.addEventListener('resize', apply);
-    return () => {
-      window.removeEventListener('scroll', apply);
-      window.removeEventListener('resize', apply);
-    };
+    if (scrollDistance <= 0) return;
+
+    // Distance scrolled through the track
+    const scrolled = -rect.top + headerOffset;
+    const progress = Math.min(1, Math.max(0, scrolled / scrollDistance));
+
+    setScrollProgress(progress);
+
+    // Map progress into active stage (0 to stages.length - 1)
+    const stageIndex = Math.min(stages.length - 1, Math.floor(progress * stages.length));
+    setActiveIndex(stageIndex);
   }, []);
 
-  const moveFocus = (next: number) => {
-    selectStage(next);
-    tabRefs.current[next]?.focus();
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const onScroll = () => {
+      animationFrameId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    handleScroll();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [handleScroll]);
+
+  // Keep mobile timeline rail centered on active stage
+  useEffect(() => {
+    const rail = timelineRailRef.current;
+    if (!rail) return;
+    const activeTab = rail.children[activeIndex] as HTMLElement | undefined;
+    if (activeTab) {
+      const railRect = rail.getBoundingClientRect();
+      const tabRect = activeTab.getBoundingClientRect();
+      const offset = tabRect.left - railRect.left - railRect.width / 2 + tabRect.width / 2;
+      rail.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+  }, [activeIndex]);
+
+  // Programmatic smooth scroll to jump to a specific stage within the track
+  const scrollToStage = (index: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const headerOffset = 64;
+    const containerTop = container.getBoundingClientRect().top + window.scrollY;
+    const scrollDistance = container.offsetHeight - window.innerHeight;
+
+    // Position scroll target at the center of the target stage's range
+    const stageSegmentProgress = (index + 0.5) / stages.length;
+    const targetY = containerTop - headerOffset + stageSegmentProgress * scrollDistance;
+
+    window.scrollTo({
+      top: targetY,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleNextStage = () => {
+    if (activeIndex < stages.length - 1) {
+      scrollToStage(activeIndex + 1);
+    }
+  };
+
+  const handlePrevStage = () => {
+    if (activeIndex > 0) {
+      scrollToStage(activeIndex - 1);
+    }
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -151,208 +254,342 @@ export const GlobalDeliveryModelSection: React.FC = () => {
 
     if (next === null) return;
     event.preventDefault();
-    moveFocus(next);
+    scrollToStage(next);
+    tabRefs.current[next]?.focus();
   };
 
+  const activeStage = stages[activeIndex];
+  const ActiveIcon = activeStage.icon;
+
   return (
-    <section className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC] border-y border-slate-200/80 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-slate-200">
-          <ScrollReveal direction="up" className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-coral-bright mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-coral-bright" />
-              <span>How We Work</span>
+    <div
+      ref={containerRef}
+      className="relative min-h-[300vh] lg:min-h-[330vh]"
+      id="stages-section"
+    >
+      {/* Sticky Viewport Container */}
+      <section className="sticky top-[61px] sm:top-[65px] h-[calc(100vh-65px)] min-h-[540px] max-h-[960px] flex flex-col justify-between py-4 sm:py-5 lg:py-7 bg-[#F8FAFC] border-y border-slate-200/80 overflow-y-auto lg:overflow-hidden select-none">
+        {/* Subtle Ambient Background Gradient Lighting */}
+        <div
+          className="absolute -top-32 -right-32 w-96 h-96 rounded-full blur-3xl opacity-20 pointer-events-none transition-colors duration-700"
+          style={{ backgroundColor: activeStage.color }}
+        />
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-navy-midnight/5 blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-between relative z-10">
+          {/* 1. Header Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-3 sm:pb-4 border-b border-slate-200/80 shrink-0">
+            <div>
+              <div className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-coral-bright mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-coral-bright animate-pulse" />
+                <span>HOW WE WORK • SIX-STAGE DELIVERY METHODOLOGY</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-extrabold text-navy-midnight tracking-tight leading-tight">
+                From Requirement to{' '}
+                <span className="swift-gradient-text">Results.</span>
+              </h2>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-navy-midnight tracking-tight leading-tight">
-              From Requirement to{' '}
-              <span className="swift-gradient-text">Results.</span>
-            </h2>
-            <p className="text-sm text-slate-600 mt-1.5 leading-relaxed">
-              Every engagement follows a structured six-stage process designed for transparency, accountability and continuous improvement.
-            </p>
-          </ScrollReveal>
 
-          <ScrollReveal direction="up" delay={100} className="shrink-0">
-            <Link
-              href="/how-it-works"
-              className="group inline-flex items-center gap-1.5 text-[13px] font-bold text-navy-midnight hover:text-coral-bright transition-colors"
-            >
-              <span>Explore Full Methodology</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
-            </Link>
-          </ScrollReveal>
-        </div>
+            <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+              {/* Active Stage Indicator Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs">
+                <span
+                  className="w-2 h-2 rounded-full transition-colors duration-300"
+                  style={{ backgroundColor: activeStage.color }}
+                />
+                <span className="font-mono text-xs font-bold text-navy-midnight">
+                  Stage {activeStage.number} <span className="text-slate-400 font-normal">/ 06</span>
+                </span>
+              </div>
 
-        {/* Six-Stage Delivery Journey */}
-        <ScrollReveal direction="up" delay={100} className="mt-9">
-          <ol
-            ref={journeyRef}
-            role="tablist"
-            aria-label="Six-stage delivery journey"
-            className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-6"
-          >
-            {stages.map((stage, index) => {
-              const isActive = index === activeIndex;
-              const isCompleted = index < activeIndex;
+              <Link
+                href="/how-it-works"
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-coral-bright hover:text-coral-magenta transition-colors group"
+              >
+                <span>Full Methodology</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
+          </div>
 
-              return (
-                <li key={stage.number} role="none" className="relative">
-                  {/* Vertical connector (mobile journey) */}
-                  {index < stages.length - 1 && (
-                    <span
-                      aria-hidden="true"
-                      className="md:hidden absolute left-[21px] top-[46px] -bottom-[22px] w-px bg-slate-200"
-                    >
-                      <span
-                        className="block w-px bg-swift-gradient transition-all duration-500 ease-out"
-                        style={{ height: isCompleted ? '100%' : '0%' }}
-                      />
-                    </span>
-                  )}
+          {/* 2. Interactive Process Timeline Rail */}
+          <div className="py-2 sm:py-2.5 shrink-0">
+            <div className="relative">
+              {/* Connecting Background Line (Desktop) */}
+              <div className="hidden lg:block absolute top-4 left-6 right-6 h-0.5 bg-slate-200/90 z-0">
+                <div
+                  className="h-full bg-swift-gradient transition-all duration-300 ease-out"
+                  style={{
+                    width: `${Math.max(0, Math.min(100, scrollProgress * 100))}%`
+                  }}
+                />
+              </div>
 
-                  {/* Horizontal connector (desktop process rail) */}
-                  {index < stages.length - 1 && (
-                    <span
-                      aria-hidden="true"
-                      className="hidden lg:block absolute top-6 left-[calc(50%_+_1.125rem)] right-[calc(-50%_+_0.375rem)] h-px bg-slate-200"
-                    >
-                      <span
-                        className="block h-px bg-swift-gradient transition-all duration-500 ease-out"
-                        style={{ width: isCompleted ? '100%' : '0%' }}
-                      />
-                    </span>
-                  )}
+              {/* Stage Step Tabs */}
+              <ol
+                ref={timelineRailRef}
+                role="tablist"
+                aria-label="Six-stage delivery progression"
+                className="flex items-center justify-between gap-2 overflow-x-auto no-scrollbar scroll-smooth relative z-10 py-1"
+              >
+                {stages.map((stage, idx) => {
+                  const isActive = idx === activeIndex;
+                  const isCompleted = idx < activeIndex;
 
-                  <button
-                    role="tab"
-                    type="button"
-                    id={`delivery-journey-tab-${index}`}
-                    aria-selected={isActive}
-                    aria-controls="delivery-journey-panel"
-                    tabIndex={isActive ? 0 : -1}
-                    onClick={() => selectStage(index)}
-                    onKeyDown={(event) => onKeyDown(event, index)}
-                    ref={(node) => {
-                      tabRefs.current[index] = node;
-                    }}
-                    className={`group relative flex w-full items-center gap-3 rounded-xl px-1 py-2.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright focus-visible:ring-offset-2 focus-visible:ring-offset-[#F8FAFC] lg:flex-col lg:items-center lg:text-center lg:gap-2.5 lg:px-1 lg:py-1.5 transition-colors`}
-                  >
-                    <span
-                      className="relative z-10 w-9 h-9 shrink-0 rounded-full grid place-items-center font-mono text-[11px] font-bold bg-white border transition-all duration-300"
-                      style={
-                        isActive
-                          ? {
-                              backgroundColor: stage.color,
-                              borderColor: stage.color,
-                              color: '#FFFFFF',
-                              boxShadow: `0 0 0 4px ${stage.color}1A`
-                            }
-                          : isCompleted
-                            ? { borderColor: `${stage.color}59`, color: stage.color }
-                            : { borderColor: '#E2E8F0', color: '#94A3B8' }
-                      }
-                    >
-                      {stage.number}
-                    </span>
-
-                    <span className="min-w-0 lg:px-0.5">
-                      <span
-                        className={`block text-[13px] font-heading font-bold leading-snug transition-colors ${
-                          isActive ? 'text-navy-midnight' : 'text-slate-600 group-hover:text-navy-midnight'
+                  return (
+                    <li key={stage.number} role="none" className="shrink-0 flex-1 min-w-[125px] lg:min-w-0">
+                      <button
+                        role="tab"
+                        type="button"
+                        id={`delivery-tab-${idx}`}
+                        aria-selected={isActive}
+                        aria-controls="delivery-spotlight-card"
+                        tabIndex={isActive ? 0 : -1}
+                        onClick={() => scrollToStage(idx)}
+                        onKeyDown={(e) => onKeyDown(e, idx)}
+                        ref={(node) => {
+                          tabRefs.current[idx] = node;
+                        }}
+                        className={`w-full group flex flex-col items-center text-center p-1.5 rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright ${
+                          isActive
+                            ? 'bg-white shadow-xs border border-slate-200'
+                            : 'hover:bg-white/60'
                         }`}
                       >
-                        {stage.name}
-                      </span>
-                      <span
-                        className="block font-mono text-[10px] uppercase tracking-wider leading-tight mt-0.5 transition-colors"
-                        style={{ color: isActive ? stage.color : '#94A3B8' }}
-                      >
-                        {stage.tagline}
-                      </span>
-                    </span>
-                  </button>
+                        {/* Step Circle Indicator */}
+                        <div
+                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-mono text-[10px] sm:text-xs font-bold border transition-all duration-300 mb-1"
+                          style={
+                            isActive
+                              ? {
+                                  backgroundColor: stage.color,
+                                  borderColor: stage.color,
+                                  color: '#FFFFFF',
+                                  boxShadow: `0 0 0 3px ${stage.color}25`
+                                }
+                              : isCompleted
+                              ? {
+                                  backgroundColor: '#FFFFFF',
+                                  borderColor: stage.color,
+                                  color: stage.color
+                                }
+                              : {
+                                  backgroundColor: '#FFFFFF',
+                                  borderColor: '#CBD5E1',
+                                  color: '#94A3B8'
+                                }
+                          }
+                        >
+                          {isCompleted ? (
+                            <CheckCircle2 className="w-3.5 h-3.5" />
+                          ) : (
+                            stage.number
+                          )}
+                        </div>
 
-                  {/* Stage detail — expands inline under the active step on mobile only */}
-                  <div
-                    aria-hidden={!isActive}
-                    className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-                      isActive ? 'max-h-56 opacity-100 mt-1' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <div className="rounded-lg bg-white border border-slate-200/80 p-3">
-                      <p className="text-[13px] text-slate-600 leading-relaxed">{stage.description}</p>
-                      <p className="mt-2 pt-2 border-t border-slate-100 text-[11px] leading-snug">
-                        <span className="font-mono uppercase tracking-wider text-slate-400">Deliverable · </span>
-                        <span className="font-semibold text-navy-midnight">{stage.deliverable}</span>
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
+                        {/* Title & Tagline */}
+                        <span
+                          className={`block text-[11px] sm:text-xs font-heading font-bold truncate max-w-full transition-colors ${
+                            isActive ? 'text-navy-midnight' : 'text-slate-600 group-hover:text-navy-midnight'
+                          }`}
+                        >
+                          {stage.name}
+                        </span>
+                        <span
+                          className="block font-mono text-[9px] uppercase tracking-wider mt-0.5"
+                          style={{ color: isActive ? stage.color : '#94A3B8' }}
+                        >
+                          {stage.tagline}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          </div>
 
-          <p aria-live="polite" className="sr-only">
-            Stage {activeStage.number}: {activeStage.name}. {activeStage.description}
-          </p>
-
-          {/* Active stage detail — tablet & desktop */}
+          {/* 3. The Active Stage Hero Spotlight Card */}
           <div
+            id="delivery-spotlight-card"
             role="tabpanel"
-            tabIndex={0}
-            id="delivery-journey-panel"
-            aria-labelledby={`delivery-journey-tab-${activeIndex}`}
-            className="hidden md:block mt-5 rounded-xl bg-white border border-slate-200/80 shadow-card-soft px-4 sm:px-5 py-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright/50"
+            aria-labelledby={`delivery-tab-${activeIndex}`}
+            className="flex-1 my-1.5 sm:my-2 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden relative flex flex-col justify-between transition-all duration-500"
           >
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-start gap-3 min-w-0">
-                <span
-                  className="w-9 h-9 shrink-0 rounded-lg grid place-items-center"
-                  style={{ backgroundColor: `${activeStage.color}12`, color: activeStage.color }}
-                >
-                  <ActiveIcon className="w-4 h-4" />
-                </span>
-                <div className="min-w-0">
-                  <h3 className="text-sm font-heading font-bold text-navy-midnight leading-snug">
-                    <span className="font-mono text-[11px] text-slate-400 mr-1.5">{activeStage.number}</span>
-                    {activeStage.name}
-                    <span className="text-slate-400 font-medium"> · {activeStage.tagline}</span>
-                  </h3>
-                  <p className="text-[13px] text-slate-600 leading-relaxed mt-0.5">
-                    {activeStage.description}
+            {/* Top Color Accent Line */}
+            <div
+              className="h-1.5 w-full transition-colors duration-500"
+              style={{ backgroundColor: activeStage.color }}
+            />
+
+            {/* Giant Watermark Background Number */}
+            <div
+              aria-hidden="true"
+              className="absolute -right-6 -bottom-10 text-[140px] sm:text-[220px] font-heading font-black select-none pointer-events-none transition-all duration-700 opacity-[0.04] leading-none"
+              style={{ color: activeStage.color }}
+            >
+              {activeStage.number}
+            </div>
+
+            <div
+              key={activeStage.number}
+              className="animate-fade-in p-4 sm:p-6 lg:p-8 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center relative z-10"
+            >
+              {/* Left Column: Stage Objective & Key Activities */}
+              <div className="lg:col-span-7 space-y-3.5">
+                {/* Eyebrow & Badge */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <span
+                    className="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-wider border"
+                    style={{
+                      backgroundColor: `${activeStage.color}15`,
+                      borderColor: `${activeStage.color}35`,
+                      color: activeStage.color
+                    }}
+                  >
+                    Stage {activeStage.number} • {activeStage.badge}
+                  </span>
+
+                  <span className="text-slate-300 hidden sm:inline">•</span>
+
+                  <span className="font-mono text-xs uppercase tracking-wider text-slate-500">
+                    Step {activeIndex + 1} of 6
+                  </span>
+                </div>
+
+                {/* Stage Headline */}
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-heading font-extrabold text-navy-midnight leading-tight tracking-tight">
+                  {activeStage.headline}
+                </h3>
+
+                {/* Description */}
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl">
+                  {activeStage.description}
+                </p>
+
+                {/* 3 Key Operational Activities */}
+                <div className="pt-1 space-y-1.5">
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    Key Operational Activities:
                   </p>
+                  <ul className="grid grid-cols-1 gap-1.5">
+                    {activeStage.activities.map((activity, aIdx) => (
+                      <li
+                        key={aIdx}
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-navy-midnight font-medium bg-slate-50 border border-slate-200/70 rounded-xl px-3 py-2 transition-all hover:bg-white hover:border-slate-300"
+                      >
+                        <CheckCircle2
+                          className="w-4 h-4 shrink-0 mt-0.5 transition-colors"
+                          style={{ color: activeStage.color }}
+                        />
+                        <span>{activity}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
-              <div className="shrink-0 sm:text-right rounded-lg bg-slate-50 border border-slate-200/70 px-3.5 py-2">
-                <p className="font-mono text-[10px] uppercase tracking-wider text-slate-400">Deliverable</p>
-                <p className="text-[13px] font-semibold text-navy-midnight leading-snug mt-0.5">
-                  {activeStage.deliverable}
-                </p>
+              {/* Right Column: Key Deliverable Card & Interactive Navigation */}
+              <div className="lg:col-span-5 flex flex-col justify-between space-y-3.5">
+                {/* Milestone Deliverable Box */}
+                <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100/80 border border-slate-200/90 shadow-xs relative overflow-hidden space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-slate-500">
+                      MILESTONE DELIVERABLE
+                    </span>
+                    <span
+                      className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow-xs"
+                      style={{
+                        backgroundColor: activeStage.color,
+                        color: '#FFFFFF'
+                      }}
+                    >
+                      <ActiveIcon className="w-4 h-4" />
+                    </span>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm sm:text-base font-heading font-extrabold text-navy-midnight leading-snug">
+                      {activeStage.deliverable}
+                    </h4>
+                    <p className="text-[11px] font-mono text-slate-500 mt-0.5">
+                      {activeStage.deliverableType}
+                    </p>
+                  </div>
+
+                  <div className="pt-2 border-t border-slate-200/70 text-[11px] text-slate-600 space-y-1">
+                    <p>
+                      <span className="font-mono text-slate-400 uppercase">Stakeholders: </span>
+                      <span className="font-medium text-navy-midnight">{activeStage.stakeholders}</span>
+                    </p>
+                    <p className="flex items-center gap-1.5 text-emerald-700 font-semibold pt-0.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span>Governed by Milestone Sign-Off</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Stage Progression Controls & Scroll Cue */}
+                <div className="flex items-center justify-between pt-0.5">
+                  {/* Scroll Cue Hint */}
+                  <div className="flex items-center gap-2 text-slate-500 font-mono text-[11px]">
+                    <span className="w-2 h-2 rounded-full bg-coral-bright animate-ping" />
+                    <span>Scroll page to advance</span>
+                  </div>
+
+                  {/* Manual Prev / Next Buttons */}
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={handlePrevStage}
+                      disabled={activeIndex === 0}
+                      aria-label="Previous Stage"
+                      className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 hover:bg-white hover:text-navy-midnight disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleNextStage}
+                      disabled={activeIndex === stages.length - 1}
+                      aria-label="Next Stage"
+                      className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 hover:bg-white hover:text-navy-midnight disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </ScrollReveal>
 
-        {/* Compact governance strip */}
-        <ScrollReveal direction="up" delay={150}>
-          <div className="mt-5 rounded-xl bg-white border border-slate-200/80 px-4 py-3.5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-400">
+            {/* Bottom Mini Progress Bar */}
+            <div className="h-1 bg-slate-100 w-full overflow-hidden">
+              <div
+                className="h-full bg-swift-gradient transition-all duration-300 ease-out"
+                style={{
+                  width: `${((activeIndex + 1) / stages.length) * 100}%`
+                }}
+              />
+            </div>
+          </div>
+
+          {/* 4. Compact Governance Strip */}
+          <div className="rounded-xl bg-white border border-slate-200/80 px-4 py-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 shrink-0">
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-slate-400">
               Governed at every stage
             </p>
-            <ul className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-x-6 gap-y-2">
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-1">
               {GOVERNANCE_POINTS.map((point) => (
-                <li key={point} className="flex items-center gap-2 text-xs font-semibold text-navy-midnight">
+                <li key={point} className="flex items-center gap-1.5 text-xs font-semibold text-navy-midnight">
                   <CheckCircle2 className="w-3.5 h-3.5 text-coral-bright shrink-0" />
                   <span>{point}</span>
                 </li>
               ))}
             </ul>
           </div>
-        </ScrollReveal>
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
   );
 };
 
