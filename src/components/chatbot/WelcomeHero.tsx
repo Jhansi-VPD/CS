@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { AssistantOrb } from './AssistantOrb';
 import { Suggestion } from '../../data/chatbot/chatbotTypes';
 
 interface Props {
@@ -20,9 +19,7 @@ export const WelcomeHero: React.FC<Props> = ({ suggestions, onSelectSuggestion, 
   useEffect(() => setGreeting(greetingFor(new Date().getHours())), []);
 
   return (
-    <div className="cs-hero-in flex flex-col items-center text-center px-5 pt-7 pb-5">
-      <AssistantOrb className="w-28 h-28 sm:w-32 sm:h-32 mb-5" />
-
+    <div className="cs-hero-in flex flex-col items-center text-center px-5 pt-8 pb-5">
       <p className="text-sm font-heading font-bold swift-gradient-text">{greeting}!</p>
       <h2 className="text-xl font-heading font-extrabold text-navy-midnight mt-1 leading-tight">
         How can I help you today?
