@@ -42,13 +42,13 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       )}
 
       <h2
-        className={`font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight ${
+        className={`font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-snug sm:leading-snug lg:leading-[1.28] ${
           dark ? 'text-white' : 'text-navy-midnight'
         }`}
       >
         {title}{' '}
         {highlightText && (
-          <span className="swift-gradient-text block sm:inline">
+          <span className="swift-gradient-text inline-block">
             {highlightText}
           </span>
         )}

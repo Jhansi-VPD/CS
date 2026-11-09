@@ -6,7 +6,7 @@ import { ScrollReveal } from '../common/ScrollReveal';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative overflow-hidden pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20 bg-gradient-to-b from-[#FFF7F2]/80 via-white to-white border-b border-slate-200/70">
+    <section className="relative overflow-hidden pt-6 pb-6 sm:pt-8 sm:pb-8 lg:pt-8 lg:pb-10 bg-gradient-to-b from-[#FFF7F2]/80 via-white to-white border-b border-slate-200/70">
       {/* Subtle Hairline Architectural Grid Background */}
       <div className="absolute inset-0 bg-grid-animated opacity-20 -z-10 pointer-events-none" />
       {/* Soft Ambient Brand Warmth Glow */}
@@ -26,9 +26,9 @@ export const HeroSection: React.FC = () => {
 
             {/* Impactful Headline */}
             <ScrollReveal direction="up" delay={100}>
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-navy-midnight tracking-tight leading-[1.14]">
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-navy-midnight tracking-tight leading-[1.36] sm:leading-[1.32] lg:leading-[1.28]">
                 Connecting Global Opportunities with the{' '}
-                <span className="swift-gradient-text">Right Delivery Partners.</span>
+                <span className="swift-gradient-text inline-block">Right Delivery Partners.</span>
               </h1>
             </ScrollReveal>
 

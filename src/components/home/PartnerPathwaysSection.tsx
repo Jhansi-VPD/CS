@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowRight, CheckCircle2, ShieldCheck, Building2, Users, Handshake, ChevronRight, Lock } from 'lucide-react';
 import { Button } from '../common/Button';
 import { ScrollReveal } from '../common/ScrollReveal';
@@ -6,7 +7,7 @@ import Link from 'next/link';
 
 export const PartnerPathwaysSection: React.FC = () => {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-slate-50/90 via-[#FFF7F2]/40 to-white border-b border-slate-200/70 relative">
+    <section className="py-8 sm:py-10 lg:py-12 bg-gradient-to-b from-slate-50/90 via-[#FFF7F2]/40 to-white border-b border-slate-200/70 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           {/* Left Column: Strategic Mandate & Qualifications */}
@@ -16,9 +17,9 @@ export const PartnerPathwaysSection: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-coral-bright" />
                 <span>Delivery Partnerships</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-navy-midnight tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-navy-midnight tracking-tight leading-snug sm:leading-snug lg:leading-[1.28]">
                 Three Ways to Work With{' '}
-                <span className="swift-gradient-text">Coral Swift.</span>
+                <span className="swift-gradient-text inline-block">Coral Swift.</span>
               </h2>
               <p className="text-base text-slate-600 leading-relaxed pt-1">
                 We talk with established IT and business operations companies. Every engagement starts with an eligibility review.
@@ -76,11 +77,13 @@ export const PartnerPathwaysSection: React.FC = () => {
           <ScrollReveal direction="right" delay={150} className="lg:col-span-7 space-y-5">
             {/* Top Visual Anchor Bar */}
             <div className="relative rounded-2xl overflow-hidden shadow-card-soft border border-slate-200 aspect-[21/9] group">
-              <img
+              <Image
                 src="/images/partnerships-handshake.jpg"
                 alt="Executive Global Partnership Agreement"
+                fill
                 loading="lazy"
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/85 via-navy-midnight/35 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white flex items-center justify-between">

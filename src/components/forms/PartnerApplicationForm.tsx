@@ -530,15 +530,17 @@ export const PartnerApplicationForm: React.FC = () => {
                     subtitle: 'For domain specialists providing modular delivery, testing teams, or operational shifts.'
                   }
                 ].map((p) => (
-                  <div
+                  <button
                     key={p.id}
+                    type="button"
+                    aria-pressed={formData.preferredPathway === p.id}
                     onClick={() =>
                       setFormData({
                         ...formData,
                         preferredPathway: p.id as PartnerApplicationFormData['preferredPathway']
                       })
                     }
-                    className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
+                    className={`p-3.5 rounded-xl border cursor-pointer transition-all text-left ${
                       formData.preferredPathway === p.id
                         ? 'border-coral-bright bg-coral-50/40 ring-1 ring-coral-bright'
                         : 'border-slate-200 hover:border-slate-300 bg-white'
@@ -551,7 +553,7 @@ export const PartnerApplicationForm: React.FC = () => {
                       )}
                     </div>
                     <p className="text-[11px] text-slate-500 leading-relaxed">{p.subtitle}</p>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -579,10 +581,12 @@ export const PartnerApplicationForm: React.FC = () => {
                 {expertiseOptions.map((item) => {
                   const selected = formData.primaryExpertise.includes(item);
                   return (
-                    <div
+                    <button
                       key={item}
+                      type="button"
+                      aria-pressed={selected}
                       onClick={() => toggleExpertise(item)}
-                      className={`px-3 py-2 rounded-lg border text-xs cursor-pointer select-none transition-colors flex items-center justify-between ${
+                      className={`px-3 py-2 rounded-lg border text-xs cursor-pointer select-none transition-colors flex items-center justify-between text-left ${
                         selected
                           ? 'bg-navy-midnight text-white border-navy-midnight font-medium'
                           : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
@@ -590,7 +594,7 @@ export const PartnerApplicationForm: React.FC = () => {
                     >
                       <span className="truncate pr-1">{item}</span>
                       {selected && <Check className="w-3.5 h-3.5 shrink-0 text-coral-orange" />}
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -608,10 +612,12 @@ export const PartnerApplicationForm: React.FC = () => {
                 {industryOptions.map((item) => {
                   const selected = formData.industryExperience.includes(item);
                   return (
-                    <div
+                    <button
                       key={item}
+                      type="button"
+                      aria-pressed={selected}
                       onClick={() => toggleIndustry(item)}
-                      className={`px-3 py-2 rounded-lg border text-xs cursor-pointer select-none transition-colors flex items-center justify-between ${
+                      className={`px-3 py-2 rounded-lg border text-xs cursor-pointer select-none transition-colors flex items-center justify-between text-left ${
                         selected
                           ? 'bg-navy-surface text-white border-navy-surface font-medium'
                           : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
@@ -619,7 +625,7 @@ export const PartnerApplicationForm: React.FC = () => {
                     >
                       <span>{item}</span>
                       {selected && <Check className="w-3.5 h-3.5 shrink-0 text-coral-orange" />}
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -672,7 +678,6 @@ export const PartnerApplicationForm: React.FC = () => {
                   return (
                     <label
                       key={item.id}
-                      onClick={() => toggleDocument(item.name)}
                       className={`p-3 rounded-xl border cursor-pointer select-none transition-colors flex items-start gap-2.5 ${
                         checked
                           ? 'bg-coral-50/50 border-coral-bright/50'
@@ -682,8 +687,8 @@ export const PartnerApplicationForm: React.FC = () => {
                       <input
                         type="checkbox"
                         checked={checked}
-                        readOnly
-                        className="mt-0.5 rounded text-coral-bright border-slate-300 focus:ring-coral-bright"
+                        onChange={() => toggleDocument(item.name)}
+                        className="mt-0.5 w-4 h-4 rounded text-coral-bright border-slate-300 focus:ring-coral-bright"
                       />
                       <div>
                         <span className="text-xs font-bold text-navy-midnight block">

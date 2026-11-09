@@ -14,7 +14,7 @@ export const StrategicDiscussionsPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-navy-midnight text-white pt-10 pb-16 relative overflow-hidden">
+      <section className="bg-navy-midnight text-white pt-8 pb-10 sm:pb-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-dark-grid opacity-20 pointer-events-none" />
         <div className="absolute top-0 right-10 w-96 h-96 bg-coral-magenta/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -38,9 +38,8 @@ export const StrategicDiscussionsPage: React.FC = () => {
           </div>
         </div>
       </section>
-
       {/* Main Content & Strategic Overview */}
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Left Details */}

@@ -5,6 +5,7 @@ import { Footer } from '@/components/common/Footer';
 import { CookieBanner } from '@/components/common/CookieBanner';
 import { Chatbot } from '@/components/chatbot/Chatbot';
 import { HashScroll } from '@/components/common/HashScroll';
+import { LogoIntro } from '@/components/common/LogoIntro';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coralswift.com';
 
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-white text-navy-midnight font-sans antialiased selection:bg-coral-bright selection:text-white min-h-dvh flex flex-col">
+        <LogoIntro />
         <Header />
         <main className="flex-grow relative z-10 bg-white parallax-footer-shadow">{children}</main>
         <Footer />

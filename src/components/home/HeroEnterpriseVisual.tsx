@@ -1,5 +1,6 @@
 import React from 'react';
-import { Globe2, ShieldCheck, Lock, GitBranch, CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
+import { Globe2, ShieldCheck, Lock, GitBranch, CheckCircle2, ArrowLeftRight } from 'lucide-react';
 
 export const HeroEnterpriseVisual: React.FC = () => {
   return (
@@ -11,11 +12,13 @@ export const HeroEnterpriseVisual: React.FC = () => {
       <div className="relative rounded-3xl bg-[#080B2E] border border-slate-700/70 shadow-2xl overflow-hidden text-white transition-all duration-300 hover:border-slate-600/80">
         {/* Top Photographic Layer with Dark Glass Overlay */}
         <div className="relative aspect-[16/10] overflow-hidden group">
-          <img
+          <Image
             src="/images/hero-enterprise-collab.jpg"
             alt="International Enterprise Technology and Operations Collaboration"
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-            loading="eager"
+            fill
+            priority
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           />
           {/* Subtle gradient vignette to blend image with card background */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#080B2E] via-[#080B2E]/50 to-transparent" />
@@ -24,7 +27,7 @@ export const HeroEnterpriseVisual: React.FC = () => {
           <div className="absolute top-4 left-4 z-10">
             <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#080B2E]/90 border border-slate-700/80 text-[10px] font-mono font-semibold uppercase tracking-wider text-coral-orange backdrop-blur-md shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Direct Bilateral Model</span>
+              <span>Direct Delivery Model</span>
             </span>
           </div>
 
@@ -80,8 +83,10 @@ export const HeroEnterpriseVisual: React.FC = () => {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
                   Cross-Border Delivery Bridge
                 </span>
-                <span className="font-bold text-white text-xs sm:text-sm">
-                  US Enterprise Demand ⟷ Hyderabad Hubs
+                <span className="font-bold text-white text-xs sm:text-sm inline-flex items-center gap-1.5">
+                  US Enterprise Demand
+                  <ArrowLeftRight className="w-3.5 h-3.5 text-coral-orange" />
+                  Hyderabad Delivery Partners
                 </span>
               </div>
             </div>

@@ -69,7 +69,7 @@ export const InsightsPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-8 pb-10 sm:pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Insights' }]} />
 
@@ -88,7 +88,7 @@ export const InsightsPage: React.FC = () => {
       </section>
 
       {/* Main Content Area */}
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           {/* Downloadable Corporate Profile Banner */}
           <div className="p-6 sm:p-8 rounded-3xl bg-navy-midnight text-white border border-navy-border flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">

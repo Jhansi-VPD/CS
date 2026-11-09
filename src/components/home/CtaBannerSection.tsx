@@ -10,7 +10,7 @@ export const CtaBannerSection: React.FC = () => {
   const [isMeetingOpen, setIsMeetingOpen] = useState(false);
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-white relative">
+    <section className="py-8 sm:py-10 lg:py-12 bg-white relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="scale">
           <div className="relative rounded-3xl bg-[#080B2E] border border-slate-800 p-8 sm:p-12 lg:p-16 text-center overflow-hidden shadow-2xl text-white">
@@ -26,9 +26,9 @@ export const CtaBannerSection: React.FC = () => {
               </div>
 
               {/* Bold Executive Headline */}
-              <h2 className="font-heading text-3xl sm:text-4xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+              <h2 className="font-heading text-3xl sm:text-4xl lg:text-4xl font-extrabold tracking-tight text-white leading-snug sm:leading-snug lg:leading-[1.28]">
                 Let&apos;s Talk About{' '}
-                <span className="swift-gradient-text">Your Project.</span>
+                <span className="swift-gradient-text inline-block">Your Project.</span>
               </h2>
 
               {/* Concise Supporting Copy */}

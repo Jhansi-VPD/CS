@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '../common/ScrollReveal';
 
@@ -57,7 +58,7 @@ const PANELS: CapabilityPanel[] = [
 
 export const ServicesOverviewSection: React.FC = () => {
   return (
-    <section className="bg-slate-50/80 border-y border-slate-200/70 py-14 sm:py-16 lg:py-20">
+    <section className="bg-slate-50/80 border-y border-slate-200/70 py-8 sm:py-10 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Compact Section Header */}
         <ScrollReveal direction="up" className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 pb-8 lg:pb-10">
@@ -94,11 +95,13 @@ export const ServicesOverviewSection: React.FC = () => {
             >
               <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-card-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-card-hover">
                 <div className="relative h-32 shrink-0 overflow-hidden sm:h-36 lg:h-32">
-                  <img
+                  <Image
                     src={p.image}
                     alt={p.imageAlt}
+                    fill
                     loading="lazy"
-                    className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <span className="absolute left-3 top-3 rounded bg-white/90 px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-coral-bright backdrop-blur-sm">
                     {p.index} · {p.label}

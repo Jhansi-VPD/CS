@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowRight, Code, HeartPulse, Landmark, Building2 } from 'lucide-react';
 import { Button } from '../common/Button';
 import { ScrollReveal } from '../common/ScrollReveal';
@@ -55,7 +56,7 @@ const industries: IndustrySector[] = [
 
 export const IndustriesPreviewSection: React.FC = () => {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-white border-b border-slate-200/70 relative">
+    <section className="py-8 sm:py-10 lg:py-12 bg-white border-b border-slate-200/70 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-slate-200">
@@ -64,9 +65,9 @@ export const IndustriesPreviewSection: React.FC = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-coral-bright" />
               <span>Target Industries</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-navy-midnight tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-navy-midnight tracking-tight leading-snug sm:leading-snug lg:leading-[1.28]">
               Four Industries We{' '}
-              <span className="swift-gradient-text">Focus On.</span>
+              <span className="swift-gradient-text inline-block">Focus On.</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
               Project work spans IT and business operations across these sectors.
@@ -96,11 +97,13 @@ export const IndustriesPreviewSection: React.FC = () => {
                   className="group relative flex flex-col justify-between h-full min-h-[340px] rounded-3xl overflow-hidden border border-slate-200/90 shadow-card-soft hover-lift transition-all duration-300"
                 >
                   {/* Background Photography */}
-                  <img
+                  <Image
                     src={ind.image}
                     alt={ind.name}
+                    fill
                     loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   {/* High-Contrast Dark Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight via-navy-midnight/65 to-navy-midnight/25 transition-opacity group-hover:opacity-90" />

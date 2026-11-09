@@ -70,15 +70,9 @@ export const Chatbot: React.FC = () => {
     };
   }, []);
 
-  // Draggable panel and launcher on every viewport; pointer events cover mouse,
-  // touch and pen. Offsets stay at zero until the visitor first drags, so the CSS
-  // default anchor is used and there is no positioning flash on open.
+  // The open panel can be repositioned; its CSS anchor remains in place until dragged.
   const [offset, setOffset] = useState({ dx: 0, dy: 0 });
   const [dragging, setDragging] = useState(false);
-  const launcherWrapRef = useRef<HTMLDivElement>(null);
-  const launcherPress = useRef<{ x: number; y: number } | null>(null);
-  const [launcherOffset, setLauncherOffset] = useState({ dx: 0, dy: 0 });
-  const [launcherDragging, setLauncherDragging] = useState(false);
 
   useEffect(() => {
     const clampTo = (
@@ -91,7 +85,6 @@ export const Chatbot: React.FC = () => {
     };
     const onResize = () => {
       setOffset((o) => clampTo(o, panelRef.current));
-      setLauncherOffset((o) => clampTo(o, launcherWrapRef.current));
     };
     window.addEventListener('resize', onResize);
     window.addEventListener('orientationchange', onResize);
@@ -140,28 +133,7 @@ export const Chatbot: React.FC = () => {
   const onDragStart = (e: React.PointerEvent) =>
     runDrag(e, panelRef.current, offset, setOffset, setDragging);
 
-  const onLauncherDragStart = (e: React.PointerEvent) => {
-    launcherPress.current = { x: e.clientX, y: e.clientY };
-    runDrag(
-      e,
-      launcherWrapRef.current,
-      launcherOffset,
-      setLauncherOffset,
-      setLauncherDragging,
-    );
-  };
-
-  const onLauncherClick = (e: React.MouseEvent) => {
-    // A drag that releases over the button still fires a click; only a tap opens.
-    // detail 0 is keyboard activation, which must always open the panel.
-    const press = launcherPress.current;
-    launcherPress.current = null;
-    if (
-      e.detail > 0 && press &&
-      (Math.abs(e.clientX - press.x) > 4 || Math.abs(e.clientY - press.y) > 4)
-    ) return;
-    toggle();
-  };
+  const onLauncherClick = () => toggle();
 
   useEffect(() => {
     const check = () => setConsentPending(!localStorage.getItem('cs_cookie_consent'));
@@ -247,23 +219,14 @@ export const Chatbot: React.FC = () => {
 
       {!isOpen && !fieldFocused && !consentPending && (
         <div
-          ref={launcherWrapRef}
-          style={
-            launcherOffset.dx !== 0 || launcherOffset.dy !== 0
-              ? { transform: `translate(${launcherOffset.dx}px, ${launcherOffset.dy}px)` }
-              : undefined
-          }
-          className={`fixed z-[60] right-5 bottom-[calc(1.25rem+env(safe-area-inset-bottom))] touch-none ${
-            launcherDragging ? 'select-none' : ''
-          }`}
+          className="fixed z-[60] right-5 bottom-[calc(1.25rem+env(safe-area-inset-bottom))]"
         >
           <button
             ref={launcherRef}
             type="button"
             onClick={onLauncherClick}
-            onPointerDown={onLauncherDragStart}
             aria-label="Open the Coral Swift Assistant"
-            className="group flex items-center justify-center w-14 h-14 rounded-full bg-white/70 backdrop-blur-xl ring-1 ring-slate-200/70 shadow-[0_10px_30px_-8px_rgba(8,11,46,0.25)] hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200 cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright focus-visible:ring-offset-2"
+            className="group flex items-center justify-center w-14 h-14 rounded-full bg-white/70 backdrop-blur-xl ring-1 ring-slate-200/70 shadow-[0_10px_30px_-8px_rgba(8,11,46,0.25)] hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright focus-visible:ring-offset-2"
           >
             <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-swift-gradient ring-2 ring-white shadow-glow-coral">
               <AssistantMascot variant="head" className="w-8 h-8" />

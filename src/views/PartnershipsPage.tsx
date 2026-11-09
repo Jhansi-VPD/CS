@@ -46,7 +46,7 @@ export const PartnershipsPage: React.FC = () => {
       </section>
 
       {/* Section 1: Who Can Become a Partner */}
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Strategic Partnership Visual Composition */}
           <ScrollReveal direction="up">
@@ -121,7 +121,7 @@ export const PartnershipsPage: React.FC = () => {
       </section>
 
       {/* Section 2: Three Engagement Pathways */}
-      <section id="pathways" className="py-16 sm:py-20 bg-slate-50 border-y border-slate-200/70">
+      <section id="pathways" className="py-10 sm:py-14 bg-slate-50 border-y border-slate-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <SectionHeader
@@ -185,7 +185,7 @@ export const PartnershipsPage: React.FC = () => {
       </section>
 
       {/* Section 3: Proposed Screening Criteria */}
-      <section id="criteria" className="py-16 sm:py-20">
+      <section id="criteria" className="py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <SectionHeader
@@ -234,7 +234,7 @@ export const PartnershipsPage: React.FC = () => {
       </section>
 
       {/* Section 4: Initial Partner Submission Checklist */}
-      <section id="checklist" className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200/70">
+      <section id="checklist" className="py-10 sm:py-14 bg-slate-50 border-t border-slate-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <SectionHeader
@@ -284,7 +284,7 @@ export const PartnershipsPage: React.FC = () => {
       </section>
 
       {/* Section 5: Partner Application Form */}
-      <section id="apply" className="py-20 scroll-mt-20">
+      <section id="apply" className="py-12 sm:py-16 scroll-mt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <SectionHeader

@@ -215,6 +215,33 @@
   }
 }
 
+/* Coral Swift — first-visit logo intro */
+@keyframes csIntroEmblem {
+  from { opacity: 0; transform: scale(0.86) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes csIntroWordmark {
+  from { opacity: 0; transform: translateY(14px); letter-spacing: 0.08em; }
+  to { opacity: 1; transform: translateY(0); letter-spacing: normal; }
+}
+@keyframes csIntroTagline {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.cs-intro-emblem {
+  animation: csIntroEmblem 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.cs-intro-wordmark {
+  animation: csIntroWordmark 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+.cs-intro-tagline {
+  animation: csIntroTagline 0.6s ease-out 0.7s both;
+}
+.cs-intro-out {
+  animation: none !important;
+  transition: opacity 0.5s ease-out;
+}
+
 /* Coral Swift Assistant — chat widget */
 @keyframes chatPop {
   from { opacity: 0; transform: translateY(12px) scale(0.97); }
@@ -291,6 +318,24 @@
   .mascot-twinkle {
     animation: none !important;
   }
+}
+
+/* Coral Swift About page — flowing connector dashes + node pulses */
+@keyframes csDashFlow {
+  to { stroke-dashoffset: -64; }
+}
+.cs-dash-flow {
+  stroke-dasharray: 6 10;
+  animation: csDashFlow 2.6s linear infinite;
+}
+@keyframes csNodePulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  70%, 100% { transform: scale(2.2); opacity: 0; }
+}
+.cs-node-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: csNodePulse 2.6s ease-out infinite;
 }
 
 /* Coral Swift Assistant — welcome orb + hero */

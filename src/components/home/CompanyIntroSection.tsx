@@ -1,21 +1,24 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowRight, CheckCircle2, ShieldCheck, Building2, Globe } from 'lucide-react';
 import { Button } from '../common/Button';
 import { ScrollReveal } from '../common/ScrollReveal';
 
 export const CompanyIntroSection: React.FC = () => {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-white relative">
+    <section className="pt-2 pb-10 sm:pt-4 sm:pb-12 lg:pt-4 lg:pb-14 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Visual Storytelling */}
           <ScrollReveal direction="left" className="lg:col-span-6 relative">
             <div className="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3] group">
-              <img
+              <Image
                 src="/images/about-global-delivery.jpg"
                 alt="Coral Swift global coordination with India-based delivery partners"
+                fill
                 loading="lazy"
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/80 via-navy-midnight/20 to-transparent" />
 
@@ -42,9 +45,9 @@ export const CompanyIntroSection: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-coral-bright" />
                 <span>About Coral Swift</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-navy-midnight tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-navy-midnight tracking-tight leading-snug sm:leading-snug lg:leading-[1.28]">
                 We Connect Project Needs With{' '}
-                <span className="swift-gradient-text">Qualified Delivery Partners.</span>
+                <span className="swift-gradient-text inline-block">Qualified Delivery Partners.</span>
               </h2>
               <p className="text-base text-slate-600 leading-relaxed pt-1">
                 Coral Swift is a US-oriented IT and Non-IT project solutions and partnership platform. We validate requirements, screen delivery organisations, and coordinate projects with clear scope and reporting.
