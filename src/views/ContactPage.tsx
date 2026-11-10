@@ -35,6 +35,11 @@ export const ContactPage: React.FC = () => {
 
   useEffect(() => {
     document.title = 'Contact & Business Enquiries | Coral Swift';
+    const typeParam = searchParams.get('type');
+    if (typeParam === 'project') setActiveForm('project');
+    else if (typeParam === 'partner') setActiveForm('partner');
+    else if (typeParam === 'strategic') setActiveForm('strategic');
+    else if (typeParam === 'general') setActiveForm('general');
     window.scrollTo(0, 0);
   }, [searchParams]);
 
@@ -194,7 +199,16 @@ export const ContactPage: React.FC = () => {
               {/* Render Active Form Component */}
               <div className="animate-fadeIn">
                 {activeForm === 'general' && <GeneralContactForm />}
-                {activeForm === 'project' && <ProjectEnquiryForm />}
+                {activeForm === 'project' && (
+                  <ProjectEnquiryForm
+                    initialCategory={
+                      searchParams.get('category') === 'Non-IT / Business Operations'
+                        ? 'Non-IT / Business Operations'
+                        : 'IT Solutions'
+                    }
+                    initialService={searchParams.get('service') || ''}
+                  />
+                )}
                 {activeForm === 'partner' && <PartnerApplicationForm />}
                 {activeForm === 'strategic' && <StrategicEnquiryForm />}
               </div>

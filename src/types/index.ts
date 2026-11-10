@@ -91,8 +91,15 @@ export interface ProjectEnquiryFormData {
   consent: boolean;
 }
 
+export interface ClientReferenceData {
+  name: string;
+  organization: string;
+  contact: string;
+}
+
 export interface PartnerApplicationFormData {
   contactPersonName: string;
+  designation: string;
   businessEmail: string;
   companyName: string;
   companyWebsite: string;
@@ -108,21 +115,26 @@ export interface PartnerApplicationFormData {
   industryExperience: string[];
   companyOverview: string;
   relevantCapabilities: string;
+  clientReferences: ClientReferenceData[];
   selectedEvidenceDocuments: string[];
   consent: boolean;
 }
 
 export interface StrategicEnquiryFormData {
   fullName: string;
+  designation: string;
   businessEmail: string;
+  phone: string;
   companyName: string;
   country: string;
   natureOfOpportunity: 'Strategic Merger / Equity Integration' | 'Structured Joint Delivery' | 'Enterprise Asset Transition' | 'Other Strategic Discussion';
   currentTurnoverBand: string;
   currentWorkforce: string;
+  businessOverview: string;
   confidentialSummary: string;
   preferredContactMethod: 'Email' | 'Direct Call' | 'Secure Virtual Meeting';
   confidentialityConsent: boolean;
+  authorizedRepresentative: boolean;
 }
 
 export interface GeneralContactFormData {
@@ -130,7 +142,7 @@ export interface GeneralContactFormData {
   email: string;
   company?: string;
   country: string;
-  phone?: string;
+  phone: string;
   enquiryType: 'General Enquiry' | 'Project Requirement' | 'Partnership Question' | 'Media / Corporate';
   message: string;
   consent: boolean;
@@ -139,11 +151,14 @@ export interface GeneralContactFormData {
 export interface MeetingRequestFormData {
   fullName: string;
   businessEmail: string;
+  phone: string;
   companyName: string;
+  country: string;
   timeZone: string;
   preferredDate: string;
   preferredTimeSlot: string;
   meetingPurpose: string;
+  privacyConsent: boolean;
   notes?: string;
 }
 

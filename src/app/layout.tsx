@@ -7,7 +7,7 @@ import { Chatbot } from '@/components/chatbot/Chatbot';
 import { HashScroll } from '@/components/common/HashScroll';
 import { LogoIntro } from '@/components/common/LogoIntro';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coralswift.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

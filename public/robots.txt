@@ -2,5 +2,3 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://coralswift.com/sitemap.xml
-

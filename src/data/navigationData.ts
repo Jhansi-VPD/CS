@@ -116,7 +116,8 @@ export const footerLinks = {
     { label: 'Corporate Insights', href: '/insights' },
     { label: 'Frequently Asked Questions', href: '/faq' },
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Schedule Introductory Call', href: '/contact?type=meeting' }
+    { label: 'Schedule Introductory Call', href: '/contact?type=meeting' },
+    { label: 'Check Enquiry Status', href: '/enquiry-status' }
   ],
   legal: [
     { label: 'Privacy Policy', href: '/privacy-policy' },

@@ -1,11 +1,48 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { CheckCircle2, AlertCircle, Building, Users, FileCheck, ArrowRight, ArrowLeft, RefreshCw, ShieldCheck, Check } from 'lucide-react';
 import { Button } from '../common/Button';
 import { PartnerApplicationFormData } from '../../types';
 import { submissionChecklist } from '../../data/partnerCriteriaData';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { lookupCountryCode } from '../../services/countries';
+import { submitEnquiry, newIdempotencyKey, friendlySubmitError, ApiError } from '../../services/enquiries';
+
+const PATHWAY_MAP: Record<string, string> = {
+  'Strategic Merger / Integration': 'strategic_merger_integration',
+  'Direct Project Engagement': 'direct_project_engagement',
+  'Vendor / Subcontracting Partnership': 'vendor_subcontracting'
+};
+
+const WORKFORCE_MAP: Record<string, string> = {
+  'Under 25 employees': 'under_50',
+  '25 - 49 employees': 'under_50',
+  '50 - 100 employees': '50_to_100',
+  '101 - 250 employees': '101_to_250',
+  '250+ employees': 'over_250'
+};
+
+const TURNOVER_MAP: Record<string, string> = {
+  'Under INR 1 Crore': 'under_inr_2_crore',
+  'INR 1 Cr - 2 Cr': 'under_inr_2_crore',
+  'INR 2 Cr - 5 Cr (or equivalent)': 'inr_2_to_10_crore',
+  'INR 5 Cr - 15 Cr': 'inr_2_to_10_crore',
+  'Above INR 15 Crore': 'over_inr_10_crore'
+};
+
+const EXPERTISE_MAP: Record<string, string> = {
+  'Enterprise ERP (HRMS/Finance)': 'erp',
+  'Web Applications & Portals': 'web_applications',
+  'Custom Software Development': 'custom_software',
+  'Cloud & Infrastructure Support': 'cloud_infrastructure',
+  'Application Testing & QA': 'testing_maintenance',
+  'Medical Coding & Billing': 'medical_coding_billing',
+  'Healthcare Support Operations': 'healthcare_support',
+  'Data Entry & Document Processing': 'data_entry_document_processing',
+  'Banking KYC & Mortgage Review': 'banking_kyc_mortgage',
+  'Mutual Fund Operations': 'mutual_fund_operations'
+};
 
 export const PartnerApplicationForm: React.FC = () => {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
@@ -14,6 +51,7 @@ export const PartnerApplicationForm: React.FC = () => {
 
   const [formData, setFormData] = useState<PartnerApplicationFormData>({
     contactPersonName: '',
+    designation: '',
     businessEmail: '',
     companyName: '',
     companyWebsite: '',
@@ -25,21 +63,49 @@ export const PartnerApplicationForm: React.FC = () => {
     employeeCount: '50 - 100 employees',
     annualTurnover: 'INR 2 Cr - 5 Cr (or equivalent)',
     preferredPathway: 'Direct Project Engagement',
-    primaryExpertise: ['Enterprise ERP', 'Web & Cloud Applications'],
-    industryExperience: ['Information Technology'],
+    primaryExpertise: ['Enterprise ERP (HRMS/Finance)', 'Web Applications & Portals'],
+    industryExperience: ['Information Technology & Software'],
     companyOverview: '',
     relevantCapabilities: '',
+    clientReferences: [
+      { name: '', organization: '', contact: '' },
+      { name: '', organization: '', contact: '' }
+    ],
     selectedEvidenceDocuments: ['Company Registration Proof', 'Three-Year Operating History'],
     consent: false
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submissionSuccess, setSubmissionSuccess] = useState<{
     refId: string;
     submittedAt: string;
+    status: string;
+    lookupToken: string;
     data: PartnerApplicationFormData;
   } | null>(null);
+
+  const idempotencyKeyRef = useRef('');
+  useEffect(() => {
+    idempotencyKeyRef.current = newIdempotencyKey();
+  }, [formData]);
+
+  useEffect(() => {
+    const handleSelectPathway = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      const mapping: Record<string, PartnerApplicationFormData['preferredPathway']> = {
+        'strategic-merger': 'Strategic Merger / Integration',
+        'direct-project': 'Direct Project Engagement',
+        'subcontracting': 'Vendor / Subcontracting Partnership',
+      };
+      if (customEvent.detail && mapping[customEvent.detail]) {
+        setFormData((prev) => ({ ...prev, preferredPathway: mapping[customEvent.detail] }));
+      }
+    };
+    window.addEventListener('select-pathway', handleSelectPathway);
+    return () => window.removeEventListener('select-pathway', handleSelectPathway);
+  }, []);
 
   const expertiseOptions = [
     'Enterprise ERP (HRMS/Finance)',
@@ -69,18 +135,33 @@ export const PartnerApplicationForm: React.FC = () => {
     if (currentStep === 1) {
       if (!formData.companyName.trim()) errs.companyName = 'Company name is required';
       if (!formData.contactPersonName.trim()) errs.contactPersonName = 'Contact person name is required';
+      if (!formData.designation.trim()) errs.designation = 'Designation is required';
       if (!formData.businessEmail.trim()) {
         errs.businessEmail = 'Business email is required';
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.businessEmail)) {
         errs.businessEmail = 'Enter a valid corporate email';
       }
       if (!formData.contactNumber.trim()) errs.contactNumber = 'Contact number is required';
-      if (!formData.country.trim()) errs.country = 'Country is required';
+      if (!formData.country.trim()) {
+        errs.country = 'Country is required';
+      } else if (!lookupCountryCode(formData.country)) {
+        errs.country = 'Please enter a valid country name (e.g. India, United States)';
+      }
       if (!formData.registeredAddress.trim()) errs.registeredAddress = 'Registered address is required';
     }
 
     if (currentStep === 2) {
-      if (!formData.yearEstablished) errs.yearEstablished = 'Year established is required';
+      if (!formData.yearEstablished) {
+        errs.yearEstablished = 'Year established is required';
+      } else if (!/^\d{4}$/.test(formData.yearEstablished.trim())) {
+        errs.yearEstablished = 'Enter a 4-digit year (e.g. 2018)';
+      } else {
+        const year = parseInt(formData.yearEstablished, 10);
+        const currentYear = new Date().getFullYear();
+        if (year < 1800 || year > currentYear) {
+          errs.yearEstablished = `Year must be between 1800 and ${currentYear}`;
+        }
+      }
       if (!formData.employeeCount) errs.employeeCount = 'Employee count is required';
       if (!formData.annualTurnover) errs.annualTurnover = 'Annual turnover band is required';
       if (!formData.preferredPathway) errs.preferredPathway = 'Please select a preferred pathway';
@@ -99,6 +180,11 @@ export const PartnerApplicationForm: React.FC = () => {
     }
 
     if (currentStep === 4) {
+      formData.clientReferences.forEach((ref, idx) => {
+        if (!ref.name.trim()) errs[`clientRef${idx}Name`] = 'Reference name is required';
+        if (!ref.organization.trim()) errs[`clientRef${idx}Organization`] = 'Organization is required';
+        if (!ref.contact.trim()) errs[`clientRef${idx}Contact`] = 'Email or phone of the referee is required';
+      });
       if (!formData.consent) {
         errs.consent = 'You must acknowledge the evaluation disclosure and privacy terms';
       }
@@ -154,29 +240,114 @@ export const PartnerApplicationForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const updateClientReference = (idx: number, field: 'name' | 'organization' | 'contact', value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      clientReferences: prev.clientReferences.map((ref, i) => (i === idx ? { ...ref, [field]: value } : ref))
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (!validateStep(4)) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    setTimeout(() => {
-      const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-      const generatedRef = `CS-PTR-2026-${randomSuffix}`;
-      const successPayload = {
-        refId: generatedRef,
-        submittedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ', ' + new Date().toLocaleDateString(),
+    try {
+      const countryCode = lookupCountryCode(formData.country) as string;
+
+      const experienceParts: string[] = [
+        `Organization profile: ${formData.organizationType}`,
+        `Industry experience: ${formData.industryExperience.join(', ')}`
+      ];
+      if (formData.relevantCapabilities.trim()) {
+        experienceParts.push(`Additional capabilities: ${formData.relevantCapabilities.trim()}`);
+      }
+
+      const result = await submitEnquiry(
+        '/api/v1/enquiries/partner',
+        {
+          full_name: formData.contactPersonName.trim(),
+          designation: formData.designation.trim(),
+          business_email: formData.businessEmail.trim(),
+          phone: formData.contactNumber.trim(),
+          country: countryCode,
+          company_name: formData.companyName.trim(),
+          website: formData.companyWebsite.trim() || undefined,
+          year_established: parseInt(formData.yearEstablished, 10),
+          registered_address: formData.registeredAddress.trim(),
+          company_country: countryCode,
+          preferred_engagement_pathway: PATHWAY_MAP[formData.preferredPathway],
+          workforce_range: WORKFORCE_MAP[formData.employeeCount],
+          turnover_range: TURNOVER_MAP[formData.annualTurnover],
+          service_categories: formData.primaryExpertise
+            .map((item) => EXPERTISE_MAP[item])
+            .filter(Boolean),
+          infrastructure_summary: formData.companyOverview.trim(),
+          client_experience: experienceParts.join('. '),
+          client_references: formData.clientReferences.map((ref) => ({
+            name: ref.name.trim(),
+            organization: ref.organization.trim(),
+            contact: ref.contact.trim()
+          })),
+          privacy_consent: formData.consent,
+          lead_source: 'website_partner_form'
+        },
+        idempotencyKeyRef.current
+      );
+
+      setSubmissionSuccess({
+        refId: result.referenceNumber,
+        submittedAt: new Date(result.submittedAt).toLocaleString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }),
+        status: result.status,
+        lookupToken: result.lookupToken,
         data: { ...formData }
-      };
-
+      });
+    } catch (err) {
+      if (err instanceof ApiError && Object.keys(err.fieldErrors).length > 0) {
+        const mapped: Record<string, string> = {};
+        const fieldMap: Record<string, string> = {
+          full_name: 'contactPersonName',
+          designation: 'designation',
+          business_email: 'businessEmail',
+          phone: 'contactNumber',
+          country: 'country',
+          company_name: 'companyName',
+          year_established: 'yearEstablished',
+          registered_address: 'registeredAddress',
+          company_country: 'country',
+          preferred_engagement_pathway: 'preferredPathway',
+          workforce_range: 'employeeCount',
+          turnover_range: 'annualTurnover',
+          service_categories: 'primaryExpertise',
+          infrastructure_summary: 'companyOverview',
+          client_experience: 'companyOverview',
+          privacy_consent: 'consent'
+        };
+        for (const [backendField, msg] of Object.entries(err.fieldErrors)) {
+          const localField = fieldMap[backendField];
+          if (localField) mapped[localField] = msg;
+        }
+        setErrors((prev) => ({ ...prev, ...mapped }));
+      }
+      setSubmitError(friendlySubmitError(err));
+    } finally {
       setIsSubmitting(false);
-      setSubmissionSuccess(successPayload);
-    }, 1400);
+    }
   };
 
   const handleReset = () => {
     setFormData({
       contactPersonName: '',
+      designation: '',
       businessEmail: '',
       companyName: '',
       companyWebsite: '',
@@ -188,14 +359,19 @@ export const PartnerApplicationForm: React.FC = () => {
       employeeCount: '50 - 100 employees',
       annualTurnover: 'INR 2 Cr - 5 Cr (or equivalent)',
       preferredPathway: 'Direct Project Engagement',
-      primaryExpertise: ['Enterprise ERP', 'Web & Cloud Applications'],
-      industryExperience: ['Information Technology'],
+      primaryExpertise: ['Enterprise ERP (HRMS/Finance)', 'Web Applications & Portals'],
+      industryExperience: ['Information Technology & Software'],
       companyOverview: '',
       relevantCapabilities: '',
+      clientReferences: [
+        { name: '', organization: '', contact: '' },
+        { name: '', organization: '', contact: '' }
+      ],
       selectedEvidenceDocuments: ['Company Registration Proof', 'Three-Year Operating History'],
       consent: false
     });
     setErrors({});
+    setSubmitError(null);
     setStep(1);
     setSubmissionSuccess(null);
   };
@@ -208,7 +384,7 @@ export const PartnerApplicationForm: React.FC = () => {
         </div>
 
         <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-          Partner Application Logged (Frontend Demo)
+          Partner Application Logged
         </span>
 
         <h3 className="text-2xl font-heading font-extrabold text-navy-midnight mt-3">
@@ -220,6 +396,12 @@ export const PartnerApplicationForm: React.FC = () => {
             <span className="font-semibold text-slate-700">Application Reference ID:</span>
             <span className="font-mono text-coral-bright font-bold text-sm">
               {submissionSuccess.refId}
+            </span>
+          </div>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Status Lookup Token:</span>
+            <span className="font-mono text-slate-600 break-all text-right">
+              {submissionSuccess.lookupToken}
             </span>
           </div>
           <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
@@ -239,14 +421,23 @@ export const PartnerApplicationForm: React.FC = () => {
             </span>
           </div>
           <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Evidence Documents Selected:</span>
-            <span>{submissionSuccess.data.selectedEvidenceDocuments.length} files earmarked</span>
+            <span className="font-semibold text-slate-700">Evidence Items Indicated:</span>
+            <span>{submissionSuccess.data.selectedEvidenceDocuments.length}</span>
           </div>
           <div className="flex justify-between items-center py-1">
-            <span className="font-semibold text-slate-700">Submission Timestamp:</span>
-            <span>{submissionSuccess.submittedAt}</span>
+            <span className="font-semibold text-slate-700">Status:</span>
+            <span className="capitalize">{submissionSuccess.status}</span>
           </div>
         </div>
+
+        <p className="text-xs mt-3">
+          <a
+            href={`/enquiry-status?ref=${encodeURIComponent(submissionSuccess.refId)}&token=${encodeURIComponent(submissionSuccess.lookupToken)}`}
+            className="text-coral-bright underline font-semibold"
+          >
+            Check this application&apos;s status
+          </a>
+        </p>
 
         <div className="p-4 rounded-xl bg-amber-50 border border-amber-200/70 text-xs text-amber-900 text-left mb-6">
           <p className="font-semibold mb-1">Proposed Evaluation Notice:</p>
@@ -353,6 +544,26 @@ export const PartnerApplicationForm: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-semibold text-navy-midnight mb-1">
+                  Designation / Role <span className="text-coral-bright">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={formData.designation}
+                  onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
+                  placeholder="e.g. Managing Director / VP Delivery"
+                  className={`w-full px-3.5 py-2.5 rounded-lg border text-sm text-navy-midnight focus:ring-2 focus:ring-coral-bright/20 ${
+                    errors.designation ? 'border-coral-bright bg-coral-50/20' : 'border-slate-300'
+                  }`}
+                />
+                {errors.designation && (
+                  <p className="text-xs text-coral-bright mt-1">{errors.designation}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-navy-midnight mb-1">
                   Corporate Business Email <span className="text-coral-bright">*</span>
                 </label>
                 <input
@@ -366,9 +577,7 @@ export const PartnerApplicationForm: React.FC = () => {
                 />
                 {errors.businessEmail && <p className="text-xs text-coral-bright mt-1">{errors.businessEmail}</p>}
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold text-navy-midnight mb-1">
                   Corporate Phone Number <span className="text-coral-bright">*</span>
@@ -384,7 +593,9 @@ export const PartnerApplicationForm: React.FC = () => {
                 />
                 {errors.contactNumber && <p className="text-xs text-coral-bright mt-1">{errors.contactNumber}</p>}
               </div>
+            </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold text-navy-midnight mb-1">
                   Operating Country / Location <span className="text-coral-bright">*</span>
@@ -663,8 +874,75 @@ export const PartnerApplicationForm: React.FC = () => {
                 4. Initial Partner Submission Checklist & Confirmation
               </h3>
               <p className="text-xs text-slate-500">
-                Confirm available verification items. Document uploads are simulated for this public portal.
+                Provide two client references and confirm available verification items for due diligence.
               </p>
+            </div>
+
+            {/* Client References (required by backend: 2-5) */}
+            <div>
+              <label className="block text-xs font-semibold text-navy-midnight mb-2">
+                Client References <span className="text-coral-bright">*</span>
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {formData.clientReferences.map((ref, idx) => (
+                  <div key={idx} className="p-4 rounded-xl border border-slate-200 bg-slate-50/60 space-y-3">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                      Reference {idx + 1}
+                    </span>
+                    <div>
+                      <label className="block text-[11px] font-semibold text-navy-midnight mb-1">
+                        Contact Name <span className="text-coral-bright">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={ref.name}
+                        onChange={(e) => updateClientReference(idx, 'name', e.target.value)}
+                        placeholder="Referee full name"
+                        className={`w-full px-3 py-2 rounded-lg border text-xs text-navy-midnight focus:ring-2 focus:ring-coral-bright/20 ${
+                          errors[`clientRef${idx}Name`] ? 'border-coral-bright bg-coral-50/20' : 'border-slate-300'
+                        }`}
+                      />
+                      {errors[`clientRef${idx}Name`] && (
+                        <p className="text-[11px] text-coral-bright mt-1">{errors[`clientRef${idx}Name`]}</p>
+                      )}
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-semibold text-navy-midnight mb-1">
+                        Organization <span className="text-coral-bright">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={ref.organization}
+                        onChange={(e) => updateClientReference(idx, 'organization', e.target.value)}
+                        placeholder="Client organization name"
+                        className={`w-full px-3 py-2 rounded-lg border text-xs text-navy-midnight focus:ring-2 focus:ring-coral-bright/20 ${
+                          errors[`clientRef${idx}Organization`] ? 'border-coral-bright bg-coral-50/20' : 'border-slate-300'
+                        }`}
+                      />
+                      {errors[`clientRef${idx}Organization`] && (
+                        <p className="text-[11px] text-coral-bright mt-1">{errors[`clientRef${idx}Organization`]}</p>
+                      )}
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-semibold text-navy-midnight mb-1">
+                        Email or Phone <span className="text-coral-bright">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={ref.contact}
+                        onChange={(e) => updateClientReference(idx, 'contact', e.target.value)}
+                        placeholder="Referee email or phone"
+                        className={`w-full px-3 py-2 rounded-lg border text-xs text-navy-midnight focus:ring-2 focus:ring-coral-bright/20 ${
+                          errors[`clientRef${idx}Contact`] ? 'border-coral-bright bg-coral-50/20' : 'border-slate-300'
+                        }`}
+                      />
+                      {errors[`clientRef${idx}Contact`] && (
+                        <p className="text-[11px] text-coral-bright mt-1">{errors[`clientRef${idx}Contact`]}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* 8-Point Submission Checklist */}
@@ -730,6 +1008,14 @@ export const PartnerApplicationForm: React.FC = () => {
               </label>
               {errors.consent && <p className="text-xs text-coral-bright mt-1">{errors.consent}</p>}
             </div>
+          </div>
+        )}
+
+        {/* Submission Error */}
+        {submitError && (
+          <div role="alert" className="flex items-start gap-2.5 p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-800">
+            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            <span className="leading-relaxed">{submitError}</span>
           </div>
         )}
 

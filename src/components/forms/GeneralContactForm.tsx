@@ -1,9 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Mail, Send, CheckCircle2, RefreshCw, MessageSquare } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Send, CheckCircle2, RefreshCw, AlertCircle } from 'lucide-react';
 import { Button } from '../common/Button';
 import { GeneralContactFormData } from '../../types';
+import { lookupCountryCode } from '../../services/countries';
+import { submitEnquiry, newIdempotencyKey, friendlySubmitError, ApiError } from '../../services/enquiries';
+
+const CONTACT_TOPIC_MAP: Record<GeneralContactFormData['enquiryType'], string> = {
+  'General Enquiry': 'general_information',
+  'Project Requirement': 'services',
+  'Partnership Question': 'partnership',
+  'Media / Corporate': 'other'
+};
 
 export const GeneralContactForm: React.FC = () => {
   const [formData, setFormData] = useState<GeneralContactFormData>({
@@ -19,11 +28,19 @@ export const GeneralContactForm: React.FC = () => {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submissionSuccess, setSubmissionSuccess] = useState<{
     refId: string;
     submittedAt: string;
+    status: string;
+    lookupToken: string;
     data: GeneralContactFormData;
   } | null>(null);
+
+  const idempotencyKeyRef = useRef('');
+  useEffect(() => {
+    idempotencyKeyRef.current = newIdempotencyKey();
+  }, [formData]);
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -33,7 +50,16 @@ export const GeneralContactForm: React.FC = () => {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errs.email = 'Valid email is required';
     }
-    if (!formData.country.trim()) errs.country = 'Country is required';
+    if (!formData.phone.trim()) {
+      errs.phone = 'Phone number is required';
+    } else if (!/^[0-9+()\-\s]{6,30}$/.test(formData.phone.trim())) {
+      errs.phone = 'Enter a valid phone number';
+    }
+    if (!formData.country.trim()) {
+      errs.country = 'Country is required';
+    } else if (!lookupCountryCode(formData.country)) {
+      errs.country = 'Please enter a valid country name (e.g. India, United States)';
+    }
     if (!formData.message.trim() || formData.message.length < 15) {
       errs.message = 'Please provide a message (minimum 15 characters)';
     }
@@ -45,22 +71,67 @@ export const GeneralContactForm: React.FC = () => {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    setTimeout(() => {
-      const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-      const generatedRef = `CS-GEN-2026-${randomSuffix}`;
+    try {
+      const result = await submitEnquiry(
+        '/api/v1/enquiries/contact',
+        {
+          full_name: formData.name.trim(),
+          business_email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          country: lookupCountryCode(formData.country) as string,
+          company_name: formData.company?.trim() || undefined,
+          enquiry_type: CONTACT_TOPIC_MAP[formData.enquiryType],
+          message: formData.message.trim(),
+          privacy_consent: formData.consent,
+          lead_source: 'website_contact_page'
+        },
+        idempotencyKeyRef.current
+      );
+
       setSubmissionSuccess({
-        refId: generatedRef,
-        submittedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ', ' + new Date().toLocaleDateString(),
+        refId: result.referenceNumber,
+        submittedAt: new Date(result.submittedAt).toLocaleString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }),
+        status: result.status,
+        lookupToken: result.lookupToken,
         data: { ...formData }
       });
+    } catch (err) {
+      if (err instanceof ApiError && Object.keys(err.fieldErrors).length > 0) {
+        const mapped: Record<string, string> = {};
+        const fieldMap: Record<string, string> = {
+          full_name: 'name',
+          business_email: 'email',
+          phone: 'phone',
+          country: 'country',
+          company_name: 'company',
+          message: 'message',
+          privacy_consent: 'consent',
+          enquiry_type: 'enquiryType'
+        };
+        for (const [backendField, msg] of Object.entries(err.fieldErrors)) {
+          const localField = fieldMap[backendField];
+          if (localField) mapped[localField] = msg;
+        }
+        setErrors((prev) => ({ ...prev, ...mapped }));
+      }
+      setSubmitError(friendlySubmitError(err));
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleReset = () => {
@@ -75,6 +146,7 @@ export const GeneralContactForm: React.FC = () => {
       consent: false
     });
     setErrors({});
+    setSubmitError(null);
     setSubmissionSuccess(null);
   };
 
@@ -86,7 +158,7 @@ export const GeneralContactForm: React.FC = () => {
         </div>
 
         <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-          Message Sent (Frontend Demo)
+          Message Sent
         </span>
 
         <h3 className="text-xl font-heading font-bold text-navy-midnight mt-3">
@@ -95,8 +167,12 @@ export const GeneralContactForm: React.FC = () => {
 
         <div className="my-5 p-4 rounded-xl bg-slate-50 border border-slate-200 text-left space-y-1.5 text-xs text-slate-600">
           <div className="flex justify-between py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Enquiry Ticket ID:</span>
+            <span className="font-semibold text-slate-700">Enquiry Reference ID:</span>
             <span className="font-mono text-coral-bright font-bold">{submissionSuccess.refId}</span>
+          </div>
+          <div className="flex justify-between py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Status Lookup Token:</span>
+            <span className="font-mono text-slate-600 break-all text-right">{submissionSuccess.lookupToken}</span>
           </div>
           <div className="flex justify-between py-1 border-b border-slate-200/60">
             <span className="font-semibold text-slate-700">Name:</span>
@@ -106,14 +182,27 @@ export const GeneralContactForm: React.FC = () => {
             <span className="font-semibold text-slate-700">Category:</span>
             <span>{submissionSuccess.data.enquiryType}</span>
           </div>
+          <div className="flex justify-between py-1 border-b border-slate-200/60">
+            <span className="font-semibold text-slate-700">Status:</span>
+            <span className="capitalize">{submissionSuccess.status}</span>
+          </div>
           <div className="flex justify-between py-1">
             <span className="font-semibold text-slate-700">Logged At:</span>
             <span>{submissionSuccess.submittedAt}</span>
           </div>
         </div>
 
+        <p className="text-xs mt-3">
+          <a
+            href={`/enquiry-status?ref=${encodeURIComponent(submissionSuccess.refId)}&token=${encodeURIComponent(submissionSuccess.lookupToken)}`}
+            className="text-coral-bright underline font-semibold"
+          >
+            Check this enquiry&apos;s status
+          </a>
+        </p>
+
         <p className="text-xs text-slate-500 leading-relaxed mb-6">
-          This is an interactive front-end demo confirmation. In a production environment, an automated confirmation receipt is sent to <strong>{submissionSuccess.data.email}</strong>.
+          Your enquiry has been recorded in the Coral Swift system with the reference above. Keep it handy if you would like to follow up on this message.
         </p>
 
         <Button variant="outline" size="sm" onClick={handleReset} icon={<RefreshCw className="w-3.5 h-3.5" />}>
@@ -171,15 +260,18 @@ export const GeneralContactForm: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-semibold text-navy-midnight mb-1">
-            Company (Optional)
+            Phone Number <span className="text-coral-bright">*</span>
           </label>
           <input
-            type="text"
-            value={formData.company}
-            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-            placeholder="Organization name"
-            className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm text-navy-midnight focus:ring-2 focus:ring-coral-bright/20"
+            type="tel"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            placeholder="+1 (555) 000-0000"
+            className={`w-full px-3.5 py-2.5 rounded-lg border text-sm text-navy-midnight focus:ring-2 focus:ring-coral-bright/20 ${
+              errors.phone ? 'border-coral-bright bg-coral-50/20' : 'border-slate-300'
+            }`}
           />
+          {errors.phone && <p className="text-xs text-coral-bright mt-1">{errors.phone}</p>}
         </div>
 
         <div>
@@ -197,6 +289,19 @@ export const GeneralContactForm: React.FC = () => {
           />
           {errors.country && <p className="text-xs text-coral-bright mt-1">{errors.country}</p>}
         </div>
+      </div>
+
+      <div>
+        <label className="block text-xs font-semibold text-navy-midnight mb-1">
+          Company (Optional)
+        </label>
+        <input
+          type="text"
+          value={formData.company}
+          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+          placeholder="Organization name"
+          className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm text-navy-midnight focus:ring-2 focus:ring-coral-bright/20"
+        />
       </div>
 
       <div>
@@ -255,6 +360,13 @@ export const GeneralContactForm: React.FC = () => {
         {errors.consent && <p className="text-xs text-coral-bright mt-1">{errors.consent}</p>}
       </div>
 
+      {submitError && (
+        <div role="alert" className="flex items-start gap-2.5 p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-800">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+          <span className="leading-relaxed">{submitError}</span>
+        </div>
+      )}
+
       <div className="pt-2">
         <Button
           type="submit"
@@ -270,4 +382,3 @@ export const GeneralContactForm: React.FC = () => {
     </form>
   );
 };
-

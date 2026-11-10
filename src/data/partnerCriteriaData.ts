@@ -30,54 +30,51 @@ export const proposedScreeningCriteria: ScreeningCriterion[] = [
 export const engagementPathways: PartnerPathway[] = [
   {
     id: 'strategic-merger',
-    title: 'Strategic Merger / Integration Discussion',
-    tagline: 'Structural collaboration for mature IT organizations',
-    targetProfile: 'Established IT firms exploring a deeper structural relationship.',
-    turnoverRequirement: 'Strong balance sheet with verifiable audited growth history',
-    workforceRequirement: '50+ full-time technical specialists with senior leadership',
-    experienceRequirement: '3+ years of operating track record with specialized capabilities',
-    description: 'Preliminary discussions on a possible merger or integration, subject to legal, financial and operational due diligence.',
+    title: 'Strategic Merger / Integration',
+    tagline: 'Structural collaboration for mature IT firms',
+    targetProfile: 'Established IT firms',
+    turnoverRequirement: 'Audited balance sheet with continuous growth',
+    workforceRequirement: '50+ full-time technical specialists',
+    experienceRequirement: '3+ years continuous operating history',
+    description: 'Structural alignment and transatlantic scale for mature IT organizations.',
     keyBenefits: [
-      'Access to international enterprise project pipelines',
-      'Shared operational governance after integration',
-      'Wider US and international market reach',
-      'Aligned capital, technology, and leadership'
+      'Global enterprise pipelines',
+      'Shared operational governance',
+      'Transatlantic market reach'
     ],
-    processSummary: 'Confidential inquiry → Preliminary review → Due diligence → Term sheet discussion.'
+    processSummary: 'Confidential inquiry → Due diligence → Term sheet.'
   },
   {
     id: 'direct-project',
     title: 'Direct Project Engagement',
-    tagline: 'Project allocation for financially qualified partners',
-    targetProfile: 'Companies meeting the INR 2 Crore turnover threshold with capacity to lead enterprise delivery.',
-    turnoverRequirement: 'Minimum INR 2 Crore annual turnover (verified via audited records)',
-    workforceRequirement: 'Minimum 50 employed personnel with domain specialization',
-    experienceRequirement: 'Minimum 3 years of continuous corporate operations',
-    description: 'Qualified organizations meeting the financial and workforce baselines are considered for direct project allocation across ERP, application development, and business operations.',
+    tagline: 'Direct allocation for verified enterprise partners',
+    targetProfile: '₹2 Cr+ turnover · 50+ staff',
+    turnoverRequirement: 'Minimum INR 2 Crore annual turnover (audited)',
+    workforceRequirement: 'Minimum 50 employed domain specialists',
+    experienceRequirement: 'Minimum 3 years of corporate operations',
+    description: 'Direct allocation of international enterprise contracts for verified partners (₹2Cr+).',
     keyBenefits: [
-      'Direct coordination with international clients',
-      'Milestone-based commercial arrangements',
-      'Clear scope and structured requirement packages',
-      'Path to repeat client delivery pipelines'
+      'Direct international client contracts',
+      'Milestone-gated commercial payouts',
+      'Repeat enterprise project pipeline'
     ],
-    processSummary: 'Expression of interest → Financial and workforce verification → Capability review → Commercial agreement.'
+    processSummary: 'Expression of interest → Verification → Commercial agreement.'
   },
   {
     id: 'subcontracting',
-    title: 'Vendor / Subcontracting Partnership',
-    tagline: 'Modular delivery for specialized teams and domain experts',
-    targetProfile: 'Specialized technology or BPO providers seeking modular project assignments.',
+    title: 'Vendor / Subcontracting',
+    tagline: 'Modular delivery for specialized niche teams',
+    targetProfile: 'Specialized technical pods',
     turnoverRequirement: 'Evaluated based on project scope and financial health',
     workforceRequirement: 'Team availability matching specific project needs',
-    experienceRequirement: 'Verifiable technical track record and client portfolio',
-    description: 'For firms with strong niche capability (e.g. QA automation, medical coding, data annotation, cloud services) that may not meet uniform enterprise thresholds.',
+    experienceRequirement: 'Verifiable technical track record and portfolio',
+    description: 'Modular enterprise assignments and sprint-based delivery for specialized technical pods.',
     keyBenefits: [
-      'Modules within large international programs',
-      'Flexible subcontracting with clear milestones',
-      'Support with client communication and governance',
-      'Path to a higher partnership tier'
+      'Discrete modular work packages',
+      'Flexible sprint-based milestones',
+      'Fast-track path to direct tier'
     ],
-    processSummary: 'Capability statement → Technical evaluation → Vendor agreement → Pilot module.'
+    processSummary: 'Capability statement → Technical evaluation → Pilot module.'
   }
 ];
 

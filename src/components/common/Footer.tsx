@@ -6,6 +6,7 @@ import { ArrowUp } from 'lucide-react';
 import { footerLinks } from '../../data/navigationData';
 import { Logo } from './Logo';
 import { ScrollReveal } from './ScrollReveal';
+import { SocialMediaLinks } from './SocialMediaLinks';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export const Footer: React.FC = () => {
@@ -33,6 +34,12 @@ export const Footer: React.FC = () => {
               <p className="text-xs text-slate-400 leading-relaxed max-w-md">
                 A US-oriented IT and Non-IT project solutions and partnership platform connecting international project requirements with qualified delivery organizations in India and global markets.
               </p>
+              <div className="pt-1">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
+                  Connect With Us
+                </h3>
+                <SocialMediaLinks />
+              </div>
             </div>
 
             {/* Solutions Column */}

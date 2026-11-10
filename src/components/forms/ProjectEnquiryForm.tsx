@@ -1,19 +1,48 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle2, AlertCircle, Upload, FileText, ArrowRight, RefreshCw, ShieldCheck } from 'lucide-react';
 import { Button } from '../common/Button';
 import { ProjectEnquiryFormData } from '../../types';
+import { lookupCountryCode } from '../../services/countries';
+import { submitEnquiry, uploadDocument, newIdempotencyKey, friendlySubmitError, ApiError } from '../../services/enquiries';
+
+// Backend ProjectCategory enum (13 values). Partnership-service options have no
+// dedicated backend category; they are bucketed under back_office with the exact
+// capability preserved in requirement_summary / scope.
+const PROJECT_CATEGORY_MAP: Record<string, string> = {
+  'Enterprise Resource Planning (ERP)': 'erp_implementation',
+  'Web Applications & Business Portals': 'web_app_development',
+  'Custom Software Development': 'custom_software',
+  'Cloud & Infrastructure Support': 'cloud_infrastructure',
+  'Application Testing & Maintenance': 'testing_maintenance',
+  'Digital Transformation': 'custom_software',
+  'Multiple IT Disciplines': 'custom_software',
+  'Medical Coding & Medical Billing': 'medical_coding_billing',
+  'Healthcare Support Processes': 'healthcare_support',
+  'Data Entry & High-Volume Document Processing': 'data_entry',
+  'Banking KYC & Mortgage Processing': 'banking_kyc',
+  'Mutual-Fund Operations Support': 'mutual_fund_operations',
+  'Enterprise Back-Office Services': 'back_office',
+  'Multiple Operational Workflows': 'back_office',
+  'Vendor Discovery & Capability Assessment': 'back_office',
+  'Staffing Alignment & Project Allocation': 'back_office',
+  'Reporting & Operational Governance': 'back_office',
+  'Commercial Engagement Support': 'back_office',
+  'Cross-Border Delivery Consortium': 'back_office'
+};
 
 export interface ProjectEnquiryFormProps {
   initialCategory?: 'IT Solutions' | 'Non-IT / Business Operations' | 'Partnership Services';
   initialService?: string;
+  prefillNonce?: number;
   onSuccess?: (refId: string) => void;
 }
 
 export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
   initialCategory = 'IT Solutions',
   initialService = '',
+  prefillNonce,
   onSuccess
 }) => {
   const [formData, setFormData] = useState<ProjectEnquiryFormData>({
@@ -36,11 +65,32 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
   const [fileError, setFileError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submissionSuccess, setSubmissionSuccess] = useState<{
     refId: string;
     submittedAt: string;
+    status: string;
+    documentsAttached: number;
+    lookupToken: string;
     data: ProjectEnquiryFormData;
   } | null>(null);
+
+  const idempotencyKeyRef = useRef('');
+  useEffect(() => {
+    idempotencyKeyRef.current = newIdempotencyKey();
+  }, [formData]);
+
+  // Service CTA preselection: re-applies category + service whenever initial values change
+  // or whenever the parent bumps prefillNonce (e.g. after a form reset, or switching services).
+  useEffect(() => {
+    if (initialCategory || initialService || prefillNonce) {
+      setFormData((fd) => ({
+        ...fd,
+        serviceCategory: initialCategory || fd.serviceCategory,
+        specificService: initialService !== undefined ? initialService : fd.specificService
+      }));
+    }
+  }, [prefillNonce, initialCategory, initialService]);
 
   // Dynamic service options based on category
   const itOptions = [
@@ -117,10 +167,11 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
         setSelectedFile(null);
         return;
       }
-      const allowedExtensions = ['pdf', 'doc', 'docx', 'xlsx', 'txt'];
+      // Formats accepted by the backend document upload (POST /api/v1/documents/upload)
+      const allowedExtensions = ['pdf', 'docx', 'xlsx', 'png', 'jpg', 'jpeg'];
       const fileExt = file.name.split('.').pop()?.toLowerCase() || '';
       if (!allowedExtensions.includes(fileExt)) {
-        setFileError('Allowed formats: PDF, DOC, DOCX, XLSX, TXT');
+        setFileError('Allowed formats: PDF, DOCX, XLSX, PNG, JPG');
         setSelectedFile(null);
         return;
       }
@@ -128,26 +179,90 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Simulate front-end demo submission with structured reference ID
-    setTimeout(() => {
-      const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-      const generatedRef = `CS-PRJ-2026-${randomSuffix}`;
-      const successPayload = {
-        refId: generatedRef,
-        submittedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ', ' + new Date().toLocaleDateString(),
+    try {
+      let documentIds: string[] = [];
+      if (selectedFile) {
+        const uploaded = await uploadDocument(selectedFile, 'project_attachment');
+        documentIds = [uploaded.documentId];
+      }
+
+      const scopeParts = [
+        `Required capability: ${formData.specificService}`,
+        `Estimated budget: ${formData.estimatedBudget || 'To be discussed'}`,
+        `Target kickoff: ${formData.expectedTimeline || 'To be discussed'}`
+      ];
+      if (formData.additionalInfo?.trim()) {
+        scopeParts.push(`Additional context: ${formData.additionalInfo.trim()}`);
+      }
+
+      const result = await submitEnquiry(
+        '/api/v1/enquiries/project',
+        {
+          full_name: formData.fullName.trim(),
+          business_email: formData.businessEmail.trim(),
+          phone: formData.contactNumber.trim(),
+          country: lookupCountryCode(formData.country) as string,
+          company_name: formData.companyName.trim(),
+          designation: formData.designation.trim() || undefined,
+          project_category: PROJECT_CATEGORY_MAP[formData.specificService] || 'custom_software',
+          requirement_summary: formData.requirementSummary.trim(),
+          scope: scopeParts.join('. '),
+          expected_timeline: formData.expectedTimeline || 'To be discussed',
+          geography: formData.country.trim(),
+          privacy_consent: formData.consent,
+          lead_source: 'website_project_form',
+          document_ids: documentIds.length > 0 ? documentIds : undefined
+        },
+        idempotencyKeyRef.current
+      );
+
+      setSubmissionSuccess({
+        refId: result.referenceNumber,
+        submittedAt: new Date(result.submittedAt).toLocaleString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }),
+        status: result.status,
+        lookupToken: result.lookupToken,
+        documentsAttached: result.documentsAttached,
         data: { ...formData }
-      };
-
+      });
+      if (onSuccess) onSuccess(result.referenceNumber);
+    } catch (err) {
+      if (err instanceof ApiError && Object.keys(err.fieldErrors).length > 0) {
+        const mapped: Record<string, string> = {};
+        const fieldMap: Record<string, string> = {
+          full_name: 'fullName',
+          business_email: 'businessEmail',
+          phone: 'contactNumber',
+          country: 'country',
+          company_name: 'companyName',
+          project_category: 'specificService',
+          requirement_summary: 'requirementSummary',
+          expected_timeline: 'expectedTimeline',
+          privacy_consent: 'consent'
+        };
+        for (const [backendField, msg] of Object.entries(err.fieldErrors)) {
+          const localField = fieldMap[backendField];
+          if (localField) mapped[localField] = msg;
+        }
+        setErrors((prev) => ({ ...prev, ...mapped }));
+      }
+      setSubmitError(friendlySubmitError(err));
+    } finally {
       setIsSubmitting(false);
-      setSubmissionSuccess(successPayload);
-      if (onSuccess) onSuccess(generatedRef);
-    }, 1200);
+    }
   };
 
   const handleReset = () => {
@@ -167,7 +282,9 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       consent: false
     });
     setSelectedFile(null);
+    setFileError(null);
     setErrors({});
+    setSubmitError(null);
     setSubmissionSuccess(null);
   };
 
@@ -179,7 +296,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
         </div>
 
         <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-          Enquiry Received (Interactive Frontend Demo)
+          Enquiry Received
         </span>
 
         <h3 className="text-2xl font-heading font-extrabold text-navy-midnight mt-3">
@@ -191,6 +308,12 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
             <span className="font-semibold text-slate-700">Reference ID:</span>
             <span className="font-mono text-coral-bright font-bold text-sm">
               {submissionSuccess.refId}
+            </span>
+          </div>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Status Lookup Token:</span>
+            <span className="font-mono text-slate-600 break-all text-right">
+              {submissionSuccess.lookupToken}
             </span>
           </div>
           <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
@@ -205,11 +328,28 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
             <span className="font-semibold text-slate-700">Specific Requirement:</span>
             <span>{submissionSuccess.data.specificService}</span>
           </div>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
+            <span className="font-semibold text-slate-700">Attached Documents:</span>
+            <span>{submissionSuccess.documentsAttached}</span>
+          </div>
           <div className="flex justify-between items-center py-1">
-            <span className="font-semibold text-slate-700">Submission Timestamp:</span>
-            <span>{submissionSuccess.submittedAt}</span>
+            <span className="font-semibold text-slate-700">Status:</span>
+            <span className="capitalize">{submissionSuccess.status}</span>
           </div>
         </div>
+
+        <p className="text-xs mt-3">
+          <a
+            href={`/enquiry-status?ref=${encodeURIComponent(submissionSuccess.refId)}&token=${encodeURIComponent(submissionSuccess.lookupToken)}`}
+            className="text-coral-bright underline font-semibold"
+          >
+            Check this enquiry&apos;s status
+          </a>
+        </p>
+
+        <p className="text-xs text-slate-500 leading-relaxed mb-6">
+          Your requirement has been recorded in the Coral Swift system with the reference above. Keep it handy for any follow-up communication.
+        </p>
 
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button variant="outline" size="sm" onClick={handleReset} icon={<RefreshCw className="w-3.5 h-3.5" />}>
@@ -448,7 +588,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
             <input
               type="file"
               onChange={handleFileChange}
-              accept=".pdf,.doc,.docx,.xlsx,.txt"
+              accept=".pdf,.docx,.xlsx,.png,.jpg,.jpeg"
               className="sr-only"
             />
           </label>
@@ -462,7 +602,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
         </div>
         {fileError && <p className="text-xs text-coral-bright mt-1">{fileError}</p>}
         <p className="text-[11px] text-slate-400 mt-1">
-          Max file size: 10 MB. Supported formats: PDF, DOC, DOCX, XLSX.
+          Max file size: 10 MB. Supported formats: PDF, DOCX, XLSX, PNG, JPG.
         </p>
       </div>
 
@@ -487,10 +627,16 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       </div>
 
       {/* Submit Button */}
+      {submitError && (
+        <div role="alert" className="flex items-start gap-2.5 p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-800">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+          <span className="leading-relaxed">{submitError}</span>
+        </div>
+      )}
       <div className="pt-2 flex items-center justify-between border-t border-slate-100">
         <div className="flex items-center gap-2 text-xs text-slate-500">
           <ShieldCheck className="w-4 h-4 text-emerald-600" />
-          <span>Encrypted frontend demo submission</span>
+          <span>Encrypted submission</span>
         </div>
         <Button
           type="submit"
