@@ -17,25 +17,25 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-0">
-      {/* 1. Hero – Editorial typographic opening with global connection band */}
+      {/* 1. Hero – Strong headline, short description, two CTA buttons & premium visual */}
       <HeroSection />
 
-      {/* 2. About – Typographic manifesto with numbered capability columns */}
+      {/* 2. About – Short company introduction with large professional imagery */}
       <CompanyIntroSection />
 
-      {/* 3. Solutions – Asymmetric horizontal showcase, one band per capability */}
+      {/* 3. Solutions – Distinctive layout showing IT, Non-IT & Partnership Services */}
       <ServicesOverviewSection />
 
-      {/* 4. Industries – Image-led feature with typographic capability strips */}
+      {/* 4. Industries – Core enterprise sectors presented visually */}
       <IndustriesPreviewSection />
 
       {/* 5. How We Work – Refined 6-stage delivery methodology */}
       <GlobalDeliveryModelSection />
 
-      {/* 6. Partnership Opportunities – Connected ecosystem diagram + screening criteria */}
+      {/* 6. Partnership Opportunities – Structured growth for qualified delivery centers */}
       <PartnerPathwaysSection />
 
-      {/* 7. Final CTA – Full-bleed Midnight Navy closing section & meeting schedule trigger */}
+      {/* 7. Final CTA – Bold, clean closing section & meeting schedule trigger */}
       <CtaBannerSection />
     </div>
   );
