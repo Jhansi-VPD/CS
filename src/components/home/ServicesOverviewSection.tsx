@@ -4,76 +4,88 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '../common/ScrollReveal';
 
-interface CapabilityPanel {
+interface CapabilityRow {
   index: string;
-  label: string;
+  accent: string;
   title: string;
+  titleHover: string;
   description: string;
-  capabilities: string[];
+  keywords: string[];
   image: string;
   imageAlt: string;
   href: string;
   cta: string;
-  span: string;
+  ctaClass: string;
+  imageSide: 'left' | 'right';
+  bandClass: string;
 }
 
-const PANELS: CapabilityPanel[] = [
+const CAPABILITIES: CapabilityRow[] = [
   {
     index: '01',
-    label: 'Technology',
-    title: 'IT Services',
-    description: 'Custom software, ERP, business portals, cloud support and testing.',
-    capabilities: ['ERP and business portals', 'Custom software development', 'Cloud and infrastructure support', 'Testing and maintenance'],
+    accent: '#F98F33',
+    title: 'IT Solutions & Custom Software',
+    titleHover: 'group-hover:text-coral-orange',
+    description:
+      'ERP, web applications, business portals, custom software, cloud support, testing and digital transformation.',
+    keywords: ['ERP', 'Web Applications', 'Custom Software', 'Cloud Support', 'Testing'],
     image: '/images/solutions-it-engineering.jpg',
     imageAlt: 'Software engineering team at work',
     href: '/services/it-solutions',
-    cta: 'Explore IT Services',
-    span: 'lg:col-span-4',
+    cta: 'Explore IT Solutions',
+    ctaClass: 'text-coral-bright',
+    imageSide: 'right',
+    bandClass: 'bg-white border-t border-slate-200/80',
   },
   {
     index: '02',
-    label: 'Operations',
+    accent: '#E73B50',
     title: 'Non-IT & Business Operations',
-    description: 'Healthcare, banking and back-office processes run by assessed partners.',
-    capabilities: ['Medical coding and billing', 'Banking KYC and mortgage processing', 'Data entry and document processing', 'Back-office support'],
+    titleHover: 'group-hover:text-coral-rose',
+    description:
+      'Medical coding and billing, healthcare support, data processing, banking KYC, financial operations and back-office services.',
+    keywords: ['Medical Coding & Billing', 'Banking KYC', 'Data Processing', 'Back-Office Services'],
     image: '/images/solutions-non-it-operations.jpg',
     imageAlt: 'Business process operations desk',
     href: '/services/non-it-solutions',
-    cta: 'Explore Operations',
-    span: 'lg:col-span-3',
+    cta: 'Explore Business Operations',
+    ctaClass: 'text-coral-rose',
+    imageSide: 'left',
+    bandClass: 'bg-[#FFF7F2] border-t border-slate-200/70',
   },
   {
     index: '03',
-    label: 'Collaboration',
-    title: 'Partnership Services',
-    description: 'We find, screen and coordinate delivery partners for defined project scope.',
-    capabilities: ['Vendor discovery and assessment', 'Staffing and project alignment', 'Reporting and quality assurance', 'Commercial engagement support'],
-    image: '/images/hero-enterprise-collab.jpg',
+    accent: '#D21D61',
+    title: 'Delivery Partnerships',
+    titleHover: 'group-hover:text-coral-magenta',
+    description:
+      'Vendor discovery, capability assessment, staffing alignment, project coordination, reporting and quality assurance.',
+    keywords: ['Vendor Discovery', 'Capability Assessment', 'Project Coordination', 'Quality Assurance'],
+    image: '/images/partnerships-handshake.jpg',
     imageAlt: 'International delivery collaboration',
     href: '/partnerships',
     cta: 'Explore Partnerships',
-    span: 'md:col-span-2 lg:col-span-3',
+    ctaClass: 'text-coral-magenta',
+    imageSide: 'right',
+    bandClass: 'bg-[#F5F6FA] border-t border-b border-slate-200/70',
   },
 ];
 
 export const ServicesOverviewSection: React.FC = () => {
   return (
-    <section className="bg-slate-50/80 border-y border-slate-200/70 py-8 sm:py-10 lg:py-12">
+    <section className="bg-white pt-14 sm:pt-16 lg:pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Compact Section Header */}
-        <ScrollReveal direction="up" className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 pb-8 lg:pb-10">
+        <ScrollReveal direction="up" className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4 pb-10 lg:pb-12">
           <div className="max-w-2xl">
-            <p className="mb-3 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-coral-bright">
-              <span className="h-px w-5 bg-coral-bright/50" />
-              Our Services
-            </p>
-            <h2 className="font-heading text-2xl font-extrabold leading-tight tracking-tight text-navy-midnight sm:text-3xl">
-              Technology<span className="text-coral-bright">.</span> Operations<span className="text-coral-bright">.</span> Partnerships
-              <span className="text-coral-bright">.</span>
+            <div className="flex items-center gap-3">
+              <span className="w-12 h-px bg-coral-bright" aria-hidden="true" />
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.24em] text-coral-bright">
+                Our Services
+              </span>
+            </div>
+            <h2 className="mt-5 font-heading text-3xl font-extrabold tracking-tight leading-[1.16] text-navy-midnight sm:text-4xl sm:leading-[1.12]">
+              Three Capabilities. One Connected Approach.
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-[15px]">
-              Three service areas: technology, business operations and delivery partnerships.
-            </p>
           </div>
           <Link
             href="/services"
@@ -83,58 +95,80 @@ export const ServicesOverviewSection: React.FC = () => {
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
         </ScrollReveal>
+      </div>
 
-        {/* Three Panels — 40 / 30 / 30 on desktop */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-10 lg:gap-5">
-          {PANELS.map((p, i) => (
-            <ScrollReveal
-              key={p.index}
-              direction="up"
-              delay={100 + i * 90}
-              className={`${p.span} h-full`}
-            >
-              <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-card-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-card-hover">
-                <div className="relative h-32 shrink-0 overflow-hidden sm:h-36 lg:h-32">
-                  <Image
-                    src={p.image}
-                    alt={p.imageAlt}
-                    fill
-                    loading="lazy"
-                    sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <span className="absolute left-3 top-3 rounded bg-white/90 px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-coral-bright backdrop-blur-sm">
-                    {p.index} · {p.label}
-                  </span>
+      {/* Asymmetric horizontal showcase — each capability gets its own band */}
+      <div>
+        {CAPABILITIES.map((cap) => (
+          <div key={cap.index} className={cap.bandClass}>
+            <ScrollReveal direction="up" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <Link
+                href={cap.href}
+                className="group grid grid-cols-1 items-center gap-6 py-9 sm:py-11 lg:grid-cols-12 lg:gap-10 lg:py-14"
+              >
+                {/* Image — leads on mobile, alternates sides on desktop */}
+                <div
+                  className={`order-1 lg:order-none lg:col-span-5 ${
+                    cap.imageSide === 'left' ? 'lg:col-start-1' : 'lg:col-start-8'
+                  }`}
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-card-soft">
+                    <Image
+                      src={cap.image}
+                      alt={cap.imageAlt}
+                      fill
+                      loading="lazy"
+                      sizes="(min-width: 1024px) 42vw, 100vw"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    />
+                  </div>
                 </div>
 
-                <div className="flex flex-1 flex-col p-4 sm:p-5">
-                  <h3 className="font-heading text-[15px] font-bold leading-snug text-navy-midnight sm:text-base">
-                    {p.title}
+                {/* Typographic content */}
+                <div
+                  className={`lg:col-span-6 ${
+                    cap.imageSide === 'left' ? 'lg:col-start-7' : 'lg:col-start-1'
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <span
+                      className="font-heading text-4xl font-extrabold tracking-tight text-slate-200 sm:text-5xl"
+                      aria-hidden="true"
+                    >
+                      {cap.index}
+                    </span>
+                    <span className="h-1 w-10 rounded-full" style={{ backgroundColor: cap.accent }} aria-hidden="true" />
+                  </div>
+                  <h3
+                    className={`mt-3 font-heading text-2xl font-extrabold tracking-tight text-navy-midnight transition-colors duration-200 sm:text-3xl lg:text-4xl ${cap.titleHover}`}
+                  >
+                    {cap.title}
                   </h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-slate-600">{p.description}</p>
-
-                  <ul className="mt-3 space-y-1.5 border-t border-slate-100 pt-3">
-                    {p.capabilities.map((c) => (
-                      <li key={c} className="flex items-center gap-2 text-xs font-medium text-navy-secondary">
-                        <span className="h-1 w-1 shrink-0 rounded-full bg-coral-bright" />
-                        {c}
+                  <p className="mt-3 max-w-lg text-sm leading-relaxed text-slate-600 sm:text-[15px]">
+                    {cap.description}
+                  </p>
+                  <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+                    {cap.keywords.map((k) => (
+                      <li
+                        key={k}
+                        className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500"
+                      >
+                        <span className="h-1 w-1 shrink-0 rounded-full" style={{ backgroundColor: cap.accent }} aria-hidden="true" />
+                        {k}
                       </li>
                     ))}
                   </ul>
-
-                  <Link
-                    href={p.href}
-                    className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[13px] font-bold text-coral-bright transition-colors hover:text-coral-magenta"
+                  <span
+                    className={`mt-6 inline-flex items-center gap-1.5 text-sm font-bold transition-transform duration-200 ${cap.ctaClass}`}
                   >
-                    {p.cta}
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </Link>
+                    {cap.cta}
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </span>
                 </div>
-              </article>
+              </Link>
             </ScrollReveal>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

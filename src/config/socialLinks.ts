@@ -38,7 +38,7 @@ export const SOCIAL_LINKS: SocialLinkConfig[] = [
   {
     id: 'instagram',
     name: 'Instagram',
-    url: 'https://www.instagram.com/coralswift/',
+    url: 'https://www.instagram.com/',
     accessibleLabel: 'Coral Swift on Instagram (opens in a new tab)',
     order: 4,
   },
