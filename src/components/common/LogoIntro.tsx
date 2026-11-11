@@ -1,134 +1,72 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useEffect } from 'react';
 
 const INTRO_FLAG = 'cs-intro-shown';
-const AUTO_DISMISS_MS = 2400;
-const FAILSAFE_MS = 4000;
+const FAILSAFE_MS = 3000;
 
 /**
- * First-visit logo intro. Plays once per browser session (sessionStorage gate),
- * so refreshing or returning to Home within the session never replays it.
- * A hard failsafe timer guarantees the overlay can never stay stuck, and any
- * user interaction (click, key, scroll, touch) dismisses it immediately.
+ * First-visit brand splash. This overlay is server-rendered, so it covers the
+ * site from the very first paint — the intro always plays first and the site
+ * is revealed when the panel lifts (pure CSS: hold 0.85s, curtain 0.5s).
+ * This client companion only sets the once-per-session flag, skips early on
+ * any interaction, and force-hides the overlay as a failsafe. Repeat visits
+ * never flash it: the inline head script in layout.tsx hides the overlay
+ * before first paint when the flag is already set.
  */
 export const LogoIntro: React.FC = () => {
-  const [phase, setPhase] = useState<'hidden' | 'playing' | 'leaving'>('hidden');
-  const timers = useRef<Array<ReturnType<typeof setTimeout>>>([]);
-
-  const clearTimers = useCallback(() => {
-    timers.current.forEach(clearTimeout);
-    timers.current = [];
-  }, []);
-
-  const dismiss = useCallback(() => {
-    setPhase((current) => (current === 'playing' ? 'leaving' : current));
-  }, []);
-
   useEffect(() => {
-    let hidden = false;
+    let alreadyShown = false;
     try {
-      hidden = window.sessionStorage.getItem(INTRO_FLAG) === '1';
-    } catch {
-      // Storage unavailable (private mode): still show once for this mount only
-    }
-
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (hidden || reducedMotion) {
-      try {
-        window.sessionStorage.setItem(INTRO_FLAG, '1');
-      } catch {
-        // ignore
-      }
-      return undefined;
-    }
-
-    try {
+      alreadyShown = window.sessionStorage.getItem(INTRO_FLAG) === '1';
       window.sessionStorage.setItem(INTRO_FLAG, '1');
     } catch {
-      // ignore
+      // Storage unavailable (private mode): play for this mount only
     }
+    if (alreadyShown) return undefined;
 
-    document.body.style.overflow = 'hidden';
-    setPhase('playing');
+    const el = document.getElementById('cs-intro');
+    if (!el) return undefined;
 
-    timers.current.push(setTimeout(dismiss, AUTO_DISMISS_MS));
-    // Failsafe: force-remove the overlay no matter what
-    timers.current.push(
-      setTimeout(() => {
-        clearTimers();
-        setPhase('hidden');
-      }, FAILSAFE_MS)
-    );
+    const skip = () => {
+      el.style.animation = 'csIntroLift 0.5s cubic-bezier(0.65, 0, 0.35, 1) forwards';
+    };
+    window.addEventListener('pointerdown', skip, { once: true });
+    window.addEventListener('keydown', skip, { once: true });
+    window.addEventListener('wheel', skip, { passive: true, once: true });
+    window.addEventListener('touchstart', skip, { passive: true, once: true });
 
-    const onUserActivity = () => dismiss();
-    window.addEventListener('pointerdown', onUserActivity, { once: true });
-    window.addEventListener('keydown', onUserActivity, { once: true });
-    window.addEventListener('wheel', onUserActivity, { passive: true, once: true });
-    window.addEventListener('touchstart', onUserActivity, { passive: true, once: true });
+    const failsafe = setTimeout(() => {
+      el.style.display = 'none';
+    }, FAILSAFE_MS);
 
     return () => {
-      clearTimers();
-      document.body.style.overflow = '';
-      window.removeEventListener('pointerdown', onUserActivity);
-      window.removeEventListener('keydown', onUserActivity);
-      window.removeEventListener('wheel', onUserActivity);
-      window.removeEventListener('touchstart', onUserActivity);
+      window.removeEventListener('pointerdown', skip);
+      window.removeEventListener('keydown', skip);
+      window.removeEventListener('wheel', skip);
+      window.removeEventListener('touchstart', skip);
+      clearTimeout(failsafe);
     };
-  }, [dismiss, clearTimers]);
+  }, []);
 
-  // Clean up body lock when the leaving fade finishes
-  useEffect(() => {
-    if (phase !== 'leaving') return undefined;
-    const t = setTimeout(() => setPhase('hidden'), 500);
-    return () => clearTimeout(t);
-  }, [phase]);
-
-  useEffect(() => {
-    if (phase === 'hidden') document.body.style.overflow = '';
-  }, [phase]);
-
-  if (phase === 'hidden') return null;
-
-  return createPortal(
+  return (
     <div
+      id="cs-intro"
       aria-hidden="true"
-      onClick={dismiss}
-      className={`fixed inset-0 z-[999] flex items-center justify-center bg-[#080B2E] select-none ${
-        phase === 'leaving' ? 'opacity-0 transition-opacity duration-500 ease-out' : 'opacity-100'
-      }`}
+      className="fixed inset-0 z-[999] flex items-center justify-center bg-[#FFF9F5] select-none"
     >
-      {/* Ambient brand glows */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-coral-bright/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/5 w-96 h-96 bg-coral-purple/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="relative flex flex-col items-center gap-5">
+      <div className="flex flex-col items-center">
         <img
           src="/assets/coral-swift-official-logo.png"
           alt=""
-          className={`h-24 w-auto sm:h-28 object-contain cs-intro-emblem ${
-            phase === 'leaving' ? 'cs-intro-out' : ''
-          }`}
+          className="cs-intro-emblem h-24 w-auto object-contain"
         />
-        <div
-          className={`flex items-baseline gap-1 font-heading text-2xl sm:text-3xl font-extrabold tracking-tight text-white cs-intro-wordmark ${
-            phase === 'leaving' ? 'cs-intro-out' : ''
-          }`}
-        >
-          <span>Coral</span>
-          <span className="swift-gradient-text ml-0.5">Swift</span>
-        </div>
-        <span
-          className={`font-mono text-[10px] uppercase tracking-[0.35em] text-slate-400 cs-intro-tagline ${
-            phase === 'leaving' ? 'cs-intro-out' : ''
-          }`}
-        >
-          Technologies
+        <span className="cs-intro-wordmark mt-6 font-mono text-lg font-bold uppercase tracking-[0.4em] text-navy-midnight">
+          Coral Swift
         </span>
+        <span className="cs-intro-rule mt-4 h-px w-14 bg-coral-bright/70" aria-hidden="true" />
       </div>
-    </div>,
-    document.body
+    </div>
   );
 };
 

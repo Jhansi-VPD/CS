@@ -33,7 +33,7 @@ export const PartnershipsPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* 1. HERO SECTION: Midnight Navy Executive Canvas */}
-      <section className="bg-navy-midnight text-white pt-10 pb-16 sm:pb-20 lg:pb-24 relative overflow-hidden border-b border-navy-secondary">
+      <section className="bg-navy-midnight text-white pt-2 sm:pt-3 pb-12 sm:pb-16 lg:pb-20 relative overflow-hidden border-b border-navy-secondary">
         {/* Ambient Gradient Glows */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-coral/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-coral-magenta/15 rounded-full blur-3xl pointer-events-none" />
@@ -41,9 +41,9 @@ export const PartnershipsPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <Breadcrumbs items={[{ label: 'Delivery Partnerships' }]} dark />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mt-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mt-1.5 sm:mt-2">
             {/* Left Column: Heading & Executive Value */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-coral-orange bg-white/10 px-3.5 py-1.5 rounded-full border border-white/15">
                 <span className="w-1.5 h-1.5 rounded-full bg-coral-bright" />
                 <span>Delivery Partnerships</span>

@@ -246,10 +246,10 @@ export const ProjectOpportunitiesPage: React.FC = () => {
           aria-hidden="true"
           className="pointer-events-none absolute -left-32 top-40 h-72 w-72 rounded-full bg-coral-magenta/5 blur-3xl"
         />
-        <div className="relative mx-auto max-w-7xl px-4 pt-8 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 pt-2 sm:pt-3 pb-12 sm:px-6 sm:pb-16 lg:px-8">
           <Breadcrumbs items={[{ label: 'Project Opportunities' }]} />
 
-          <div className="mt-8 grid items-center gap-12 lg:mt-14 lg:grid-cols-12 lg:gap-10">
+          <div className="mt-1.5 sm:mt-2 grid items-center gap-10 lg:mt-3 lg:grid-cols-12 lg:gap-10">
             <div className="animate-fadeIn lg:col-span-6">
               <div className="flex items-center gap-3">
                 <span className="h-px w-10 bg-coral-bright" aria-hidden="true" />
@@ -257,7 +257,7 @@ export const ProjectOpportunitiesPage: React.FC = () => {
                   Project Opportunities
                 </span>
               </div>
-              <h1 className="mt-5 font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-navy-midnight sm:text-5xl lg:text-[3.4rem]">
+              <h1 className="mt-3 font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-navy-midnight sm:text-5xl lg:text-[3.4rem]">
                 Explore the Work Behind{' '}
                 <span className="bg-swift-gradient bg-clip-text text-transparent">Every Opportunity.</span>
               </h1>

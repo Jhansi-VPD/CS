@@ -56,6 +56,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(sessionStorage.getItem('cs-intro-shown')==='1'){var s=document.createElement('style');s.textContent='#cs-intro{display:none!important}';document.head.appendChild(s)}}catch(e){}",
+          }}
+        />
       </head>
       <body className="bg-white text-navy-midnight font-sans antialiased selection:bg-coral-bright selection:text-white min-h-dvh flex flex-col">
         <LogoIntro />

@@ -169,10 +169,10 @@ export const StrategicDiscussionsPage: React.FC = () => {
           aria-hidden="true"
           className="pointer-events-none absolute -top-24 right-0 h-96 w-96 rounded-full bg-coral-magenta/10 blur-3xl"
         />
-        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pb-20 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-2 sm:pt-3 sm:px-6 sm:pb-16 lg:px-8">
           <Breadcrumbs dark items={[{ label: 'Strategic Discussions' }]} />
 
-          <div className="mt-10 grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="mt-1.5 sm:mt-2 grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
             <div className="animate-fadeIn lg:col-span-7">
               <div className="flex items-center gap-3">
                 <span className="h-px w-10 bg-coral-orange" aria-hidden="true" />
@@ -180,7 +180,7 @@ export const StrategicDiscussionsPage: React.FC = () => {
                   Strategic Discussions · Confidential Enquiries
                 </span>
               </div>
-              <h1 className="mt-5 font-heading text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl">
+              <h1 className="mt-3 font-heading text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl">
                 Building Stronger Business{' '}
                 <span className="bg-swift-gradient bg-clip-text text-transparent">Foundations Together.</span>
               </h1>

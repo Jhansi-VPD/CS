@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Button } from '../components/common/Button';
 import { itServices, nonItServices, partnershipServices } from '../data/servicesData';
@@ -55,60 +56,6 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
   </div>
 );
 
-const CapabilitiesVisual: React.FC = () => (
-  <svg
-    viewBox="0 0 560 500"
-    fill="none"
-    className="w-full max-w-[440px] h-auto"
-    role="img"
-    aria-label="Interconnected capability domains: technology, operations and partnership"
-  >
-    <style>{`
-      .svc-flow { stroke-dasharray: 3 7; animation: svcDash 7s linear infinite; }
-      .svc-pulse { transform-box: fill-box; transform-origin: center; animation: svcPulse 2.8s ease-out infinite; }
-      @keyframes svcDash { to { stroke-dashoffset: -60; } }
-      @keyframes svcPulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(2.1); opacity: 0; } }
-    `}</style>
-
-    <circle cx="280" cy="248" r="212" stroke="rgba(255,255,255,0.07)" strokeWidth="1" strokeDasharray="2 6" />
-
-    <circle cx="212" cy="172" r="112" stroke="#F98F33" strokeWidth="1.5" fill="rgba(249,143,51,0.06)" />
-    <circle cx="368" cy="222" r="104" stroke="#E73B50" strokeWidth="1.5" fill="rgba(231,59,80,0.06)" />
-    <circle cx="242" cy="330" r="98" stroke="#950B6D" strokeWidth="1.5" fill="rgba(149,11,109,0.06)" />
-
-    <g className="svc-flow" stroke="#F5F6FA" strokeOpacity="0.4" strokeWidth="1.2" fill="none">
-      <path d="M 280 246 C 250 205 222 130 214 66" />
-      <path d="M 280 246 C 328 238 414 232 466 226" />
-      <path d="M 280 246 C 268 300 248 372 243 424" />
-    </g>
-
-    <circle cx="316" cy="132" r="3.5" fill="#E73B50" opacity="0.9" />
-    <circle cx="163" cy="273" r="3.5" fill="#F98F33" opacity="0.9" />
-    <circle cx="340" cy="322" r="3.5" fill="#D21D61" opacity="0.9" />
-
-    <circle cx="118" cy="118" r="2.5" fill="rgba(249,143,51,0.7)" />
-    <circle cx="298" cy="86" r="2.5" fill="rgba(249,143,51,0.5)" />
-    <circle cx="452" cy="286" r="2.5" fill="rgba(231,59,80,0.6)" />
-    <circle cx="330" cy="412" r="2.5" fill="rgba(149,11,109,0.7)" />
-    <circle cx="132" cy="372" r="2.5" fill="rgba(149,11,109,0.5)" />
-
-    <circle cx="280" cy="246" r="10" className="svc-pulse" stroke="#F05E47" strokeWidth="1" />
-    <circle cx="280" cy="246" r="12" stroke="rgba(240,94,71,0.35)" strokeWidth="1" />
-    <circle cx="280" cy="246" r="5.5" fill="#F05E47" />
-
-    <circle cx="214" cy="60" r="8" stroke="rgba(249,143,51,0.4)" strokeWidth="1" />
-    <circle cx="214" cy="60" r="4" fill="#F98F33" />
-    <circle cx="470" cy="226" r="8" stroke="rgba(231,59,80,0.4)" strokeWidth="1" />
-    <circle cx="470" cy="226" r="4" fill="#E73B50" />
-    <circle cx="243" cy="430" r="8" stroke="rgba(149,11,109,0.45)" strokeWidth="1" />
-    <circle cx="243" cy="430" r="4" fill="#950B6D" />
-
-    <text x="214" y="38" textAnchor="middle" fill="#B7BEE0" fontSize="10" fontWeight="700" letterSpacing="2">TECHNOLOGY</text>
-    <text x="470" y="254" textAnchor="middle" fill="#B7BEE0" fontSize="10" fontWeight="700" letterSpacing="2">OPERATIONS</text>
-    <text x="243" y="458" textAnchor="middle" fill="#B7BEE0" fontSize="10" fontWeight="700" letterSpacing="2">PARTNERSHIP</text>
-  </svg>
-);
-
 const heroShortcuts = [
   { href: '#it-solutions', label: 'IT Solutions', count: '06' },
   { href: '#non-it-solutions', label: 'Non-IT Operations', count: '06' },
@@ -130,15 +77,15 @@ export const ServicesPage: React.FC = () => {
         <div aria-hidden="true" className="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-coral-magenta/20 blur-3xl" />
         <div aria-hidden="true" className="absolute top-48 -left-32 h-80 w-80 rounded-full bg-coral-orange/10 blur-3xl" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-14 sm:pb-20 lg:pb-24">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-3 pb-12 sm:pb-16 lg:pb-20">
           <Breadcrumbs dark items={[{ label: 'Solutions Portfolio' }]} />
 
-          <div className="mt-6 lg:mt-10 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="mt-2 sm:mt-3 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <div className="lg:col-span-7 animate-fadeIn">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-coral-orange">
                 Solutions Portfolio
               </span>
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold text-white tracking-tight leading-[1.08] mt-5">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold text-white tracking-tight leading-[1.08] mt-3">
                 Capabilities That Move<br className="hidden sm:block" /> Business Forward.
               </h1>
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mt-5 max-w-xl">
@@ -160,8 +107,44 @@ export const ServicesPage: React.FC = () => {
               </nav>
             </div>
 
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <CapabilitiesVisual />
+            <div className="lg:col-span-5">
+              <ScrollReveal direction="scale" delay={120}>
+                <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
+                  {/* Soft Brand Radial Underglow */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-to-tr from-coral-orange/20 via-coral-rose/10 to-coral-purple/20 blur-xl"
+                  />
+                  <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-navy-surface shadow-2xl group">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy-midnight">
+                      <Image
+                        src="/images/hero-enterprise-collab.jpg"
+                        alt="Enterprise engineering and operations teams collaborating on project solutions"
+                        fill
+                        priority
+                        sizes="(min-width: 1024px) 42vw, 100vw"
+                        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/85 via-navy-midnight/25 to-transparent" />
+
+                      {/* Glassmorphic Capability Badge */}
+                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl bg-navy-midnight/90 p-3.5 backdrop-blur-md border border-white/15 text-white">
+                        <div>
+                          <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-coral-orange block">
+                            Integrated Delivery
+                          </span>
+                          <p className="font-heading text-xs sm:text-sm font-bold text-white">
+                            Technology · Operations · Partnerships
+                          </p>
+                        </div>
+                        <div className="grid h-8 w-8 place-items-center rounded-lg bg-white/10 text-coral-bright shrink-0">
+                          <Layers className="h-4 w-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>

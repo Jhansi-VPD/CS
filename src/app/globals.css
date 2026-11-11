@@ -215,31 +215,39 @@
   }
 }
 
-/* Coral Swift — first-visit logo intro */
-@keyframes csIntroEmblem {
-  from { opacity: 0; transform: scale(0.86) translateY(10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+/* Coral Swift — first-visit logo intro (fast, deliberate reveal) */
+@keyframes csIntroSettle {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
 }
-@keyframes csIntroWordmark {
-  from { opacity: 0; transform: translateY(14px); letter-spacing: 0.08em; }
-  to { opacity: 1; transform: translateY(0); letter-spacing: normal; }
+@keyframes csIntroRise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-@keyframes csIntroTagline {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes csIntroDraw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 .cs-intro-emblem {
-  animation: csIntroEmblem 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: csIntroSettle 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .cs-intro-wordmark {
-  animation: csIntroWordmark 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  animation: csIntroRise 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
-.cs-intro-tagline {
-  animation: csIntroTagline 0.6s ease-out 0.7s both;
+.cs-intro-rule {
+  animation: csIntroDraw 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  transform-origin: center;
 }
-.cs-intro-out {
-  animation: none !important;
-  transition: opacity 0.5s ease-out;
+@keyframes csIntroLift {
+  to { transform: translateY(-100%); visibility: hidden; }
+}
+#cs-intro {
+  animation: csIntroLift 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.85s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  #cs-intro {
+    display: none;
+  }
 }
 
 /* Coral Swift Assistant — chat widget */

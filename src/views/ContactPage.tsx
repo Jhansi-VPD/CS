@@ -46,15 +46,15 @@ export const ContactPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-8 pb-10 sm:pb-12">
+      <section className="bg-gradient-to-b from-[#FFF7F2] via-white to-white border-b border-slate-200/80 pt-2 sm:pt-3 pb-8 sm:pb-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Contact Us' }]} />
 
-          <div className="mt-6 max-w-3xl animate-fadeIn">
+          <div className="mt-2 max-w-3xl animate-fadeIn">
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
               Direct Communication
             </span>
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-3 tracking-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-2 tracking-tight">
               Connect with Coral Swift
             </h1>
             <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed">

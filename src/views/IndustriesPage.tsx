@@ -298,7 +298,7 @@ export const IndustriesPage: React.FC = () => {
       {/* ================================================================== */}
       {/* 1. HERO SECTION: Soft Peach and Warm White                         */}
       {/* ================================================================== */}
-      <section className="relative overflow-hidden border-b border-[#F4E3D8] bg-gradient-to-b from-[#FFF5EE] via-[#FFF9F5] to-white pt-8 pb-14 sm:pb-18">
+      <section className="relative overflow-hidden border-b border-[#F4E3D8] bg-gradient-to-b from-[#FFF5EE] via-[#FFF9F5] to-white pt-2 sm:pt-3 pb-12 sm:pb-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-32 -top-32 h-[30rem] w-[30rem] rounded-full bg-coral-orange/10 blur-3xl"
@@ -307,9 +307,9 @@ export const IndustriesPage: React.FC = () => {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Industries' }]} />
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="mt-1.5 sm:mt-2 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left: Editorial Headline & Narrative */}
-            <div className="lg:col-span-6 animate-fadeIn space-y-5">
+            <div className="lg:col-span-6 animate-fadeIn space-y-3.5">
               <div className="inline-flex items-center gap-2 rounded-full border border-coral-200/80 bg-coral-50 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-coral-bright">
                 <span className="h-1.5 w-1.5 rounded-full bg-coral-bright" />
                 <span>INDUSTRIES WE SUPPORT</span>

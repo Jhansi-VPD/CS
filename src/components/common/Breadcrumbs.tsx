@@ -21,7 +21,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`h-scroll flex items-center text-xs font-medium space-x-2 py-3 overflow-x-auto whitespace-nowrap ${className}`}
+      className={`h-scroll flex items-center text-xs font-medium space-x-2 py-0.5 sm:py-1 overflow-x-auto whitespace-nowrap ${className}`}
     >
       <Link
         href="/"

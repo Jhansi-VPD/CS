@@ -4,10 +4,10 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 export const TermsOfServicePage: React.FC = () => {
   return (
     <div className="bg-white">
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-10 pb-16">
+      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80 pt-2 sm:pt-3 pb-8 sm:pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Terms & Conditions' }]} />
-          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-4 tracking-tight">
+          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-midnight mt-2 tracking-tight">
             Website Terms & Conditions
           </h1>
           <p className="text-xs text-slate-500 mt-2 font-mono">
