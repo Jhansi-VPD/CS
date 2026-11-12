@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { Button } from '../common/Button';
 import { ScrollReveal } from '../common/ScrollReveal';
 
 const pillars = [
@@ -27,112 +29,116 @@ const pillars = [
 
 export const CompanyIntroSection: React.FC = () => {
   return (
-    <section className="relative bg-[#FFF7F2] py-12 sm:py-14 lg:py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Editorial header */}
-        <ScrollReveal direction="up" delay={0}>
-          <div className="flex items-center gap-3">
-            <span className="w-12 h-px bg-coral-bright" aria-hidden="true" />
-            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.24em] text-coral-bright">
-              About Coral Swift
-            </span>
-          </div>
-        </ScrollReveal>
+    <section className="relative w-full overflow-hidden bg-navy-midnight text-white">
+      {/* 4K Background Photograph */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/conference-team-4k.jpg"
+          alt="International business and technology collaboration meeting"
+          fill
+          priority={false}
+          loading="lazy"
+          sizes="100vw"
+          className="object-cover object-right lg:object-center transform scale-100"
+        />
+        {/* Localized Asymmetric Gradient: Keep photograph naturally visible while ensuring crisp text contrast */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/95 via-[#080B2E]/80 to-[#080B2E]/50 lg:bg-gradient-to-r lg:from-[#080B2E]/95 lg:via-[#080B2E]/80 lg:via-55% lg:to-transparent"
+        />
+        {/* Subtle Brand Ambient Glow at Corner */}
+        <div
+          aria-hidden="true"
+          className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-coral-rose/15 blur-3xl pointer-events-none"
+        />
+      </div>
 
-        <ScrollReveal direction="up" delay={80}>
-          <h2 className="mt-5 max-w-3xl font-heading text-3xl sm:text-4xl lg:text-[2.6rem] font-bold text-navy-midnight tracking-tight leading-[1.18]">
-            Where Project Needs Meet <span className="text-coral-bright">Delivery Capability</span>.
-          </h2>
-        </ScrollReveal>
-
-        <ScrollReveal direction="up" delay={160}>
-          <p className="mt-5 max-w-2xl text-base sm:text-lg text-slate-600 leading-[1.8]">
-            Coral Swift connects international project requirements with capable delivery organizations.
-            Through requirement validation, partner assessment and structured coordination, we help
-            establish clear expectations for business engagements.
-          </p>
-        </ScrollReveal>
-
-        {/* Asymmetric editorial body: visual left, numbered pillars right */}
-        <div className="mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-12 lg:items-center">
-          {/* Visual area */}
-          <ScrollReveal direction="scale" delay={140} className="lg:col-span-5">
-            <figure className="group relative">
-              {/* Offset editorial frame */}
-              <div
-                aria-hidden="true"
-                className="absolute -right-3 -top-3 h-full w-full rounded-2xl border border-coral-rose/25 sm:-right-4 sm:-top-4"
-              />
-              <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-slate-200/80 bg-white">
-                <Image
-                  src="/images/about-global-delivery.jpg"
-                  alt="Representatives of a project owner and a delivery organization reaching agreement, reflecting how Coral Swift connects both sides"
-                  fill
-                  loading="lazy"
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                />
-                {/* Delivery model label integrated into the composition */}
-                <figcaption className="absolute inset-x-0 bottom-0 bg-navy-midnight px-4 py-3 sm:px-5">
-                  <span className="block text-[9px] font-mono font-bold uppercase tracking-[0.22em] text-coral-bright">
-                    Delivery Model
-                  </span>
-                  <p className="mt-1 text-[11px] sm:text-xs font-medium text-white/90 leading-snug">
-                    US-oriented coordination · India-based delivery partners
-                  </p>
-                </figcaption>
-              </div>
-            </figure>
+      {/* Foreground Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 xl:py-28">
+        <div className="max-w-2xl lg:max-w-2xl xl:max-w-3xl space-y-6 sm:space-y-8">
+          {/* Eyebrow Label */}
+          <ScrollReveal direction="up" delay={0}>
+            <div className="inline-flex items-center gap-3">
+              <span className="w-8 sm:w-10 h-0.5 bg-gradient-to-r from-coral-orange to-coral-bright" aria-hidden="true" />
+              <span className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-coral-orange">
+                About Coral Swift
+              </span>
+            </div>
           </ScrollReveal>
 
-          {/* Content area */}
-          <div className="mt-12 lg:col-span-6 lg:col-start-7 lg:mt-0">
-            <ScrollReveal direction="up" delay={220}>
-              <ul className="divide-y divide-slate-200 border-y border-slate-200">
-                {pillars.map((pillar) => (
-                  <li
-                    key={pillar.step}
-                    className="group flex items-start gap-4 sm:gap-5 -mx-3 rounded-xl px-3 py-5 transition-colors duration-200 hover:bg-white/80"
-                  >
-                    <div className="shrink-0 pt-0.5 text-center">
-                      <span className="block font-mono text-base font-bold" style={{ color: pillar.accent }}>
-                        {pillar.step}
-                      </span>
-                      <span
-                        className="mx-auto mt-1.5 block h-px w-7 transition-all duration-200 group-hover:w-10"
-                        style={{ backgroundColor: pillar.accent, opacity: 0.5 }}
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="text-sm sm:text-base font-heading font-bold text-navy-midnight">
-                        {pillar.title}
-                      </h3>
-                      <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">{pillar.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </ScrollReveal>
+          {/* Main Section Heading */}
+          <ScrollReveal direction="up" delay={80}>
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.14]">
+              Where Project Needs Meet{' '}
+              <span className="bg-gradient-to-r from-[#F98F33] via-[#F05E47] to-[#E73B50] bg-clip-text text-transparent inline-block">
+                Delivery Capability
+              </span>
+              .
+            </h2>
+          </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={280}>
-              <div className="mt-8">
-                <Button
-                  to="/about"
-                  variant="secondary"
-                  size="md"
-                  className="group"
-                  icon={
-                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  }
+          {/* Supporting Narrative */}
+          <ScrollReveal direction="up" delay={140}>
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl">
+              Coral Swift connects international project requirements with capable delivery organizations.
+              Through requirement validation, partner assessment and structured coordination, we help establish
+              clear expectations for business engagements.
+            </p>
+          </ScrollReveal>
+
+          {/* Numbered Capability Rows (Editorial Style) */}
+          <ScrollReveal direction="up" delay={200}>
+            <div className="pt-2 border-t border-white/15 divide-y divide-white/10 space-y-1">
+              {pillars.map((pillar) => (
+                <div
+                  key={pillar.step}
+                  className="group py-4 sm:py-5 flex items-start gap-4 sm:gap-6 transition-all duration-200"
                 >
-                  Learn About Our Approach
-                </Button>
-              </div>
-            </ScrollReveal>
-          </div>
+                  {/* Monospace Step Indicator */}
+                  <div className="shrink-0 pt-0.5">
+                    <span
+                      className="block font-mono text-base sm:text-lg font-bold tracking-tight"
+                      style={{ color: pillar.accent }}
+                    >
+                      {pillar.step}
+                    </span>
+                    <span
+                      className="block mt-1.5 h-0.5 w-6 group-hover:w-10 transition-all duration-300"
+                      style={{ backgroundColor: pillar.accent }}
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  {/* Pillar Narrative */}
+                  <div className="min-w-0 space-y-1">
+                    <h3 className="text-base sm:text-lg font-heading font-bold text-white group-hover:text-coral-orange transition-colors">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                      {pillar.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {/* CTA Link */}
+          <ScrollReveal direction="up" delay={260}>
+            <div className="pt-3">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-coral-orange to-coral-bright hover:from-coral-bright hover:to-coral-rose text-white px-7 py-3.5 text-xs sm:text-sm font-semibold tracking-wide shadow-lg shadow-coral-bright/20 hover:shadow-coral-bright/35 transition-all duration-200 group"
+              >
+                <span>Learn About Our Approach</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
   );
 };
+
+export default CompanyIntroSection;

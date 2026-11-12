@@ -31,7 +31,7 @@ const featureHighlights = [
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-white pt-3 pb-16 sm:pt-4 sm:pb-20 lg:pt-5 lg:pb-24">
+    <section className="relative isolate min-h-screen overflow-hidden bg-white pt-3 pb-6 sm:pt-4 sm:pb-8 lg:pt-5 lg:pb-10">
       {/* SVG Gradient Definition for Icons */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true" focusable="false">
         <defs>
@@ -44,7 +44,7 @@ export const HeroSection: React.FC = () => {
       </svg>
 
       {/* 3D Translucent Globe & Flowing Gradient Wave Artwork Background */}
-      <div className="absolute inset-0 -z-20 overflow-hidden bg-white">
+      <div className="absolute inset-0 -z-20 overflow-hidden bg-white pointer-events-none select-none">
         <Image
           src="/images/hero-globe-pure-white.png"
           alt="Coral Swift global business and delivery ecosystem"
@@ -60,19 +60,13 @@ export const HeroSection: React.FC = () => {
         />
       </div>
 
-      {/* Seamless gradient connection: gently blends pure white hero background into #FFF7F2 of the following About section */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-24 sm:h-28 lg:h-36 bg-gradient-to-b from-transparent via-[#FFF7F2]/40 to-[#FFF7F2] pointer-events-none -z-10"
-      />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pt-0 sm:pt-1">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pt-0 sm:pt-1">
           {/* Left Column: Hero Narrative */}
           <div className="lg:col-span-7 max-w-2xl space-y-4 sm:space-y-5 text-left relative z-10">
             {/* Eyebrow Tag */}
             <ScrollReveal direction="down" delay={50}>
-              <p className="font-mono text-xs sm:text-[13px] font-semibold tracking-[0.2em] text-slate-500 uppercase">
+              <p className="font-mono text-xs sm:text-[13px] font-semibold tracking-[0.2em] text-slate-700 uppercase">
                 US-FOCUSED <span className="text-coral-rose mx-2 sm:mx-2.5 font-bold">•</span> IT &amp; NON-IT SOLUTIONS <span className="text-coral-rose mx-2 sm:mx-2.5 font-bold">•</span> STRATEGIC PARTNERSHIPS
               </p>
             </ScrollReveal>
@@ -90,7 +84,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Subtitle */}
             <ScrollReveal direction="up" delay={150}>
-              <p className="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl font-normal">
+              <p className="mt-3 text-base sm:text-lg text-slate-700 leading-relaxed max-w-xl font-normal">
                 A trusted platform that connects international business requirements with qualified delivery organizations.
               </p>
             </ScrollReveal>
@@ -116,23 +110,23 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Right Column: Visual breathing room showcasing the 3D globe and network connections */}
-          <div className="hidden lg:block lg:col-span-5 h-[360px] lg:h-[400px] pointer-events-none" aria-hidden="true" />
+          <div className="hidden lg:block lg:col-span-5 h-[180px] lg:h-[220px] pointer-events-none" aria-hidden="true" />
         </div>
 
-        {/* Bottom Feature Strip with 4 Pillars */}
+        {/* Bottom Feature Strip with 4 Pillars - Clean borderless inline layout */}
         <ScrollReveal direction="up" delay={250}>
-          <div className="mt-10 sm:mt-12 pt-6 pb-2">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="mt-14 sm:mt-16 pt-2 pb-0 relative z-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 items-center">
               {featureHighlights.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="group flex items-center justify-center sm:justify-start gap-3.5 px-4 sm:px-6 py-3.5 transition-all duration-200 hover:-translate-y-0.5"
+                  className="group flex items-center justify-center sm:justify-start gap-3 py-1.5 transition-all duration-200"
                 >
                   <item.icon
-                    className="w-7 h-7 sm:w-8 sm:h-8 shrink-0 transition-transform duration-200 group-hover:scale-110"
+                    className="w-6 h-6 sm:w-7 sm:h-7 shrink-0 transition-transform duration-200 group-hover:scale-110"
                     stroke="url(#swiftHeroIconGradient)"
-                    strokeWidth={1.75}
+                    strokeWidth={1.8}
                   />
                   <span className="text-sm sm:text-[15px] font-heading font-bold text-navy-midnight group-hover:text-coral-rose transition-colors leading-tight">
                     {item.label}
