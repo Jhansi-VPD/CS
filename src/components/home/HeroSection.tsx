@@ -31,7 +31,7 @@ const featureHighlights = [
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-white pt-3 pb-6 sm:pt-4 sm:pb-8 lg:pt-5 lg:pb-10">
+    <section className="relative isolate min-h-screen overflow-hidden bg-white pt-3 pb-12 sm:pt-4 sm:pb-16 lg:pt-5 lg:pb-20">
       {/* SVG Gradient Definition for Icons */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true" focusable="false">
         <defs>
@@ -51,7 +51,7 @@ export const HeroSection: React.FC = () => {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right-top sm:object-[86%_top] opacity-100"
+          className="object-cover object-right-top sm:object-[86%_top] opacity-100 scale-110 sm:scale-[1.18] lg:scale-[1.24] origin-top-right sm:origin-[86%_18%] transition-transform duration-300"
         />
         {/* Mobile / Tablet readability overlay: gentle white blend to ensure text contrast */}
         <div
@@ -110,7 +110,7 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Right Column: Visual breathing room showcasing the 3D globe and network connections */}
-          <div className="hidden lg:block lg:col-span-5 h-[180px] lg:h-[220px] pointer-events-none" aria-hidden="true" />
+          <div className="hidden lg:block lg:col-span-5 h-[340px] lg:h-[420px] pointer-events-none" aria-hidden="true" />
         </div>
 
         {/* Bottom Feature Strip with 4 Pillars - Clean borderless inline layout */}

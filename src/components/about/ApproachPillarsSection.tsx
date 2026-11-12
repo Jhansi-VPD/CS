@@ -79,32 +79,57 @@ const pillars: Pillar[] = [
 ];
 
 export const ApproachPillarsSection: React.FC = () => (
-  <section className="bg-slate-50/80 border-b border-slate-200/60 py-12 sm:py-16">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section className="relative overflow-hidden bg-slate-100 border-b border-slate-200/60 py-16 sm:py-20 lg:py-24">
+    {/* Full-Section Background Image */}
+    <div className="absolute inset-0 z-0 pointer-events-none">
+      <picture className="w-full h-full">
+        <source srcSet="/images/about-approach-bg.webp" type="image/webp" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/about-approach-bg.jpg"
+          alt="Modern enterprise corporate headquarters architecture and coordinated delivery environment"
+          className="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      </picture>
+
+      {/* Luminous Architectural Gradient Overlay: softened so background photograph details and ambient light emerge naturally */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/45 to-white/70"
+      />
+      {/* Subtle brand tint glow at corner */}
+      <div
+        aria-hidden="true"
+        className="absolute -top-24 right-1/4 w-96 h-96 rounded-full bg-coral-orange/10 blur-3xl pointer-events-none"
+      />
+    </div>
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <ScrollReveal direction="up">
         <div className="max-w-3xl">
-          <span className="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
+          <span className="inline-block text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full bg-white/70 text-coral-bright border border-white/80 shadow-sm backdrop-blur-md">
             Our Approach
           </span>
           <h2 className="mt-4 font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-midnight tracking-tight leading-snug">
             A practical model for coordinated delivery
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base font-medium text-slate-700 leading-relaxed">
             From defining the work to aligning the right capabilities and tracking execution, we keep the collaboration clear at each stage.
           </p>
         </div>
       </ScrollReveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mt-10 sm:mt-12">
         {pillars.map((pillar, i) => (
           <ScrollReveal key={pillar.number} direction="up" delay={i * 140} className="h-full">
             <article
-              className={`group relative h-full flex flex-col overflow-hidden rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-7 shadow-card-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover ${pillar.hoverBorderClass}`}
+              className={`group relative h-full flex flex-col overflow-hidden rounded-3xl bg-white/60 backdrop-blur-xl border border-white/80 p-6 sm:p-7 shadow-[0_8px_32px_0_rgba(8,11,46,0.06),inset_0_1px_1px_0_rgba(255,255,255,0.9)] transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/75 hover:border-white hover:shadow-[0_16px_48px_0_rgba(8,11,46,0.12),inset_0_1px_1px_0_rgba(255,255,255,1)] ${pillar.hoverBorderClass}`}
             >
               <span
                 aria-hidden="true"
-                className="absolute top-3 right-5 font-heading text-6xl font-extrabold leading-none select-none"
-                style={{ color: pillar.accent, opacity: 0.09 }}
+                className="absolute top-3 right-5 font-heading text-6xl font-extrabold leading-none select-none pointer-events-none"
+                style={{ color: pillar.accent, opacity: 0.16 }}
               >
                 {pillar.number}
               </span>
@@ -121,7 +146,7 @@ export const ApproachPillarsSection: React.FC = () => (
               <h3 className="mt-1.5 text-lg font-heading font-extrabold text-navy-midnight">
                 {pillar.name}
               </h3>
-              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed flex-grow">
+              <p className="mt-2 text-xs sm:text-sm text-slate-700 font-medium leading-relaxed flex-grow">
                 {pillar.description}
               </p>
 

@@ -15,7 +15,7 @@ export const AboutHero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative isolate overflow-hidden border-b border-[#E8DDD8] bg-[#FFF9F5] pt-4 pb-12 sm:pt-6 sm:pb-16 lg:pt-8 lg:pb-20">
+    <section className="relative isolate min-h-[calc(100vh-4rem)] overflow-hidden border-b border-[#E8DDD8] bg-[#FFF9F5] pt-3 pb-16 sm:pt-4 sm:pb-20 lg:pt-5 lg:pb-24">
       {/* Background Image: Corporate leadership portrait with directional gradient overlays */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
@@ -24,21 +24,21 @@ export const AboutHero: React.FC = () => {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[80%_top] lg:object-[85%_top] opacity-90 sm:opacity-95 lg:opacity-100"
+          className="object-cover object-[80%_top] lg:object-[85%_top] opacity-95 lg:opacity-100 contrast-[1.12] saturate-[1.08] lg:contrast-[1.18]"
         />
-        {/* Directional gradient: solid warm cream on the left where typography sits, easing softly toward transparency on the right to reveal the executive portrait */}
+        {/* Directional gradient: solid warm cream on the left where typography sits, easing softly toward transparency before the portrait */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-[#FFF9F5] via-[#FFF9F5]/95 via-45% to-[#FFF9F5]/20 lg:from-[#FFF9F5] lg:via-[#FFF9F5]/85 lg:via-50% lg:to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-[#FFF9F5] via-[#FFF9F5]/95 via-45% to-[#FFF9F5]/20 lg:from-[#FFF9F5] lg:from-32% lg:via-[#FFF9F5]/85 lg:via-46% lg:to-transparent lg:to-62%"
         />
-        {/* Subtle top & bottom blends */}
+        {/* Subtle top & bottom blends - restricted on the right to preserve crisp image contrast */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#FFF9F5] to-transparent"
+          className="absolute left-0 right-0 lg:right-1/3 bottom-0 h-24 bg-gradient-to-t from-[#FFF9F5] to-transparent"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#FFF9F5]/80 to-transparent"
+          className="absolute left-0 right-0 lg:right-1/3 top-0 h-16 bg-gradient-to-b from-[#FFF9F5]/80 to-transparent"
         />
       </div>
 
@@ -51,11 +51,11 @@ export const AboutHero: React.FC = () => {
         className="pointer-events-none absolute -right-20 -top-24 -z-10 h-[26rem] w-[26rem] rounded-full border border-coral-orange/[0.1] sm:h-[36rem] sm:w-[36rem]"
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={[{ label: 'About Coral Swift' }]} />
 
-        {/* Generous, deliberate gap between breadcrumb and 'Who We Are' section */}
-        <div className="mt-8 sm:mt-10 lg:mt-12 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
+        {/* Clean, natural spacing into 'Who We Are' section */}
+        <div className="mt-3 sm:mt-4 lg:mt-5 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
           {/* Left Column: All narrative text and CTAs with high contrast */}
           <div className="lg:col-span-7 max-w-2xl">
             <div className="flex items-center gap-3">
@@ -106,7 +106,7 @@ export const AboutHero: React.FC = () => {
           </div>
 
           {/* Right Column: Unobstructed view of the executive portrait with a subtle floating badge */}
-          <div className="hidden lg:flex lg:col-span-5 flex-col justify-end items-end min-h-[360px] pb-4">
+          <div className="hidden lg:flex lg:col-span-5 flex-col justify-end items-end min-h-[420px] lg:min-h-[480px] pb-4">
             <div className="rounded-xl border border-white/80 bg-white/75 px-4 py-2.5 shadow-sm backdrop-blur-md">
               <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-coral-orange">
                 Executive Leadership

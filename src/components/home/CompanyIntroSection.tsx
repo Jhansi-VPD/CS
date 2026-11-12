@@ -80,9 +80,8 @@ export const CompanyIntroSection: React.FC = () => {
           {/* Supporting Narrative */}
           <ScrollReveal direction="up" delay={140}>
             <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl">
-              Coral Swift connects international project requirements with capable delivery organizations.
-              Through requirement validation, partner assessment and structured coordination, we help establish
-              clear expectations for business engagements.
+              Coral Swift matches international projects with capable delivery partners. We review requirements,
+              assess partners and coordinate work to set clear expectations.
             </p>
           </ScrollReveal>
 
