@@ -4,22 +4,17 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import {
   ArrowRight,
-  CheckCircle2,
   ShieldCheck,
-  FileSpreadsheet,
   Activity,
   FileHeart,
   TrendingUp,
-  Briefcase,
   Layers,
   Eye,
   BarChart3,
   Clock,
-  Check,
-  Workflow
+  Check
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
-import { nonItServices } from '../data/servicesData';
 import { ProjectEnquiryForm } from '../components/forms/ProjectEnquiryForm';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
@@ -54,214 +49,220 @@ export const NonITSolutionsPage: React.FC = () => {
     if (!window.location.hash) {
       window.scrollTo(0, 0);
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const activeSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]?.target.id;
+
+        if (activeSection) {
+          setActiveDomain(activeSection);
+        }
+      },
+      { rootMargin: '-20% 0px -65% 0px', threshold: [0, 0.2, 0.5] },
+    );
+
+    ['healthcare', 'data-processing', 'financial-ops', 'back-office'].forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="bg-white">
-      {/* ================================================================== */}
-      {/* 1. HERO SECTION: Soft Peach-to-White Background                    */}
-      {/* ================================================================== */}
-      <section className="relative overflow-hidden border-b border-[#F4E3D8] bg-gradient-to-b from-[#FFF5EE] via-[#FFF9F5] to-white pt-2 sm:pt-3 pb-12 sm:pb-16">
+      <div className="mx-auto max-w-7xl px-4 pt-2 sm:px-6 sm:pt-3 lg:px-8">
+        <Breadcrumbs
+          items={[
+            { label: 'Solutions', href: '/services' },
+            { label: 'Non-IT Solutions' },
+          ]}
+        />
+      </div>
+
+      {/* Cinematic, full-bleed operations hero */}
+      <section className="relative isolate flex min-h-[680px] items-center overflow-hidden bg-navy-midnight sm:min-h-[700px]">
+        <Image
+          src="/images/services-operations-4k.jpg"
+          alt="Business operations team reviewing documents in a modern workspace"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_48%]"
+        />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-32 -top-32 h-[30rem] w-[30rem] rounded-full bg-coral-orange/10 blur-3xl"
+          className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/95 via-[#080B2E]/80 to-[#080B2E]/25"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/55 via-transparent to-[#080B2E]/10"
         />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs
-            items={[
-              { label: 'Solutions', href: '/services' },
-              { label: 'Non-IT Solutions' },
-            ]}
-          />
-
-          <div className="mt-1.5 sm:mt-2 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Column: Value Proposition */}
-            <div className="lg:col-span-6 animate-fadeIn space-y-3.5">
-              <div className="inline-flex items-center gap-2 rounded-full border border-coral-200/80 bg-coral-50 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-coral-bright">
-                <span className="h-1.5 w-1.5 rounded-full bg-coral-bright" />
-                <span>NON-IT SOLUTIONS</span>
-              </div>
-
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[3.2rem] font-extrabold text-navy-midnight tracking-tight leading-[1.1]">
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <ScrollReveal direction="left">
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center gap-2 border-l-2 border-coral-orange pl-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-orange">
+                NON-IT SOLUTIONS
+              </span>
+              <h1 className="mt-6 max-w-3xl font-heading text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-7xl">
                 Reliable Support for Essential Business Operations.
               </h1>
-
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
                 We support healthcare, financial, data-processing, and back-office operations through structured workflows, quality checks, and clear reporting.
               </p>
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
                   href="#enquiry-form"
-                  className="inline-flex items-center gap-2 rounded-xl bg-swift-gradient px-6 py-3 text-sm font-bold text-white shadow-glow-coral transition-all duration-200 hover:shadow-glow-accent hover:-translate-y-0.5"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-swift-gradient px-6 py-3 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
                 >
                   <span>Discuss Your Requirements</span>
                   <ArrowRight className="h-4 w-4" />
                 </a>
-
                 <a
                   href="#service-navigation"
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-navy-midnight transition-all duration-200 hover:border-coral-bright/50 hover:bg-coral-50/50 hover:text-coral-bright"
+                  className="inline-flex min-h-12 items-center gap-2 border border-white/35 px-5 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:border-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   <span>Explore Services</span>
                 </a>
               </div>
 
-              {/* Operations Tagline Strip */}
-              <div className="pt-3 border-t border-[#F2DFD4] flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+              <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-white/25 pt-5 font-mono text-[10px] font-semibold uppercase tracking-wider text-white/75 sm:text-xs">
                 <span>Healthcare</span>
-                <span>·</span>
+                <span aria-hidden="true" className="text-coral-orange">·</span>
                 <span>Data Keying</span>
-                <span>·</span>
+                <span aria-hidden="true" className="text-coral-orange">·</span>
                 <span>KYC & Mortgage</span>
-                <span>·</span>
+                <span aria-hidden="true" className="text-coral-orange">·</span>
                 <span>Mutual Funds</span>
-                <span>·</span>
+                <span aria-hidden="true" className="text-coral-orange">·</span>
                 <span>Back-Office</span>
               </div>
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/65">
+                <span className="flex items-center gap-2">
+                  <Check className="h-3.5 w-3.5 text-coral-orange" />
+                  Agreed Scopes & Milestone Reviews
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-wider">
+                  US ⇄ India Workflows
+                </span>
+              </div>
             </div>
-
-            {/* Right Column: Operations Visual Card */}
-            <div className="lg:col-span-6">
-              <ScrollReveal direction="scale" delay={100}>
-                <div className="relative overflow-hidden rounded-3xl border border-[#EDD9CE] bg-white shadow-premium">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-midnight">
-                    <Image
-                      src="/images/solutions-non-it-operations.jpg"
-                      alt="Operations team coordinating back-office and document processing"
-                      fill
-                      sizes="(min-width: 1024px) 45vw, 100vw"
-                      priority
-                      className="object-cover object-center opacity-85 transition-transform duration-700 hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight via-navy-midnight/40 to-transparent" />
-
-                    {/* Telemetry Chips */}
-                    <div className="absolute bottom-4 left-4 right-4 grid grid-cols-2 gap-2.5">
-                      <div className="rounded-xl border border-white/20 bg-white/10 p-2.5 backdrop-blur-md text-white">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-coral-orange block font-bold">
-                          Healthcare & Data
-                        </span>
-                        <p className="font-heading text-xs font-bold mt-0.5 truncate">
-                          ICD-10 & Double-Key Entry
-                        </p>
-                      </div>
-                      <div className="rounded-xl border border-white/20 bg-white/10 p-2.5 backdrop-blur-md text-white">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-coral-magenta block font-bold">
-                          Financial & Admin
-                        </span>
-                        <p className="font-heading text-xs font-bold mt-0.5 truncate">
-                          KYC Audits & Shift Support
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between border-t border-slate-100 bg-[#FFFBF8] px-4 py-2.5 text-xs text-slate-600">
-                    <span className="flex items-center gap-2 font-medium">
-                      <CheckCircle2 className="h-4 w-4 text-coral-bright shrink-0" />
-                      <span>Agreed Scopes & Milestone Reviews</span>
-                    </span>
-                    <span className="font-mono text-[10px] text-slate-400 uppercase">
-                      US ⇄ India Workflows
-                    </span>
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* ================================================================== */}
-      {/* 2. QUALITY & REPORTING: Very Light Lavender Background            */}
-      {/* ================================================================== */}
-      <section className="relative overflow-hidden border-b border-[#EDE4F3] bg-[#F8F5FC] py-14 sm:py-18">
+      <section className="relative isolate overflow-hidden border-b border-[#EDE4F3] bg-[#F5F6FA] py-16 sm:py-20">
+        <Image
+          src="/images/how-it-works-agile.jpg"
+          alt="Team mapping a workflow during an operations planning session"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.12] mix-blend-multiply"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-br from-[#F5F6FA]/95 via-[#F5F6FA]/90 to-[#FFF7F2]/95"
+        />
+
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <ScrollReveal direction="up">
-              <span className="inline-block rounded-full border border-purple-200/70 bg-white/90 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-coral-purple shadow-xs">
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <ScrollReveal direction="up" className="lg:col-span-6">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-purple">
                 OPERATIONAL RIGOR
               </span>
-              <h2 className="mt-3 font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-midnight tracking-tight">
+              <h2 className="mt-3 max-w-2xl font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl lg:text-5xl">
                 Quality Built Into Every Process.
               </h2>
-              <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            </ScrollReveal>
+            <ScrollReveal direction="up" delay={80} className="lg:col-span-5 lg:col-start-8">
+              <p className="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
                 Clear workflows, regular checks, and consistent reporting help maintain accuracy and visibility across operational tasks.
               </p>
             </ScrollReveal>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              {
-                step: '01',
-                title: 'Double-Key Entry',
-                desc: 'Where applicable, use a second-entry process to help identify data-entry differences.',
-                icon: Layers,
-                accent: '#F98F33',
-              },
-              {
-                step: '02',
-                title: 'Sample Checks',
-                desc: 'Review selected work to identify errors and maintain quality.',
-                icon: Eye,
-                accent: '#F05E47',
-              },
-              {
-                step: '03',
-                title: 'Daily Progress Reports',
-                desc: 'Provide visibility into completed work and pending tasks.',
-                icon: BarChart3,
-                accent: '#D21D61',
-              },
-              {
-                step: '04',
-                title: 'Process Monitoring',
-                desc: 'Track workflow progress and agreed quality measures.',
-                icon: Clock,
-                accent: '#950B6D',
-              },
-            ].map((p, idx) => (
-              <ScrollReveal key={p.step} direction="up" delay={idx * 60}>
-                <div className="rounded-2xl border border-[#E8DEF0] bg-white p-5 shadow-card-soft transition-all duration-200 hover:shadow-card-hover hover:border-coral-purple/40">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                    <span className="font-mono text-xs font-bold" style={{ color: p.accent }}>
-                      STAGE {p.step}
-                    </span>
-                    <div
-                      className="grid h-8 w-8 place-items-center rounded-lg bg-slate-50"
-                      style={{ color: p.accent }}
+          <div className="relative mt-12">
+            <div
+              aria-hidden="true"
+              className="absolute bottom-8 left-6 top-8 w-px bg-gradient-to-b from-coral-orange via-coral-bright to-coral-purple lg:hidden"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute left-[12.5%] right-[12.5%] top-6 hidden h-px bg-gradient-to-r from-coral-orange via-coral-bright to-coral-purple lg:block"
+            />
+            <div className="grid gap-8 lg:grid-cols-4 lg:gap-10">
+              {[
+                {
+                  step: '01',
+                  title: 'Double-Key Entry',
+                  desc: 'Where applicable, use a second-entry process to help identify data-entry differences.',
+                  icon: Layers,
+                  accent: '#F98F33',
+                },
+                {
+                  step: '02',
+                  title: 'Sample Checks',
+                  desc: 'Review selected work to identify errors and maintain quality.',
+                  icon: Eye,
+                  accent: '#F05E47',
+                },
+                {
+                  step: '03',
+                  title: 'Daily Progress Reports',
+                  desc: 'Provide visibility into completed work and pending tasks.',
+                  icon: BarChart3,
+                  accent: '#D21D61',
+                },
+                {
+                  step: '04',
+                  title: 'Process Monitoring',
+                  desc: 'Track workflow progress and agreed quality measures.',
+                  icon: Clock,
+                  accent: '#950B6D',
+                },
+              ].map((step, index) => (
+                <ScrollReveal key={step.step} direction="up" delay={index * 70}>
+                  <div className="relative flex gap-5 lg:block lg:pt-12">
+                    <span
+                      className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center bg-[#F5F6FA] font-heading text-2xl font-extrabold"
+                      style={{ color: step.accent }}
                     >
-                      <p.icon className="h-4 w-4" />
+                      {step.step}
+                    </span>
+                    <div className="pt-1 lg:pt-0">
+                      <div className="flex items-center gap-2">
+                        <step.icon className="h-4 w-4 shrink-0" style={{ color: step.accent }} />
+                        <h3 className="font-heading text-base font-bold text-navy-midnight sm:text-lg">
+                          {step.title}
+                        </h3>
+                      </div>
+                      <p className="mt-2 max-w-xs text-sm leading-relaxed text-slate-600">
+                        {step.desc}
+                      </p>
                     </div>
                   </div>
-                  <h3 className="mt-3 font-heading text-sm font-bold text-navy-midnight">
-                    {p.title}
-                  </h3>
-                  <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                    {p.desc}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
 
-          <p className="mt-6 text-center font-mono text-[10px] text-slate-500">
+          <p className="mt-10 border-t border-navy-midnight/10 pt-4 font-mono text-[10px] text-slate-500">
             * Process capabilities configured during scoping based on task volume and guidelines.
           </p>
         </div>
       </section>
 
       {/* ================================================================== */}
-      {/* 3. SERVICE NAVIGATION BAR (Crisp White Divider)                   */}
+      {/* 3. STICKY SERVICE NAVIGATION (Midnight-Navy Bar)                   */}
       {/* ================================================================== */}
-      <div id="service-navigation" className="sticky top-16 z-30 border-b border-slate-200/90 bg-white/95 backdrop-blur-md shadow-xs">
+      <div id="service-navigation" className="sticky top-16 z-30 border-b border-white/10 bg-navy-midnight/95 shadow-xs backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-2.5 overflow-x-auto no-scrollbar gap-2 sm:gap-4">
-            <nav className="flex items-center gap-1.5 sm:gap-2 shrink-0" aria-label="Service Domain Navigation">
+          <div className="flex items-center gap-3 py-2.5">
+            <nav className="flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto overscroll-x-contain no-scrollbar sm:gap-2" aria-label="Service Domain Navigation">
               {[
                 { id: 'healthcare', label: 'Healthcare Operations', count: '01 · 02' },
                 { id: 'data-processing', label: 'Data & Document Processing', count: '03' },
@@ -274,10 +275,11 @@ export const NonITSolutionsPage: React.FC = () => {
                     key={item.id}
                     href={`#${item.id}`}
                     onClick={() => setActiveDomain(item.id)}
-                    className={`inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                    aria-current={isActive ? 'location' : undefined}
+                    className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-200 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-orange sm:text-sm ${
                       isActive
-                        ? 'bg-navy-midnight text-white'
-                        : 'text-slate-600 hover:text-navy-midnight hover:bg-slate-100'
+                        ? 'bg-white/10 text-white ring-1 ring-white/15'
+                        : 'text-slate-300 hover:bg-white/10 hover:text-white'
                     }`}
                   >
                     <span className={`font-mono text-[10px] ${isActive ? 'text-coral-bright font-bold' : 'text-slate-400'}`}>
@@ -291,7 +293,7 @@ export const NonITSolutionsPage: React.FC = () => {
 
             <a
               href="#enquiry-form"
-              className="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-coral-bright hover:underline shrink-0"
+              className="inline-flex min-h-10 shrink-0 items-center gap-1 text-[11px] font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-orange sm:text-xs"
             >
               <span>Get Started</span>
               <ArrowRight className="h-3 w-3" />
@@ -300,389 +302,430 @@ export const NonITSolutionsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* ================================================================== */}
-      {/* 4. HEALTHCARE SERVICES: Warm White / Very Light Peach Background   */}
-      {/* ================================================================== */}
-      <section id="healthcare" className="scroll-mt-32 py-12 sm:py-16 border-b border-[#F3E3D7] bg-[#FFF9F4]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-coral-orange">
-              HEALTHCARE DOMAIN · 01 & 02
-            </span>
-            <h2 className="mt-1 font-heading text-2xl sm:text-3xl font-extrabold text-navy-midnight tracking-tight">
-              Healthcare Operations & Administration
-            </h2>
-          </div>
+      <section id="healthcare" className="relative isolate scroll-mt-32 overflow-hidden bg-navy-midnight text-white">
+        <Image
+          src="/images/industry-healthcare.jpg"
+          alt="Healthcare professional coordinating work on a mobile device"
+          fill
+          sizes="100vw"
+          className="object-cover object-[center_42%]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/95 via-[#080B2E]/85 to-[#080B2E]/60"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-[#080B2E]/20" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-            {/* Service 01: Medical Coding & Medical Billing */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[#EFE3D8] bg-white p-6 shadow-card-soft">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-coral-orange">
-                    01 · CODING & REVENUE CYCLE
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+          <ScrollReveal direction="up">
+            <header className="max-w-3xl">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-orange">
+                HEALTHCARE DOMAIN · 01 & 02
+              </span>
+              <h2 className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                Healthcare Operations & Administration
+              </h2>
+            </header>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
+            <ScrollReveal direction="up" delay={60}>
+              <article className="border-t border-white/30 pt-6 lg:pr-8">
+                <div className="flex items-center gap-3">
+                  <span className="font-heading text-4xl font-extrabold text-coral-orange">01</span>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
+                    CODING & REVENUE CYCLE
                   </span>
-                  <FileHeart className="h-5 w-5 text-coral-orange" />
+                  <FileHeart className="ml-auto h-5 w-5 text-coral-orange" />
                 </div>
-                <h3 className="font-heading text-xl font-extrabold text-navy-midnight">
+                <h3 className="mt-4 font-heading text-2xl font-bold text-white sm:text-3xl">
                   Medical Coding & Medical Billing
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
                   Support healthcare administrative workflows through structured coding and billing processes.
                 </p>
 
-                <div className="space-y-1.5 pt-1">
+                <ul className="mt-6 space-y-3">
                   {[
                     'ICD-10-CM, CPT, and HCPCS chart coding',
                     'Demographic entry, charge capture, and claim checks',
                     'Accounts receivable follow-up and denial management',
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                      <Check className="h-3.5 w-3.5 text-coral-orange shrink-0" />
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/90">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-coral-orange" />
                       <span>{item}</span>
-                    </div>
+                    </li>
                   ))}
+                </ul>
+
+                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-white/70">
+                  <span>Specialty-Trained Coders</span>
+                  <span aria-hidden="true" className="text-coral-orange">·</span>
+                  <span>Multi-Step Sampling</span>
+                  <span aria-hidden="true" className="text-coral-orange">·</span>
+                  <span>Secure Remote Desktops</span>
                 </div>
-
-                <div className="pt-2 text-[11px] font-medium text-slate-500 flex flex-wrap gap-2">
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Specialty-Trained Coders</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Multi-Step Sampling</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Secure Remote Desktops</span>
+                <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-4">
+                  <span className="text-xs italic text-white/60">Workflows reviewed prior to launch</span>
+                  <a
+                    href="#enquiry-form"
+                    onClick={() => discussService(serviceFormMapping['medical-coding-billing'])}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
+                  >
+                    Discuss Medical Coding <ArrowRight className="h-4 w-4" />
+                  </a>
                 </div>
-              </div>
+              </article>
+            </ScrollReveal>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[10px] text-slate-400 italic">Workflows reviewed prior to launch</span>
-                <a
-                  href="#enquiry-form"
-                  onClick={() => discussService(serviceFormMapping['medical-coding-billing'])}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-coral-orange hover:underline"
-                >
-                  <span>Discuss Medical Coding</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Service 02: Healthcare Support Processes */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[#EFE3D8] bg-white p-6 shadow-card-soft">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-coral-bright">
-                    02 · CLINICAL ADMINISTRATION
+            <ScrollReveal direction="up" delay={140}>
+              <article className="border-t border-white/30 pt-6 lg:mt-16 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+                <div className="flex items-center gap-3">
+                  <span className="font-heading text-4xl font-extrabold text-coral-bright">02</span>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
+                    CLINICAL ADMINISTRATION
                   </span>
-                  <Activity className="h-5 w-5 text-coral-bright" />
+                  <Activity className="ml-auto h-5 w-5 text-coral-bright" />
                 </div>
-                <h3 className="font-heading text-xl font-extrabold text-navy-midnight">
+                <h3 className="mt-4 font-heading text-2xl font-bold text-white sm:text-3xl">
                   Healthcare Support Processes
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
                   Assist healthcare operations with organised administrative and process support.
                 </p>
 
-                <div className="space-y-1.5 pt-1">
+                <ul className="mt-6 space-y-3">
                   {[
                     'Prior authorization submission and insurer portal tracking',
                     'Insurance eligibility and benefits verification',
                     'Medical records indexing and filing',
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                      <Check className="h-3.5 w-3.5 text-coral-bright shrink-0" />
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/90">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-coral-bright" />
                       <span>{item}</span>
-                    </div>
+                    </li>
                   ))}
+                </ul>
+
+                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-white/70">
+                  <span>Payer Guideline Alignment</span>
+                  <span aria-hidden="true" className="text-coral-bright">·</span>
+                  <span>Standardized Checklists</span>
+                  <span aria-hidden="true" className="text-coral-bright">·</span>
+                  <span>Audit-Ready Logs</span>
                 </div>
-
-                <div className="pt-2 text-[11px] font-medium text-slate-500 flex flex-wrap gap-2">
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Payer Guideline Alignment</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Standardized Checklists</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Audit-Ready Logs</span>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[10px] text-slate-400 italic">Client-approved systems only</span>
-                <a
-                  href="#enquiry-form"
-                  onClick={() => discussService(serviceFormMapping['healthcare-support-processes'])}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-coral-bright hover:underline"
-                >
-                  <span>Discuss Healthcare Support</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* 5. DATA ENTRY & DOCUMENT PROCESSING: Subtle Pale Lavender          */}
-      {/* ================================================================== */}
-      <section id="data-processing" className="scroll-mt-32 py-12 sm:py-16 border-b border-[#EADBEE] bg-[#F7F4FB]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-coral-bright">
-              DATA OPERATIONS · 03
-            </span>
-            <h2 className="mt-1 font-heading text-2xl sm:text-3xl font-extrabold text-navy-midnight tracking-tight">
-              Data Entry & Document Processing
-            </h2>
-          </div>
-
-          <div className="rounded-2xl border border-[#E5D7EB] bg-white p-6 sm:p-8 shadow-card-soft">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 space-y-4">
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Handle business information and document workflows through structured processing, multi-format conversion, and dual-entry verification.
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
-                  <div className="flex items-center gap-2 rounded-lg bg-[#FAF8FC] border border-slate-200/80 p-2.5">
-                    <Check className="h-3.5 w-3.5 text-coral-bright shrink-0" />
-                    <span>Scanned form transcription & double-keying</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-[#FAF8FC] border border-slate-200/80 p-2.5">
-                    <Check className="h-3.5 w-3.5 text-coral-bright shrink-0" />
-                    <span>XML/JSON conversion & catalog indexing</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-[#FAF8FC] border border-slate-200/80 p-2.5">
-                    <Check className="h-3.5 w-3.5 text-coral-bright shrink-0" />
-                    <span>Data cleanup, deduplication & validation</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-[#FAF8FC] border border-slate-200/80 p-2.5">
-                    <Check className="h-3.5 w-3.5 text-coral-bright shrink-0" />
-                    <span>PDF, TIFF, JPEG & structured formats</span>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex items-center justify-between">
-                  <span className="text-[10px] text-slate-400 italic">Accuracy targets agreed during scoping</span>
+                <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-4">
+                  <span className="text-xs italic text-white/60">Client-approved systems only</span>
                   <a
                     href="#enquiry-form"
-                    onClick={() => discussService(serviceFormMapping['data-entry-document-processing'])}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-coral-bright hover:underline"
+                    onClick={() => discussService(serviceFormMapping['healthcare-support-processes'])}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-coral-bright transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-bright"
                   >
-                    <span>Discuss Data Entry</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    Discuss Healthcare Support <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
-              </div>
-
-              {/* 3-Step Pipeline Visual */}
-              <div className="lg:col-span-5 rounded-xl border border-slate-200 bg-[#FAF9FD] p-4 space-y-2 text-xs">
-                <span className="font-mono text-[10px] font-bold uppercase text-slate-400 block mb-2">
-                  Dual-Run Keying Flow
-                </span>
-                <div className="flex items-center justify-between gap-2 p-2 rounded-lg bg-white border border-slate-200/60 shadow-xs">
-                  <span className="font-mono font-bold text-coral-orange">01</span>
-                  <span className="font-medium text-navy-midnight">Multi-Format Ingestion</span>
-                  <span className="text-[10px] text-slate-400">PDF / TIFF</span>
-                </div>
-                <div className="flex items-center justify-between gap-2 p-2 rounded-lg bg-coral-50/80 border border-coral-200/70 shadow-xs">
-                  <span className="font-mono font-bold text-coral-bright">02</span>
-                  <span className="font-bold text-navy-midnight">Blind Double-Key Verification</span>
-                  <span className="text-[10px] font-bold text-coral-bright">Diff Match</span>
-                </div>
-                <div className="flex items-center justify-between gap-2 p-2 rounded-lg bg-white border border-slate-200/60 shadow-xs">
-                  <span className="font-mono font-bold text-coral-magenta">03</span>
-                  <span className="font-medium text-navy-midnight">Standardized Clean Output</span>
-                  <span className="text-[10px] text-slate-400">XML / DB</span>
-                </div>
-              </div>
-            </div>
+              </article>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ================================================================== */}
-      {/* 6. FINANCIAL OPERATIONS: Very Light Rose / Soft Pink Background    */}
-      {/* ================================================================== */}
-      <section id="financial-ops" className="scroll-mt-32 py-12 sm:py-16 border-b border-[#F7D8DF] bg-[#FFF1F4]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-coral-magenta">
-              FINANCIAL DOMAIN · 04 & 05
-            </span>
-            <h2 className="mt-1 font-heading text-2xl sm:text-3xl font-extrabold text-navy-midnight tracking-tight">
-              Banking, Mortgage & Fund Support
-            </h2>
-          </div>
+      <section id="data-processing" className="relative isolate scroll-mt-32 overflow-hidden bg-navy-midnight text-white">
+        <Image
+          src="/images/home-keyboard-typing-8k.jpg"
+          alt="Operations specialist entering information at a workstation"
+          fill
+          sizes="100vw"
+          className="object-cover object-[center_55%]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/95 via-[#080B2E]/90 to-[#080B2E]/75"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-[#080B2E]/15" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-            {/* Service 04: Banking KYC & Mortgage Processing */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[#F3D5DC] bg-white p-6 shadow-card-soft">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-coral-magenta">
-                    04 · ONBOARDING & AUDIT
-                  </span>
-                  <ShieldCheck className="h-5 w-5 text-coral-magenta" />
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <ScrollReveal direction="up" className="lg:col-span-5">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-bright">
+                DATA OPERATIONS · 03
+              </span>
+              <h2 className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                Data Entry & Document Processing
+              </h2>
+              <p className="mt-5 text-sm leading-relaxed text-white/80 sm:text-base">
+                Handle business information and document workflows through structured processing, multi-format conversion, and dual-entry verification.
+              </p>
+
+              <ul className="mt-7 space-y-3">
+                {[
+                  'Scanned form transcription & double-keying',
+                  'XML/JSON conversion & catalog indexing',
+                  'Data cleanup, deduplication & validation',
+                  'PDF, TIFF, JPEG & structured formats',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/90">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-coral-bright" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/20 pt-5">
+                <span className="text-xs italic text-white/60">Accuracy targets agreed during scoping</span>
+                <a
+                  href="#enquiry-form"
+                  onClick={() => discussService(serviceFormMapping['data-entry-document-processing'])}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
+                >
+                  Discuss Data Entry <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={100} className="lg:col-span-6 lg:col-start-7">
+              <div className="border-y border-white/25 py-6 sm:py-8">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
+                  DUAL-RUN KEYING FLOW
+                </span>
+                <div className="relative mt-7">
+                  <div
+                    aria-hidden="true"
+                    className="absolute bottom-8 left-[1.15rem] top-8 w-px bg-gradient-to-b from-coral-orange via-coral-bright to-coral-magenta"
+                  />
+                  <ol className="relative">
+                    {[
+                      { step: '01', title: 'Multi-Format Ingestion', detail: 'PDF / TIFF' },
+                      { step: '02', title: 'Blind Double-Key Verification', detail: 'Diff Match' },
+                      { step: '03', title: 'Standardized Clean Output', detail: 'XML / DB' },
+                    ].map((item, index) => (
+                      <li
+                        key={item.step}
+                        className={`relative flex items-center gap-5 py-5 ${
+                          index < 2 ? 'border-b border-white/15' : ''
+                        }`}
+                      >
+                        <span className="relative z-10 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 bg-navy-midnight font-mono text-xs font-bold text-coral-orange">
+                          {item.step}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-heading text-base font-bold text-white sm:text-lg">
+                            {item.title}
+                          </h3>
+                          <span className="mt-1 block font-mono text-[10px] uppercase tracking-wider text-coral-orange">
+                            {item.detail}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
                 </div>
-                <h3 className="font-heading text-xl font-extrabold text-navy-midnight">
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      <section id="financial-ops" className="relative isolate scroll-mt-32 overflow-hidden bg-coral-warm">
+        <Image
+          src="/images/industry-bfsi.jpg"
+          alt="Modern office towers in an international financial district"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-[#FFF7F2]/95 via-[#FFF7F2]/90 to-[#FFF7F2]/75"
+        />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+          <ScrollReveal direction="up">
+            <header className="max-w-3xl">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-magenta">
+                FINANCIAL DOMAIN · 04 & 05
+              </span>
+              <h2 className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl lg:text-5xl">
+                Banking, Mortgage & Fund Support
+              </h2>
+            </header>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <ScrollReveal direction="up" delay={60} className="lg:col-span-5">
+              <article className="border-t border-coral-magenta/50 pt-6 lg:pr-8">
+                <div className="flex items-center gap-3">
+                  <span className="font-heading text-4xl font-extrabold text-coral-magenta">04</span>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-coral-magenta">
+                    ONBOARDING & AUDIT
+                  </span>
+                  <ShieldCheck className="ml-auto h-5 w-5 text-coral-magenta" />
+                </div>
+                <h3 className="mt-4 font-heading text-2xl font-bold text-navy-midnight sm:text-3xl">
                   Banking KYC & Mortgage Processing
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 sm:text-base">
                   Support financial operations through organised documentation and verification workflows.
                 </p>
 
-                <div className="space-y-1.5 pt-1">
+                <ul className="mt-6 space-y-3">
                   {[
                     'KYC/AML onboarding file completeness checks',
                     'Mortgage package setup, indexing, and disclosure checks',
                     'Title report and insurance document review',
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                      <Check className="h-3.5 w-3.5 text-coral-magenta shrink-0" />
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-coral-magenta" />
                       <span>{item}</span>
-                    </div>
+                    </li>
                   ))}
+                </ul>
+
+                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-slate-600">
+                  <span>Trained Financial Analysts</span>
+                  <span aria-hidden="true" className="text-coral-magenta">·</span>
+                  <span>Checklist-Driven</span>
+                  <span aria-hidden="true" className="text-coral-magenta">·</span>
+                  <span>Audit-Ready Logs</span>
                 </div>
-
-                <div className="pt-2 text-[11px] font-medium text-slate-500 flex flex-wrap gap-2">
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Trained Financial Analysts</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Checklist-Driven</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Audit-Ready Logs</span>
+                <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-navy-midnight/15 pt-4">
+                  <span className="text-xs italic text-slate-500">Lending decisions stay with institutions</span>
+                  <a
+                    href="#enquiry-form"
+                    onClick={() => discussService(serviceFormMapping['banking-kyc-mortgage'])}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-coral-magenta transition-colors hover:text-navy-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-magenta"
+                  >
+                    Discuss Banking Support <ArrowRight className="h-4 w-4" />
+                  </a>
                 </div>
-              </div>
+              </article>
+            </ScrollReveal>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[10px] text-slate-400 italic">Lending decisions stay with institutions</span>
-                <a
-                  href="#enquiry-form"
-                  onClick={() => discussService(serviceFormMapping['banking-kyc-mortgage'])}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-coral-magenta hover:underline"
-                >
-                  <span>Discuss Banking Support</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Service 05: Mutual-Fund Operations Support */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[#F3D5DC] bg-white p-6 shadow-card-soft">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-coral-purple">
-                    05 · FUND ADMINISTRATION
+            <ScrollReveal direction="up" delay={140} className="lg:col-span-6 lg:col-start-7 lg:mt-20">
+              <article className="border-t border-coral-purple/50 pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+                <div className="flex items-center gap-3">
+                  <span className="font-heading text-4xl font-extrabold text-coral-purple">05</span>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-coral-purple">
+                    FUND ADMINISTRATION
                   </span>
-                  <TrendingUp className="h-5 w-5 text-coral-purple" />
+                  <TrendingUp className="ml-auto h-5 w-5 text-coral-purple" />
                 </div>
-                <h3 className="font-heading text-xl font-extrabold text-navy-midnight">
+                <h3 className="mt-4 font-heading text-2xl font-bold text-navy-midnight sm:text-3xl">
                   Mutual-Fund Operations Support
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 sm:text-base">
                   Support mutual-fund administration through structured operational processes.
                 </p>
 
-                <div className="space-y-1.5 pt-1">
+                <ul className="mt-6 space-y-3">
                   {[
                     'Daily custodian and bank statement reconciliation',
                     'Trade confirmation matching and discrepancy tracking',
                     'Corporate action data capture and verification',
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                      <Check className="h-3.5 w-3.5 text-coral-purple shrink-0" />
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-coral-purple" />
                       <span>{item}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
-                <div className="pt-2 text-[11px] font-medium text-slate-500 flex flex-wrap gap-2">
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Accounting Backgrounds</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Exception Escalation</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200/70 px-2 py-1">Multi-Currency Ledgers</span>
+                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-slate-600">
+                  <span>Accounting Backgrounds</span>
+                  <span aria-hidden="true" className="text-coral-purple">·</span>
+                  <span>Exception Escalation</span>
+                  <span aria-hidden="true" className="text-coral-purple">·</span>
+                  <span>Multi-Currency Ledgers</span>
                 </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[10px] text-slate-400 italic">Fiduciary duties remain with client</span>
-                <a
-                  href="#enquiry-form"
-                  onClick={() => discussService(serviceFormMapping['mutual-fund-operations'])}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-coral-purple hover:underline"
-                >
-                  <span>Discuss Fund Operations</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </div>
+                <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-navy-midnight/15 pt-4">
+                  <span className="text-xs italic text-slate-500">Fiduciary duties remain with client</span>
+                  <a
+                    href="#enquiry-form"
+                    onClick={() => discussService(serviceFormMapping['mutual-fund-operations'])}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-coral-purple transition-colors hover:text-navy-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-purple"
+                  >
+                    Discuss Fund Operations <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </article>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ================================================================== */}
-      {/* 7. BACK-OFFICE SERVICES: Light Warm Neutral Background            */}
-      {/* ================================================================== */}
-      <section id="back-office" className="scroll-mt-32 py-12 sm:py-16 border-b border-[#E7E2D9] bg-[#F8F7F4]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-coral-purple">
+      <section id="back-office" className="relative isolate scroll-mt-32 overflow-hidden bg-navy-midnight text-white">
+        <Image
+          src="/images/industry-enterprise-ops.jpg"
+          alt="Business operations team working together in a modern office"
+          fill
+          sizes="100vw"
+          className="object-cover object-[center_48%]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/95 via-[#080B2E]/88 to-[#080B2E]/60"
+        />
+
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-24">
+          <ScrollReveal direction="up" className="lg:col-span-6">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-purple">
               OPERATIONAL DOMAIN · 06
             </span>
-            <h2 className="mt-1 font-heading text-2xl sm:text-3xl font-extrabold text-navy-midnight tracking-tight">
-              Enterprise Back-Office Services
-            </h2>
-          </div>
-
-          <div className="rounded-2xl border border-[#E5E0D6] bg-white p-6 sm:p-8 shadow-card-soft">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 space-y-4">
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Help businesses manage routine operational work through organised support processes, dedicated shifts, and SOP-driven execution.
-                </p>
-
-                <div className="space-y-1.5 pt-1">
-                  {[
-                    'Invoice matching and voucher creation',
-                    'E-commerce catalog updates and tagging',
-                    'Routine admin ticket handling and queue management',
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                      <Check className="h-3.5 w-3.5 text-coral-purple shrink-0" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-2 text-[11px] font-medium text-slate-500 flex flex-wrap gap-2">
-                  <span className="rounded-md bg-slate-50 border border-slate-200 px-2 py-1">Fast Ramp-Up</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200 px-2 py-1">US Business Hours Aligned</span>
-                  <span className="rounded-md bg-slate-50 border border-slate-200 px-2 py-1">Weekly Reviews</span>
-                </div>
-
-                <div className="pt-2 flex items-center justify-between">
-                  <span className="text-[10px] text-slate-400 italic">Staffing levels set to your specifications</span>
-                  <a
-                    href="#enquiry-form"
-                    onClick={() => discussService(serviceFormMapping['back-office-services'])}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-coral-purple hover:underline"
-                  >
-                    <span>Discuss Back-Office</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Shift Visual */}
-              <div className="lg:col-span-5 relative aspect-[16/10] overflow-hidden rounded-xl border border-slate-200 shadow-xs">
-                <Image
-                  src="/images/industry-enterprise-ops.jpg"
-                  alt="Back-office operations team managing administrative queues"
-                  fill
-                  sizes="(min-width: 1024px) 35vw, 100vw"
-                  className="object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/80 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 text-white text-xs flex items-center justify-between">
-                  <span className="font-semibold">Dedicated Shifts</span>
-                  <span className="rounded-full bg-white/20 px-2 py-0.5 font-mono text-[10px]">
-                    SOP Model
-                  </span>
-                </div>
-              </div>
+            <div className="mt-5 flex items-start gap-4">
+              <span className="font-heading text-4xl font-extrabold leading-none text-coral-bright sm:text-5xl">
+                06
+              </span>
+              <h2 className="max-w-xl font-heading text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+                Enterprise Back-Office Services
+              </h2>
             </div>
-          </div>
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+              Help businesses manage routine operational work through organised support processes, dedicated shifts, and SOP-driven execution.
+            </p>
+            <a
+              href="#enquiry-form"
+              onClick={() => discussService(serviceFormMapping['back-office-services'])}
+              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
+            >
+              Discuss Back-Office <ArrowRight className="h-4 w-4" />
+            </a>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={100} className="lg:col-span-5 lg:col-start-8">
+            <div className="border-y border-white/25 py-6">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
+                OPERATIONAL CAPABILITIES
+              </span>
+              <ul className="mt-5 divide-y divide-white/15">
+                {[
+                  'Invoice matching and voucher creation',
+                  'E-commerce catalog updates and tagging',
+                  'Routine admin ticket handling and queue management',
+                ].map((item, index) => (
+                  <li key={item} className="flex items-start gap-4 py-4 first:pt-0 last:pb-0">
+                    <span className="font-mono text-xs font-bold text-coral-orange">
+                      0{index + 1}
+                    </span>
+                    <span className="text-sm leading-relaxed text-white/90">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 border-t border-white/15 pt-5 text-xs font-medium text-white/70">
+                <span>Dedicated Shifts</span>
+                <span aria-hidden="true" className="text-coral-bright">·</span>
+                <span>SOP Model</span>
+                <span aria-hidden="true" className="text-coral-bright">·</span>
+                <span>Fast Ramp-Up</span>
+                <span aria-hidden="true" className="text-coral-bright">·</span>
+                <span>US Business Hours Aligned</span>
+                <span aria-hidden="true" className="text-coral-bright">·</span>
+                <span>Weekly Reviews</span>
+              </div>
+              <p className="mt-5 text-xs italic text-white/60">
+                Staffing levels set to your specifications
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -690,7 +733,15 @@ export const NonITSolutionsPage: React.FC = () => {
       {/* 8. PROJECT ENQUIRY SECTION: Midnight Navy with White Form Surface  */}
       {/* ================================================================== */}
       <section id="enquiry-form" className="scroll-mt-24 relative overflow-hidden bg-navy-midnight py-16 sm:py-20 text-white">
-        {/* Subtle Ambient Brand Glows */}
+        <Image
+          src="/images/home-open-office-8k.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-20"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-navy-midnight/85" />
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-coral-orange/15 blur-3xl"

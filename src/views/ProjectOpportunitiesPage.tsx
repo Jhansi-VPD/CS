@@ -1,13 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Breadcrumbs } from '../components/common/Breadcrumbs';
-import { illustrativeOpportunities } from '../data/opportunitiesData';
-import type { OpportunityItem } from '../types';
 import { ArrowRight, Check, ChevronDown, Info } from 'lucide-react';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
+import { Logo } from '../components/common/Logo';
 import { ProjectEnquiryForm } from '../components/forms/ProjectEnquiryForm';
 import { ScrollReveal } from '../components/common/ScrollReveal';
+import { illustrativeOpportunities } from '../data/opportunitiesData';
+import type { OpportunityItem } from '../types';
 
 interface ShowcaseMeta {
   number: string;
@@ -22,173 +24,205 @@ const showcaseMeta: Record<string, ShowcaseMeta> = {
     number: '01',
     tagline: 'Connect essential business operations through integrated enterprise systems.',
     labels: ['HRMS', 'Finance', 'Procurement', 'Reporting', 'Integrations'],
-    image: '/images/opportunities-erp.jpg',
-    imageAlt:
-      'Isometric illustration of an enterprise ERP dashboard connected to HR, finance and procurement module cards'
+    image: '/images/industry-enterprise-ops.jpg',
+    imageAlt: 'Employees working at computers in a large operations office',
   },
   'opp-web-portal-dev': {
     number: '02',
     tagline: 'Build responsive digital platforms for modern business needs.',
     labels: ['Web Applications', 'APIs', 'User Access', 'Quality Testing'],
-    image: '/images/opportunities-web-apps.jpg',
-    imageAlt:
-      'Layered illustration of browser windows and mobile app screens connected by interface lines'
+    image: '/images/home-keyboard-typing-8k.jpg',
+    imageAlt: 'Hands working at a laptop in a software development workspace',
   },
   'opp-healthcare-coding-billing': {
     number: '03',
     tagline: 'Support structured healthcare administrative and documentation workflows.',
     labels: ['Medical Coding', 'Billing', 'Claims', 'Documentation'],
-    image: '/images/opportunities-healthcare.jpg',
-    imageAlt:
-      'Illustration of medical claim folders moving through a structured healthcare documentation workflow'
+    image: '/images/industry-healthcare.jpg',
+    imageAlt: 'Healthcare professional using a mobile device in a clinical setting',
   },
   'opp-financial-kyc-mortgage': {
     number: '04',
     tagline: 'Support organised financial documentation and operational processes.',
     labels: ['KYC', 'Mortgage Processing', 'Mutual Funds', 'Reconciliation'],
-    image: '/images/opportunities-financial.jpg',
-    imageAlt:
-      'Illustration of an identity card, mortgage folder and financial statements linked by a verification process'
+    image: '/images/industry-bfsi.jpg',
+    imageAlt: 'Modern office towers in an international financial district',
   },
   'opp-high-volume-data': {
     number: '05',
     tagline: 'Manage large-scale document and data workflows with structured processing.',
     labels: ['Data Entry', 'Document Conversion', 'Indexing', 'Quality Checks'],
-    image: '/images/opportunities-documents.jpg',
-    imageAlt:
-      'Illustration of a high volume stream of documents flowing into an organised indexed archive'
-  }
+    image: '/images/services-operations-4k.jpg',
+    imageAlt: 'Operations team reviewing documents and a laptop at a workstation',
+  },
 };
 
 const getOpp = (id: string): OpportunityItem =>
-  illustrativeOpportunities.find((o) => o.id === id) as OpportunityItem;
-
-/* Hero flow: Project Requirements → Coral Swift → Delivery Capabilities */
+  illustrativeOpportunities.find((opportunity) => opportunity.id === id) as OpportunityItem;
 
 const heroFlowSteps = [
-  { n: '1', title: 'Project Requirements', text: 'Scoped business needs and expectations', highlight: false },
-  { n: '2', title: 'Coral Swift', text: 'Capability matching and coordination', highlight: true },
-  { n: '3', title: 'Delivery Capabilities', text: 'Organisations equipped to deliver', highlight: false }
+  { n: '01', title: 'Project Requirements', text: 'Scoped business needs and expectations', highlight: false },
+  { n: '02', title: 'Coral Swift', text: 'Capability matching and coordination', highlight: true },
+  { n: '03', title: 'Delivery Capabilities', text: 'Organisations equipped to deliver', highlight: false },
 ];
 
 const ConnectionFlowVisual: React.FC = () => (
-  <div className="relative rounded-3xl border border-coral-orange/20 bg-gradient-to-br from-white via-coral-warm to-coral-light p-6 sm:p-8 shadow-card-soft">
-    <div
-      className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-coral-orange/10 blur-3xl"
-      aria-hidden="true"
-    />
-    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500">How Connection Works</p>
-    <div className="mt-5">
-      {heroFlowSteps.map((step, i) => (
-        <div key={step.title}>
-          {i > 0 && <div className="opp-flow-line" aria-hidden="true" />}
-          <div
-            className={`flex items-center gap-4 rounded-2xl border px-4 py-4 transition-transform duration-300 hover:-translate-y-0.5 ${
-              step.highlight
-                ? 'border-navy-midnight bg-navy-midnight text-white shadow-glow-accent'
-                : 'border-slate-200/80 bg-white/85'
-            }`}
+  <div role="group" aria-labelledby="connection-flow-label" className="relative">
+    <p id="connection-flow-label" className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/65 sm:text-xs">
+      The connection in practice
+    </p>
+    <div className="relative mt-7">
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-[1.25rem] hidden h-2 w-full lg:block"
+        viewBox="0 0 1000 20"
+        preserveAspectRatio="none"
+      >
+        <path className="opp-flow-path" d="M120 10H500" fill="none" stroke="#F98F33" strokeWidth="1.5" />
+        <path className="opp-flow-path opp-flow-path-reverse" d="M500 10H880" fill="none" stroke="#D21D61" strokeWidth="1.5" />
+      </svg>
+      <div
+        aria-hidden="true"
+        className="absolute bottom-5 left-[1.2rem] top-5 w-px bg-gradient-to-b from-coral-orange/70 via-coral-bright/70 to-coral-magenta/70 lg:hidden"
+      />
+      <ol className="relative grid gap-6 lg:grid-cols-3 lg:gap-4">
+        {heroFlowSteps.map((step) => (
+          <li
+            key={step.n}
+            className="relative grid grid-cols-[2.5rem_1fr] items-center gap-4 lg:flex lg:min-h-[150px] lg:flex-col lg:items-center lg:gap-3 lg:text-center"
           >
             <span
-              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-mono text-xs font-bold ${
+              className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full border font-mono text-[10px] font-bold ${
                 step.highlight
-                  ? 'bg-swift-gradient text-white'
-                  : 'border border-coral-200 bg-coral-50 text-coral-bright'
+                  ? 'border-coral-bright bg-navy-midnight text-coral-orange'
+                  : 'border-white/45 bg-navy-midnight/80 text-white'
               }`}
             >
               {step.n}
             </span>
-            <div>
-              <p className={`font-heading text-sm font-bold ${step.highlight ? 'text-white' : 'text-navy-midnight'}`}>
-                {step.title}
-              </p>
-              <p className={`mt-0.5 text-xs ${step.highlight ? 'text-slate-300' : 'text-slate-500'}`}>{step.text}</p>
+            <div className="lg:min-h-[80px]">
+              {step.highlight ? (
+                <div className="flex flex-col items-start gap-1 lg:items-center">
+                  <span className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-coral-orange">
+                    Connection hub
+                  </span>
+                  <Logo variant="horizontal" theme="dark" size="sm" showSubtitle={false} asLink={false} />
+                </div>
+              ) : (
+                <p className="font-heading text-base font-bold text-white sm:text-lg">{step.title}</p>
+              )}
+              <p className="mt-1 text-xs leading-relaxed text-white/70 sm:text-sm">{step.text}</p>
             </div>
-          </div>
-        </div>
-      ))}
+          </li>
+        ))}
+      </ol>
     </div>
   </div>
 );
 
-/* Compact expandable scope details (real data from opportunitiesData) */
+const CapabilityLine: React.FC<{ labels: string[]; dark?: boolean }> = ({ labels, dark = false }) => (
+  <ul className={`mt-6 flex flex-wrap gap-x-5 gap-y-3 ${dark ? 'text-white/85' : 'text-navy-midnight'}`}>
+    {labels.map((label) => (
+      <li key={label} className="inline-flex items-center gap-2 text-xs font-semibold sm:text-sm">
+        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-coral-bright" aria-hidden="true" />
+        {label}
+      </li>
+    ))}
+  </ul>
+);
 
 const ScopeDetails: React.FC<{
   opp: OpportunityItem;
   panelId: string;
   open: boolean;
   onToggle: () => void;
-}> = ({ opp, panelId, open, onToggle }) => (
-  <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/80">
-    <button
-      type="button"
-      onClick={onToggle}
-      aria-expanded={open}
-      aria-controls={panelId}
-      className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright/60 focus-visible:ring-offset-2"
-    >
-      <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-navy-midnight">
-        Explore This Requirement
-      </span>
-      <ChevronDown
-        className={`h-4 w-4 shrink-0 text-coral-bright transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
-      />
-    </button>
-    {open && (
-      <div id={panelId} className="grid gap-8 border-t border-slate-200/70 px-5 py-6 md:grid-cols-2">
+  dark?: boolean;
+}> = ({ opp, panelId, open, onToggle, dark = false }) => {
+  const borderColor = dark ? 'border-white/20' : 'border-navy-midnight/15';
+  const headingColor = dark ? 'text-white' : 'text-navy-midnight';
+  const bodyColor = dark ? 'text-white/75' : 'text-slate-600';
+  const mutedColor = dark ? 'text-white/55' : 'text-slate-500';
+
+  return (
+    <div className={`mt-8 border-y ${borderColor}`}>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className={`flex min-h-14 w-full items-center justify-between gap-4 py-4 text-left text-xs font-bold uppercase tracking-[0.15em] transition-colors hover:text-coral-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-bright ${headingColor}`}
+      >
+        <span>Explore This Requirement</span>
+        <ChevronDown
+          aria-hidden="true"
+          className={`h-4 w-4 shrink-0 text-coral-bright transition-transform duration-300 motion-reduce:transition-none ${
+            open ? 'rotate-180' : ''
+          }`}
+        />
+      </button>
+      <div
+        id={panelId}
+        hidden={!open}
+        className={`${open ? 'grid' : ''} gap-8 border-t ${borderColor} py-6 md:grid-cols-2`}
+      >
         <div>
-          <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Sample Scope</h4>
-          <ul className="mt-3 space-y-2">
-            {opp.sampleScope.map((s, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs leading-relaxed text-slate-600">
-                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-coral-bright" />
-                <span>{s}</span>
+          <h3 className={`text-[11px] font-bold uppercase tracking-wider ${mutedColor}`}>Sample Scope</h3>
+          <ul className="mt-3 space-y-2.5">
+            {opp.sampleScope.map((scope) => (
+              <li key={scope} className={`flex items-start gap-2 text-xs leading-relaxed ${bodyColor}`}>
+                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-coral-orange" aria-hidden="true" />
+                <span>{scope}</span>
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-xs leading-relaxed text-slate-600">
-            <span className="font-bold text-navy-midnight">Typical Volume: </span>
+          <p className={`mt-4 text-xs leading-relaxed ${bodyColor}`}>
+            <span className={`font-bold ${headingColor}`}>Typical Volume: </span>
             {opp.typicalVolume}
           </p>
         </div>
         <div>
-          <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Key Skills</h4>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {opp.requiredSkills.map((sk, i) => (
-              <span key={i} className="rounded border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-700">
-                {sk}
-              </span>
+          <h3 className={`text-[11px] font-bold uppercase tracking-wider ${mutedColor}`}>Key Skills</h3>
+          <ul className={`mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs leading-relaxed ${bodyColor}`}>
+            {opp.requiredSkills.map((skill) => (
+              <li key={skill} className="border-b border-coral-orange/40 pb-1">
+                {skill}
+              </li>
             ))}
-          </div>
-          <p className="mt-4 text-xs leading-relaxed text-slate-500">
-            <span className="font-bold text-navy-midnight">Security Requirements: </span>
+          </ul>
+          <p className={`mt-4 text-xs leading-relaxed ${bodyColor}`}>
+            <span className={`font-bold ${headingColor}`}>Security Requirements: </span>
             {opp.securityRequirements}
           </p>
         </div>
       </div>
-    )}
-  </div>
-);
+    </div>
+  );
+};
 
-const SubmitLink: React.FC = () => (
+const SubmitLink: React.FC<{ dark?: boolean }> = ({ dark = false }) => (
   <a
     href="#enquiry-form"
-    className="group/cta inline-flex items-center gap-1.5 rounded text-sm font-bold text-coral-bright transition-colors hover:text-coral-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright/60 focus-visible:ring-offset-2"
+    className={`group/cta inline-flex min-h-11 items-center gap-2 text-sm font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-bright ${
+      dark ? 'text-coral-orange hover:text-white' : 'text-coral-purple hover:text-coral-bright'
+    }`}
   >
     <span className="underline-offset-4 group-hover/cta:underline">Submit a Requirement</span>
-    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
+    <ArrowRight
+      aria-hidden="true"
+      className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1 motion-reduce:transition-none"
+    />
   </a>
 );
 
 const partnershipSteps = [
   { title: 'Project Requirements', text: 'Understand the work and expectations.' },
   { title: 'Partner Alignment', text: 'Identify organisations with relevant capabilities.' },
-  { title: 'Delivery Coordination', text: 'Align scope, responsibilities, and execution expectations.' }
+  { title: 'Delivery Coordination', text: 'Align scope, responsibilities, and execution expectations.' },
 ];
 
 export const ProjectOpportunitiesPage: React.FC = () => {
   const [openDetails, setOpenDetails] = useState<string | null>(null);
-  const toggleDetails = (id: string) => setOpenDetails((prev) => (prev === id ? null : id));
+  const toggleDetails = (id: string) => setOpenDetails((previous) => (previous === id ? null : id));
 
   useEffect(() => {
     document.title = 'Project Opportunities | Coral Swift';
@@ -209,134 +243,113 @@ export const ProjectOpportunitiesPage: React.FC = () => {
   return (
     <div className="bg-white">
       <style>{`
-        .opp-flow-line {
-          position: relative;
-          width: 2px;
-          height: 36px;
-          margin-left: 2.125rem;
-          background: linear-gradient(to bottom, rgba(249,143,51,0.45), rgba(240,94,71,0.45));
+        @keyframes opp-flow-dash {
+          to { stroke-dashoffset: -44; }
         }
-        .opp-flow-line::after {
-          content: '';
-          position: absolute;
-          left: -3px;
-          top: 0;
-          width: 8px;
-          height: 8px;
-          border-radius: 9999px;
-          background: #F05E47;
-          opacity: 0;
-          animation: opp-flow-dot 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        .opp-flow-path {
+          stroke-dasharray: 4 9;
+          animation: opp-flow-dash 14s linear infinite;
         }
-        @keyframes opp-flow-dot {
-          0% { top: 0; opacity: 0; }
-          12% { opacity: 1; }
-          88% { opacity: 1; }
-          100% { top: calc(100% - 8px); opacity: 0; }
+        .opp-flow-path-reverse {
+          animation-direction: reverse;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .opp-flow-path {
+            animation: none;
+          }
         }
       `}</style>
 
-      {/* ---------------- Hero ---------------- */}
-      <section className="relative overflow-hidden bg-[#FFFDFA]">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-coral-orange/10 blur-3xl"
+      <section aria-labelledby="opportunities-title" className="relative isolate overflow-hidden bg-navy-midnight text-white">
+        <Image
+          src="/images/about-global-delivery.jpg"
+          alt="Business team reviewing project information together"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_45%]"
         />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-32 top-40 h-72 w-72 rounded-full bg-coral-magenta/5 blur-3xl"
-        />
-        <div className="relative mx-auto max-w-7xl px-4 pt-2 sm:pt-3 pb-12 sm:px-6 sm:pb-16 lg:px-8">
-          <Breadcrumbs items={[{ label: 'Project Opportunities' }]} />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/80 via-[#080B2E]/45 to-[#080B2E]/10" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/45 via-transparent to-transparent" />
 
-          <div className="mt-1.5 sm:mt-2 grid items-center gap-10 lg:mt-3 lg:grid-cols-12 lg:gap-10">
-            <div className="animate-fadeIn lg:col-span-6">
+        <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-2 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
+          <Breadcrumbs items={[{ label: 'Project Opportunities' }]} dark />
+          <div className="mt-10 grid items-center gap-14 lg:mt-16 lg:grid-cols-12 lg:gap-12">
+            <ScrollReveal direction="left" className="lg:col-span-6">
               <div className="flex items-center gap-3">
-                <span className="h-px w-10 bg-coral-bright" aria-hidden="true" />
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-coral-bright">
+                <span className="h-px w-9 bg-coral-orange" aria-hidden="true" />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-coral-orange sm:text-xs">
                   Project Opportunities
                 </span>
               </div>
-              <h1 className="mt-3 font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-navy-midnight sm:text-5xl lg:text-[3.4rem]">
-                Explore the Work Behind{' '}
-                <span className="bg-swift-gradient bg-clip-text text-transparent">Every Opportunity.</span>
+              <h1
+                id="opportunities-title"
+                className="mt-5 max-w-2xl font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.65rem]"
+              >
+                Explore the Work Behind Every Opportunity.
               </h1>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base lg:text-lg">
                 Explore examples of IT and Non-IT project requirements to understand the capabilities and delivery
                 experience businesses may need.
               </p>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href="#projects"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-swift-gradient px-7 py-3.5 text-sm font-bold text-white shadow-glow-coral transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright/60 focus-visible:ring-offset-2"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 bg-swift-gradient px-6 py-3 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange motion-reduce:transition-none"
                 >
                   Explore Project Types
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
                 </a>
                 <a
                   href="#enquiry-form"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-navy-midnight/20 bg-white/70 px-7 py-3.5 text-sm font-bold text-navy-midnight transition-colors hover:border-navy-midnight/50 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-midnight/40 focus-visible:ring-offset-2"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 border border-white/45 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   Discuss a Partnership
                 </a>
               </div>
-
-              <p className="mt-7 flex max-w-xl items-start gap-2 border-l-2 border-coral-orange/50 pl-3 text-xs italic text-slate-500">
-                <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-coral-orange" aria-hidden="true" />
+              <p className="mt-6 flex max-w-xl items-start gap-2 border-l-2 border-coral-orange/70 pl-3 text-xs leading-relaxed text-white/80 sm:text-sm">
+                <Info className="mt-0.5 h-4 w-4 shrink-0 text-coral-orange" aria-hidden="true" />
                 All examples are illustrative and do not represent currently available or awarded projects.
               </p>
-            </div>
+            </ScrollReveal>
 
-            <div className="lg:col-span-6">
-              <ScrollReveal direction="scale" delay={120}>
-                <ConnectionFlowVisual />
-              </ScrollReveal>
-            </div>
+            <ScrollReveal direction="up" delay={120} className="lg:col-span-6">
+              <ConnectionFlowVisual />
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ---------------- 01 Enterprise ERP — large split-screen editorial ---------------- */}
-      <section id="projects" className="scroll-mt-24 bg-white py-16 sm:py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
-          <div className="lg:col-span-7">
-            <ScrollReveal direction="up">
-              <div className="group relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-card-soft">
-                <img
-                  src={erpMeta.image}
-                  alt={erpMeta.imageAlt}
-                  loading="lazy"
-                  className="aspect-[3/2] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-midnight backdrop-blur">
-                  {erp.category}
-                </span>
+      <section id="projects" aria-labelledby="erp-title" className="scroll-mt-24 bg-white">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
+          <figure className="relative min-h-[300px] overflow-hidden sm:min-h-[420px] lg:min-h-[650px]">
+            <Image
+              src={erpMeta.image}
+              alt={erpMeta.imageAlt}
+              fill
+              sizes="(max-width: 1023px) 100vw, 52vw"
+              className="object-cover object-[center_48%]"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/65 via-transparent to-transparent" />
+            <figcaption className="absolute bottom-6 left-5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white sm:bottom-8 sm:left-8 sm:text-xs">
+              {erp.category} <span className="mx-2 text-coral-orange">/</span> Illustrative Example
+            </figcaption>
+          </figure>
+
+          <div className="flex items-center px-5 py-14 sm:px-10 sm:py-18 lg:px-14 lg:py-20">
+            <ScrollReveal direction="up" className="mx-auto w-full max-w-xl">
+              <div className="flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                <span className="text-coral-bright">{erpMeta.number}</span>
+                <span className="h-px w-8 bg-coral-bright/55" aria-hidden="true" />
+                <span>Enterprise Systems</span>
               </div>
-            </ScrollReveal>
-          </div>
-          <div className="lg:col-span-5">
-            <ScrollReveal direction="up" delay={100}>
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs font-bold text-coral-bright">{erpMeta.number}</span>
-                <span className="h-px w-8 bg-coral-bright/50" aria-hidden="true" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
-                  Illustrative Example
-                </span>
-              </div>
-              <h2 className="mt-4 font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl">
+              <h2 id="erp-title" className="mt-5 font-heading text-3xl font-extrabold leading-tight tracking-tight text-navy-midnight sm:text-4xl">
                 {erp.title}
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{erpMeta.tagline}</p>
-              <ul className="mt-7 space-y-3">
-                {erpMeta.labels.map((label) => (
-                  <li key={label} className="flex items-center gap-3 text-sm font-medium text-navy-midnight">
-                    <span className="h-1.5 w-1.5 rounded-full bg-coral-orange" aria-hidden="true" />
-                    {label}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8">
+              <p className="mt-4 text-base font-semibold leading-relaxed text-navy-secondary sm:text-lg">{erpMeta.tagline}</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">{erp.description}</p>
+              <CapabilityLine labels={erpMeta.labels} />
+              <div className="mt-6">
                 <SubmitLink />
               </div>
               <ScopeDetails
@@ -350,150 +363,115 @@ export const ProjectOpportunitiesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ---------------- 02 Web & Application Development — asymmetrical ---------------- */}
-      <section className="overflow-hidden bg-coral-warm py-16 sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
-          <div className="lg:col-span-6">
-            <ScrollReveal direction="up">
-              <span
-                aria-hidden="true"
-                className="block select-none font-heading text-[6rem] font-extrabold leading-[0.75] text-coral-orange/15 sm:text-[8rem]"
-              >
-                02
-              </span>
-              <h2 className="-mt-2 font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:-mt-4 sm:text-4xl">
-                Web &amp; Application Development
-              </h2>
-              <p className="mt-4 max-w-lg text-base leading-relaxed text-slate-600 sm:text-lg">{webMeta.tagline}</p>
-              <div className="mt-7 flex flex-wrap gap-2">
-                {webMeta.labels.map((label) => (
-                  <span
-                    key={label}
-                    className="rounded-full border border-coral-orange/30 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy-midnight"
-                  >
-                    {label}
-                  </span>
-                ))}
+      <section aria-labelledby="web-title" className="overflow-hidden bg-navy-midnight text-white">
+        <div className="grid lg:min-h-[690px] lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="flex items-center px-5 py-14 sm:px-10 sm:py-18 lg:px-12 lg:py-20 xl:px-16">
+            <ScrollReveal direction="up" className="mx-auto w-full max-w-xl">
+              <div className="flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-white/60">
+                <span className="text-coral-orange">{webMeta.number}</span>
+                <span className="h-px w-8 bg-coral-orange/70" aria-hidden="true" />
+                <span>{web.category}</span>
               </div>
-              <div className="mt-8">
-                <SubmitLink />
+              <h2 id="web-title" className="mt-5 font-heading text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
+                {web.title}
+              </h2>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-white/90 sm:text-lg">{webMeta.tagline}</p>
+              <p className="mt-3 text-sm leading-relaxed text-white/70">{web.description}</p>
+              <CapabilityLine labels={webMeta.labels} dark />
+              <div className="mt-6">
+                <SubmitLink dark />
               </div>
               <ScopeDetails
                 opp={web}
                 panelId="opp-details-web"
                 open={openDetails === 'opp-web-portal-dev'}
                 onToggle={() => toggleDetails('opp-web-portal-dev')}
+                dark
               />
             </ScrollReveal>
           </div>
-          <div className="lg:col-span-6 lg:mt-16">
-            <ScrollReveal direction="up" delay={120}>
-              <div className="group relative overflow-hidden rounded-3xl border border-white shadow-card-soft">
-                <img
-                  src={webMeta.image}
-                  alt={webMeta.imageAlt}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-midnight backdrop-blur">
-                  {web.category}
-                </span>
-              </div>
-            </ScrollReveal>
-          </div>
+
+          <figure className="relative min-h-[320px] overflow-hidden sm:min-h-[440px] lg:min-h-[690px]">
+            <Image
+              src={webMeta.image}
+              alt={webMeta.imageAlt}
+              fill
+              sizes="(max-width: 1023px) 100vw, 58vw"
+              className="object-cover object-[center_52%]"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/35 via-transparent to-transparent" />
+            <figcaption className="absolute bottom-6 right-5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/85 sm:bottom-8 sm:right-8 sm:text-xs">
+              Digital Platforms <span className="mx-2 text-coral-orange">/</span> Software Delivery
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      {/* ---------------- 03 Healthcare Operations — horizontal visual showcase ---------------- */}
-      <section className="bg-navy-light py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section aria-labelledby="health-title" className="bg-[#F5F6FA]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
           <ScrollReveal direction="up">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-midnight font-mono text-sm font-bold text-white">
-                  03
-                </span>
-                <h2 className="font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl">
+            <header className="grid gap-5 md:grid-cols-12 md:items-end md:gap-8">
+              <div className="md:col-span-7">
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-rose">
+                  {healthMeta.number} <span className="mx-2 text-slate-400">/</span> Healthcare Operations
+                </p>
+                <h2 id="health-title" className="mt-3 max-w-2xl font-heading text-3xl font-extrabold leading-tight tracking-tight text-navy-midnight sm:text-4xl lg:text-5xl">
                   {health.title}
                 </h2>
               </div>
-              <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                {health.category} · Illustrative
-              </span>
-            </div>
+              <p className="text-base leading-relaxed text-slate-600 md:col-span-5 md:pb-1 sm:text-lg">{healthMeta.tagline}</p>
+            </header>
           </ScrollReveal>
 
-          <ScrollReveal direction="up" delay={100}>
-            <div className="group mt-8 overflow-hidden rounded-3xl border border-slate-200/70 shadow-card-soft">
-              <img
+          <div className="mt-9 grid items-center gap-8 lg:mt-12 lg:grid-cols-12 lg:gap-12">
+            <ScrollReveal direction="left" className="relative min-h-[300px] overflow-hidden sm:min-h-[420px] lg:col-span-7 lg:min-h-[500px]">
+              <Image
                 src={healthMeta.image}
                 alt={healthMeta.imageAlt}
-                loading="lazy"
-                className="aspect-[21/9] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                fill
+                sizes="(max-width: 1023px) 100vw, 58vw"
+                className="object-cover object-[center_42%]"
               />
-            </div>
-          </ScrollReveal>
+              <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/35 via-transparent to-transparent" />
+              <span className="absolute bottom-5 left-5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white sm:bottom-7 sm:left-7 sm:text-xs">
+                Healthcare Administration
+              </span>
+            </ScrollReveal>
 
-          <ScrollReveal direction="up" delay={160}>
-            <div className="mt-8 grid items-start gap-8 border-t border-slate-200 pt-8 lg:grid-cols-12">
-              <p className="text-base font-medium leading-relaxed text-navy-midnight sm:text-lg lg:col-span-5">
-                {healthMeta.tagline}
-              </p>
-              <p className="text-sm font-semibold leading-loose text-navy-midnight lg:col-span-4">
-                {healthMeta.labels.map((label, i) => (
-                  <React.Fragment key={label}>
-                    {i > 0 && (
-                      <span className="mx-2 text-coral-bright" aria-hidden="true">
-                        ·
-                      </span>
-                    )}
-                    {label}
-                  </React.Fragment>
-                ))}
-              </p>
-              <div className="lg:col-span-3 lg:justify-self-end">
+            <ScrollReveal direction="up" delay={100} className="lg:col-span-5">
+              <p className="text-sm leading-relaxed text-slate-600 sm:text-base">{health.description}</p>
+              <CapabilityLine labels={healthMeta.labels} />
+              <div className="mt-6">
                 <SubmitLink />
               </div>
-            </div>
-          </ScrollReveal>
-
-          <ScopeDetails
-            opp={health}
-            panelId="opp-details-health"
-            open={openDetails === 'opp-healthcare-coding-billing'}
-            onToggle={() => toggleDetails('opp-healthcare-coding-billing')}
-          />
+              <ScopeDetails
+                opp={health}
+                panelId="opp-details-health"
+                open={openDetails === 'opp-healthcare-coding-billing'}
+                onToggle={() => toggleDetails('opp-healthcare-coding-billing')}
+              />
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* ---------------- 04 Financial Process Operations — typography-led ---------------- */}
-      <section className="overflow-hidden bg-white py-16 sm:py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
-          <div className="lg:col-span-7">
-            <ScrollReveal direction="up">
-              <span
-                aria-hidden="true"
-                className="block select-none font-heading text-[9rem] font-extrabold leading-[0.8] text-transparent [-webkit-text-stroke:2px_rgba(240,94,71,0.35)] sm:text-[11rem]"
-              >
-                04
+      <section aria-labelledby="financial-title" className="overflow-hidden bg-coral-warm">
+        <div className="grid lg:min-h-[700px] lg:grid-cols-[1fr_1fr]">
+          <div className="flex items-center px-5 py-14 sm:px-10 sm:py-18 lg:px-12 lg:py-20 xl:px-16">
+            <ScrollReveal direction="up" className="mx-auto w-full max-w-xl">
+              <span aria-hidden="true" className="font-heading text-6xl font-extrabold leading-none text-coral-bright/75 sm:text-7xl">
+                {finMeta.number}
               </span>
-              <h2 className="font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-5xl">
+              <p className="mt-5 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 sm:text-xs">
+                Financial Process Operations
+              </p>
+              <h2 id="financial-title" className="mt-3 font-heading text-3xl font-extrabold leading-tight tracking-tight text-navy-midnight sm:text-4xl">
                 {fin.title}
               </h2>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">{finMeta.tagline}</p>
-              <p className="mt-6 text-base font-semibold text-navy-midnight sm:text-lg">
-                {finMeta.labels.map((label, i) => (
-                  <React.Fragment key={label}>
-                    {i > 0 && (
-                      <span className="mx-2 text-coral-bright" aria-hidden="true">
-                        ·
-                      </span>
-                    )}
-                    {label}
-                  </React.Fragment>
-                ))}
-              </p>
-              <div className="mt-8">
+              <p className="mt-4 text-base font-semibold leading-relaxed text-navy-secondary sm:text-lg">{finMeta.tagline}</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">{fin.description}</p>
+              <CapabilityLine labels={finMeta.labels} />
+              <div className="mt-6">
                 <SubmitLink />
               </div>
               <ScopeDetails
@@ -504,147 +482,119 @@ export const ProjectOpportunitiesPage: React.FC = () => {
               />
             </ScrollReveal>
           </div>
-          <div className="lg:col-span-5">
-            <ScrollReveal direction="up" delay={120}>
-              <div className="group relative overflow-hidden rounded-3xl border border-slate-200/70 shadow-card-soft">
-                <img
-                  src={finMeta.image}
-                  alt={finMeta.imageAlt}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-midnight backdrop-blur">
-                  {fin.category}
-                </span>
-              </div>
-            </ScrollReveal>
-          </div>
+
+          <figure className="relative min-h-[320px] overflow-hidden sm:min-h-[440px] lg:min-h-[700px]">
+            <Image
+              src={finMeta.image}
+              alt={finMeta.imageAlt}
+              fill
+              sizes="(max-width: 1023px) 100vw, 50vw"
+              className="object-cover object-[center_48%]"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-coral-warm/40" />
+            <figcaption className="absolute bottom-6 right-5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/90 sm:bottom-8 sm:right-8 sm:text-xs">
+              Financial District <span className="mx-2 text-coral-orange">/</span> Illustrative
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      {/* ---------------- 05 High-Volume Document Operations — connected workflow ---------------- */}
-      <section className="bg-coral-light py-16 sm:py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
-          <div className="lg:col-span-6">
-            <ScrollReveal direction="up">
-              <div className="group relative overflow-hidden rounded-3xl border border-white shadow-card-soft">
-                <img
-                  src={docsMeta.image}
-                  alt={docsMeta.imageAlt}
-                  loading="lazy"
-                  className="aspect-[3/2] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-midnight backdrop-blur">
-                  {docs.category}
-                </span>
-              </div>
-            </ScrollReveal>
-          </div>
-          <div className="lg:col-span-6">
-            <ScrollReveal direction="up" delay={100}>
-              <div className="flex items-center gap-4">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-midnight font-mono text-sm font-bold text-white">
-                  05
-                </span>
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">
-                  {docs.category} · Illustrative
-                </span>
-              </div>
-              <h2 className="mt-5 font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl">
-                {docs.title}
-              </h2>
-              <p className="mt-4 max-w-lg text-base leading-relaxed text-slate-600 sm:text-lg">{docsMeta.tagline}</p>
-              <div className="mt-7 flex flex-wrap items-center gap-y-3">
-                {docsMeta.labels.map((label, i) => (
-                  <React.Fragment key={label}>
-                    {i > 0 && (
-                      <span
-                        aria-hidden="true"
-                        className="mx-1 hidden h-px w-5 bg-gradient-to-r from-coral-orange/60 to-coral-bright/60 sm:block"
-                      />
-                    )}
-                    <span className="rounded-full border border-coral-orange/30 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy-midnight shadow-xs">
-                      {label}
-                    </span>
-                  </React.Fragment>
-                ))}
-              </div>
-              <div className="mt-8">
-                <SubmitLink />
-              </div>
-              <ScopeDetails
-                opp={docs}
-                panelId="opp-details-docs"
-                open={openDetails === 'opp-high-volume-data'}
-                onToggle={() => toggleDetails('opp-high-volume-data')}
-              />
-            </ScrollReveal>
-          </div>
+      <section aria-labelledby="documents-title" className="relative isolate overflow-hidden bg-navy-midnight text-white">
+        <Image
+          src={docsMeta.image}
+          alt={docsMeta.imageAlt}
+          fill
+          sizes="100vw"
+          className="object-cover object-[center_55%]"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/95 via-[#080B2E]/75 to-[#080B2E]/20" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/90 via-transparent to-[#080B2E]/15" />
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+          <ScrollReveal direction="up" className="max-w-3xl">
+            <div className="flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-white/70">
+              <span className="text-coral-orange">{docsMeta.number}</span>
+              <span className="h-px w-8 bg-coral-orange/75" aria-hidden="true" />
+              <span>{docs.category} · Illustrative</span>
+            </div>
+            <h2 id="documents-title" className="mt-5 font-heading text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              {docs.title}
+            </h2>
+            <p className="mt-4 max-w-2xl text-base font-semibold leading-relaxed text-white/90 sm:text-lg">{docsMeta.tagline}</p>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">{docs.description}</p>
+            <CapabilityLine labels={docsMeta.labels} dark />
+            <div className="mt-6">
+              <SubmitLink dark />
+            </div>
+            <ScopeDetails
+              opp={docs}
+              panelId="opp-details-docs"
+              open={openDetails === 'opp-high-volume-data'}
+              onToggle={() => toggleDetails('opp-high-volume-data')}
+              dark
+            />
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* ---------------- Partnership context ---------------- */}
-      <section className="bg-white py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up" className="mx-auto max-w-2xl text-center">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-coral-bright">Partnership Context</p>
-            <h2 className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl">
+      <section aria-labelledby="partnership-context-title" className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+          <ScrollReveal direction="up" className="max-w-3xl">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-coral-bright sm:text-xs">
+              Partnership Context
+            </p>
+            <h2 id="partnership-context-title" className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl">
               The Right Capabilities. The Right Connection.
             </h2>
           </ScrollReveal>
 
-          <div className="relative mt-14">
+          <div className="relative mt-10 sm:mt-14">
             <div
               aria-hidden="true"
-              className="absolute left-[16.66%] right-[16.66%] top-7 hidden h-px bg-gradient-to-r from-coral-orange/50 via-coral-bright/50 to-coral-magenta/50 lg:block"
+              className="absolute bottom-6 left-[1.4rem] top-6 w-px bg-gradient-to-b from-coral-orange via-coral-bright to-coral-magenta lg:bottom-auto lg:left-[16.66%] lg:right-[16.66%] lg:top-8 lg:h-px lg:w-auto lg:bg-gradient-to-r"
             />
-            <div className="grid gap-12 lg:grid-cols-3 lg:gap-8">
-              {partnershipSteps.map((step, i) => (
-                <ScrollReveal key={step.title} direction="up" delay={i * 120}>
-                  <div className="flex flex-col items-center text-center">
-                    <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-coral-orange/40 bg-white font-heading text-lg font-extrabold text-navy-midnight">
-                      {i + 1}
+            <ol className="relative grid gap-8 lg:grid-cols-3 lg:gap-10">
+              {partnershipSteps.map((step, index) => (
+                <ScrollReveal key={step.title} as="li" direction="up" delay={index * 100}>
+                  <div className="grid grid-cols-[3rem_1fr] items-start gap-4 lg:block">
+                    <span className="relative z-10 inline-flex min-h-12 items-center bg-white pr-2 font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl lg:mb-5 lg:min-h-0 lg:bg-white lg:pr-3 lg:text-5xl">
+                      0{index + 1}
                     </span>
-                    <h3 className="mt-5 font-heading text-lg font-bold text-navy-midnight">{step.title}</h3>
-                    <p className="mt-2 max-w-xs text-sm leading-relaxed text-slate-600">{step.text}</p>
+                    <div className="pt-1 lg:pt-0">
+                      <h3 className="font-heading text-lg font-bold text-navy-midnight sm:text-xl">{step.title}</h3>
+                      <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-600">{step.text}</p>
+                    </div>
                   </div>
                 </ScrollReveal>
               ))}
-            </div>
+            </ol>
           </div>
         </div>
       </section>
 
-      {/* ---------------- Enquiry ---------------- */}
-      <section className="bg-gradient-to-b from-coral-warm via-white to-white py-16 sm:py-24">
-        <div className="mx-auto grid max-w-7xl items-start gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
-          <div className="lg:col-span-5">
-            <ScrollReveal direction="up">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-coral-bright">
-                Partnership Enquiries
-              </p>
-              <h2 className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-navy-midnight sm:text-4xl">
-                Does Your Team Have the Right Capabilities?
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-slate-600">
-                Tell us about your organisation and the types of projects you are equipped to support.
-              </p>
-              <Link
-                href="/partnerships"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-navy-midnight px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-navy-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-midnight/40 focus-visible:ring-offset-2"
-              >
-                Explore a Partnership
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </ScrollReveal>
-          </div>
-          <div className="lg:col-span-7">
-            <div id="enquiry-form" className="scroll-mt-24">
-              <ScrollReveal direction="up" delay={100}>
-                <ProjectEnquiryForm />
-              </ScrollReveal>
-            </div>
-          </div>
+      <section id="enquiry-form" aria-labelledby="enquiry-title" className="relative isolate scroll-mt-24 bg-navy-midnight text-white">
+        <div aria-hidden="true" className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-coral-bright/70 to-transparent" />
+        <div className="mx-auto grid max-w-7xl items-start gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-12 lg:gap-14 lg:px-8 lg:py-24">
+          <ScrollReveal direction="up" className="lg:col-span-5">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-coral-orange sm:text-xs">
+              Partnership Enquiries
+            </p>
+            <h2 id="enquiry-title" className="mt-3 max-w-lg font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+              Does Your Team Have the Right Capabilities?
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/75 sm:text-base">
+              Tell us about your organisation and the types of projects you are equipped to support.
+            </p>
+            <Link
+              href="/partnerships"
+              className="mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
+            >
+              Explore a Partnership
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={100} className="lg:col-span-7">
+            <ProjectEnquiryForm />
+          </ScrollReveal>
         </div>
       </section>
     </div>
