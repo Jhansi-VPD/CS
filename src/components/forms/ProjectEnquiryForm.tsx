@@ -32,18 +32,22 @@ const PROJECT_CATEGORY_MAP: Record<string, string> = {
   'Cross-Border Delivery Consortium': 'back_office'
 };
 
+const ENQUIRY_STEPS = ['Contact', 'Requirements', 'Project details'] as const;
+
 export interface ProjectEnquiryFormProps {
   initialCategory?: 'IT Solutions' | 'Non-IT / Business Operations' | 'Partnership Services';
   initialService?: string;
   prefillNonce?: number;
   onSuccess?: (refId: string) => void;
+  enableMultiStep?: boolean;
 }
 
 export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
   initialCategory = 'IT Solutions',
   initialService = '',
   prefillNonce,
-  onSuccess
+  onSuccess,
+  enableMultiStep = false
 }) => {
   const [formData, setFormData] = useState<ProjectEnquiryFormData>({
     fullName: '',
@@ -65,6 +69,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
   const [fileError, setFileError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submissionSuccess, setSubmissionSuccess] = useState<{
     refId: string;
@@ -128,27 +133,36 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       ? nonItOptions
       : partnershipOptions;
 
-  const validate = () => {
+  const validate = (step: number | 'all') => {
     const errs: Record<string, string> = {};
+    const validateContact = step === 0 || step === 'all';
+    const validateRequirements = step === 1 || step === 'all';
+    const validateProjectDetails = step === 2 || step === 'all';
 
-    if (!formData.fullName.trim()) errs.fullName = 'Full Name is required';
-    if (!formData.businessEmail.trim()) {
-      errs.businessEmail = 'Business email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.businessEmail)) {
-      errs.businessEmail = 'Enter a valid email address';
+    if (validateContact) {
+      if (!formData.fullName.trim()) errs.fullName = 'Full Name is required';
+      if (!formData.businessEmail.trim()) {
+        errs.businessEmail = 'Business email is required';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.businessEmail)) {
+        errs.businessEmail = 'Enter a valid email address';
+      }
+      if (!formData.companyName.trim()) errs.companyName = 'Company name is required';
+      if (!formData.country.trim()) errs.country = 'Country is required';
+      if (!formData.contactNumber.trim()) {
+        errs.contactNumber = 'Contact number is required';
+      } else if (!/^[0-9+()-\s]{6,20}$/.test(formData.contactNumber)) {
+        errs.contactNumber = 'Enter a valid phone number';
+      }
     }
-    if (!formData.companyName.trim()) errs.companyName = 'Company name is required';
-    if (!formData.country.trim()) errs.country = 'Country is required';
-    if (!formData.contactNumber.trim()) {
-      errs.contactNumber = 'Contact number is required';
-    } else if (!/^[0-9+()-\s]{6,20}$/.test(formData.contactNumber)) {
-      errs.contactNumber = 'Enter a valid phone number';
+
+    if (validateRequirements) {
+      if (!formData.specificService) errs.specificService = 'Please select a specific service';
+      if (!formData.requirementSummary.trim() || formData.requirementSummary.length < 20) {
+        errs.requirementSummary = 'Please provide a requirement description (minimum 20 characters)';
+      }
     }
-    if (!formData.specificService) errs.specificService = 'Please select a specific service';
-    if (!formData.requirementSummary.trim() || formData.requirementSummary.length < 20) {
-      errs.requirementSummary = 'Please provide a requirement description (minimum 20 characters)';
-    }
-    if (!formData.consent) {
+
+    if (validateProjectDetails && !formData.consent) {
       errs.consent = 'You must acknowledge the privacy notice to proceed';
     }
 
@@ -182,7 +196,12 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
-    if (!validate()) return;
+    if (enableMultiStep && currentStep < ENQUIRY_STEPS.length - 1) {
+      if (!validate(currentStep)) return;
+      setCurrentStep((step) => step + 1);
+      return;
+    }
+    if (!validate('all')) return;
 
     setIsSubmitting(true);
     setSubmitError(null);
@@ -258,6 +277,13 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
           if (localField) mapped[localField] = msg;
         }
         setErrors((prev) => ({ ...prev, ...mapped }));
+        if (enableMultiStep) {
+          if (['fullName', 'businessEmail', 'companyName', 'country', 'contactNumber'].some((field) => mapped[field])) {
+            setCurrentStep(0);
+          } else if (['specificService', 'requirementSummary'].some((field) => mapped[field])) {
+            setCurrentStep(1);
+          }
+        }
       }
       setSubmitError(friendlySubmitError(err));
     } finally {
@@ -286,6 +312,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
     setErrors({});
     setSubmitError(null);
     setSubmissionSuccess(null);
+    setCurrentStep(0);
   };
 
   if (submissionSuccess) {
@@ -364,7 +391,11 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-card-soft space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      aria-describedby={enableMultiStep ? 'project-enquiry-progress' : undefined}
+      className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-card-soft space-y-6"
+    >
       <div className="border-b border-slate-100 pb-4">
         <h3 className="text-xl font-heading font-bold text-navy-midnight">
           Submit Project or Business Requirement
@@ -372,10 +403,27 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
         <p className="text-xs text-slate-500 mt-1">
           Provide your project details to evaluate scope and coordinate suitable delivery capabilities.
         </p>
+        {enableMultiStep && (
+          <>
+            <p id="project-enquiry-progress" role="status" aria-live="polite" className="mt-4 text-xs font-semibold text-slate-600">
+              Step {currentStep + 1} of {ENQUIRY_STEPS.length}: {ENQUIRY_STEPS[currentStep]}
+            </p>
+            <div aria-hidden="true" className="mt-2 flex gap-2">
+              {ENQUIRY_STEPS.map((step, index) => (
+                <span
+                  key={step}
+                  className={`h-1.5 flex-1 rounded-full ${
+                    index <= currentStep ? 'bg-coral-bright' : 'bg-slate-200'
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Row 1: Contact Details */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className={!enableMultiStep || currentStep === 0 ? 'grid grid-cols-1 sm:grid-cols-2 gap-4' : 'hidden'}>
         <div>
           <label className="block text-xs font-semibold text-navy-midnight mb-1">
             Full Name <span className="text-coral-bright">*</span>
@@ -410,7 +458,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       </div>
 
       {/* Row 2: Company & Designation */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className={!enableMultiStep || currentStep === 0 ? 'grid grid-cols-1 sm:grid-cols-2 gap-4' : 'hidden'}>
         <div>
           <label className="block text-xs font-semibold text-navy-midnight mb-1">
             Company Name <span className="text-coral-bright">*</span>
@@ -442,7 +490,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       </div>
 
       {/* Row 3: Country & Phone */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className={!enableMultiStep || currentStep === 0 ? 'grid grid-cols-1 sm:grid-cols-2 gap-4' : 'hidden'}>
         <div>
           <label className="block text-xs font-semibold text-navy-midnight mb-1">
             Country <span className="text-coral-bright">*</span>
@@ -477,7 +525,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       </div>
 
       {/* Row 4: Service Category & Specific Service */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200/70">
+      <div className={!enableMultiStep || currentStep === 1 ? 'grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200/70' : 'hidden'}>
         <div>
           <label className="block text-xs font-semibold text-navy-midnight mb-1">
             Domain Category <span className="text-coral-bright">*</span>
@@ -521,7 +569,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       </div>
 
       {/* Row 5: Requirement Summary */}
-      <div>
+      <div className={!enableMultiStep || currentStep === 1 ? '' : 'hidden'}>
         <label className="block text-xs font-semibold text-navy-midnight mb-1">
           Project / Requirement Summary <span className="text-coral-bright">*</span>
         </label>
@@ -540,7 +588,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       </div>
 
       {/* Row 6: Budget & Timeline (Optional) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className={!enableMultiStep || currentStep === 2 ? 'grid grid-cols-1 sm:grid-cols-2 gap-4' : 'hidden'}>
         <div>
           <label className="block text-xs font-semibold text-navy-midnight mb-1">
             Estimated Budget (Optional)
@@ -577,7 +625,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       </div>
 
       {/* File Upload Attachment (Optional) */}
-      <div>
+      <div className={!enableMultiStep || currentStep === 2 ? '' : 'hidden'}>
         <label className="block text-xs font-semibold text-navy-midnight mb-1">
           Attach Scope Document / RFP (Optional)
         </label>
@@ -607,7 +655,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       </div>
 
       {/* Consent Checkbox */}
-      <div className="pt-2">
+      <div className={!enableMultiStep || currentStep === 2 ? 'pt-2' : 'hidden'}>
         <label className="flex items-start gap-2.5 cursor-pointer">
           <input
             type="checkbox"
@@ -638,15 +686,30 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
           <ShieldCheck className="w-4 h-4 text-emerald-600" />
           <span>Encrypted submission</span>
         </div>
-        <Button
-          type="submit"
-          variant="primary"
-          size="md"
-          isLoading={isSubmitting}
-          icon={<ArrowRight className="w-4 h-4" />}
-        >
-          Submit Project Enquiry
-        </Button>
+        <div className="flex items-center gap-3">
+          {enableMultiStep && currentStep > 0 && (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              disabled={isSubmitting}
+              onClick={() => setCurrentStep((step) => step - 1)}
+            >
+              Back
+            </Button>
+          )}
+          <Button
+            type="submit"
+            variant="primary"
+            size="md"
+            isLoading={isSubmitting}
+            icon={<ArrowRight className="w-4 h-4" />}
+          >
+            {!enableMultiStep || currentStep === ENQUIRY_STEPS.length - 1
+              ? 'Submit Project Enquiry'
+              : 'Continue'}
+          </Button>
+        </div>
       </div>
     </form>
   );

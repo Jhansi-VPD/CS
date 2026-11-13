@@ -31,6 +31,9 @@ const serviceFormMapping: Record<string, string> = {
   'back-office-services': 'Enterprise Back-Office Services',
 };
 
+const SERVICE_DISCUSS_LINK_CLASS =
+  'inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-navy-midnight bg-white px-4 py-2 text-sm font-bold text-navy-midnight transition-colors hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-orange';
+
 export const NonITSolutionsPage: React.FC = () => {
   const [activeDomain, setActiveDomain] = useState<string>('healthcare');
   const [prefill, setPrefill] = useState<{ service: string; nonce: number }>({
@@ -111,7 +114,7 @@ export const NonITSolutionsPage: React.FC = () => {
               <h1 className="mt-6 max-w-3xl font-heading text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-7xl">
                 Reliable Support for Essential Business Operations.
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
                 We support healthcare, financial, data-processing, and back-office operations through structured workflows, quality checks, and clear reporting.
               </p>
 
@@ -133,7 +136,7 @@ export const NonITSolutionsPage: React.FC = () => {
                 </Button>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-white/25 pt-5 font-mono text-[10px] font-semibold uppercase tracking-wider text-white/75 sm:text-xs">
+              <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-white/25 pt-5 font-mono text-xs font-semibold uppercase tracking-wider text-slate-300">
                 <span>Healthcare</span>
                 <span aria-hidden="true" className="text-coral-orange">·</span>
                 <span>Data Keying</span>
@@ -144,12 +147,12 @@ export const NonITSolutionsPage: React.FC = () => {
                 <span aria-hidden="true" className="text-coral-orange">·</span>
                 <span>Back-Office</span>
               </div>
-              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/65">
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-300">
                 <span className="flex items-center gap-2">
                   <Check className="h-3.5 w-3.5 text-coral-orange" />
                   Agreed Scopes & Milestone Reviews
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-wider">
+                <span className="font-mono text-xs uppercase tracking-wider text-slate-300">
                   US ⇄ India Workflows
                 </span>
               </div>
@@ -253,7 +256,7 @@ export const NonITSolutionsPage: React.FC = () => {
             </div>
           </div>
 
-          <p className="mt-10 border-t border-navy-midnight/10 pt-4 font-mono text-[10px] text-slate-500">
+          <p className="mt-10 border-t border-navy-midnight/10 pt-4 font-mono text-xs text-slate-600">
             * Process capabilities configured during scoping based on task volume and guidelines.
           </p>
         </div>
@@ -281,11 +284,11 @@ export const NonITSolutionsPage: React.FC = () => {
                     aria-current={isActive ? 'location' : undefined}
                     className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-200 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-orange sm:text-sm ${
                       isActive
-                        ? 'bg-white/10 text-white ring-1 ring-white/15'
+                        ? 'bg-white text-navy-midnight ring-2 ring-coral-orange'
                         : 'text-slate-300 hover:bg-white/10 hover:text-white'
                     }`}
                   >
-                    <span className={`font-mono text-[10px] ${isActive ? 'text-coral-bright font-bold' : 'text-slate-400'}`}>
+                    <span className={`font-mono text-xs ${isActive ? 'text-navy-midnight font-bold' : 'text-slate-400'}`}>
                       {item.count}
                     </span>
                     <span>{item.label}</span>
@@ -296,7 +299,7 @@ export const NonITSolutionsPage: React.FC = () => {
 
             <a
               href="#enquiry-form"
-              className="inline-flex min-h-10 shrink-0 items-center gap-1 text-[11px] font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-orange sm:text-xs"
+              className="inline-flex min-h-10 shrink-0 items-center gap-1 text-xs font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-orange"
             >
               <span>Get Started</span>
               <ArrowRight className="h-3 w-3" />
@@ -331,12 +334,12 @@ export const NonITSolutionsPage: React.FC = () => {
             </header>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
-            <ScrollReveal direction="up" delay={60}>
-              <article className="border-t border-white/30 pt-6 lg:pr-8">
+          <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-16">
+            <ScrollReveal direction="up" delay={60} className="h-full">
+              <article className="flex h-full flex-col border-t border-white/30 pt-6 lg:pr-8">
                 <div className="flex items-center gap-3">
                   <span className="font-heading text-4xl font-extrabold text-coral-orange">01</span>
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-slate-300">
                     CODING & REVENUE CYCLE
                   </span>
                   <FileHeart className="ml-auto h-5 w-5 text-coral-orange" />
@@ -344,7 +347,7 @@ export const NonITSolutionsPage: React.FC = () => {
                 <h3 className="mt-4 font-heading text-2xl font-bold text-white sm:text-3xl">
                   Medical Coding & Medical Billing
                 </h3>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
                   Support healthcare administrative workflows through structured coding and billing processes.
                 </p>
 
@@ -354,38 +357,38 @@ export const NonITSolutionsPage: React.FC = () => {
                     'Demographic entry, charge capture, and claim checks',
                     'Accounts receivable follow-up and denial management',
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/90">
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-300">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-coral-orange" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-white/70">
+                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-slate-300">
                   <span>Specialty-Trained Coders</span>
                   <span aria-hidden="true" className="text-coral-orange">·</span>
                   <span>Multi-Step Sampling</span>
                   <span aria-hidden="true" className="text-coral-orange">·</span>
                   <span>Secure Remote Desktops</span>
                 </div>
-                <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-4">
-                  <span className="text-xs italic text-white/60">Workflows reviewed prior to launch</span>
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-4">
+                  <span className="text-xs italic text-slate-300">Workflows reviewed prior to launch</span>
                   <a
                     href="#enquiry-form"
                     onClick={() => discussService(serviceFormMapping['medical-coding-billing'])}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
+                    className={SERVICE_DISCUSS_LINK_CLASS}
                   >
-                    Discuss Medical Coding <ArrowRight className="h-4 w-4" />
+                    Discuss Medical Coding <ArrowRight aria-hidden="true" className="h-4 w-4" />
                   </a>
                 </div>
               </article>
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={140}>
-              <article className="border-t border-white/30 pt-6 lg:mt-16 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+            <ScrollReveal direction="up" delay={140} className="h-full">
+              <article className="flex h-full flex-col border-t border-white/30 pt-6 lg:border-l lg:pl-10">
                 <div className="flex items-center gap-3">
                   <span className="font-heading text-4xl font-extrabold text-coral-bright">02</span>
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-slate-300">
                     CLINICAL ADMINISTRATION
                   </span>
                   <Activity className="ml-auto h-5 w-5 text-coral-bright" />
@@ -393,7 +396,7 @@ export const NonITSolutionsPage: React.FC = () => {
                 <h3 className="mt-4 font-heading text-2xl font-bold text-white sm:text-3xl">
                   Healthcare Support Processes
                 </h3>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
                   Assist healthcare operations with organised administrative and process support.
                 </p>
 
@@ -403,28 +406,28 @@ export const NonITSolutionsPage: React.FC = () => {
                     'Insurance eligibility and benefits verification',
                     'Medical records indexing and filing',
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/90">
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-300">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-coral-bright" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-white/70">
+                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-slate-300">
                   <span>Payer Guideline Alignment</span>
                   <span aria-hidden="true" className="text-coral-bright">·</span>
                   <span>Standardized Checklists</span>
                   <span aria-hidden="true" className="text-coral-bright">·</span>
                   <span>Audit-Ready Logs</span>
                 </div>
-                <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-4">
-                  <span className="text-xs italic text-white/60">Client-approved systems only</span>
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-4">
+                  <span className="text-xs italic text-slate-300">Client-approved systems only</span>
                   <a
                     href="#enquiry-form"
                     onClick={() => discussService(serviceFormMapping['healthcare-support-processes'])}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-coral-bright transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-bright"
+                    className={SERVICE_DISCUSS_LINK_CLASS}
                   >
-                    Discuss Healthcare Support <ArrowRight className="h-4 w-4" />
+                    Discuss Healthcare Support <ArrowRight aria-hidden="true" className="h-4 w-4" />
                   </a>
                 </div>
               </article>
@@ -456,7 +459,7 @@ export const NonITSolutionsPage: React.FC = () => {
               <h2 className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
                 Data Entry & Document Processing
               </h2>
-              <p className="mt-5 text-sm leading-relaxed text-white/80 sm:text-base">
+              <p className="mt-5 text-sm leading-relaxed text-slate-300 sm:text-base">
                 Handle business information and document workflows through structured processing, multi-format conversion, and dual-entry verification.
               </p>
 
@@ -467,28 +470,28 @@ export const NonITSolutionsPage: React.FC = () => {
                   'Data cleanup, deduplication & validation',
                   'PDF, TIFF, JPEG & structured formats',
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/90">
+                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-300">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-coral-bright" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/20 pt-5">
-                <span className="text-xs italic text-white/60">Accuracy targets agreed during scoping</span>
+              <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/20 pt-5">
+                <span className="text-xs italic text-slate-300">Accuracy targets agreed during scoping</span>
                 <a
                   href="#enquiry-form"
                   onClick={() => discussService(serviceFormMapping['data-entry-document-processing'])}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
+                  className={SERVICE_DISCUSS_LINK_CLASS}
                 >
-                  Discuss Data Entry <ArrowRight className="h-4 w-4" />
+                  Discuss Data Entry <ArrowRight aria-hidden="true" className="h-4 w-4" />
                 </a>
               </div>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={100} className="lg:col-span-6 lg:col-start-7">
               <div className="border-y border-white/25 py-6 sm:py-8">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-300">
                   DUAL-RUN KEYING FLOW
                 </span>
                 <div className="relative mt-7">
@@ -515,7 +518,7 @@ export const NonITSolutionsPage: React.FC = () => {
                           <h3 className="font-heading text-base font-bold text-white sm:text-lg">
                             {item.title}
                           </h3>
-                          <span className="mt-1 block font-mono text-[10px] uppercase tracking-wider text-coral-orange">
+                          <span className="mt-1 block font-mono text-xs uppercase tracking-wider text-coral-orange">
                             {item.detail}
                           </span>
                         </div>
@@ -554,12 +557,12 @@ export const NonITSolutionsPage: React.FC = () => {
             </header>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <ScrollReveal direction="up" delay={60} className="lg:col-span-5">
-              <article className="border-t border-coral-magenta/50 pt-6 lg:pr-8">
+          <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:items-stretch lg:gap-16">
+            <ScrollReveal direction="up" delay={60} className="h-full lg:col-span-5">
+              <article className="flex h-full flex-col border-t border-coral-magenta/50 pt-6 lg:pr-8">
                 <div className="flex items-center gap-3">
                   <span className="font-heading text-4xl font-extrabold text-coral-magenta">04</span>
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-coral-magenta">
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-coral-magenta">
                     ONBOARDING & AUDIT
                   </span>
                   <ShieldCheck className="ml-auto h-5 w-5 text-coral-magenta" />
@@ -591,24 +594,24 @@ export const NonITSolutionsPage: React.FC = () => {
                   <span aria-hidden="true" className="text-coral-magenta">·</span>
                   <span>Audit-Ready Logs</span>
                 </div>
-                <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-navy-midnight/15 pt-4">
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-navy-midnight/15 pt-4">
                   <span className="text-xs italic text-slate-500">Lending decisions stay with institutions</span>
                   <a
                     href="#enquiry-form"
                     onClick={() => discussService(serviceFormMapping['banking-kyc-mortgage'])}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-coral-magenta transition-colors hover:text-navy-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-magenta"
+                    className={SERVICE_DISCUSS_LINK_CLASS}
                   >
-                    Discuss Banking Support <ArrowRight className="h-4 w-4" />
+                    Discuss Banking Support <ArrowRight aria-hidden="true" className="h-4 w-4" />
                   </a>
                 </div>
               </article>
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={140} className="lg:col-span-6 lg:col-start-7 lg:mt-20">
-              <article className="border-t border-coral-purple/50 pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+            <ScrollReveal direction="up" delay={140} className="h-full lg:col-span-6 lg:col-start-7">
+              <article className="flex h-full flex-col border-t border-coral-purple/50 pt-6 lg:border-l lg:pl-10">
                 <div className="flex items-center gap-3">
                   <span className="font-heading text-4xl font-extrabold text-coral-purple">05</span>
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-coral-purple">
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-coral-purple">
                     FUND ADMINISTRATION
                   </span>
                   <TrendingUp className="ml-auto h-5 w-5 text-coral-purple" />
@@ -640,14 +643,14 @@ export const NonITSolutionsPage: React.FC = () => {
                   <span aria-hidden="true" className="text-coral-purple">·</span>
                   <span>Multi-Currency Ledgers</span>
                 </div>
-                <div className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-navy-midnight/15 pt-4">
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-navy-midnight/15 pt-4">
                   <span className="text-xs italic text-slate-500">Fiduciary duties remain with client</span>
                   <a
                     href="#enquiry-form"
                     onClick={() => discussService(serviceFormMapping['mutual-fund-operations'])}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-coral-purple transition-colors hover:text-navy-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-purple"
+                    className={SERVICE_DISCUSS_LINK_CLASS}
                   >
-                    Discuss Fund Operations <ArrowRight className="h-4 w-4" />
+                    Discuss Fund Operations <ArrowRight aria-hidden="true" className="h-4 w-4" />
                   </a>
                 </div>
               </article>
@@ -670,7 +673,7 @@ export const NonITSolutionsPage: React.FC = () => {
         />
 
         <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-24">
-          <ScrollReveal direction="up" className="lg:col-span-6">
+          <ScrollReveal direction="up" className="flex flex-col lg:col-span-6">
             <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-purple">
               OPERATIONAL DOMAIN · 06
             </span>
@@ -682,21 +685,21 @@ export const NonITSolutionsPage: React.FC = () => {
                 Enterprise Back-Office Services
               </h2>
             </div>
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
               Help businesses manage routine operational work through organised support processes, dedicated shifts, and SOP-driven execution.
             </p>
             <a
               href="#enquiry-form"
               onClick={() => discussService(serviceFormMapping['back-office-services'])}
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-coral-orange transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
+              className={`mt-8 lg:mt-auto ${SERVICE_DISCUSS_LINK_CLASS}`}
             >
-              Discuss Back-Office <ArrowRight className="h-4 w-4" />
+              Discuss Back-Office <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </a>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={100} className="lg:col-span-5 lg:col-start-8">
             <div className="border-y border-white/25 py-6">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-300">
                 OPERATIONAL CAPABILITIES
               </span>
               <ul className="mt-5 divide-y divide-white/15">
@@ -709,11 +712,11 @@ export const NonITSolutionsPage: React.FC = () => {
                     <span className="font-mono text-xs font-bold text-coral-orange">
                       0{index + 1}
                     </span>
-                    <span className="text-sm leading-relaxed text-white/90">{item}</span>
+                    <span className="text-sm leading-relaxed text-slate-300">{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 border-t border-white/15 pt-5 text-xs font-medium text-white/70">
+              <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 border-t border-white/15 pt-5 text-xs font-medium text-slate-300">
                 <span>Dedicated Shifts</span>
                 <span aria-hidden="true" className="text-coral-bright">·</span>
                 <span>SOP Model</span>
@@ -724,7 +727,7 @@ export const NonITSolutionsPage: React.FC = () => {
                 <span aria-hidden="true" className="text-coral-bright">·</span>
                 <span>Weekly Reviews</span>
               </div>
-              <p className="mt-5 text-xs italic text-white/60">
+              <p className="mt-5 text-xs italic text-slate-300">
                 Staffing levels set to your specifications
               </p>
             </div>
@@ -771,6 +774,7 @@ export const NonITSolutionsPage: React.FC = () => {
             {/* Clearly Visible Form Surface Card */}
             <div className="rounded-3xl border border-white/20 bg-white p-6 sm:p-10 shadow-2xl text-navy-midnight">
               <ProjectEnquiryForm
+                enableMultiStep
                 initialCategory="Non-IT / Business Operations"
                 initialService={prefill.service}
                 prefillNonce={prefill.nonce}

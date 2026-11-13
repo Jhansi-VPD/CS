@@ -34,8 +34,8 @@ export const Logo: React.FC<LogoProps> = ({
   };
 
   const subtitleSizes = {
-    sm: 'text-[9px] tracking-widest',
-    md: 'text-[10px] tracking-widest',
+    sm: 'text-xs tracking-widest',
+    md: 'text-xs tracking-widest',
     lg: 'text-xs tracking-widest',
     xl: 'text-sm tracking-widest',
   };
