@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Laptop, Layers, Handshake, ChartBarIncreasing } from 'lucide-react';
 import { ScrollReveal } from '../common/ScrollReveal';
+import { Button } from '../common/Button';
 
 const featureHighlights = [
   {
@@ -92,19 +93,21 @@ export const HeroSection: React.FC = () => {
             {/* Action Buttons */}
             <ScrollReveal direction="up" delay={200}>
               <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#F98F33] via-[#E73B50] to-[#D21D61] px-7 sm:px-8 py-3.5 text-sm sm:text-base font-semibold text-white shadow-glow-coral hover:shadow-glow-accent hover:-translate-y-0.5 transition-all duration-200"
+                <Button
+                  to="/services"
+                  variant="primary"
+                  size="lg"
+                  icon={<ArrowUpRight className="w-4 h-4 ml-0.5" />}
                 >
-                  <span>Explore Solutions</span>
-                  <ArrowUpRight className="w-4 h-4 ml-0.5" />
-                </Link>
-                <Link
-                  href="/partnerships"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-navy-midnight bg-white/90 backdrop-blur-[2px] px-7 sm:px-8 py-3.5 text-sm sm:text-base font-semibold text-navy-midnight hover:bg-navy-midnight hover:text-white transition-all duration-200"
+                  Explore Solutions
+                </Button>
+                <Button
+                  to="/partnerships"
+                  variant="purple"
+                  size="lg"
                 >
-                  <span>Partner With Us</span>
-                </Link>
+                  Partner With Us
+                </Button>
               </div>
             </ScrollReveal>
           </div>

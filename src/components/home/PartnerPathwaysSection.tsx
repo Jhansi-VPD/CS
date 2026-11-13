@@ -64,10 +64,10 @@ export const PartnerPathwaysSection: React.FC = () => {
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              <Button to="/partnerships#apply" variant="primary" size="md" icon={<ArrowRight className="w-4 h-4" />}>
+              <Button to="/partnerships#apply" variant="purple" size="md" icon={<ArrowRight className="w-4 h-4" />}>
                 Become a Partner
               </Button>
-              <Button to="/partnerships#criteria" variant="outline" size="md">
+              <Button to="/partnerships#criteria" variant="navy" size="md">
                 View Screening Criteria
               </Button>
             </div>

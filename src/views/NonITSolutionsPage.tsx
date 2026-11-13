@@ -17,6 +17,7 @@ import {
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { ProjectEnquiryForm } from '../components/forms/ProjectEnquiryForm';
 import { ScrollReveal } from '../components/common/ScrollReveal';
+import { Button } from '../components/common/Button';
 
 /* =========================================================================
    FORM SERVICE MAPPING
@@ -115,19 +116,21 @@ export const NonITSolutionsPage: React.FC = () => {
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a
+                <Button
                   href="#enquiry-form"
-                  className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-swift-gradient px-6 py-3 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-orange"
+                  variant="primary"
+                  size="md"
+                  icon={<ArrowRight className="h-4 w-4" />}
                 >
-                  <span>Discuss Your Requirements</span>
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <a
+                  Discuss Your Requirements
+                </Button>
+                <Button
                   href="#service-navigation"
-                  className="inline-flex min-h-12 items-center gap-2 border border-white/35 px-5 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:border-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  variant="white"
+                  size="md"
                 >
-                  <span>Explore Services</span>
-                </a>
+                  Explore Services
+                </Button>
               </div>
 
               <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-white/25 pt-5 font-mono text-[10px] font-semibold uppercase tracking-wider text-white/75 sm:text-xs">

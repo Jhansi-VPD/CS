@@ -5,6 +5,7 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { StrategicEnquiryForm } from '../components/forms/StrategicEnquiryForm';
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '../components/common/ScrollReveal';
+import { Button } from '../components/common/Button';
 
 const visionPillars = [
   { index: '01', title: 'Delivery Strength', text: 'Established teams, domain expertise, and operational capability.' },
@@ -189,19 +190,21 @@ export const StrategicDiscussionsPage: React.FC = () => {
                 integration, and long-term cross-border opportunities.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <a
+                <Button
                   href="#strategic-enquiry"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-swift-gradient px-7 py-3.5 text-sm font-bold text-white shadow-glow-coral transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-midnight"
+                  variant="primary"
+                  size="md"
+                  icon={<ArrowRight className="h-4 w-4" />}
                 >
                   Begin a Confidential Enquiry
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <a
+                </Button>
+                <Button
                   href="#vision"
-                  className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-bold text-white transition-colors hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-midnight"
+                  variant="purple"
+                  size="md"
                 >
                   Understand the Approach
-                </a>
+                </Button>
               </div>
             </div>
 
@@ -442,13 +445,16 @@ export const StrategicDiscussionsPage: React.FC = () => {
               If your organisation is exploring a meaningful long-term business relationship, we welcome an initial
               conversation.
             </p>
-            <a
-              href="#strategic-enquiry"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-navy-midnight transition-colors hover:bg-coral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-secondary"
-            >
-              Begin a Confidential Enquiry
-              <ArrowRight className="h-4 w-4" />
-            </a>
+            <div className="mt-8">
+              <Button
+                href="#strategic-enquiry"
+                variant="white"
+                size="md"
+                icon={<ArrowRight className="h-4 w-4" />}
+              >
+                Begin a Confidential Enquiry
+              </Button>
+            </div>
           </ScrollReveal>
         </div>
       </section>

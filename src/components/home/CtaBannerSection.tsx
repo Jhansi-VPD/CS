@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, ShieldCheck, Lock, Clock, Calendar, Sparkles } from 'lucide-react';
 import { ScrollReveal } from '../common/ScrollReveal';
 import { MeetingRequestModal } from '../forms/MeetingRequestModal';
+import { Button } from '../common/Button';
 
 export const CtaBannerSection: React.FC = () => {
   const [isMeetingOpen, setIsMeetingOpen] = useState(false);
@@ -52,21 +53,21 @@ export const CtaBannerSection: React.FC = () => {
 
               {/* Clear Primary & Secondary CTAs */}
               <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-                <button
-                  type="button"
+                <Button
                   onClick={() => setIsMeetingOpen(true)}
-                  className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-coral-orange to-coral-bright hover:from-coral-bright hover:to-coral-rose text-white px-8 py-3.5 text-xs sm:text-sm font-bold tracking-wide shadow-lg shadow-coral-bright/25 hover:shadow-coral-bright/40 transition-all duration-200 cursor-pointer group"
+                  variant="primary"
+                  size="md"
+                  icon={<ArrowRight className="w-4 h-4" />}
                 >
-                  <Calendar className="w-4 h-4" />
-                  <span>Get in Touch</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/05 hover:bg-white/10 text-white px-7 py-3.5 text-xs sm:text-sm font-semibold tracking-wide backdrop-blur-sm transition-colors"
+                  Get in Touch
+                </Button>
+                <Button
+                  to="/services"
+                  variant="white"
+                  size="md"
                 >
-                  <span>Explore Solutions</span>
-                </Link>
+                  Explore Solutions
+                </Button>
               </div>
 
               {/* Trust Indicators */}

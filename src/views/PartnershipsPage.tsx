@@ -79,10 +79,10 @@ export const PartnershipsPage: React.FC = () => {
               </div>
 
               <div className="pt-2 flex flex-wrap gap-3">
-                <Button to="#apply" variant="primary" size="md">
+                <Button to="#apply" variant="purple" size="md">
                   Apply for Qualification
                 </Button>
-                <Button to="#pathways" variant="secondary" size="md">
+                <Button to="#pathways" variant="rose" size="md">
                   Explore Commercial Models
                 </Button>
               </div>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '../common/ScrollReveal';
+import { Button } from '../common/Button';
 
 const pillars = [
   {
@@ -125,13 +126,14 @@ export const CompanyIntroSection: React.FC = () => {
           {/* CTA Link */}
           <ScrollReveal direction="up" delay={260}>
             <div className="pt-3">
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-coral-orange to-coral-bright hover:from-coral-bright hover:to-coral-rose text-white px-7 py-3.5 text-xs sm:text-sm font-semibold tracking-wide shadow-lg shadow-coral-bright/20 hover:shadow-coral-bright/35 transition-all duration-200 group"
+              <Button
+                to="/about"
+                variant="orange"
+                size="md"
+                icon={<ArrowRight className="w-4 h-4" />}
               >
-                <span>Learn About Our Approach</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
+                Learn About Our Approach
+              </Button>
             </div>
           </ScrollReveal>
         </div>

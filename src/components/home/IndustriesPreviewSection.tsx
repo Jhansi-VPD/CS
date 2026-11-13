@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Building2, Code2, HeartPulse, Landmark } from 'lucide-react';
 import { ScrollReveal } from '../common/ScrollReveal';
+import { Button } from '../common/Button';
 
 interface IndustrySector {
   id: string;
@@ -81,13 +82,14 @@ export const IndustriesPreviewSection: React.FC = () => {
         </ScrollReveal>
 
         <ScrollReveal direction="up" delay={100} className="shrink-0">
-          <Link
-            href="/industries"
-            className="group inline-flex min-h-11 items-center gap-2 rounded-full border border-navy-midnight/25 bg-white px-6 text-sm font-semibold text-navy-midnight transition-all hover:border-navy-midnight hover:bg-navy-midnight hover:text-white"
+          <Button
+            to="/industries"
+            variant="navy"
+            size="md"
+            icon={<ArrowRight className="h-4 w-4" />}
           >
-            <span>View All Industries</span>
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
+            View All Industries
+          </Button>
         </ScrollReveal>
       </div>
 

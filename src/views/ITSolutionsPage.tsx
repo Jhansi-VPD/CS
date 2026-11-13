@@ -6,6 +6,7 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { itServices } from '../data/servicesData';
 import { ArrowRight, ShieldCheck, CheckCircle2, Clock, Calendar } from 'lucide-react';
 import { ScrollReveal } from '../components/common/ScrollReveal';
+import { Button } from '../components/common/Button';
 
 interface ServiceMeta {
   eyebrow: string;
@@ -152,19 +153,21 @@ export const ITSolutionsPage: React.FC = () => {
                 From enterprise systems to custom applications, we help businesses build, improve, and maintain technology that supports their growth.
               </p>
               <div className="mt-7 flex flex-wrap items-center gap-3.5">
-                <Link
-                  href="/contact?type=project&category=IT+Solutions"
-                  className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold bg-swift-gradient text-white shadow-glow-coral hover:shadow-glow-accent hover:-translate-y-0.5 transition-all duration-200 max-sm:min-h-[44px]"
+                <Button
+                  to="/contact?type=project&category=IT+Solutions"
+                  variant="primary"
+                  size="md"
+                  icon={<ArrowRight className="w-4 h-4" />}
                 >
-                  <span>Discuss Your Project</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <a
+                  Discuss Your Project
+                </Button>
+                <Button
                   href="#capabilities"
-                  className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold border border-slate-300 text-navy-midnight hover:text-coral-bright hover:border-coral-bright/50 hover:bg-coral-50/50 transition-all duration-200 max-sm:min-h-[44px]"
+                  variant="navy"
+                  size="md"
                 >
                   Explore Capabilities
-                </a>
+                </Button>
               </div>
               <p className="mt-7 text-[10px] font-mono uppercase tracking-[0.22em] text-slate-400">
                 ERP — Portals — Custom Software — Cloud — Testing — Transformation
@@ -283,13 +286,14 @@ export const ITSolutionsPage: React.FC = () => {
                     <p className="mt-4 text-[11px] font-mono text-slate-500 tracking-wide">{service.engagementApproach}</p>
 
                     <div className="mt-5">
-                      <Link
-                        href={`/contact?type=project&category=IT+Solutions&service=${encodeURIComponent(meta.formService)}`}
-                        className="group/cta inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold bg-navy-midnight text-white hover:bg-navy-secondary transition-colors duration-200 max-sm:min-h-[44px]"
+                      <Button
+                        to={`/contact?type=project&category=IT+Solutions&service=${encodeURIComponent(meta.formService)}`}
+                        variant="secondary"
+                        size="sm"
+                        icon={<ArrowRight className="w-3.5 h-3.5" />}
                       >
-                        <span>Discuss This Service</span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/cta:translate-x-0.5" />
-                      </Link>
+                        Discuss This Service
+                      </Button>
                       <p className="mt-3 text-[11px] text-slate-400 italic">* {service.disclaimer}</p>
                     </div>
                   </ScrollReveal>
@@ -347,20 +351,23 @@ export const ITSolutionsPage: React.FC = () => {
 
             {/* Action buttons */}
             <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/contact?type=project&category=IT+Solutions"
-                className="inline-flex items-center gap-2.5 rounded-xl px-7 py-3.5 text-sm sm:text-base font-bold bg-swift-gradient text-white shadow-glow-coral hover:shadow-glow-accent hover:-translate-y-0.5 transition-all duration-200"
+              <Button
+                to="/contact?type=project&category=IT+Solutions"
+                variant="primary"
+                size="md"
+                icon={<ArrowRight className="w-4 h-4" />}
               >
-                <span>Go to Project Enquiry Form</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/contact?modal=meeting"
-                className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm sm:text-base font-semibold border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 text-white transition-all duration-200"
+                Go to Project Enquiry Form
+              </Button>
+              <Button
+                to="/contact?modal=meeting"
+                variant="white"
+                size="md"
+                icon={<Calendar className="w-4 h-4" />}
+                iconPosition="left"
               >
-                <Calendar className="w-4 h-4 text-coral-orange" />
-                <span>Schedule Introductory Call</span>
-              </Link>
+                Schedule Introductory Call
+              </Button>
             </div>
 
             {/* 3 Trust / Governance Badges */}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from '../common/ScrollReveal';
+import { Button } from '../common/Button';
 
 export const ServicesOverviewSection: React.FC = () => {
   return (
@@ -39,13 +40,14 @@ export const ServicesOverviewSection: React.FC = () => {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={100} className="shrink-0">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 rounded-full border border-navy-midnight/25 bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-navy-midnight shadow-2xs hover:bg-navy-midnight hover:text-white hover:border-navy-midnight transition-all duration-200 group"
+            <Button
+              to="/services"
+              variant="navy"
+              size="sm"
+              icon={<ArrowRight className="w-4 h-4" />}
             >
-              <span>Explore All Solutions</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
+              Explore All Solutions
+            </Button>
           </ScrollReveal>
         </div>
 
@@ -103,13 +105,14 @@ export const ServicesOverviewSection: React.FC = () => {
 
                   {/* CTA Action */}
                   <div className="pt-3">
-                    <Link
-                      href="/services/it-solutions"
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-coral-orange to-coral-bright hover:from-coral-bright hover:to-coral-rose text-white px-6 py-3 text-xs sm:text-sm font-semibold tracking-wide shadow-md shadow-coral-bright/20 hover:shadow-coral-bright/35 transition-all duration-200 group/link"
+                    <Button
+                      to="/services/it-solutions"
+                      variant="primary"
+                      size="sm"
+                      icon={<ArrowRight className="w-4 h-4" />}
                     >
-                      <span>Explore IT Services</span>
-                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
-                    </Link>
+                      Explore IT Services
+                    </Button>
                   </div>
                 </div>
               </article>

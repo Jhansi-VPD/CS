@@ -566,7 +566,7 @@ export const StrategicEnquiryForm: React.FC = () => {
         </div>
         <Button
           type="submit"
-          variant="secondary"
+          variant="purple"
           size="md"
           isLoading={isSubmitting}
           icon={<ArrowRight className="w-4 h-4" />}

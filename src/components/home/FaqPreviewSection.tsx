@@ -71,7 +71,7 @@ export const FaqPreviewSection: React.FC = () => {
           <div className="mt-8 text-center">
             <Button
               to="/faq"
-              variant="outline"
+              variant="navy"
               size="md"
               icon={<ArrowRight className="w-4 h-4" />}
             >

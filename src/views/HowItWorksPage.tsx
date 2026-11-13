@@ -213,7 +213,7 @@ export const HowItWorksPage: React.FC = () => {
               <Button to="/contact?type=project" variant="primary" size="md">
                 Submit Project Requirement
               </Button>
-              <Button to="/partnerships#apply" variant="secondary" size="md">
+              <Button to="/partnerships#apply" variant="purple" size="md">
                 Apply as a Delivery Partner
               </Button>
             </div>

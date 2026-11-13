@@ -68,7 +68,7 @@ export const CookieBanner: React.FC = () => {
               variant="secondary"
               size="sm"
               onClick={handleEssentialOnly}
-              className="text-xs border-slate-700 bg-navy-surface"
+              className="text-xs"
             >
               Essential Only
             </Button>
