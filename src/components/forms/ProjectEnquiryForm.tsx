@@ -601,7 +601,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
           )}
         </div>
         {fileError && <p className="text-xs text-coral-bright mt-1">{fileError}</p>}
-        <p className="text-[11px] text-slate-400 mt-1">
+        <p className="text-xs text-slate-400 mt-1">
           Max file size: 10 MB. Supported formats: PDF, DOCX, XLSX, PNG, JPG.
         </p>
       </div>

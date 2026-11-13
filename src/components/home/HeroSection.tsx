@@ -32,7 +32,7 @@ const featureHighlights = [
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-white pt-3 pb-12 sm:pt-4 sm:pb-16 lg:pt-5 lg:pb-20">
+    <section className="relative isolate overflow-hidden bg-white pt-3 pb-8 sm:pt-4 sm:pb-10 lg:pt-5 lg:pb-12">
       {/* SVG Gradient Definition for Icons */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true" focusable="false">
         <defs>
@@ -118,7 +118,7 @@ export const HeroSection: React.FC = () => {
 
         {/* Bottom Feature Strip with 4 Pillars - Clean borderless inline layout */}
         <ScrollReveal direction="up" delay={250}>
-          <div className="mt-14 sm:mt-16 pt-2 pb-0 relative z-10">
+          <div className="mt-6 sm:mt-8 pt-1 pb-0 relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 items-center">
               {featureHighlights.map((item) => (
                 <Link

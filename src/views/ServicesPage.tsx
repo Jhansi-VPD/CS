@@ -18,7 +18,7 @@ interface SectionHeadingProps {
   accentBar: string;
   title: string;
   description: string;
-  cta?: { href: string; label: string; hoverClass: string };
+  cta?: { href: string; label: string };
 }
 
 const SectionHeading: React.FC<SectionHeadingProps> = ({
@@ -35,7 +35,7 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
       <div className="flex items-center gap-3">
         <span className={`font-mono text-xs font-bold ${accentText}`}>{index}</span>
         <span className={`h-px w-10 ${accentBar}`} aria-hidden="true" />
-        <span className={`text-[11px] font-bold uppercase tracking-[0.18em] ${accentText}`}>{label}</span>
+        <span className={`text-xs font-bold uppercase tracking-[0.18em] ${accentText}`}>{label}</span>
       </div>
       <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-navy-midnight tracking-tight mt-4">
         {title}
@@ -44,13 +44,15 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
     <div className="max-w-md">
       <p className="text-sm text-slate-600 leading-relaxed">{description}</p>
       {cta && (
-        <Link
-          href={cta.href}
-          className={`group inline-flex items-center gap-1.5 text-xs font-bold mt-4 tap-link ${cta.hoverClass}`}
+        <Button
+          to={cta.href}
+          variant="outline"
+          size="md"
+          className="mt-4"
+          icon={<ArrowRight className="w-4 h-4" />}
         >
-          <span>{cta.label}</span>
-          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-        </Link>
+          {cta.label}
+        </Button>
       )}
     </div>
   </div>
@@ -82,26 +84,27 @@ export const ServicesPage: React.FC = () => {
 
           <div className="mt-2 sm:mt-3 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <div className="lg:col-span-7 animate-fadeIn">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-coral-orange">
+              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-coral-orange">
                 Solutions Portfolio
               </span>
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold text-white tracking-tight leading-[1.08] mt-3">
+              <h1 className="font-heading text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.08] mt-3">
                 Capabilities That Move<br className="hidden sm:block" /> Business Forward.
               </h1>
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mt-5 max-w-xl">
                 Technology, business operations and delivery partnerships — aligned to real business needs.
               </p>
 
-              <nav aria-label="Section shortcuts" className="mt-8 flex flex-wrap gap-3">
+              <p className="mt-8 mb-3 text-xs font-bold uppercase tracking-wide text-slate-300">Jump to a section</p>
+              <nav aria-label="Section shortcuts" className="flex flex-wrap gap-3">
                 {heroShortcuts.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="group inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-bold text-slate-200 transition-all duration-200 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                    className="group inline-flex min-h-11 items-center gap-2.5 rounded-lg border border-white/25 bg-white/10 px-4 py-2.5 text-xs font-bold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral-orange"
                   >
                     <span>{item.label}</span>
-                    <span className="font-mono text-[10px] text-coral-orange">{item.count}</span>
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-coral-orange" />
+                    <span className="font-mono text-xs text-coral-orange">{item.count}</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-coral-orange" />
                   </a>
                 ))}
               </nav>
@@ -130,7 +133,7 @@ export const ServicesPage: React.FC = () => {
                       {/* Glassmorphic Capability Badge */}
                       <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl bg-navy-midnight/90 p-3.5 backdrop-blur-md border border-white/15 text-white">
                         <div>
-                          <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-coral-orange block">
+                          <span className="font-mono text-xs font-bold uppercase tracking-wider text-coral-orange block">
                             Integrated Delivery
                           </span>
                           <p className="font-heading text-xs sm:text-sm font-bold text-white">
@@ -161,7 +164,7 @@ export const ServicesPage: React.FC = () => {
               accentBar="bg-coral-orange"
               title="Technology Built Around Business Needs."
               description="From enterprise systems to custom applications, we support technology that helps businesses operate and grow."
-              cta={{ href: '/services/it-solutions', label: 'Explore IT Services', hoverClass: 'text-coral-bright hover:text-coral-rose' }}
+              cta={{ href: '/services/it-solutions', label: 'Explore IT Services' }}
             />
           </ScrollReveal>
 
@@ -176,7 +179,7 @@ export const ServicesPage: React.FC = () => {
                   loading="lazy"
                 />
                 <figcaption className="absolute left-4 bottom-4 rounded-xl bg-navy-midnight/85 backdrop-blur-sm px-4 py-2.5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-coral-orange">Engineering</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral-orange">Engineering</p>
                   <p className="text-xs text-white font-medium mt-0.5">Enterprise platforms to custom builds</p>
                 </figcaption>
               </figure>
@@ -194,10 +197,10 @@ export const ServicesPage: React.FC = () => {
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <span className="flex-1 min-w-0 block">
-                        <span className="block text-sm sm:text-[15px] font-bold text-navy-midnight group-hover:text-coral-bright transition-colors">
+                        <span className="block text-sm sm:text-base font-bold text-navy-midnight group-hover:text-coral-bright transition-colors">
                           {service.title}
                         </span>
-                        <span className="block text-xs text-slate-500 leading-relaxed mt-1">
+                        <span className="block text-xs text-slate-600 leading-relaxed mt-1">
                           {service.shortDescription}
                         </span>
                       </span>
@@ -225,7 +228,7 @@ export const ServicesPage: React.FC = () => {
               accentBar="bg-coral-magenta"
               title="Reliable Support for Essential Operations."
               description="Structured operational support across healthcare, financial processes and business administration."
-              cta={{ href: '/services/non-it-solutions', label: 'Explore Non-IT Services', hoverClass: 'text-coral-magenta hover:text-coral-purple' }}
+              cta={{ href: '/services/non-it-solutions', label: 'Explore Non-IT Services' }}
             />
           </ScrollReveal>
 
@@ -242,7 +245,7 @@ export const ServicesPage: React.FC = () => {
                             className="group block bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 transition-all duration-200 hover:border-coral-magenta/40 hover:shadow-card-soft"
                           >
                             <span className="flex items-center gap-2">
-                              <span className="font-mono text-[10px] font-bold text-coral-magenta">
+                              <span className="font-mono text-xs font-bold text-coral-magenta">
                                 {String(i + 1).padStart(2, '0')}
                               </span>
                               <span className="h-px flex-1 bg-slate-100" aria-hidden="true" />
@@ -251,7 +254,7 @@ export const ServicesPage: React.FC = () => {
                             <span className="block text-sm font-bold text-navy-midnight mt-2.5 group-hover:text-coral-magenta transition-colors">
                               {service.title}
                             </span>
-                            <span className="block text-[11px] text-slate-500 leading-relaxed mt-1">
+                            <span className="block text-xs text-slate-600 leading-relaxed mt-1">
                               {service.shortDescription}
                             </span>
                           </Link>
@@ -263,17 +266,17 @@ export const ServicesPage: React.FC = () => {
               </div>
             </div>
 
-            <ScrollReveal direction="up" delay={120} className="lg:col-span-5">
-              <figure className="relative lg:mt-10">
+            <ScrollReveal direction="up" delay={120} className="lg:col-span-5 lg:self-stretch">
+              <figure className="relative h-80 sm:h-96 lg:h-full">
                 <div aria-hidden="true" className="absolute -right-3 -bottom-3 h-full w-full rounded-2xl border border-coral-magenta/25 sm:-right-4 sm:-bottom-4" />
                 <img
                   src="/images/solutions-non-it-operations.jpg"
                   alt="Operations specialists reviewing documents and workflows"
-                  className="relative w-full aspect-[3/4] object-cover rounded-2xl shadow-card-soft"
+                  className="relative h-full w-full object-cover rounded-2xl shadow-card-soft"
                   loading="lazy"
                 />
                 <figcaption className="absolute left-4 top-4 rounded-xl bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-sm">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-coral-magenta">Operations</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral-magenta">Operations</p>
                   <p className="text-xs text-navy-midnight font-medium mt-0.5">Process-led, checklist-driven teams</p>
                 </figcaption>
               </figure>
@@ -293,7 +296,7 @@ export const ServicesPage: React.FC = () => {
               accentBar="bg-coral-purple"
               title="The Right Capabilities. The Right Opportunities."
               description="We help identify suitable delivery organizations and align capabilities with project requirements."
-              cta={{ href: '/partnerships', label: 'Explore Partnerships', hoverClass: 'text-coral-purple hover:text-coral-magenta' }}
+              cta={{ href: '/partnerships', label: 'Explore Partnerships' }}
             />
           </ScrollReveal>
 
@@ -308,7 +311,7 @@ export const ServicesPage: React.FC = () => {
                   loading="lazy"
                 />
                 <figcaption className="absolute left-4 bottom-4 rounded-xl bg-navy-midnight/85 backdrop-blur-sm px-4 py-2.5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-coral-orange">Partnerships</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral-orange">Partnerships</p>
                   <p className="text-xs text-white font-medium mt-0.5">Discovery, alignment and coordinated delivery</p>
                 </figcaption>
               </figure>
@@ -323,9 +326,9 @@ export const ServicesPage: React.FC = () => {
                       <span aria-hidden="true" className="absolute left-0 top-0.5 flex h-4 w-4 items-center justify-center rounded-full border-2 border-coral-purple bg-white">
                         <span className="h-1.5 w-1.5 rounded-full bg-coral-magenta" />
                       </span>
-                      <p className="font-mono text-[10px] font-bold text-coral-purple/70">{String(i + 1).padStart(2, '0')}</p>
-                      <h3 className="text-sm sm:text-[15px] font-bold text-navy-midnight mt-0.5">{service.title}</h3>
-                      <p className="text-xs text-slate-500 leading-relaxed mt-1 max-w-md">{service.shortDescription}</p>
+                      <p className="font-mono text-xs font-bold text-coral-purple">{String(i + 1).padStart(2, '0')}</p>
+                      <h3 className="text-sm sm:text-base font-bold text-navy-midnight mt-0.5">{service.title}</h3>
+                      <p className="text-xs text-slate-600 leading-relaxed mt-1 max-w-md">{service.shortDescription}</p>
                     </li>
                   ))}
                 </ul>
@@ -354,7 +357,7 @@ export const ServicesPage: React.FC = () => {
             <h3 className="text-sm sm:text-base font-heading font-bold text-navy-midnight">
               Want Examples of Project Categories?
             </h3>
-            <p className="text-xs text-slate-500 mt-1 max-w-xl">
+            <p className="text-xs text-slate-600 mt-1 max-w-xl">
               Browse illustrative project categories, or see our six-stage delivery process.
             </p>
           </div>
@@ -362,7 +365,7 @@ export const ServicesPage: React.FC = () => {
             <Button to="/project-opportunities" variant="outline" size="sm" icon={<Briefcase className="w-3.5 h-3.5" />}>
               Project Categories
             </Button>
-            <Button to="/how-it-works" variant="secondary" size="sm" icon={<Layers className="w-3.5 h-3.5" />}>
+            <Button to="/how-it-works" variant="outline" size="sm" icon={<Layers className="w-3.5 h-3.5" />}>
               How It Works
             </Button>
           </div>
@@ -377,7 +380,7 @@ export const ServicesPage: React.FC = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
           <ScrollReveal direction="up">
             <div className="max-w-2xl mx-auto text-center">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-coral-orange">
+              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-coral-orange">
                 Project Enquiry
               </span>
               <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-4">

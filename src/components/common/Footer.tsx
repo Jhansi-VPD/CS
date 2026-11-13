@@ -24,9 +24,9 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <ScrollReveal direction="up">
-          <div className="grid grid-cols-1 gap-4 pb-5 md:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+          <div className="grid grid-cols-1 gap-8 pb-6 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
             {/* Brand Column */}
-            <div className="space-y-2 lg:col-span-2">
+            <div className="space-y-3 lg:col-span-5">
               <Logo variant="horizontal" theme="dark" size="sm" />
               <p className="max-w-sm text-xs font-medium leading-relaxed text-slate-300">
                 Connecting Global Opportunities with Delivery Excellence.
@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
                 A US-oriented IT and Non-IT project solutions and partnership platform connecting international project requirements with qualified delivery organizations in India and global markets.
               </p>
               <div className="pt-1">
-                <h3 className="mb-1 text-xs font-bold uppercase tracking-wider text-white">
+                <h3 className="mb-1 text-xs font-bold text-white">
                   Connect With Us
                 </h3>
                 <SocialMediaLinks />
@@ -43,11 +43,11 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Solutions Column */}
-            <div>
-              <h3 className="mb-1 text-xs font-bold uppercase tracking-wider text-white">
-                Solutions & Delivery
+            <div className="lg:col-span-2 lg:col-start-7">
+              <h3 className="mb-2 text-xs font-bold text-white uppercase tracking-wider font-mono">
+                Solutions &amp; Delivery
               </h3>
-              <ul className="space-y-0">
+              <ul className="space-y-1">
                 {footerLinks.solutions.map((link) => (
                   <li key={link.label}>
                     <Link
@@ -62,11 +62,11 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Partnerships Column */}
-            <div>
-              <h3 className="mb-1 text-xs font-bold uppercase tracking-wider text-white">
+            <div className="lg:col-span-2">
+              <h3 className="mb-2 text-xs font-bold text-white uppercase tracking-wider font-mono">
                 Delivery Partnerships
               </h3>
-              <ul className="space-y-0">
+              <ul className="space-y-1">
                 {footerLinks.partnerships.map((link) => (
                   <li key={link.label}>
                     <Link
@@ -81,11 +81,11 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Corporate & Legal Column */}
-            <div>
-              <h3 className="mb-1 text-xs font-bold uppercase tracking-wider text-white">
-                Company & Legal
+            <div className="lg:col-span-2">
+              <h3 className="mb-2 text-xs font-bold text-white uppercase tracking-wider font-mono">
+                Company &amp; Legal
               </h3>
-              <ul className="space-y-0">
+              <ul className="space-y-1">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
                     <Link

@@ -24,21 +24,21 @@ export const CapabilityStrip: React.FC = () => {
   return (
     <section aria-label="Capability stacks" className="border-y border-slate-200/80 bg-slate-50/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3 mb-8">
           <span className="h-px w-8 bg-coral-orange" aria-hidden="true" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+          <span className="text-xs font-bold text-slate-600">
             Stacks &amp; Standards Supported Across the Delivery Network
           </span>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-8">
           {capabilityGroups.map((group) => {
             const Icon = group.icon;
             return (
-              <div key={group.domain} className="flex items-start gap-3">
-                <Icon className="w-4 h-4 text-coral-orange mt-0.5 shrink-0" strokeWidth={1.75} aria-hidden="true" />
+              <div key={group.domain} className="flex items-start gap-4 py-1">
+                <Icon className="w-5 h-5 text-coral-orange mt-0.5 shrink-0" strokeWidth={1.75} aria-hidden="true" />
                 <div>
                   <p className="text-xs font-bold text-navy-midnight">{group.domain}</p>
-                  <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">{group.stack}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed mt-1">{group.stack}</p>
                 </div>
               </div>
             );

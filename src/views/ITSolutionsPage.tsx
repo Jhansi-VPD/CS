@@ -32,8 +32,8 @@ const serviceMeta: Record<string, ServiceMeta> = {
     bg: 'bg-white',
     chip: 'border-coral-orange/40 bg-coral-orange/10 text-coral-orange',
     dot: 'bg-coral-orange',
-    visualSpan: 'lg:col-span-7',
-    textSpan: 'lg:col-span-5',
+    visualSpan: 'lg:col-span-6',
+    textSpan: 'lg:col-span-6',
     visualFirst: true
   },
   'web-applications-portals': {
@@ -71,8 +71,8 @@ const serviceMeta: Record<string, ServiceMeta> = {
     bg: 'bg-[#F5F6FA]',
     chip: 'border-coral-magenta/40 bg-coral-magenta/10 text-coral-magenta',
     dot: 'bg-coral-magenta',
-    visualSpan: 'lg:col-span-7',
-    textSpan: 'lg:col-span-5',
+    visualSpan: 'lg:col-span-6',
+    textSpan: 'lg:col-span-6',
     visualFirst: false
   },
   'application-testing-maintenance': {
@@ -84,8 +84,8 @@ const serviceMeta: Record<string, ServiceMeta> = {
     bg: 'bg-white',
     chip: 'border-coral-purple/40 bg-coral-purple/10 text-coral-purple',
     dot: 'bg-coral-purple',
-    visualSpan: 'lg:col-span-5',
-    textSpan: 'lg:col-span-7',
+    visualSpan: 'lg:col-span-6',
+    textSpan: 'lg:col-span-6',
     visualFirst: true
   },
   'digital-transformation': {
@@ -145,7 +145,7 @@ export const ITSolutionsPage: React.FC = () => {
               <span className="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
                 IT Solutions
               </span>
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.3rem] font-extrabold text-navy-midnight mt-2 sm:mt-2.5 leading-[1.08] tracking-tight">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold text-navy-midnight mt-2 sm:mt-2.5 leading-[1.08] tracking-tight">
                 Technology That Works
                 <br className="hidden sm:block" /> for Your Business.
               </h1>
@@ -163,13 +163,13 @@ export const ITSolutionsPage: React.FC = () => {
                 </Button>
                 <Button
                   href="#capabilities"
-                  variant="navy"
+                  variant="outline"
                   size="md"
                 >
                   Explore Capabilities
                 </Button>
               </div>
-              <p className="mt-7 text-[10px] font-mono uppercase tracking-[0.22em] text-slate-400">
+              <p className="mt-7 text-xs font-mono uppercase tracking-[0.2em] text-slate-500">
                 ERP — Portals — Custom Software — Cloud — Testing — Transformation
               </p>
             </div>
@@ -198,7 +198,7 @@ export const ITSolutionsPage: React.FC = () => {
               <ScrollReveal direction="up">
                 <div className="flex items-center gap-3">
                   <span className="h-px w-10 bg-coral-orange/50" aria-hidden="true" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Delivery Approach</span>
+                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-300">Delivery Approach</span>
                 </div>
                 <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
                   Built for Quality and Scale.
@@ -215,8 +215,8 @@ export const ITSolutionsPage: React.FC = () => {
                     className="relative w-full aspect-[4/3] object-cover rounded-2xl shadow-card-soft transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="absolute bottom-3 left-3 rounded-lg bg-navy-midnight/90 border border-white/10 px-3 py-2 backdrop-blur-sm">
-                    <span className="block text-[10px] font-bold uppercase tracking-wider text-coral-orange">Engineering</span>
-                    <span className="block text-[10px] text-slate-300 mt-0.5">Shared repositories · reviewed milestones</span>
+                    <span className="block text-xs font-bold uppercase tracking-wider text-coral-orange">Engineering</span>
+                    <span className="block text-xs text-slate-200 mt-0.5">Shared repositories · reviewed milestones</span>
                   </div>
                 </div>
               </ScrollReveal>
@@ -227,9 +227,9 @@ export const ITSolutionsPage: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10">
                   {deliveryPrinciples.map((principle, i) => (
                     <div key={principle.title} className="bg-navy-midnight p-6 sm:p-8 transition-colors duration-300 hover:bg-white/[0.04]">
-                      <span className="font-mono text-xs font-bold text-coral-orange">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="font-mono text-xs font-semibold text-coral-orange/85 tracking-widest uppercase">{String(i + 1).padStart(2, '0')}</span>
                       <h3 className="text-base font-bold text-white mt-3">{principle.title}</h3>
-                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">{principle.detail}</p>
+                      <p className="text-sm text-slate-300 font-normal leading-relaxed mt-2.5">{principle.detail}</p>
                     </div>
                   ))}
                 </div>
@@ -267,7 +267,7 @@ export const ITSolutionsPage: React.FC = () => {
                         {String(idx + 1).padStart(2, '0')}
                       </span>
                       <span className="h-px w-8 bg-slate-300" aria-hidden="true" />
-                      <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">{meta.eyebrow}</span>
+                      <span className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">{meta.eyebrow}</span>
                     </div>
                     <h2 className="mt-4 text-2xl sm:text-3xl font-heading font-extrabold text-navy-midnight tracking-tight">
                       {service.title}
@@ -283,18 +283,18 @@ export const ITSolutionsPage: React.FC = () => {
                       ))}
                     </ul>
 
-                    <p className="mt-4 text-[11px] font-mono text-slate-500 tracking-wide">{service.engagementApproach}</p>
+                    <p className="mt-4 text-xs font-mono text-slate-600 tracking-wide">{service.engagementApproach}</p>
 
                     <div className="mt-5">
                       <Button
                         to={`/contact?type=project&category=IT+Solutions&service=${encodeURIComponent(meta.formService)}`}
-                        variant="secondary"
+                        variant="outline"
                         size="sm"
                         icon={<ArrowRight className="w-3.5 h-3.5" />}
                       >
                         Discuss This Service
                       </Button>
-                      <p className="mt-3 text-[11px] text-slate-400 italic">* {service.disclaimer}</p>
+                      <p className="mt-3 text-xs text-slate-500 italic">* {service.disclaimer}</p>
                     </div>
                   </ScrollReveal>
                 </div>
@@ -306,21 +306,29 @@ export const ITSolutionsPage: React.FC = () => {
 
       {/* Engineering technology showcase */}
       <section aria-label="Engineering stacks and standards" className="border-y border-slate-200/80 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-          <div className="flex items-center gap-3 mb-7">
-            <span className="h-px w-8 bg-coral-orange" aria-hidden="true" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">
-              Engineering Stacks &amp; Standards
-            </span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="max-w-2xl mb-8">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="h-px w-8 bg-coral-orange" aria-hidden="true" />
+              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-slate-500">
+                Core Capabilities
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-navy-midnight tracking-tight">
+              Engineering Stacks &amp; Delivery Standards
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
+              Standardized development frameworks, validated toolchains, and modern architectural patterns across every client engagement.
+            </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {techGroups.map((group) => (
-              <div key={group.label} className="flex items-start gap-3">
-                <span className={`mt-1 h-2 w-2 rounded-full shrink-0 ${group.dot}`} aria-hidden="true" />
-                <div>
-                  <span className="block text-xs font-bold text-navy-midnight">{group.label}</span>
-                  <span className="block text-[11px] text-slate-500 mt-0.5 leading-relaxed">{group.stack}</span>
+              <div key={group.label} className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 transition-all hover:border-coral-bright/40 hover:bg-white shadow-2xs">
+                <div className="flex items-center gap-2.5">
+                  <span className={`h-2.5 w-2.5 rounded-full shrink-0 ${group.dot}`} aria-hidden="true" />
+                  <span className="text-sm font-bold text-navy-midnight">{group.label}</span>
                 </div>
+                <p className="text-xs text-slate-600 font-mono mt-2 leading-relaxed">{group.stack}</p>
               </div>
             ))}
           </div>
@@ -376,7 +384,7 @@ export const ITSolutionsPage: React.FC = () => {
                 <ShieldCheck className="w-5 h-5 text-coral-bright shrink-0 mt-0.5" />
                 <div>
                   <div className="text-xs font-bold text-white">NDA &amp; Confidentiality Assured</div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">Every technical discussion is protected under mutual non-disclosure.</div>
+                  <div className="text-xs text-slate-300 mt-1 leading-normal">Every technical discussion is protected under mutual non-disclosure.</div>
                 </div>
               </div>
 
@@ -384,7 +392,7 @@ export const ITSolutionsPage: React.FC = () => {
                 <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-xs font-bold text-white">Clear Scope &amp; Milestones</div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">Structured deliverables, transparent timelines, and sprint milestones.</div>
+                  <div className="text-xs text-slate-300 mt-1 leading-normal">Structured deliverables, transparent timelines, and sprint milestones.</div>
                 </div>
               </div>
 
@@ -392,7 +400,7 @@ export const ITSolutionsPage: React.FC = () => {
                 <Clock className="w-5 h-5 text-coral-orange shrink-0 mt-0.5" />
                 <div>
                   <div className="text-xs font-bold text-white">Rapid Scoping Turnaround</div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">Initial architecture and feasibility response within 1–2 business days.</div>
+                  <div className="text-xs text-slate-300 mt-1 leading-normal">Initial architecture and feasibility response within 1–2 business days.</div>
                 </div>
               </div>
             </div>

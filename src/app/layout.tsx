@@ -7,7 +7,30 @@ import { Chatbot } from '@/components/chatbot/Chatbot';
 import { HashScroll } from '@/components/common/HashScroll';
 import { LogoIntro } from '@/components/common/LogoIntro';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+function getSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    const raw = process.env.NEXT_PUBLIC_SITE_URL.trim();
+    return raw.startsWith('http://') || raw.startsWith('https://') ? raw : `https://${raw}`;
+  }
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  if (process.env.RENDER_EXTERNAL_URL) {
+    return process.env.RENDER_EXTERNAL_URL;
+  }
+  if (process.env.URL) {
+    return process.env.URL;
+  }
+  if (process.env.NODE_ENV === 'production') {
+    return 'https://coralswift.com';
+  }
+  return 'http://localhost:3000';
+}
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,6 +39,7 @@ export const metadata: Metadata = {
     'Coral Swift is a US-oriented IT and Non-IT project solutions and partnership platform connecting international project requirements with qualified delivery organizations.',
   keywords: [
     'Coral Swift',
+    'CoralSwift Technologies',
     'IT solutions',
     'Non-IT solutions',
     'BPO',
@@ -25,17 +49,42 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    siteName: 'Coral Swift',
+    locale: 'en_US',
+    url: siteUrl,
+    siteName: 'Coral Swift Technologies',
     title: 'Coral Swift | Connecting Global Opportunities with Delivery Excellence',
     description:
       'US-focused business positioning | IT & Non-IT project solutions | Strategic delivery partnerships.',
-    images: [{ url: '/assets/coral-swift-official-logo.png', width: 512, height: 512, alt: 'Coral Swift' }],
+    images: [
+      {
+        url: '/images/coral-swift-og-share.png',
+        width: 1200,
+        height: 630,
+        type: 'image/png',
+        alt: 'Coral Swift Technologies - Connecting Global Opportunities with Delivery Excellence',
+      },
+      {
+        url: '/assets/coral-swift-official-logo.png',
+        width: 687,
+        height: 480,
+        type: 'image/png',
+        alt: 'Coral Swift Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Coral Swift | Connecting Global Opportunities with Delivery Excellence',
+    description:
+      'US-focused business positioning | IT & Non-IT project solutions | Strategic delivery partnerships.',
+    images: ['/images/coral-swift-og-share.png'],
   },
   icons: {
     icon: [
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicon.png', sizes: '64x64', type: 'image/png' },
     ],
+    apple: [{ url: '/favicon.png', sizes: '64x64', type: 'image/png' }],
   },
 };
 
@@ -48,7 +97,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
