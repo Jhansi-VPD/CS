@@ -81,7 +81,7 @@ export const WhyPartnerSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-coral-bright font-bold block">
+                  <span className="text-xs font-mono uppercase tracking-wider text-coral-bright font-bold block">
                     {diff.subtitle}
                   </span>
                   <h3 className="text-lg font-bold text-navy-midnight mt-1">

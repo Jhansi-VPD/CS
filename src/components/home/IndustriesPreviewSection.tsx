@@ -84,7 +84,7 @@ export const IndustriesPreviewSection: React.FC = () => {
         <ScrollReveal direction="up" delay={100} className="shrink-0">
           <Button
             to="/industries"
-            variant="navy"
+            variant="outline"
             size="md"
             icon={<ArrowRight className="h-4 w-4" />}
           >
@@ -118,7 +118,7 @@ export const IndustriesPreviewSection: React.FC = () => {
 
                 <div className="relative z-10 flex w-full flex-col justify-between p-5 text-white sm:p-6 xl:p-7">
                   <div className="flex items-start justify-between gap-3">
-                    <span className="rounded-full border border-white/30 bg-navy-midnight/25 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                    <span className="rounded-full border border-white/30 bg-navy-midnight/25 px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
                       {industry.badge}
                     </span>
                     <Icon className="h-5 w-5 shrink-0 text-coral-orange drop-shadow" aria-hidden="true" />
@@ -126,7 +126,7 @@ export const IndustriesPreviewSection: React.FC = () => {
 
                   <div>
                     <div className="translate-y-0 transition-transform duration-300 group-hover:-translate-y-1">
-                      <p className="mb-2 text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-coral-orange sm:text-xs">
+                      <p className="mb-2 text-xs font-mono font-bold uppercase tracking-[0.16em] text-coral-orange sm:text-xs">
                         {industry.tagline}
                       </p>
                       <h3 className="max-w-[18rem] font-heading text-xl font-extrabold leading-snug text-white sm:text-2xl">

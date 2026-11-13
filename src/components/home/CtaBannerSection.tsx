@@ -14,7 +14,7 @@ export const CtaBannerSection: React.FC = () => {
     <section className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="scale">
-          <div className="relative rounded-[2.5rem] bg-[#080B2E] border border-white/10 p-8 sm:p-14 lg:p-20 text-center overflow-hidden shadow-2xl text-white">
+          <div className="relative rounded-2xl bg-[#080B2E] border border-white/10 p-8 sm:p-14 lg:p-20 text-center overflow-hidden shadow-2xl text-white">
             {/* Ambient Lighting & Visual Depth */}
             <div
               aria-hidden="true"

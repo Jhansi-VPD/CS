@@ -8,6 +8,9 @@ import {
   Crosshair,
   Milestone,
   Users,
+  Briefcase,
+  Search,
+  CheckCircle2,
 } from 'lucide-react';
 import { Logo } from '../common/Logo';
 import { ScrollReveal } from '../common/ScrollReveal';
@@ -30,10 +33,22 @@ const ownerDuties = [
   },
 ];
 
-const partnerSteps = [
-  'Share capabilities and experience.',
-  'Explore project fit for relevant work.',
-  'Align on delivery and commercial expectations.',
+const partnerDuties = [
+  {
+    icon: Briefcase,
+    title: 'Share capabilities and experience.',
+    detail: 'Present technical expertise, track record, and delivery capacity.',
+  },
+  {
+    icon: Search,
+    title: 'Explore project fit for relevant work.',
+    detail: 'Evaluate matching scopes against verified international needs.',
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Align on delivery and commercial expectations.',
+    detail: 'Agree on governance, milestones, and transparent commercial terms.',
+  },
 ];
 
 const HubConnector: React.FC = () => (
@@ -81,7 +96,7 @@ const HubConnector: React.FC = () => (
         <span aria-hidden="true" className="absolute inset-[-27px] rounded-full border border-[#D21D61]/10" />
         <Logo variant="emblem-only" theme="light" size="md" asLink={false} />
       </div>
-      <span className="mt-7 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#080B2E]/65">
+      <span className="mt-7 text-center text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#080B2E]/70">
         The Connection Hub
       </span>
       <span className="mt-2 max-w-[190px] text-center text-xs leading-relaxed text-slate-500">
@@ -100,7 +115,7 @@ const HubConnector: React.FC = () => (
         <span aria-hidden="true" className="absolute inset-[-9px] rounded-full border border-[#F05E47]/15" />
         <Logo variant="emblem-only" theme="light" size="sm" asLink={false} />
       </div>
-      <span className="mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#080B2E]/65">
+      <span className="mt-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#080B2E]/70">
         The Connection Hub
       </span>
       <span className="mt-1 max-w-[220px] text-center text-xs leading-relaxed text-slate-500">
@@ -135,7 +150,7 @@ export const EcosystemSection: React.FC = () => (
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <ScrollReveal direction="up">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.22em] text-[#E65349]">
+          <div className="inline-flex items-center gap-3 text-xs font-mono font-bold uppercase tracking-[0.22em] text-[#F05E47]">
             <span className="h-px w-8 bg-[#F05E47]/60" />
             Our Ecosystem
             <span className="h-px w-8 bg-[#F05E47]/60" />
@@ -156,10 +171,10 @@ export const EcosystemSection: React.FC = () => (
         <ScrollReveal direction="left" className="relative z-10 lg:pr-8">
           <div className="pointer-events-none absolute -left-12 -top-10 h-48 w-48 rounded-full bg-[#F98F33]/[0.06] blur-3xl" aria-hidden="true" />
           <div className="relative">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E65349]">
+            <p className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#F05E47]">
               For Project Owners
             </p>
-            <h3 className="mt-4 font-heading text-3xl font-extrabold tracking-tight text-[#080B2E] sm:text-4xl lg:text-[42px]">
+            <h3 className="mt-4 font-heading text-3xl font-extrabold tracking-tight text-[#080B2E] sm:text-4xl lg:text-4xl">
               Define the need.
             </h3>
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-600 sm:text-base">
@@ -184,7 +199,7 @@ export const EcosystemSection: React.FC = () => (
                       {duty.detail}
                     </p>
                   </div>
-                  <span className="ml-auto hidden pt-1 font-mono text-[10px] font-bold text-[#F05E47]/65 sm:block">
+                  <span className="ml-auto hidden pt-1 font-mono text-xs font-bold text-[#F05E47]/65 sm:block">
                     0{index + 1}
                   </span>
                 </div>
@@ -193,7 +208,7 @@ export const EcosystemSection: React.FC = () => (
 
             <Link
               href="/contact"
-              className="group mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#E65349] transition-colors hover:text-[#D21D61] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F05E47]"
+              className="group mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#F05E47] transition-colors hover:text-[#D21D61] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F05E47]"
             >
               Discuss a project
               <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -206,31 +221,40 @@ export const EcosystemSection: React.FC = () => (
         <ScrollReveal direction="right" delay={120} className="relative z-10 lg:pl-8">
           <div className="pointer-events-none absolute -bottom-12 -right-12 h-52 w-52 rounded-full bg-[#D21D61]/[0.07] blur-3xl" aria-hidden="true" />
           <div className="relative">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D21D61]">
+            <p className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#D21D61]">
               For Delivery Organizations
             </p>
-            <h3 className="mt-4 font-heading text-3xl font-extrabold tracking-tight text-[#080B2E] sm:text-4xl lg:text-[42px]">
+            <h3 className="mt-4 font-heading text-3xl font-extrabold tracking-tight text-[#080B2E] sm:text-4xl lg:text-4xl">
               Bring the capability.
             </h3>
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-600 sm:text-base">
               Present your capabilities, explore relevant opportunities and align on expectations before an engagement moves forward.
             </p>
 
-            <ol className="mt-8 max-w-xl">
-              {partnerSteps.map((step, index) => (
-                <li
-                  key={step}
-                  className="group flex items-start gap-4 border-b border-slate-200/70 py-5 first:pt-0 last:border-0"
+            <div className="mt-8 max-w-xl">
+              {partnerDuties.map((duty, index) => (
+                <div
+                  key={duty.title}
+                  className="group flex items-start gap-4 border-b border-slate-200/70 py-4 first:pt-0 last:border-0"
                 >
-                  <span className="min-w-9 font-heading text-xl font-extrabold leading-none text-[#D21D61] transition-transform duration-300 group-hover:translate-x-0.5">
+                  <duty.icon
+                    className="mt-0.5 h-5 w-5 shrink-0 text-[#D21D61] transition-transform duration-300 group-hover:scale-110"
+                    aria-hidden="true"
+                  />
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-bold leading-snug text-[#080B2E] sm:text-[15px]">
+                      {duty.title}
+                    </h4>
+                    <p className="mt-1 text-xs leading-relaxed text-slate-500 sm:text-sm">
+                      {duty.detail}
+                    </p>
+                  </div>
+                  <span className="ml-auto hidden pt-1 font-mono text-xs font-bold text-[#D21D61]/65 sm:block">
                     0{index + 1}
                   </span>
-                  <span className="text-sm font-semibold leading-relaxed text-[#080B2E] sm:text-[15px]">
-                    {step}
-                  </span>
-                </li>
+                </div>
               ))}
-            </ol>
+            </div>
 
             <Link
               href="/partnerships"

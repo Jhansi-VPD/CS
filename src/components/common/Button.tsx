@@ -82,7 +82,7 @@ export const Button: React.FC<ButtonProps> = ({
   labelColor,
   hoverBgColor,
   hoverTextColor,
-  cornerRadius = 4,
+  cornerRadius = 8,
   ...props
 }) => {
   const reducedMotion = usePrefersReducedMotion();
@@ -184,13 +184,13 @@ export const Button: React.FC<ButtonProps> = ({
 
   // Responsive padding & font-size proportional to size prop (compact, sleek enterprise profile)
   let padding = '0.55rem 1.35rem';
-  let fontSize = '0.8125rem';
+  let fontSize = '0.875rem';
   if (size === 'sm') {
     padding = '0.4rem 0.95rem';
     fontSize = '0.75rem';
   } else if (size === 'lg') {
     padding = '0.75rem 1.75rem';
-    fontSize = '0.875rem';
+    fontSize = '1rem';
   }
 
   const css = `

@@ -135,7 +135,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
           <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
         </div>
-        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.28em] [writing-mode:vertical-rl] text-slate-400 py-2">
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.28em] [writing-mode:vertical-rl] text-slate-400 py-2">
           STAGES
         </span>
         <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
@@ -149,7 +149,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
               <span className="w-2 h-2 rounded-full bg-coral-bright" />
               <span>Delivery Methodology</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-heading font-black text-navy-midnight tracking-tight leading-[1.12]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-navy-midnight tracking-tight leading-[1.12]">
               How we work
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed pt-1">
@@ -160,7 +160,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
           <ScrollReveal direction="up" delay={150} className="shrink-0">
             <Link
               href="/how-it-works"
-              className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-coral-50 border border-slate-200 hover:border-coral-200 text-xs sm:text-sm font-heading font-bold text-navy-midnight hover:text-coral-bright transition-all shadow-xs"
+              className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-50 hover:bg-coral-50 border border-slate-200 hover:border-coral-200 text-xs sm:text-sm font-heading font-bold text-navy-midnight hover:text-coral-bright transition-all shadow-xs"
             >
               <span>See Full Methodology</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -194,7 +194,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                     {/* Top Row: Large Number + Horizontal Connecting Arrow */}
                     <div className="flex items-center justify-between w-full">
                       {/* Big Bold Number (matches the large vibrant numbers in reference image) */}
-                      <span className="font-heading font-black text-4xl sm:text-4xl lg:text-[44px] xl:text-[48px] tracking-tight text-coral-bright leading-none select-none transition-transform duration-300 group-hover:scale-105 inline-block">
+                      <span className="font-heading font-black text-4xl sm:text-4xl lg:text-5xl xl:text-5xl tracking-tight text-coral-bright leading-none select-none transition-transform duration-300 group-hover:scale-105 inline-block">
                         {stage.number}
                       </span>
 
@@ -215,7 +215,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                           {/* Arrowhead */}
                           <svg
                             className={`w-3.5 h-3.5 -ml-1 shrink-0 transition-colors duration-300 ${
-                              isHovered ? 'text-coral-bright' : 'text-slate-300 group-hover:text-coral-bright/60'
+                              isHovered ? 'text-coral-bright' : 'text-slate-300 group-hover:text-coral-bright'
                             }`}
                             viewBox="0 0 14 14"
                             fill="none"
@@ -236,12 +236,12 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                     <div className="mt-3 sm:mt-4 space-y-1.5 flex-1 flex flex-col justify-between">
                       <div>
                         {/* Primary Stage Title */}
-                        <h3 className="font-heading font-extrabold text-base sm:text-base lg:text-[15px] xl:text-base text-navy-midnight leading-snug group-hover:text-coral-bright transition-colors">
+                        <h3 className="font-heading font-extrabold text-base sm:text-base lg:text-base xl:text-base text-navy-midnight leading-snug group-hover:text-coral-bright transition-colors">
                           {stage.name}
                         </h3>
 
                         {/* Sub-action label (e.g., Setting goals, Developing prototype) */}
-                        <p className="text-xs sm:text-[13px] font-bold text-slate-700 mt-0.5 leading-snug">
+                        <p className="text-xs sm:text-sm font-bold text-slate-600 mt-0.5 leading-snug">
                           {stage.subaction}
                         </p>
 
@@ -252,7 +252,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                       </div>
 
                       {/* Key Deliverable Indicator */}
-                      <div className="pt-2 mt-2 border-t border-slate-100 flex items-start gap-1.5 text-[11px] font-semibold text-slate-600">
+                      <div className="pt-2 mt-2 border-t border-slate-100 flex items-start gap-1.5 text-xs font-semibold text-slate-600">
                         <CheckCircle2 className="w-3.5 h-3.5 text-coral-bright shrink-0 mt-0.5" />
                         <span className="leading-tight">{stage.deliverable}</span>
                       </div>

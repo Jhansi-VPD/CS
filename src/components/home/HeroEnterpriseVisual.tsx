@@ -6,10 +6,10 @@ export const HeroEnterpriseVisual: React.FC = () => {
   return (
     <div className="relative w-full max-w-xl mx-auto lg:max-w-none">
       {/* Background Soft Depth Glow */}
-      <div className="absolute -inset-4 bg-gradient-to-tr from-coral-orange/15 via-coral-rose/10 to-coral-purple/15 rounded-3xl blur-2xl -z-10 pointer-events-none" />
+      <div className="absolute -inset-4 bg-gradient-to-tr from-coral-orange/15 via-coral-rose/10 to-coral-purple/15 rounded-2xl blur-2xl -z-10 pointer-events-none" />
 
       {/* Main Architectural Card */}
-      <div className="relative rounded-3xl bg-[#080B2E] border border-slate-700/70 shadow-2xl overflow-hidden text-white transition-all duration-300 hover:border-slate-600/80">
+      <div className="relative rounded-2xl bg-[#080B2E] border border-slate-700/70 shadow-2xl overflow-hidden text-white transition-all duration-300 hover:border-slate-600/80">
         {/* Top Photographic Layer with Dark Glass Overlay */}
         <div className="relative aspect-[16/10] overflow-hidden group">
           <Image
@@ -25,7 +25,7 @@ export const HeroEnterpriseVisual: React.FC = () => {
 
           {/* Top Status Tag */}
           <div className="absolute top-4 left-4 z-10">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#080B2E]/90 border border-slate-700/80 text-[10px] font-mono font-semibold uppercase tracking-wider text-coral-orange backdrop-blur-md shadow-sm">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#080B2E]/90 border border-slate-700/80 text-xs font-mono font-semibold uppercase tracking-wider text-coral-orange backdrop-blur-md shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>Direct Delivery Model</span>
             </span>
@@ -72,7 +72,7 @@ export const HeroEnterpriseVisual: React.FC = () => {
           {/* Floating Lower Node Summary */}
           <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 p-3 sm:p-3.5 rounded-2xl bg-[#080B2E]/92 border border-slate-700/80 backdrop-blur-md flex items-center justify-between text-xs shadow-lg">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-800/90 border border-slate-700 flex items-center justify-center p-1.5 shrink-0">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-slate-800/90 border border-slate-700 flex items-center justify-center p-1.5 shrink-0">
                 <img
                   src="/assets/coral-swift-official-logo.png"
                   alt="Coral Swift"
@@ -80,7 +80,7 @@ export const HeroEnterpriseVisual: React.FC = () => {
                 />
               </div>
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
+                <span className="text-xs font-mono uppercase tracking-wider text-slate-400 block font-semibold">
                   Cross-Border Delivery Bridge
                 </span>
                 <span className="font-bold text-white text-xs sm:text-sm inline-flex items-center gap-1.5">
@@ -96,18 +96,18 @@ export const HeroEnterpriseVisual: React.FC = () => {
 
         {/* Lower Telemetry Assurance Grid */}
         <div className="p-4 sm:p-5 bg-gradient-to-b from-[#080B2E] to-[#0A0F38] border-t border-slate-800 grid grid-cols-3 gap-2.5 text-center">
-          <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] space-y-1">
-            <span className="text-[10px] font-mono text-slate-400 block uppercase">Governance</span>
+          <div className="p-2 sm:p-2.5 rounded-lg bg-white/[0.04] border border-white/[0.06] space-y-1">
+            <span className="text-xs font-mono text-slate-400 block uppercase">Governance</span>
             <span className="font-bold text-white text-xs sm:text-xs block">Clear Scope</span>
           </div>
 
-          <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] space-y-1">
-            <span className="text-[10px] font-mono text-coral-orange block uppercase">Delivery Network</span>
+          <div className="p-2 sm:p-2.5 rounded-lg bg-white/[0.04] border border-white/[0.06] space-y-1">
+            <span className="text-xs font-mono text-coral-orange block uppercase">Delivery Network</span>
             <span className="font-bold text-white text-xs sm:text-xs block">Hyderabad Partners</span>
           </div>
 
-          <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] space-y-1">
-            <span className="text-[10px] font-mono text-emerald-400 block uppercase">Ownership</span>
+          <div className="p-2 sm:p-2.5 rounded-lg bg-white/[0.04] border border-white/[0.06] space-y-1">
+            <span className="text-xs font-mono text-emerald-400 block uppercase">Ownership</span>
             <span className="font-bold text-white text-xs sm:text-xs block">Client Ownership</span>
           </div>
         </div>

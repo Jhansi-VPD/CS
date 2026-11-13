@@ -80,7 +80,7 @@ export const CompanyIntroSection: React.FC = () => {
 
           {/* Supporting Narrative */}
           <ScrollReveal direction="up" delay={140}>
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl">
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-2xl">
               Coral Swift matches international projects with capable delivery partners. We review requirements,
               assess partners and coordinate work to set clear expectations.
             </p>
@@ -128,7 +128,7 @@ export const CompanyIntroSection: React.FC = () => {
             <div className="pt-3">
               <Button
                 to="/about"
-                variant="orange"
+                variant="primary"
                 size="md"
                 icon={<ArrowRight className="w-4 h-4" />}
               >

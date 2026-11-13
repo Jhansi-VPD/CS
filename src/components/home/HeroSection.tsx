@@ -67,14 +67,14 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-7 max-w-2xl space-y-4 sm:space-y-5 text-left relative z-10">
             {/* Eyebrow Tag */}
             <ScrollReveal direction="down" delay={50}>
-              <p className="font-mono text-xs sm:text-[13px] font-semibold tracking-[0.2em] text-slate-700 uppercase">
-                US-FOCUSED <span className="text-coral-rose mx-2 sm:mx-2.5 font-bold">•</span> IT &amp; NON-IT SOLUTIONS <span className="text-coral-rose mx-2 sm:mx-2.5 font-bold">•</span> STRATEGIC PARTNERSHIPS
+              <p className="font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] text-slate-600 uppercase">
+                US-FOCUSED <span className="text-coral-bright mx-2 sm:mx-2.5 font-bold">•</span> IT &amp; NON-IT SOLUTIONS <span className="text-coral-bright mx-2 sm:mx-2.5 font-bold">•</span> STRATEGIC PARTNERSHIPS
               </p>
             </ScrollReveal>
 
             {/* Headline */}
             <ScrollReveal direction="up" delay={100}>
-              <h1 className="mt-3 font-heading text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-extrabold text-navy-midnight tracking-tight leading-[1.12]">
+              <h1 className="mt-3 font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-extrabold text-navy-midnight tracking-tight leading-[1.12]">
                 Connecting Global<br />
                 Opportunities with<br />
                 <span className="bg-gradient-to-r from-[#F98F33] via-[#E73B50] to-[#D21D61] bg-clip-text text-transparent inline-block">
@@ -85,7 +85,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Subtitle */}
             <ScrollReveal direction="up" delay={150}>
-              <p className="mt-3 text-base sm:text-lg text-slate-700 leading-relaxed max-w-xl font-normal">
+              <p className="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl font-normal">
                 A trusted platform that connects international business requirements with qualified delivery organizations.
               </p>
             </ScrollReveal>
@@ -103,7 +103,7 @@ export const HeroSection: React.FC = () => {
                 </Button>
                 <Button
                   to="/partnerships"
-                  variant="purple"
+                  variant="outline"
                   size="lg"
                 >
                   Partner With Us
@@ -131,7 +131,7 @@ export const HeroSection: React.FC = () => {
                     stroke="url(#swiftHeroIconGradient)"
                     strokeWidth={1.8}
                   />
-                  <span className="text-sm sm:text-[15px] font-heading font-bold text-navy-midnight group-hover:text-coral-rose transition-colors leading-tight">
+                  <span className="text-sm sm:text-base font-heading font-bold text-navy-midnight group-hover:text-coral-bright transition-colors leading-tight">
                     {item.label}
                   </span>
                 </Link>

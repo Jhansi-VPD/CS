@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from '../common/ScrollReveal';
@@ -42,7 +41,7 @@ export const ServicesOverviewSection: React.FC = () => {
           <ScrollReveal direction="up" delay={100} className="shrink-0">
             <Button
               to="/services"
-              variant="navy"
+              variant="outline"
               size="sm"
               icon={<ArrowRight className="w-4 h-4" />}
             >
@@ -56,7 +55,7 @@ export const ServicesOverviewSection: React.FC = () => {
           {/* Service 01: IT Services (Prominent Marquee Panel - 58% Width) */}
           <div className="lg:col-span-7 flex flex-col">
             <ScrollReveal direction="up" delay={80} className="h-full flex flex-col">
-              <article className="group relative flex flex-col justify-between h-full min-h-[520px] lg:min-h-[580px] rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-500 bg-navy-midnight text-white">
+              <article className="group relative flex flex-col justify-between h-full min-h-[520px] lg:min-h-[580px] rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-500 bg-navy-midnight text-white">
                 {/* 4K Real Photography */}
                 <Image
                   src="/images/services-it-4k.jpg"
@@ -71,10 +70,10 @@ export const ServicesOverviewSection: React.FC = () => {
 
                 {/* Top Label & Index Tag */}
                 <div className="relative z-10 p-6 sm:p-8 flex items-start justify-between">
-                  <span className="px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-white/20 text-white backdrop-blur-md border border-white/25">
+                  <span className="px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-white/20 text-white backdrop-blur-md border border-white/25">
                     Technology
                   </span>
-                  <span className="font-mono text-2xl sm:text-3xl font-extrabold text-coral-orange/80 tracking-tight">
+                  <span className="font-mono text-2xl sm:text-3xl font-extrabold text-coral-orange tracking-tight">
                     01
                   </span>
                 </div>
@@ -84,7 +83,7 @@ export const ServicesOverviewSection: React.FC = () => {
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-white group-hover:text-coral-orange transition-colors">
                     IT Services
                   </h3>
-                  <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-xl">
+                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal max-w-xl">
                     Build, modernize and support software that fits your business and operational needs.
                   </p>
 
@@ -96,7 +95,7 @@ export const ServicesOverviewSection: React.FC = () => {
                       'Cloud and infrastructure support',
                       'Testing and maintenance',
                     ].map((cap, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200 font-medium">
+                      <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-slate-300 font-medium">
                         <CheckCircle2 className="w-3.5 h-3.5 text-coral-orange shrink-0" />
                         <span>{cap}</span>
                       </div>
@@ -123,7 +122,7 @@ export const ServicesOverviewSection: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col gap-6 lg:gap-8 justify-between">
             {/* Service 02: Non-IT & Business Operations */}
             <ScrollReveal direction="up" delay={140} className="flex-1">
-              <article className="group relative flex flex-col justify-between h-full min-h-[260px] sm:min-h-[275px] rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-500 bg-navy-midnight text-white">
+              <article className="group relative flex flex-col justify-between h-full min-h-[260px] sm:min-h-[275px] rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-500 bg-navy-midnight text-white">
                 <Image
                   src="/images/services-operations-4k.jpg"
                   alt="Business process operations and document workflow review"
@@ -135,19 +134,19 @@ export const ServicesOverviewSection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight via-navy-midnight/80 to-navy-midnight/30 group-hover:via-navy-midnight/85 transition-all duration-300" />
 
                 <div className="relative z-10 p-5 sm:p-6 flex items-start justify-between">
-                  <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-white/20 text-white backdrop-blur-md border border-white/25">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-white/20 text-white backdrop-blur-md border border-white/25">
                     Operations
                   </span>
-                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-coral-rose/80 tracking-tight">
+                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-coral-bright tracking-tight">
                     02
                   </span>
                 </div>
 
                 <div className="relative z-10 p-5 sm:p-6 space-y-2.5">
-                  <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-white group-hover:text-coral-rose transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-white group-hover:text-coral-bright transition-colors">
                     Non-IT & Business Operations
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                     Support dependable, detail-focused workflows across business and regulated operations.
                   </p>
 
@@ -159,20 +158,21 @@ export const ServicesOverviewSection: React.FC = () => {
                       'Back-office support',
                     ].map((cap, i) => (
                       <div key={i} className="flex items-center gap-1.5 font-medium truncate">
-                        <CheckCircle2 className="w-3 h-3 text-coral-rose shrink-0" />
+                        <CheckCircle2 className="w-3 h-3 text-coral-bright shrink-0" />
                         <span className="truncate">{cap}</span>
                       </div>
                     ))}
                   </div>
 
                   <div className="pt-2">
-                    <Link
-                      href="/services/non-it-solutions"
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-coral-rose hover:text-coral-orange transition-colors group/cta"
+                    <Button
+                      to="/services/non-it-solutions"
+                      variant="primary"
+                      size="sm"
+                      icon={<ArrowRight className="w-4 h-4" />}
                     >
-                      <span>Explore Operations</span>
-                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/cta:translate-x-1" />
-                    </Link>
+                      Explore Operations
+                    </Button>
                   </div>
                 </div>
               </article>
@@ -180,7 +180,7 @@ export const ServicesOverviewSection: React.FC = () => {
 
             {/* Service 03: Partnership Services */}
             <ScrollReveal direction="up" delay={200} className="flex-1">
-              <article className="group relative flex flex-col justify-between h-full min-h-[260px] sm:min-h-[275px] rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-500 bg-navy-midnight text-white">
+              <article className="group relative flex flex-col justify-between h-full min-h-[260px] sm:min-h-[275px] rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-500 bg-navy-midnight text-white">
                 <Image
                   src="/images/partnerships-handshake.jpg"
                   alt="Enterprise delivery partnership and international team collaboration"
@@ -192,19 +192,19 @@ export const ServicesOverviewSection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight via-navy-midnight/80 to-navy-midnight/30 group-hover:via-navy-midnight/85 transition-all duration-300" />
 
                 <div className="relative z-10 p-5 sm:p-6 flex items-start justify-between">
-                  <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-white/20 text-white backdrop-blur-md border border-white/25">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-white/20 text-white backdrop-blur-md border border-white/25">
                     Collaboration
                   </span>
-                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-coral-magenta/80 tracking-tight">
+                  <span className="font-mono text-xl sm:text-2xl font-extrabold text-coral-bright tracking-tight">
                     03
                   </span>
                 </div>
 
                 <div className="relative z-10 p-5 sm:p-6 space-y-2.5">
-                  <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-white group-hover:text-coral-magenta transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-white group-hover:text-coral-bright transition-colors">
                     Partnership Services
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                     Connect with assessed delivery partners and coordinate engagements around a defined scope.
                   </p>
 
@@ -216,20 +216,21 @@ export const ServicesOverviewSection: React.FC = () => {
                       'Commercial engagement support',
                     ].map((cap, i) => (
                       <div key={i} className="flex items-center gap-1.5 font-medium truncate">
-                        <CheckCircle2 className="w-3 h-3 text-coral-magenta shrink-0" />
+                        <CheckCircle2 className="w-3 h-3 text-coral-bright shrink-0" />
                         <span className="truncate">{cap}</span>
                       </div>
                     ))}
                   </div>
 
                   <div className="pt-2">
-                    <Link
-                      href="/partnerships"
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-coral-magenta hover:text-coral-orange transition-colors group/cta"
+                    <Button
+                      to="/partnerships"
+                      variant="primary"
+                      size="sm"
+                      icon={<ArrowRight className="w-4 h-4" />}
                     >
-                      <span>Explore Partnerships</span>
-                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/cta:translate-x-1" />
-                    </Link>
+                      Explore Partnerships
+                    </Button>
                   </div>
                 </div>
               </article>

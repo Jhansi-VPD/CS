@@ -53,7 +53,7 @@ export const GlobalOrchestrationCanvas: React.FC = () => {
   const current = streams[activeStream];
 
   return (
-    <div className="w-full rounded-2xl sm:rounded-3xl bg-[#090D2A] border border-slate-800 shadow-2xl p-5 sm:p-7 relative overflow-hidden text-white transition-all">
+    <div className="w-full rounded-2xl sm:rounded-2xl bg-[#090D2A] border border-slate-800 shadow-2xl p-5 sm:p-7 relative overflow-hidden text-white transition-all">
       {/* Background Subtle Accent Gradients */}
       <div className="absolute top-0 right-1/4 w-72 h-72 bg-coral-bright/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-64 h-64 bg-coral-purple/10 rounded-full blur-3xl pointer-events-none" />
@@ -62,13 +62,13 @@ export const GlobalOrchestrationCanvas: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-800/90 relative z-10">
         <div className="flex items-center gap-2.5">
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[11px] font-mono tracking-widest text-slate-300 uppercase font-semibold">
+          <span className="text-xs font-mono tracking-widest text-slate-300 uppercase font-semibold">
             CROSS-BORDER DELIVERY ORCHESTRATION
           </span>
         </div>
 
         {/* Stream Toggle Switcher */}
-        <div className="inline-flex p-1 rounded-xl bg-slate-900/90 border border-slate-700/80 self-start sm:self-auto">
+        <div className="inline-flex p-1 rounded-lg bg-slate-900/90 border border-slate-700/80 self-start sm:self-auto">
           <button
             type="button"
             onClick={() => setActiveStream('it')}
@@ -99,16 +99,16 @@ export const GlobalOrchestrationCanvas: React.FC = () => {
         {/* Left Block: International Enterprise Inflow */}
         <div className="lg:col-span-4 bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 hover:border-slate-700 transition-all">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[10px] font-mono tracking-wider uppercase text-coral-orange font-bold">
+            <span className="text-xs font-mono tracking-wider uppercase text-coral-orange font-bold">
               01 / Enterprise Demand
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
               US / Global
             </span>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-coral-50/10 text-coral-bright flex items-center justify-center shrink-0 mt-0.5 border border-coral-500/20">
+            <div className="w-10 h-10 rounded-lg bg-coral-50/10 text-coral-bright flex items-center justify-center shrink-0 mt-0.5 border border-coral-500/20">
               {activeStream === 'it' ? <Server className="w-5 h-5" /> : <HeartPulse className="w-5 h-5" />}
             </div>
             <div>
@@ -145,7 +145,7 @@ export const GlobalOrchestrationCanvas: React.FC = () => {
             <span className="text-xs font-bold text-white tracking-wide block">
               Coral Swift
             </span>
-            <span className="text-[10px] font-mono text-coral-orange uppercase tracking-wider block mt-0.5">
+            <span className="text-xs font-mono text-coral-orange uppercase tracking-wider block mt-0.5">
               Governed Matching Engine
             </span>
           </div>
@@ -154,16 +154,16 @@ export const GlobalOrchestrationCanvas: React.FC = () => {
         {/* Right Block: Qualified Indian Delivery Center */}
         <div className="lg:col-span-4 bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 hover:border-slate-700 transition-all">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[10px] font-mono tracking-wider uppercase text-emerald-400 font-bold">
+            <span className="text-xs font-mono tracking-wider uppercase text-emerald-400 font-bold">
               02 / Delivery Execution
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/60 text-emerald-400 border border-emerald-800/60">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-950/60 text-emerald-400 border border-emerald-800/60">
               India Pods
             </span>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/20">
+            <div className="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/20">
               {activeStream === 'it' ? <Database className="w-5 h-5" /> : <FileSpreadsheet className="w-5 h-5" />}
             </div>
             <div>
@@ -186,9 +186,9 @@ export const GlobalOrchestrationCanvas: React.FC = () => {
       {/* Governance Strip: Transparency & IP Guarantees */}
       <div className="pt-4 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-300 relative z-10">
         {current.governanceProtocols.map((item, idx) => (
-          <div key={idx} className="flex items-center gap-2 p-2 rounded-xl bg-slate-900/50 border border-slate-800/70">
+          <div key={idx} className="flex items-center gap-2 p-2 rounded-lg bg-slate-900/50 border border-slate-800/70">
             <ShieldCheck className="w-3.5 h-3.5 text-coral-bright shrink-0" />
-            <span className="text-[11px] font-medium text-slate-200">{item}</span>
+            <span className="text-xs font-medium text-slate-300">{item}</span>
           </div>
         ))}
       </div>

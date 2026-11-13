@@ -124,12 +124,12 @@ export const ApproachPillarsSection: React.FC = () => (
         {pillars.map((pillar, i) => (
           <ScrollReveal key={pillar.number} direction="up" delay={i * 140} className="h-full">
             <article
-              className={`group relative h-full flex flex-col overflow-hidden rounded-3xl bg-white/60 backdrop-blur-xl border border-white/80 p-6 sm:p-7 shadow-[0_8px_32px_0_rgba(8,11,46,0.06),inset_0_1px_1px_0_rgba(255,255,255,0.9)] transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/75 hover:border-white hover:shadow-[0_16px_48px_0_rgba(8,11,46,0.12),inset_0_1px_1px_0_rgba(255,255,255,1)] ${pillar.hoverBorderClass}`}
+              className={`group relative h-full flex flex-col overflow-hidden rounded-2xl bg-white/70 backdrop-blur-xl border border-white/80 p-6 sm:p-7 shadow-[0_8px_32px_0_rgba(8,11,46,0.06),inset_0_1px_1px_0_rgba(255,255,255,0.9)] transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/85 hover:border-white hover:shadow-[0_16px_48px_0_rgba(8,11,46,0.12),inset_0_1px_1px_0_rgba(255,255,255,1)] ${pillar.hoverBorderClass}`}
             >
               <span
                 aria-hidden="true"
-                className="absolute top-3 right-5 font-heading text-6xl font-extrabold leading-none select-none pointer-events-none"
-                style={{ color: pillar.accent, opacity: 0.16 }}
+                className="absolute top-3 right-4 font-heading text-5xl font-extrabold leading-none select-none pointer-events-none transition-opacity duration-300 group-hover:opacity-10"
+                style={{ color: pillar.accent, opacity: 0.06 }}
               >
                 {pillar.number}
               </span>
@@ -140,13 +140,13 @@ export const ApproachPillarsSection: React.FC = () => (
                 style={{ background: `linear-gradient(to right, ${pillar.accent}, ${pillar.accent}66)` }}
               />
 
-              <span className={`mt-4 text-[11px] font-mono font-bold uppercase tracking-widest ${pillar.eyebrowClass}`}>
+              <span className={`mt-4 text-xs font-mono font-bold uppercase tracking-widest ${pillar.eyebrowClass}`}>
                 Pillar {pillar.number}
               </span>
               <h3 className="mt-1.5 text-lg font-heading font-extrabold text-navy-midnight">
                 {pillar.name}
               </h3>
-              <p className="mt-2 text-xs sm:text-sm text-slate-700 font-medium leading-relaxed flex-grow">
+              <p className="mt-2 text-sm text-slate-700 font-medium leading-relaxed flex-grow">
                 {pillar.description}
               </p>
 

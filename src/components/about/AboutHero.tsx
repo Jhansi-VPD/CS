@@ -60,12 +60,12 @@ export const AboutHero: React.FC = () => {
           <div className="lg:col-span-7 max-w-2xl">
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-coral-bright" aria-hidden="true" />
-              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.26em] text-coral-purple sm:text-xs">
+              <p className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-coral-purple">
                 Who We Are
               </p>
             </div>
             <h1
-              className={`mt-3 font-heading text-3xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.08] tracking-[-0.04em] text-navy-midnight transition-all duration-700 ease-out motion-reduce:transition-none ${
+              className={`mt-3 font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight text-navy-midnight transition-all duration-700 ease-out motion-reduce:transition-none ${
                 revealed ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
               }`}
               style={{ transitionDelay: '100ms' }}
@@ -99,7 +99,12 @@ export const AboutHero: React.FC = () => {
               >
                 Explore Solutions
               </Button>
-              <Button to="/contact" variant="secondary" size="md">
+              <Button
+                to="/contact"
+                variant="outline"
+                size="md"
+                icon={<ArrowRight className="h-4 w-4" />}
+              >
                 Talk to Our Team
               </Button>
             </div>
@@ -107,8 +112,8 @@ export const AboutHero: React.FC = () => {
 
           {/* Right Column: Unobstructed view of the executive portrait with a subtle floating badge */}
           <div className="hidden lg:flex lg:col-span-5 flex-col justify-end items-end min-h-[420px] lg:min-h-[480px] pb-4">
-            <div className="rounded-xl border border-white/80 bg-white/75 px-4 py-2.5 shadow-sm backdrop-blur-md">
-              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-coral-orange">
+            <div className="rounded-lg border border-white/80 bg-white/85 px-4 py-2.5 shadow-sm backdrop-blur-md">
+              <p className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-coral-orange">
                 Executive Leadership
               </p>
               <p className="text-xs font-semibold text-navy-midnight mt-0.5">

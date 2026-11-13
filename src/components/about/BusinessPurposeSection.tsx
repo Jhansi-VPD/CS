@@ -33,7 +33,7 @@ export const BusinessPurposeSection: React.FC = () => (
       <ScrollReveal direction="up">
         <div className="flex items-center gap-3">
           <span className="w-8 h-px bg-coral-orange" aria-hidden="true" />
-          <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-coral-orange">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-coral-orange">
             Why Coral Swift Exists
           </span>
         </div>

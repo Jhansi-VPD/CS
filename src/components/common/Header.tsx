@@ -165,7 +165,7 @@ export const Header: React.FC = () => {
                     <button
                       type="button"
                       aria-haspopup="true"
-                      className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright ${
+                      className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright ${
                         active
                           ? 'text-coral-bright bg-coral-50/70 font-bold'
                           : 'text-navy-midnight hover:text-coral-bright hover:bg-slate-50'
@@ -188,19 +188,19 @@ export const Header: React.FC = () => {
                             <Link
                               key={child.title}
                               href={child.href}
-                              className="group block p-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                              className="group block p-2.5 rounded-lg hover:bg-slate-50 transition-colors"
                             >
                               <div className="flex items-center justify-between">
                                 <span className="text-xs font-bold text-navy-midnight group-hover:text-coral-bright transition-colors">
                                   {child.title}
                                 </span>
                                 {child.badge && (
-                                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-coral-50 text-coral-bright">
+                                  <span className="px-1.5 py-0.5 rounded-lg text-xs font-mono font-bold bg-coral-50 text-coral-bright">
                                     {child.badge}
                                   </span>
                                 )}
                               </div>
-                              <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5 leading-snug">
+                              <p className="text-xs text-slate-500 line-clamp-1 mt-0.5 leading-snug">
                                 {child.description}
                               </p>
                             </Link>
@@ -216,7 +216,7 @@ export const Header: React.FC = () => {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                  className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
                     active
                       ? 'text-coral-bright bg-coral-50/70 font-bold'
                       : 'text-navy-midnight hover:text-coral-bright hover:bg-slate-50'
@@ -246,7 +246,7 @@ export const Header: React.FC = () => {
             <button
               ref={menuButtonRef}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl text-navy-midnight hover:text-coral-bright hover:bg-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
+              className="p-2.5 rounded-lg text-navy-midnight hover:text-coral-bright hover:bg-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-bright"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="cs-mobile-nav"
@@ -291,7 +291,7 @@ export const Header: React.FC = () => {
                         type="button"
                         onClick={() => toggleMobileSubmenu(item.title)}
                         aria-expanded={!!expanded}
-                        className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-left transition-colors min-h-[44px] ${
+                        className={`w-full flex items-center justify-between px-3.5 py-3 rounded-lg text-base font-semibold text-left transition-colors min-h-[44px] ${
                           active
                             ? 'bg-coral-50 text-coral-bright font-bold'
                             : 'text-navy-midnight hover:bg-slate-50'
@@ -304,23 +304,23 @@ export const Header: React.FC = () => {
                       </button>
 
                       {expanded && (
-                        <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-50/80 rounded-xl">
+                        <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-50/80 rounded-lg">
                           {item.children.map((child) => (
                             <Link
                               key={child.title}
                               href={child.href}
                               onClick={() => setMobileMenuOpen(false)}
-                              className="flex min-h-[44px] w-full flex-col items-start justify-center py-2.5 px-3 rounded-lg text-sm font-medium text-slate-700 hover:text-coral-bright hover:bg-white transition-colors"
+                              className="flex min-h-[44px] w-full flex-col items-start justify-center py-2.5 px-3 rounded-lg text-sm font-medium text-slate-600 hover:text-coral-bright hover:bg-white transition-colors"
                             >
                               <div className="flex items-center justify-between w-full">
                                 <span className="font-semibold">{child.title}</span>
                                 {child.badge && (
-                                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-coral-50 text-coral-bright font-bold">
+                                  <span className="text-xs font-mono px-1.5 py-0.5 rounded-lg bg-coral-50 text-coral-bright font-bold">
                                     {child.badge}
                                   </span>
                                 )}
                               </div>
-                              <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                              <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">
                                 {child.description}
                               </p>
                             </Link>
@@ -336,7 +336,7 @@ export const Header: React.FC = () => {
                     key={item.title}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block px-3.5 py-3 rounded-xl text-base font-semibold transition-colors min-h-[44px] flex items-center ${
+                    className={`block px-3.5 py-3 rounded-lg text-base font-semibold transition-colors min-h-[44px] flex items-center ${
                       active
                         ? 'bg-coral-50 text-coral-bright font-bold'
                         : 'text-navy-midnight hover:text-coral-bright hover:bg-slate-50'

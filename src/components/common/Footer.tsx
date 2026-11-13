@@ -31,11 +31,11 @@ export const Footer: React.FC = () => {
               <p className="max-w-sm text-xs font-medium leading-relaxed text-slate-300">
                 Connecting Global Opportunities with Delivery Excellence.
               </p>
-              <p className="max-w-md text-[11px] leading-relaxed text-slate-400">
+              <p className="max-w-md text-xs leading-relaxed text-slate-400">
                 A US-oriented IT and Non-IT project solutions and partnership platform connecting international project requirements with qualified delivery organizations in India and global markets.
               </p>
               <div className="pt-1">
-                <h3 className="mb-1 text-[10px] font-bold uppercase tracking-wider text-white">
+                <h3 className="mb-1 text-xs font-bold uppercase tracking-wider text-white">
                   Connect With Us
                 </h3>
                 <SocialMediaLinks />
@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
 
             {/* Solutions Column */}
             <div>
-              <h3 className="mb-1 text-[10px] font-bold uppercase tracking-wider text-white">
+              <h3 className="mb-1 text-xs font-bold uppercase tracking-wider text-white">
                 Solutions & Delivery
               </h3>
               <ul className="space-y-0">
@@ -63,7 +63,7 @@ export const Footer: React.FC = () => {
 
             {/* Partnerships Column */}
             <div>
-              <h3 className="mb-1 text-[10px] font-bold uppercase tracking-wider text-white">
+              <h3 className="mb-1 text-xs font-bold uppercase tracking-wider text-white">
                 Delivery Partnerships
               </h3>
               <ul className="space-y-0">
@@ -82,7 +82,7 @@ export const Footer: React.FC = () => {
 
             {/* Corporate & Legal Column */}
             <div>
-              <h3 className="mb-1 text-[10px] font-bold uppercase tracking-wider text-white">
+              <h3 className="mb-1 text-xs font-bold uppercase tracking-wider text-white">
                 Company & Legal
               </h3>
               <ul className="space-y-0">
@@ -102,18 +102,18 @@ export const Footer: React.FC = () => {
         </ScrollReveal>
 
         {/* Bottom Bar */}
-        <div className="mt-3 flex flex-col items-center justify-between gap-2 border-t border-slate-800 pt-3 text-[11px] text-slate-400 sm:flex-row">
+        <div className="mt-3 flex flex-col items-center justify-between gap-2 border-t border-slate-800 pt-3 text-xs text-slate-400 sm:flex-row">
           <p className="text-center sm:text-left">
             © {new Date().getFullYear()} Coral Swift / CoralSwift Technologies. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <Link href="/privacy-policy" className="inline-flex min-h-6 items-center transition-colors hover:text-slate-200 max-sm:min-h-[44px]">
+            <Link href="/privacy-policy" className="inline-flex min-h-6 items-center transition-colors hover:text-slate-300 max-sm:min-h-[44px]">
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="inline-flex min-h-6 items-center transition-colors hover:text-slate-200 max-sm:min-h-[44px]">
+            <Link href="/terms-of-service" className="inline-flex min-h-6 items-center transition-colors hover:text-slate-300 max-sm:min-h-[44px]">
               Terms & Conditions
             </Link>
-            <Link href="/cookie-policy" className="inline-flex min-h-6 items-center transition-colors hover:text-slate-200 max-sm:min-h-[44px]">
+            <Link href="/cookie-policy" className="inline-flex min-h-6 items-center transition-colors hover:text-slate-300 max-sm:min-h-[44px]">
               Cookie Policy
             </Link>
             <button

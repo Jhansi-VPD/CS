@@ -12,8 +12,8 @@ const exploreLinks = [
 export const ExploreMoreSection: React.FC = () => (
   <section className="bg-white border-b border-slate-200/60 py-8 sm:py-10">
     <ScrollReveal direction="up">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-        <div className="space-y-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+        <div className="space-y-1 shrink-0">
           <h2 className="text-sm font-heading font-bold text-navy-midnight">Explore More</h2>
           <p className="text-xs text-slate-500">Our delivery process, insights and frequently asked questions.</p>
         </div>
@@ -22,7 +22,7 @@ export const ExploreMoreSection: React.FC = () => (
             <Link
               key={link.href}
               href={link.href}
-              className={`group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-navy-midnight transition-all duration-200 hover:-translate-y-0.5 ${link.hoverBorder} ${link.hoverText}`}
+              className={`group inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-navy-midnight transition-all duration-200 hover:-translate-y-0.5 ${link.hoverBorder} ${link.hoverText}`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${link.dotClass}`} aria-hidden="true" />
               <link.icon className="w-3.5 h-3.5" />

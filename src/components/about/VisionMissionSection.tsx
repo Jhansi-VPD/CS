@@ -40,7 +40,7 @@ export const VisionMissionSection: React.FC = () => {
             <ScrollReveal direction="left">
               {/* Perspective Label */}
               <div className="flex items-center gap-2.5 mb-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-coral-orange">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold uppercase tracking-[0.2em] text-coral-orange">
                   <Compass className="w-3.5 h-3.5 text-coral-orange" />
                   Perspective 01 &bull; Global Reach
                 </span>
@@ -55,7 +55,7 @@ export const VisionMissionSection: React.FC = () => {
               <div className="w-16 h-1 bg-gradient-to-r from-coral-orange to-coral-rose rounded-full mt-3 mb-6" />
 
               {/* PRD-Approved Vision Statement (Preserved Exactly) */}
-              <blockquote className="text-xl sm:text-2xl lg:text-[28px] font-heading font-normal text-white/95 leading-relaxed sm:leading-snug tracking-tight">
+              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-heading font-normal text-white/95 leading-relaxed sm:leading-snug tracking-tight">
                 &ldquo;Build a trusted international ecosystem where qualified technology and operations companies can access scalable project opportunities.&rdquo;
               </blockquote>
 
@@ -122,7 +122,7 @@ export const VisionMissionSection: React.FC = () => {
             <ScrollReveal direction="right">
               {/* Perspective Label */}
               <div className="flex items-center gap-2.5 mb-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-coral-bright">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold uppercase tracking-[0.2em] text-coral-bright">
                   <Target className="w-3.5 h-3.5 text-coral-bright" />
                   Perspective 02 &bull; Disciplined Execution
                 </span>
@@ -137,7 +137,7 @@ export const VisionMissionSection: React.FC = () => {
               <div className="w-16 h-1 bg-gradient-to-r from-coral-bright to-coral-magenta rounded-full mt-3 mb-6" />
 
               {/* PRD-Approved Mission Statement (Preserved Exactly) */}
-              <blockquote className="text-xl sm:text-2xl lg:text-[28px] font-heading font-normal text-white/95 leading-relaxed sm:leading-snug tracking-tight">
+              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-heading font-normal text-white/95 leading-relaxed sm:leading-snug tracking-tight">
                 &ldquo;Enable disciplined project execution through partner screening, structured onboarding, operational governance and outcome-based delivery.&rdquo;
               </blockquote>
 

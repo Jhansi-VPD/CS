@@ -42,7 +42,7 @@ export const CookieBanner: React.FC = () => {
     <div
       role="region"
       aria-label="Cookie consent banner"
-      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 max-h-[calc(100dvh-6rem)] overflow-y-auto bg-navy-midnight text-white p-5 rounded-2xl shadow-2xl border border-navy-border animate-slide-up"
+      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-4 right-4 md:left-1/2 md:right-auto md:w-full md:max-w-md md:-translate-x-1/2 z-50 max-h-[calc(100dvh-6rem)] overflow-y-auto bg-navy-midnight text-white p-5 rounded-2xl shadow-2xl border border-navy-border animate-slide-up"
     >
       <div className="flex items-start gap-3">
         <ShieldCheck className="w-5 h-5 text-coral-orange shrink-0 mt-0.5" />
@@ -65,7 +65,7 @@ export const CookieBanner: React.FC = () => {
               Accept All
             </Button>
             <Button
-              variant="secondary"
+              variant="outline"
               size="sm"
               onClick={handleEssentialOnly}
               className="text-xs"
@@ -76,7 +76,7 @@ export const CookieBanner: React.FC = () => {
         </div>
         <button
           onClick={handleDismiss}
-          className="shrink-0 -m-2 p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white rounded-md transition-colors"
+          className="shrink-0 -m-2 p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white rounded-lg transition-colors"
           aria-label="Dismiss cookie notice"
         >
           <X className="w-4 h-4" />

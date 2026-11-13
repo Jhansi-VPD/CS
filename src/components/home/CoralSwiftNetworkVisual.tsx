@@ -109,15 +109,15 @@ export const CoralSwiftNetworkVisual: React.FC = () => {
   return (
     <div className="relative w-full max-w-3xl mx-auto select-none">
       {/* Outer ambient glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-coral-orange/10 via-coral-bright/15 to-coral-purple/10 rounded-3xl blur-2xl -z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-coral-orange/10 via-coral-bright/15 to-coral-purple/10 rounded-2xl blur-2xl -z-10 pointer-events-none" />
 
       {/* Main Glass Chassis */}
-      <div className="relative rounded-3xl bg-navy-midnight/95 border border-navy-border shadow-2xl p-4 sm:p-6 overflow-hidden">
+      <div className="relative rounded-2xl bg-navy-midnight/95 border border-navy-border shadow-2xl p-4 sm:p-6 overflow-hidden">
         {/* Subtle background tech grid */}
         <div className="absolute inset-0 bg-dark-grid opacity-30 pointer-events-none" />
 
         {/* Header Telemetry Bar */}
-        <div className="flex items-center justify-between pb-3 mb-2 border-b border-navy-border/80 text-[11px] font-mono">
+        <div className="flex items-center justify-between pb-3 mb-2 border-b border-navy-border/80 text-xs font-mono">
           <div className="flex items-center gap-2 text-slate-300">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="font-semibold text-white tracking-wide">CORAL SWIFT ORCHESTRATION NEXUS</span>
@@ -288,7 +288,7 @@ export const CoralSwiftNetworkVisual: React.FC = () => {
               <span className="text-xs font-bold text-white tracking-wider block">
                 CORAL SWIFT
               </span>
-              <span className="text-[9px] font-mono text-coral-orange font-bold uppercase tracking-widest bg-navy-midnight/90 px-2 py-0.5 rounded-full border border-navy-border inline-block mt-0.5">
+              <span className="text-xs font-mono text-coral-orange font-bold uppercase tracking-widest bg-navy-midnight/90 px-2 py-0.5 rounded-full border border-navy-border inline-block mt-0.5">
                 Governance Engine
               </span>
             </div>
@@ -323,14 +323,14 @@ export const CoralSwiftNetworkVisual: React.FC = () => {
                     <div className="w-6 h-6 rounded-lg bg-coral-50/15 text-coral-orange flex items-center justify-center shrink-0">
                       <Icon className="w-3.5 h-3.5" />
                     </div>
-                    <span className="text-[10px] font-mono text-coral-orange uppercase tracking-wider line-clamp-1">
+                    <span className="text-xs font-mono text-coral-orange uppercase tracking-wider line-clamp-1">
                       {node.category}
                     </span>
                   </div>
                   <h4 className="text-xs font-bold text-white leading-tight">
                     {node.label}
                   </h4>
-                  <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400 border-t border-navy-border/60 pt-1">
+                  <div className="mt-1 flex items-center justify-between text-xs text-slate-400 border-t border-navy-border/60 pt-1">
                     <span className="font-semibold text-slate-300">{node.metric}</span>
                     <span className="text-coral-bright font-bold">→</span>
                   </div>
@@ -365,17 +365,17 @@ export const CoralSwiftNetworkVisual: React.FC = () => {
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <div className="w-6 h-6 rounded-lg bg-coral-50/15 text-coral-rose flex items-center justify-center shrink-0">
+                    <div className="w-6 h-6 rounded-lg bg-coral-50/15 text-coral-bright flex items-center justify-center shrink-0">
                       <Icon className="w-3.5 h-3.5" />
                     </div>
-                    <span className="text-[10px] font-mono text-coral-rose uppercase tracking-wider line-clamp-1">
+                    <span className="text-xs font-mono text-coral-bright uppercase tracking-wider line-clamp-1">
                       {node.category}
                     </span>
                   </div>
                   <h4 className="text-xs font-bold text-white leading-tight">
                     {node.label}
                   </h4>
-                  <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400 border-t border-navy-border/60 pt-1">
+                  <div className="mt-1 flex items-center justify-between text-xs text-slate-400 border-t border-navy-border/60 pt-1">
                     <span className="font-semibold text-slate-300">{node.metric}</span>
                     <span className="text-emerald-400 font-bold">✓</span>
                   </div>
@@ -389,7 +389,7 @@ export const CoralSwiftNetworkVisual: React.FC = () => {
         <div className="block sm:hidden space-y-4 py-2">
           {/* Mobile Center Engine */}
           <div className="p-4 rounded-2xl bg-navy-surface border border-coral-bright/60 flex items-center gap-3.5 shadow-glow-coral">
-            <div className="w-12 h-12 rounded-xl bg-navy-midnight border border-navy-border flex items-center justify-center p-1.5 shrink-0">
+            <div className="w-12 h-12 rounded-lg bg-navy-midnight border border-navy-border flex items-center justify-center p-1.5 shrink-0">
               <img
                 src="/assets/coral-swift-official-logo.png"
                 alt="Coral Swift Core"
@@ -397,11 +397,11 @@ export const CoralSwiftNetworkVisual: React.FC = () => {
               />
             </div>
             <div>
-              <span className="text-[10px] font-mono text-coral-orange uppercase tracking-wider font-bold">
+              <span className="text-xs font-mono text-coral-orange uppercase tracking-wider font-bold">
                 Governance & Allocation
               </span>
               <h4 className="text-sm font-bold text-white">Coral Swift Platform</h4>
-              <p className="text-[11px] text-slate-300">
+              <p className="text-xs text-slate-300">
                 Orchestrating US & international SOWs with verified Indian delivery pods.
               </p>
             </div>
@@ -409,19 +409,19 @@ export const CoralSwiftNetworkVisual: React.FC = () => {
 
           {/* Quick Dual Cards */}
           <div className="grid grid-cols-2 gap-2 text-xs">
-            <div className="p-3 rounded-xl bg-navy-surface/80 border border-navy-border space-y-1">
-              <span className="text-[10px] font-mono text-coral-orange uppercase tracking-wider block">
+            <div className="p-3 rounded-lg bg-navy-surface/80 border border-navy-border space-y-1">
+              <span className="text-xs font-mono text-coral-orange uppercase tracking-wider block">
                 01. Enterprise Demand
               </span>
               <strong className="text-white text-xs block leading-snug">US IT & Ops SOWs</strong>
-              <p className="text-[10px] text-slate-400">ERP, Cloud, Healthcare RCM & KYC</p>
+              <p className="text-xs text-slate-400">ERP, Cloud, Healthcare RCM & KYC</p>
             </div>
-            <div className="p-3 rounded-xl bg-navy-surface/80 border border-navy-border space-y-1">
-              <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider block">
+            <div className="p-3 rounded-lg bg-navy-surface/80 border border-navy-border space-y-1">
+              <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider block">
                 02. Qualified Delivery
               </span>
               <strong className="text-white text-xs block leading-snug">Hyderabad Ecosystem</strong>
-              <p className="text-[10px] text-slate-400">Pre-screened 50+ FTE Centers</p>
+              <p className="text-xs text-slate-400">Pre-screened 50+ FTE Centers</p>
             </div>
           </div>
         </div>
@@ -429,18 +429,18 @@ export const CoralSwiftNetworkVisual: React.FC = () => {
         {/* Interactive Inspection Tooltip Bar */}
         <div className="mt-3 pt-3 border-t border-navy-border/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
           <div className="flex items-center gap-2">
-            <span className="text-slate-400 text-[11px]">Hover/tap any node to inspect:</span>
+            <span className="text-slate-400 text-xs">Hover/tap any node to inspect:</span>
             {activeNode ? (
-              <span className="text-white font-semibold bg-navy-surface px-2 py-0.5 rounded text-[11px] border border-coral-bright/40">
+              <span className="text-white font-semibold bg-navy-surface px-2 py-0.5 rounded-lg text-xs border border-coral-bright/40">
                 {activeNode.label} — <span className="text-coral-orange">{activeNode.detail}</span>
               </span>
             ) : (
-              <span className="text-slate-500 italic text-[11px]">
+              <span className="text-slate-500 italic text-xs">
                 Showing active cross-border pipeline & delivery governance
               </span>
             )}
           </div>
-          <span className="text-[10px] text-slate-400 font-mono self-end sm:self-auto">
+          <span className="text-xs text-slate-400 font-mono self-end sm:self-auto">
             100% IP ASSIGNMENT • MILESTONE GATES
           </span>
         </div>
