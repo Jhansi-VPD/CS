@@ -87,7 +87,7 @@ export const NonITSolutionsPage: React.FC = () => {
       </div>
 
       {/* Cinematic, full-bleed operations hero */}
-      <section className="relative isolate flex min-h-[680px] items-center overflow-hidden bg-navy-midnight sm:min-h-[700px]">
+      <section className="relative isolate flex min-h-0 py-16 sm:min-h-[580px] sm:py-20 lg:min-h-[680px] items-center overflow-hidden bg-navy-midnight">
         <Image
           src="/images/services-operations-4k.jpg"
           alt="Business operations team reviewing documents in a modern workspace"
@@ -98,11 +98,7 @@ export const NonITSolutionsPage: React.FC = () => {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/95 via-[#080B2E]/80 to-[#080B2E]/25"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/55 via-transparent to-[#080B2E]/10"
+          className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/95 via-[#080B2E]/85 to-[#080B2E]/40 sm:bg-gradient-to-r sm:from-[#080B2E]/95 sm:via-[#080B2E]/80 sm:to-[#080B2E]/25"
         />
 
         <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -111,7 +107,7 @@ export const NonITSolutionsPage: React.FC = () => {
               <span className="inline-flex items-center gap-2 border-l-2 border-coral-orange pl-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-orange">
                 NON-IT SOLUTIONS
               </span>
-              <h1 className="mt-6 max-w-3xl font-heading text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-7xl">
+              <h1 className="mt-6 max-w-3xl font-heading text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-7xl">
                 Reliable Support for Essential Business Operations.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
@@ -265,7 +261,7 @@ export const NonITSolutionsPage: React.FC = () => {
       {/* ================================================================== */}
       {/* 3. STICKY SERVICE NAVIGATION (Midnight-Navy Bar)                   */}
       {/* ================================================================== */}
-      <div id="service-navigation" className="sticky top-16 z-30 border-b border-white/10 bg-navy-midnight/95 shadow-xs backdrop-blur-md">
+      <div id="service-navigation" className="sticky top-[var(--cs-header-h,4rem)] z-30 border-b border-white/10 bg-navy-midnight/95 shadow-xs backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 py-2.5">
             <nav className="flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto overscroll-x-contain no-scrollbar sm:gap-2" aria-label="Service Domain Navigation">

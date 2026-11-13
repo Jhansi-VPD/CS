@@ -216,29 +216,29 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
               <span className="font-semibold text-slate-700 shrink-0">Status Lookup Token:</span>
               <span className="font-mono text-slate-600 break-all text-right">{bookingToken}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="font-semibold text-slate-700">Status:</span>
-              <span className="capitalize">{bookingStatus}</span>
+            <div className="flex justify-between items-center gap-3 py-0.5 border-b border-slate-100">
+              <span className="font-semibold text-slate-700 shrink-0">Status:</span>
+              <span className="capitalize text-right font-medium text-coral-bright">{bookingStatus}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="font-semibold text-slate-700">Contact:</span>
-              <span>{formData.fullName}</span>
+            <div className="flex justify-between items-center gap-3 py-0.5 border-b border-slate-100">
+              <span className="font-semibold text-slate-700 shrink-0">Contact:</span>
+              <span className="text-right min-w-0 break-words">{formData.fullName}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="font-semibold text-slate-700">Email:</span>
-              <span>{formData.businessEmail}</span>
+            <div className="flex justify-between items-center gap-3 py-0.5 border-b border-slate-100">
+              <span className="font-semibold text-slate-700 shrink-0">Email:</span>
+              <span className="text-right min-w-0 break-all">{formData.businessEmail}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="font-semibold text-slate-700">Selected Date:</span>
-              <span>{formData.preferredDate}</span>
+            <div className="flex justify-between items-center gap-3 py-0.5 border-b border-slate-100">
+              <span className="font-semibold text-slate-700 shrink-0">Selected Date:</span>
+              <span className="text-right min-w-0">{formData.preferredDate}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="font-semibold text-slate-700">Time Window:</span>
-              <span>{formData.preferredTimeSlot}</span>
+            <div className="flex justify-between items-center gap-3 py-0.5 border-b border-slate-100">
+              <span className="font-semibold text-slate-700 shrink-0">Time Window:</span>
+              <span className="text-right min-w-0">{formData.preferredTimeSlot}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="font-semibold text-slate-700">Time Zone:</span>
-              <span>{formData.timeZone.split('(')[0]}</span>
+            <div className="flex justify-between items-center gap-3 py-0.5">
+              <span className="font-semibold text-slate-700 shrink-0">Time Zone:</span>
+              <span className="text-right min-w-0">{formData.timeZone.split('(')[0]}</span>
             </div>
           </div>
 
@@ -442,11 +442,11 @@ export const MeetingRequestModal: React.FC<MeetingRequestModalProps> = ({
             <p className="text-[11px] text-coral-bright mt-1">{errors.privacyConsent}</p>
           )}
 
-          <div className="pt-3.5 flex items-center justify-end gap-2.5 border-t border-slate-100">
-            <Button variant="ghost" size="sm" type="button" onClick={onClose}>
+          <div className="pt-3.5 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 border-t border-slate-100">
+            <Button variant="ghost" size="sm" type="button" onClick={onClose} className="w-full sm:w-auto justify-center">
               Cancel
             </Button>
-            <Button variant="primary" size="sm" type="submit" isLoading={isSubmitting} icon={<ArrowRight className="w-3.5 h-3.5" />}>
+            <Button variant="primary" size="sm" type="submit" isLoading={isSubmitting} icon={<ArrowRight className="w-3.5 h-3.5" />} className="w-full sm:w-auto justify-center">
               Confirm Meeting Request
             </Button>
           </div>

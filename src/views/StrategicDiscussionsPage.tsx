@@ -74,7 +74,7 @@ const confidentialityPoints = [
 /* Hero visual: two established organisations joined by a shared strategic connection */
 
 const ConnectionVisual: React.FC = () => (
-  <div className="relative overflow-hidden rounded-3xl border border-navy-border bg-navy-surface/60 p-6 sm:p-8">
+  <div className="relative overflow-hidden rounded-3xl border border-navy-border bg-navy-surface/60 p-4 sm:p-8">
     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-navy-muted">
       Two Organisations · One Strategic Connection
     </p>
@@ -181,7 +181,7 @@ export const StrategicDiscussionsPage: React.FC = () => {
                   Strategic Discussions · Confidential Enquiries
                 </span>
               </div>
-              <h1 className="mt-3 font-heading text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl">
+              <h1 className="mt-3 font-heading text-3xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl">
                 Building Stronger Business{' '}
                 <span className="bg-swift-gradient bg-clip-text text-transparent">Foundations Together.</span>
               </h1>

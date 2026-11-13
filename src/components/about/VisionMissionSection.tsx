@@ -15,7 +15,7 @@ export const VisionMissionSection: React.FC = () => {
           Visual Theme: Global business connectivity, modern international architecture
           Composition: Content positioned on the LEFT, keeping corporate glass towers visible
           ========================================================================= */}
-      <div className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[680px] flex items-center overflow-hidden border-b border-white/10 group">
+      <div className="relative w-full min-h-0 py-14 sm:min-h-[520px] sm:py-20 lg:min-h-[640px] flex items-center overflow-hidden border-b border-white/10 group">
         {/* Background Photograph */}
         <picture className="absolute inset-0 w-full h-full">
           <source srcSet="/images/about-vision-cinematic.webp" type="image/webp" />
@@ -47,7 +47,7 @@ export const VisionMissionSection: React.FC = () => {
               </div>
 
               {/* Large Editorial Heading */}
-              <h3 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-white">
+              <h3 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-white">
                 VISION
               </h3>
 
@@ -97,7 +97,7 @@ export const VisionMissionSection: React.FC = () => {
           Visual Theme: Professional business collaboration, strategic planning & execution
           Composition: Content positioned on the RIGHT / OFFSET, visually distinct from Vision
           ========================================================================= */}
-      <div className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[680px] flex items-center overflow-hidden border-b border-white/10 group">
+      <div className="relative w-full min-h-0 py-14 sm:min-h-[520px] sm:py-20 lg:min-h-[640px] flex items-center overflow-hidden border-b border-white/10 group">
         {/* Background Photograph */}
         <picture className="absolute inset-0 w-full h-full">
           <source srcSet="/images/about-mission-cinematic.webp" type="image/webp" />
@@ -129,7 +129,7 @@ export const VisionMissionSection: React.FC = () => {
               </div>
 
               {/* Large Editorial Heading */}
-              <h3 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-white">
+              <h3 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-white">
                 MISSION
               </h3>
 

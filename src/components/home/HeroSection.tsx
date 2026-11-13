@@ -47,12 +47,13 @@ export const HeroSection: React.FC = () => {
       {/* 3D Translucent Globe & Flowing Gradient Wave Artwork Background */}
       <div className="absolute inset-0 -z-20 overflow-hidden bg-white pointer-events-none select-none">
         <Image
-          src="/images/hero-globe-pure-white.png"
+          src="/images/hero-globe-refined.jpg"
           alt="Coral Swift global business and delivery ecosystem"
           fill
           priority
+          quality={95}
           sizes="100vw"
-          className="object-cover object-right-top sm:object-[86%_top] opacity-100 scale-110 sm:scale-[1.18] lg:scale-[1.24] origin-top-right sm:origin-[86%_18%] transition-transform duration-300"
+          className="object-cover object-right-top sm:object-[86%_top] opacity-100 saturate-[1.08] scale-100 sm:scale-[1.04] lg:scale-[1.08] origin-top-right sm:origin-[86%_18%] transition-transform duration-300"
         />
         {/* Mobile / Tablet readability overlay: gentle white blend to ensure text contrast */}
         <div
@@ -67,16 +68,18 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-7 max-w-2xl space-y-4 sm:space-y-5 text-left relative z-10">
             {/* Eyebrow Tag */}
             <ScrollReveal direction="down" delay={50}>
-              <p className="font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] text-slate-600 uppercase">
-                US-FOCUSED <span className="text-coral-bright mx-2 sm:mx-2.5 font-bold">•</span> IT &amp; NON-IT SOLUTIONS <span className="text-coral-bright mx-2 sm:mx-2.5 font-bold">•</span> STRATEGIC PARTNERSHIPS
+              <p className="font-mono text-xs sm:text-sm font-semibold tracking-wider sm:tracking-[0.2em] text-slate-600 uppercase">
+                US-FOCUSED <span className="text-coral-bright mx-1.5 sm:mx-2.5 font-bold">•</span> IT &amp; NON-IT SOLUTIONS <span className="text-coral-bright mx-1.5 sm:mx-2.5 font-bold">•</span> STRATEGIC PARTNERSHIPS
               </p>
             </ScrollReveal>
 
             {/* Headline */}
             <ScrollReveal direction="up" delay={100}>
-              <h1 className="mt-3 font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-extrabold text-navy-midnight tracking-tight leading-[1.12]">
-                Connecting Global<br />
-                Opportunities with<br />
+              <h1 className="mt-3 font-heading text-3xl sm:text-5xl lg:text-6xl xl:text-6xl font-extrabold text-navy-midnight tracking-tight leading-[1.12]">
+                Connecting Global{' '}
+                <br className="hidden sm:inline" />
+                Opportunities with{' '}
+                <br className="hidden sm:inline" />
                 <span className="bg-gradient-to-r from-[#F98F33] via-[#E73B50] to-[#D21D61] bg-clip-text text-transparent inline-block">
                   Reliable Delivery.
                 </span>
@@ -119,19 +122,19 @@ export const HeroSection: React.FC = () => {
         {/* Bottom Feature Strip with 4 Pillars - Clean borderless inline layout */}
         <ScrollReveal direction="up" delay={250}>
           <div className="mt-6 sm:mt-8 pt-1 pb-0 relative z-10">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 items-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 items-center">
               {featureHighlights.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="group flex items-center justify-center sm:justify-start gap-3 py-1.5 transition-all duration-200"
+                  className="group flex items-center justify-start gap-2.5 sm:gap-3 py-1.5 transition-all duration-200"
                 >
                   <item.icon
-                    className="w-6 h-6 sm:w-7 sm:h-7 shrink-0 transition-transform duration-200 group-hover:scale-110"
+                    className="w-5 h-5 sm:w-7 sm:h-7 shrink-0 transition-transform duration-200 group-hover:scale-110"
                     stroke="url(#swiftHeroIconGradient)"
                     strokeWidth={1.8}
                   />
-                  <span className="text-sm sm:text-base font-heading font-bold text-navy-midnight group-hover:text-coral-bright transition-colors leading-tight">
+                  <span className="text-xs sm:text-base font-heading font-bold text-navy-midnight group-hover:text-coral-bright transition-colors leading-tight">
                     {item.label}
                   </span>
                 </Link>

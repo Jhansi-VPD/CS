@@ -100,27 +100,20 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
                 }
               }
             }}
-            className={`relative cursor-pointer transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white text-white py-3.5 sm:py-5 pl-7 sm:pl-10 pr-14 sm:pr-20 bg-gradient-to-r ${theme.gradient} ${
+            className={`relative cursor-pointer transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white text-white py-3 sm:py-5 pl-5 sm:pl-10 pr-9 sm:pr-20 bg-gradient-to-r ${theme.gradient} [clip-path:polygon(18px_0%,calc(100%-16px)_0%,100%_50%,calc(100%-16px)_100%,0%_100%)] sm:[clip-path:polygon(28px_0%,calc(100%-24px)_0%,100%_50%,calc(100%-24px)_100%,0%_100%)] ${
               isActive
                 ? '-translate-y-0.5 brightness-105 shadow-md'
                 : 'opacity-90 hover:opacity-100 hover:-translate-y-0.5 hover:brightness-105'
             }`}
-            style={{
-              clipPath:
-                'polygon(28px 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%)'
-            }}
           >
             {/* Top-Left Origami Fold White Triangle Flap */}
             <div
-              className="absolute left-0 top-0 w-7 h-full bg-white/20 backdrop-blur-xs pointer-events-none"
-              style={{
-                clipPath: 'polygon(0% 0%, 28px 0%, 0% 100%)'
-              }}
+              className="absolute left-0 top-0 w-5 sm:w-7 h-full bg-white/20 backdrop-blur-xs pointer-events-none [clip-path:polygon(0%_0%,100%_0%,0%_100%)]"
             />
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-3 sm:gap-4">
               {/* Text Info */}
-              <div className="space-y-0.5 sm:space-y-1 min-w-0 pr-2">
+              <div className="space-y-0.5 sm:space-y-1 min-w-0 pr-1 sm:pr-2">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-white/90 transition-colors">
                     Stage {formattedStep}
@@ -135,7 +128,7 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
                   )}
                 </div>
 
-                <h3 className="text-sm sm:text-lg lg:text-xl font-heading font-extrabold text-white truncate leading-snug">
+                <h3 className="text-xs sm:text-lg lg:text-xl font-heading font-extrabold text-white line-clamp-2 sm:truncate leading-snug">
                   {name}
                 </h3>
 
@@ -154,14 +147,14 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
               </div>
 
               {/* Right Diamond Badge with Step Number */}
-              <div className="shrink-0 flex items-center mr-1 sm:mr-3">
+              <div className="shrink-0 flex items-center mr-0 sm:mr-3">
                 <div
-                  className={`relative w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-lg sm:rounded-xl shadow-lg rotate-45 flex items-center justify-center transition-all duration-300 ease-out ${
+                  className={`relative w-8 h-8 sm:w-11 sm:h-11 bg-white rounded-lg sm:rounded-xl shadow-lg rotate-45 flex items-center justify-center transition-all duration-300 ease-out ${
                     isActive ? 'scale-105 shadow-xl' : 'group-hover:scale-105'
                   }`}
                 >
                   <span
-                    className="font-extrabold text-xs sm:text-sm -rotate-45"
+                    className="font-extrabold text-[11px] sm:text-sm -rotate-45"
                     style={{ color: theme.iconColor }}
                   >
                     {formattedStep}
@@ -187,7 +180,7 @@ export const ChevronStageBanner: React.FC<ChevronStageBannerProps> = ({
       <div
         id={drawerId}
         aria-hidden={!isActive}
-        className={`ml-14 sm:ml-22 mr-2 sm:mr-6 transition-all duration-300 ease-out overflow-hidden ${
+        className={`ml-0 sm:ml-20 mr-0 sm:mr-6 transition-all duration-300 ease-out overflow-hidden ${
           isActive
             ? 'max-h-[500px] opacity-100 mt-2.5 translate-y-0 pointer-events-auto'
             : 'max-h-0 opacity-0 mt-0 -translate-y-2 pointer-events-none'

@@ -145,7 +145,7 @@ export const ITSolutionsPage: React.FC = () => {
               <span className="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-coral-50 text-coral-bright border border-coral-200">
                 IT Solutions
               </span>
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold text-navy-midnight mt-2 sm:mt-2.5 leading-[1.08] tracking-tight">
+              <h1 className="font-heading text-3xl sm:text-5xl lg:text-5xl font-extrabold text-navy-midnight mt-2 sm:mt-2.5 leading-[1.08] tracking-tight">
                 Technology That Works
                 <br className="hidden sm:block" /> for Your Business.
               </h1>

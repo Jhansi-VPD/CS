@@ -146,53 +146,53 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setActiveForm('general')}
-                  className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 sm:gap-1.5 min-w-0 ${
                     activeForm === 'general'
                       ? 'bg-white text-navy-midnight shadow-sm'
                       : 'text-slate-600 hover:text-navy-midnight'
                   }`}
                 >
-                  <MessageSquare className="w-3.5 h-3.5" />
-                  <span>General</span>
+                  <MessageSquare className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">General</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setActiveForm('project')}
-                  className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 sm:gap-1.5 min-w-0 ${
                     activeForm === 'project'
                       ? 'bg-white text-coral-bright shadow-sm'
                       : 'text-slate-600 hover:text-navy-midnight'
                   }`}
                 >
-                  <Briefcase className="w-3.5 h-3.5" />
-                  <span>Project Enquiry</span>
+                  <Briefcase className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Project Enquiry</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setActiveForm('partner')}
-                  className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 sm:gap-1.5 min-w-0 ${
                     activeForm === 'partner'
                       ? 'bg-white text-navy-midnight shadow-sm'
                       : 'text-slate-600 hover:text-navy-midnight'
                   }`}
                 >
-                  <Handshake className="w-3.5 h-3.5" />
-                  <span>Partner Apply</span>
+                  <Handshake className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Partner Apply</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setActiveForm('strategic')}
-                  className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 sm:gap-1.5 min-w-0 ${
                     activeForm === 'strategic'
                       ? 'bg-white text-coral-magenta shadow-sm'
                       : 'text-slate-600 hover:text-navy-midnight'
                   }`}
                 >
-                  <Lock className="w-3.5 h-3.5" />
-                  <span>Strategic M&A</span>
+                  <Lock className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Strategic M&A</span>
                 </button>
               </div>
 

@@ -269,8 +269,7 @@ export const ProjectOpportunitiesPage: React.FC = () => {
           sizes="100vw"
           className="object-cover object-[center_45%]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/80 via-[#080B2E]/45 to-[#080B2E]/10" />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/45 via-transparent to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/95 via-[#080B2E]/80 to-[#080B2E]/40 sm:bg-gradient-to-r sm:from-[#080B2E]/90 sm:via-[#080B2E]/60 sm:to-[#080B2E]/20" />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-2 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
           <Breadcrumbs items={[{ label: 'Project Opportunities' }]} dark />
@@ -284,7 +283,7 @@ export const ProjectOpportunitiesPage: React.FC = () => {
               </div>
               <h1
                 id="opportunities-title"
-                className="mt-5 max-w-2xl font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.65rem]"
+                className="mt-5 max-w-2xl font-heading text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.65rem]"
               >
                 Explore the Work Behind Every Opportunity.
               </h1>

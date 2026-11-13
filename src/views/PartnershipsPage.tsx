@@ -415,7 +415,7 @@ export const PartnershipsPage: React.FC = () => {
 
           <ScrollReveal direction="up" delay={150}>
             <div
-              className="mt-10 overflow-x-auto rounded-2xl border border-slate-200/90 shadow-sm bg-white"
+              className="mt-10 overflow-x-auto h-scroll rounded-2xl border border-slate-200/90 shadow-sm bg-white"
               role="region"
               aria-label="Proposed partner screening criteria"
               tabIndex={0}

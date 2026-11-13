@@ -277,7 +277,7 @@ export const Header: React.FC = () => {
           >
             <div
               role="navigation"
-              className="min-h-0 max-h-full overflow-y-auto overscroll-contain bg-white border-b border-slate-200 px-4 py-6 space-y-4 shadow-2xl"
+              className="min-h-0 max-h-full overflow-y-auto overscroll-contain bg-white border-b border-slate-200 px-4 pt-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] space-y-4 shadow-2xl"
             >
             <nav className="space-y-1">
               {headerNavItems.map((item) => {
@@ -336,7 +336,7 @@ export const Header: React.FC = () => {
                     key={item.title}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block px-3.5 py-3 rounded-lg text-base font-semibold transition-colors min-h-[44px] flex items-center ${
+                    className={`flex items-center px-3.5 py-3 rounded-lg text-base font-semibold transition-colors min-h-[44px] ${
                       active
                         ? 'bg-coral-50 text-coral-bright font-bold'
                         : 'text-navy-midnight hover:text-coral-bright hover:bg-slate-50'

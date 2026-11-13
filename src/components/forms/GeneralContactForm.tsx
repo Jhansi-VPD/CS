@@ -174,21 +174,21 @@ export const GeneralContactForm: React.FC = () => {
             <span className="font-semibold text-slate-700 shrink-0">Status Lookup Token:</span>
             <span className="font-mono text-slate-600 break-all text-right">{submissionSuccess.lookupToken}</span>
           </div>
-          <div className="flex justify-between py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Name:</span>
-            <span>{submissionSuccess.data.name}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Name:</span>
+            <span className="text-right min-w-0 break-words">{submissionSuccess.data.name}</span>
           </div>
-          <div className="flex justify-between py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Category:</span>
-            <span>{submissionSuccess.data.enquiryType}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Category:</span>
+            <span className="text-right min-w-0">{submissionSuccess.data.enquiryType}</span>
           </div>
-          <div className="flex justify-between py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Status:</span>
-            <span className="capitalize">{submissionSuccess.status}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Status:</span>
+            <span className="capitalize text-right">{submissionSuccess.status}</span>
           </div>
-          <div className="flex justify-between py-1">
-            <span className="font-semibold text-slate-700">Logged At:</span>
-            <span>{submissionSuccess.submittedAt}</span>
+          <div className="flex justify-between items-center py-1 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Logged At:</span>
+            <span className="text-right min-w-0">{submissionSuccess.submittedAt}</span>
           </div>
         </div>
 

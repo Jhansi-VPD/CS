@@ -157,9 +157,9 @@ export const ServicesOverviewSection: React.FC = () => {
                       'Data entry and document processing',
                       'Back-office support',
                     ].map((cap, i) => (
-                      <div key={i} className="flex items-center gap-1.5 font-medium truncate">
+                      <div key={i} className="flex items-center gap-1.5 font-medium">
                         <CheckCircle2 className="w-3 h-3 text-coral-bright shrink-0" />
-                        <span className="truncate">{cap}</span>
+                        <span>{cap}</span>
                       </div>
                     ))}
                   </div>
@@ -215,9 +215,9 @@ export const ServicesOverviewSection: React.FC = () => {
                       'Reporting and quality assurance',
                       'Commercial engagement support',
                     ].map((cap, i) => (
-                      <div key={i} className="flex items-center gap-1.5 font-medium truncate">
+                      <div key={i} className="flex items-center gap-1.5 font-medium">
                         <CheckCircle2 className="w-3 h-3 text-coral-bright shrink-0" />
-                        <span className="truncate">{cap}</span>
+                        <span>{cap}</span>
                       </div>
                     ))}
                   </div>

@@ -87,7 +87,7 @@ export const ServicesPage: React.FC = () => {
               <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-coral-orange">
                 Solutions Portfolio
               </span>
-              <h1 className="font-heading text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.08] mt-3">
+              <h1 className="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.08] mt-3">
                 Capabilities That Move<br className="hidden sm:block" /> Business Forward.
               </h1>
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mt-5 max-w-xl">

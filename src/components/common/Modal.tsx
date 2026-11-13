@@ -65,7 +65,7 @@ export const Modal: React.FC<ModalProps> = ({
     <div
       ref={dialogRef}
       tabIndex={-1}
-      className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6 overflow-y-auto focus:outline-none"
+      className="fixed inset-0 z-[80] flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto focus:outline-none"
       role="dialog"
       aria-modal="true"
       aria-labelledby={title ? titleId : undefined}
@@ -79,11 +79,11 @@ export const Modal: React.FC<ModalProps> = ({
 
       {/* Modal Dialog Box */}
       <div
-        className={`relative w-full ${maxWidthClasses[maxWidth]} bg-white rounded-2xl shadow-2xl border border-slate-200 z-10 my-8 overflow-hidden animate-slide-up`}
+        className={`relative w-full ${maxWidthClasses[maxWidth]} bg-white rounded-2xl shadow-2xl border border-slate-200 z-10 my-auto flex flex-col max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-3rem)] overflow-hidden animate-slide-up`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-start justify-between p-5 sm:p-6 border-b border-slate-100 bg-slate-50/50">
+        <div className="flex items-start justify-between p-4 sm:p-6 border-b border-slate-100 bg-slate-50/50 shrink-0">
           <div>
             {title && (
               <h3 id={titleId} className="text-lg sm:text-xl font-heading font-bold text-navy-midnight">
@@ -102,7 +102,7 @@ export const Modal: React.FC<ModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-5 sm:p-6 max-h-[min(70dvh,560px)] overflow-y-auto">{children}</div>
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1">{children}</div>
       </div>
     </div>,
     document.body

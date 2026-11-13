@@ -343,25 +343,25 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
               {submissionSuccess.lookupToken}
             </span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Company / Contact:</span>
-            <span>{submissionSuccess.data.companyName} ({submissionSuccess.data.fullName})</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Company / Contact:</span>
+            <span className="text-right min-w-0 break-words">{submissionSuccess.data.companyName} ({submissionSuccess.data.fullName})</span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Service Category:</span>
-            <span className="font-medium text-navy-midnight">{submissionSuccess.data.serviceCategory}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Service Category:</span>
+            <span className="font-medium text-navy-midnight text-right min-w-0">{submissionSuccess.data.serviceCategory}</span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Specific Requirement:</span>
-            <span>{submissionSuccess.data.specificService}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Specific Requirement:</span>
+            <span className="text-right min-w-0 break-words">{submissionSuccess.data.specificService}</span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Attached Documents:</span>
-            <span>{submissionSuccess.documentsAttached}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Attached Documents:</span>
+            <span className="text-right">{submissionSuccess.documentsAttached}</span>
           </div>
-          <div className="flex justify-between items-center py-1">
-            <span className="font-semibold text-slate-700">Status:</span>
-            <span className="capitalize">{submissionSuccess.status}</span>
+          <div className="flex justify-between items-center py-1 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Status:</span>
+            <span className="capitalize text-right">{submissionSuccess.status}</span>
           </div>
         </div>
 
@@ -629,7 +629,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
         <label className="block text-xs font-semibold text-navy-midnight mb-1">
           Attach Scope Document / RFP (Optional)
         </label>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <label className="flex items-center gap-2 px-4 py-2.5 max-sm:min-h-[44px] border border-dashed border-slate-300 hover:border-coral-bright rounded-lg cursor-pointer bg-slate-50 hover:bg-coral-50/30 transition-colors text-xs font-medium text-slate-700">
             <Upload className="w-4 h-4 text-coral-bright" />
             <span>{selectedFile ? 'Change File' : 'Select Scope File'}</span>
@@ -641,10 +641,10 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
             />
           </label>
           {selectedFile && (
-            <div className="flex items-center gap-2 text-xs text-navy-midnight font-medium bg-slate-100 px-3 py-1.5 rounded-lg">
-              <FileText className="w-3.5 h-3.5 text-coral-bright" />
-              <span className="truncate max-w-[200px]">{selectedFile.name}</span>
-              <span className="text-slate-400">({(selectedFile.size / 1024).toFixed(0)} KB)</span>
+            <div className="flex items-center gap-2 text-xs text-navy-midnight font-medium bg-slate-100 px-3 py-1.5 rounded-lg max-w-full">
+              <FileText className="w-3.5 h-3.5 text-coral-bright shrink-0" />
+              <span className="truncate max-w-[180px] sm:max-w-[200px]">{selectedFile.name}</span>
+              <span className="text-slate-400 shrink-0">({(selectedFile.size / 1024).toFixed(0)} KB)</span>
             </div>
           )}
         </div>
@@ -681,12 +681,12 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
           <span className="leading-relaxed">{submitError}</span>
         </div>
       )}
-      <div className="pt-2 flex items-center justify-between border-t border-slate-100">
-        <div className="flex items-center gap-2 text-xs text-slate-500">
-          <ShieldCheck className="w-4 h-4 text-emerald-600" />
+      <div className="pt-3 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-slate-100">
+        <div className="flex items-center justify-center sm:justify-start gap-2 text-xs text-slate-500">
+          <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
           <span>Encrypted submission</span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-3 w-full sm:w-auto">
           {enableMultiStep && currentStep > 0 && (
             <Button
               type="button"
@@ -694,6 +694,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
               size="sm"
               disabled={isSubmitting}
               onClick={() => setCurrentStep((step) => step - 1)}
+              className="w-full sm:w-auto justify-center"
             >
               Back
             </Button>
@@ -702,6 +703,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
             type="submit"
             variant="primary"
             size="md"
+            className="w-full sm:w-auto justify-center"
             isLoading={isSubmitting}
             icon={<ArrowRight className="w-4 h-4" />}
           >

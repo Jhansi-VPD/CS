@@ -178,6 +178,7 @@ export const GlobalDeliveryModelSection: React.FC = () => {
               const isHovered = hoveredIndex === index;
               const isLastInDesktop = index === stages.length - 1;
               const isLastInRowTablet = index === 2 || index === 5;
+              const isLastInRowMobile2Col = index % 2 === 1;
 
               return (
                 <li
@@ -198,11 +199,13 @@ export const GlobalDeliveryModelSection: React.FC = () => {
                         {stage.number}
                       </span>
 
-                      {/* Horizontal Arrow Line (hidden on last item in desktop; wraps appropriately on tablet) */}
+                      {/* Horizontal Arrow Line (hidden on last item in desktop; wraps appropriately on tablet & mobile) */}
                       <div
-                        className={`flex-1 flex items-center pl-3 pr-1 sm:pl-4 sm:pr-2 select-none pointer-events-none ${
+                        className={`flex-1 hidden sm:flex items-center pl-3 pr-1 sm:pl-4 sm:pr-2 select-none pointer-events-none ${
                           isLastInDesktop ? 'lg:hidden' : ''
-                        } ${isLastInRowTablet ? 'md:max-lg:hidden' : ''}`}
+                        } ${isLastInRowTablet ? 'md:max-lg:hidden' : ''} ${
+                          isLastInRowMobile2Col ? 'sm:max-md:hidden' : ''
+                        }`}
                         aria-hidden="true"
                       >
                         <div className="w-full relative flex items-center">

@@ -169,11 +169,7 @@ export const IndustriesPage: React.FC = () => {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/80 via-[#080B2E]/45 to-[#080B2E]/10"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/45 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/95 via-[#080B2E]/80 to-[#080B2E]/40 sm:bg-gradient-to-r sm:from-[#080B2E]/90 sm:via-[#080B2E]/60 sm:to-[#080B2E]/20"
         />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-2 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
@@ -187,7 +183,7 @@ export const IndustriesPage: React.FC = () => {
             </div>
             <h1
               id="industries-title"
-              className="mt-5 max-w-3xl font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.65rem]"
+              className="mt-5 max-w-3xl font-heading text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.65rem]"
             >
               Understanding Industries. Connecting the Right Capabilities.
             </h1>
@@ -313,7 +309,7 @@ export const IndustriesPage: React.FC = () => {
         aria-labelledby="healthcare-operations-title"
         className="scroll-mt-24 bg-[#FFF1F4]"
       >
-        <div className="relative isolate min-h-[450px] overflow-hidden bg-navy-midnight text-white sm:min-h-[560px]">
+        <div className="relative isolate min-h-[360px] overflow-hidden bg-navy-midnight text-white sm:min-h-[500px] lg:min-h-[560px]">
           <Image
             src="/images/industry-healthcare.jpg"
             alt="Healthcare professional using a mobile device in a clinical setting"
@@ -323,10 +319,9 @@ export const IndustriesPage: React.FC = () => {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-[#080B2E]/85 via-[#080B2E]/45 to-[#080B2E]/10"
+            className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/95 via-[#080B2E]/80 to-[#080B2E]/35 sm:bg-gradient-to-r sm:from-[#080B2E]/90 sm:via-[#080B2E]/60 sm:to-[#080B2E]/20"
           />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#080B2E]/55 via-transparent to-transparent" />
-          <div className="relative mx-auto flex min-h-[450px] max-w-7xl items-end px-4 py-12 sm:min-h-[560px] sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+          <div className="relative mx-auto flex min-h-[360px] max-w-7xl items-end px-4 py-12 sm:min-h-[500px] sm:px-6 sm:py-16 lg:min-h-[560px] lg:px-8 lg:py-20">
             <ScrollReveal direction="left" className="max-w-3xl">
               <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-coral-bright">
                 SECTOR 02 · HEALTHCARE
@@ -482,7 +477,7 @@ export const IndustriesPage: React.FC = () => {
       <section
         id="enterprise-operations"
         aria-labelledby="enterprise-operations-title"
-        className="scroll-mt-24 bg-[#F8F7F4]"
+        className="scroll-mt-24 overflow-hidden bg-[#F8F7F4]"
       >
         <div className="mx-auto max-w-7xl px-4 pb-14 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:px-8 lg:pb-24 lg:pt-24">
           <ScrollReveal direction="up" className="relative max-w-3xl">

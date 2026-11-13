@@ -404,29 +404,29 @@ export const PartnerApplicationForm: React.FC = () => {
               {submissionSuccess.lookupToken}
             </span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Applicant Organization:</span>
-            <span className="font-medium text-navy-midnight">
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Applicant Organization:</span>
+            <span className="font-medium text-navy-midnight text-right min-w-0 break-words">
               {submissionSuccess.data.companyName}
             </span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Authorized Contact:</span>
-            <span>{submissionSuccess.data.contactPersonName} ({submissionSuccess.data.businessEmail})</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Authorized Contact:</span>
+            <span className="text-right min-w-0 break-words">{submissionSuccess.data.contactPersonName} <span className="break-all">({submissionSuccess.data.businessEmail})</span></span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Preferred Pathway:</span>
-            <span className="font-semibold text-coral-magenta">
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Preferred Pathway:</span>
+            <span className="font-semibold text-coral-magenta text-right min-w-0">
               {submissionSuccess.data.preferredPathway}
             </span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Evidence Items Indicated:</span>
-            <span>{submissionSuccess.data.selectedEvidenceDocuments.length}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Evidence Items Indicated:</span>
+            <span className="text-right">{submissionSuccess.data.selectedEvidenceDocuments.length}</span>
           </div>
-          <div className="flex justify-between items-center py-1">
-            <span className="font-semibold text-slate-700">Status:</span>
-            <span className="capitalize">{submissionSuccess.status}</span>
+          <div className="flex justify-between items-center py-1 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Status:</span>
+            <span className="capitalize text-right">{submissionSuccess.status}</span>
           </div>
         </div>
 
@@ -1020,7 +1020,7 @@ export const PartnerApplicationForm: React.FC = () => {
         )}
 
         {/* Navigation Buttons */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-4 border-t border-slate-100">
           {step > 1 ? (
             <Button
               type="button"
@@ -1029,11 +1029,12 @@ export const PartnerApplicationForm: React.FC = () => {
               onClick={handleBack}
               icon={<ArrowLeft className="w-3.5 h-3.5" />}
               iconPosition="left"
+              className="w-full sm:w-auto justify-center"
             >
               Previous Step
             </Button>
           ) : (
-            <div />
+            <div className="hidden sm:block" />
           )}
 
           {step < 4 ? (
@@ -1043,6 +1044,7 @@ export const PartnerApplicationForm: React.FC = () => {
               size="md"
               onClick={handleNext}
               icon={<ArrowRight className="w-4 h-4" />}
+              className="w-full sm:w-auto justify-center"
             >
               Continue to Step {step + 1}
             </Button>
@@ -1053,6 +1055,7 @@ export const PartnerApplicationForm: React.FC = () => {
               size="md"
               isLoading={isSubmitting}
               icon={<CheckCircle2 className="w-4 h-4" />}
+              className="w-full sm:w-auto justify-center"
             >
               Submit Partner Application
             </Button>

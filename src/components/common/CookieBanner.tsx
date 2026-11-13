@@ -42,7 +42,7 @@ export const CookieBanner: React.FC = () => {
     <div
       role="region"
       aria-label="Cookie consent banner"
-      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-4 right-4 md:left-1/2 md:right-auto md:w-full md:max-w-md md:-translate-x-1/2 z-50 max-h-[calc(100dvh-6rem)] overflow-y-auto bg-navy-midnight text-white p-5 rounded-2xl shadow-2xl border border-navy-border animate-slide-up"
+      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-3 right-3 sm:left-4 sm:right-4 md:left-1/2 md:right-auto md:w-full md:max-w-md md:-translate-x-1/2 z-50 max-h-[calc(100dvh-6rem)] overflow-y-auto bg-navy-midnight text-white p-4 sm:p-5 rounded-2xl shadow-2xl border border-navy-border animate-slide-up"
     >
       <div className="flex items-start gap-3">
         <ShieldCheck className="w-5 h-5 text-coral-orange shrink-0 mt-0.5" />

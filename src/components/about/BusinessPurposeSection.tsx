@@ -42,7 +42,7 @@ export const BusinessPurposeSection: React.FC = () => (
         </h2>
       </ScrollReveal>
 
-      <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-8">
+      <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-x-6 lg:gap-x-10 gap-y-8">
         {storyParts.map((part, i) => (
           <ScrollReveal key={part.step} direction="up" delay={i * 140}>
             <div className="flex items-center">

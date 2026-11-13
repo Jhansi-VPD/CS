@@ -230,21 +230,21 @@ export const StrategicEnquiryForm: React.FC = () => {
               {submissionSuccess.lookupToken}
             </span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Status:</span>
-            <span className="capitalize">{submissionSuccess.status}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Status:</span>
+            <span className="capitalize text-right">{submissionSuccess.status}</span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Entity:</span>
-            <span>{submissionSuccess.data.companyName} ({submissionSuccess.data.country})</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Entity:</span>
+            <span className="text-right min-w-0 break-words">{submissionSuccess.data.companyName} ({submissionSuccess.data.country})</span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-slate-200/60">
-            <span className="font-semibold text-slate-700">Discussion Scope:</span>
-            <span className="font-medium text-navy-midnight">{submissionSuccess.data.natureOfOpportunity}</span>
+          <div className="flex justify-between items-center py-1 border-b border-slate-200/60 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Discussion Scope:</span>
+            <span className="font-medium text-navy-midnight text-right min-w-0 break-words">{submissionSuccess.data.natureOfOpportunity}</span>
           </div>
-          <div className="flex justify-between items-center py-1">
-            <span className="font-semibold text-slate-700">Preferred Channel:</span>
-            <span>{submissionSuccess.data.preferredContactMethod}</span>
+          <div className="flex justify-between items-center py-1 gap-4">
+            <span className="font-semibold text-slate-700 shrink-0">Preferred Channel:</span>
+            <span className="text-right min-w-0">{submissionSuccess.data.preferredContactMethod}</span>
           </div>
         </div>
 
@@ -570,6 +570,7 @@ export const StrategicEnquiryForm: React.FC = () => {
           size="md"
           isLoading={isSubmitting}
           icon={<ArrowRight className="w-4 h-4" />}
+          className="w-full sm:w-auto"
         >
           Submit Strategic Inquiry
         </Button>

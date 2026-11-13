@@ -118,7 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <LogoIntro />
         <Header />
-        <main className="flex-grow relative z-10 bg-white parallax-footer-shadow">{children}</main>
+        <main className="flex-grow relative z-10 bg-white parallax-footer-shadow overflow-x-clip">{children}</main>
         <Footer />
         <CookieBanner />
         <Chatbot />

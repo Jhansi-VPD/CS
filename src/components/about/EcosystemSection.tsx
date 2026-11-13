@@ -54,11 +54,11 @@ const partnerDuties = [
 const HubConnector: React.FC = () => (
   <>
     <div
-      className="relative hidden min-h-[440px] flex-col items-center justify-center lg:flex"
+      className="relative hidden min-h-[360px] lg:min-h-[440px] flex-col items-center justify-center md:flex"
       aria-label="Coral Swift connects project owners and delivery organizations"
     >
       <svg
-        className="ecosystem-connectors pointer-events-none absolute left-1/2 top-1/2 h-32 w-[230px] -translate-x-1/2 -translate-y-1/2 overflow-visible"
+        className="ecosystem-connectors pointer-events-none absolute left-1/2 top-1/2 h-24 lg:h-32 w-[160px] lg:w-[230px] -translate-x-1/2 -translate-y-1/2 overflow-visible"
         viewBox="0 0 230 128"
         fill="none"
         aria-hidden="true"
@@ -91,37 +91,42 @@ const HubConnector: React.FC = () => (
         <circle cx="223" cy="64" r="2.5" fill="#950B6D" />
       </svg>
 
-      <div className="relative grid h-28 w-28 place-items-center rounded-full border border-white/90 bg-white/90 shadow-[0_12px_42px_rgba(8,11,46,0.12)]">
-        <span aria-hidden="true" className="absolute inset-[-13px] rounded-full border border-[#F05E47]/15" />
-        <span aria-hidden="true" className="absolute inset-[-27px] rounded-full border border-[#D21D61]/10" />
-        <Logo variant="emblem-only" theme="light" size="md" asLink={false} />
+      <div className="relative grid h-20 w-20 lg:h-28 lg:w-28 place-items-center rounded-full border border-white/90 bg-white/90 shadow-[0_12px_42px_rgba(8,11,46,0.12)]">
+        <span aria-hidden="true" className="absolute inset-[-8px] lg:inset-[-13px] rounded-full border border-[#F05E47]/15" />
+        <span aria-hidden="true" className="absolute inset-[-16px] lg:inset-[-27px] rounded-full border border-[#D21D61]/10" />
+        <div className="hidden lg:block">
+          <Logo variant="emblem-only" theme="light" size="md" asLink={false} />
+        </div>
+        <div className="lg:hidden">
+          <Logo variant="emblem-only" theme="light" size="sm" asLink={false} />
+        </div>
       </div>
-      <span className="mt-7 text-center text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#080B2E]/70">
+      <span className="mt-4 lg:mt-7 text-center text-[10px] lg:text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#080B2E]/70">
         The Connection Hub
       </span>
-      <span className="mt-2 max-w-[190px] text-center text-xs leading-relaxed text-slate-500">
+      <span className="mt-1 lg:mt-2 max-w-[150px] lg:max-w-[190px] text-center text-[10px] lg:text-xs leading-relaxed text-slate-500">
         Aligning project needs with delivery capabilities
       </span>
     </div>
 
     <div
-      className="flex flex-col items-center py-7 lg:hidden"
+      className="flex flex-col items-center py-5 sm:py-6 md:hidden"
       aria-label="Coral Swift connects project owners and delivery organizations"
     >
-      <svg className="h-9 w-8" viewBox="0 0 32 36" fill="none" aria-hidden="true">
+      <svg className="h-7 w-7 sm:h-9 sm:w-8" viewBox="0 0 32 36" fill="none" aria-hidden="true">
         <path d="M16 0V36" stroke="#F05E47" strokeWidth="1.5" strokeDasharray="3 5" className="ecosystem-flow" />
       </svg>
-      <div className="relative grid h-[76px] w-[76px] place-items-center rounded-full border border-white/90 bg-white shadow-[0_8px_32px_rgba(8,11,46,0.12)]">
-        <span aria-hidden="true" className="absolute inset-[-9px] rounded-full border border-[#F05E47]/15" />
+      <div className="relative grid h-16 w-16 sm:h-[76px] sm:w-[76px] place-items-center rounded-full border border-white/90 bg-white shadow-[0_8px_32px_rgba(8,11,46,0.12)]">
+        <span aria-hidden="true" className="absolute inset-[-7px] sm:inset-[-9px] rounded-full border border-[#F05E47]/15" />
         <Logo variant="emblem-only" theme="light" size="sm" asLink={false} />
       </div>
-      <span className="mt-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#080B2E]/70">
+      <span className="mt-3 text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#080B2E]/70">
         The Connection Hub
       </span>
-      <span className="mt-1 max-w-[220px] text-center text-xs leading-relaxed text-slate-500">
+      <span className="mt-0.5 max-w-[220px] text-center text-xs leading-relaxed text-slate-500">
         Aligning project needs with delivery capabilities
       </span>
-      <svg className="mt-3 h-9 w-8" viewBox="0 0 32 36" fill="none" aria-hidden="true">
+      <svg className="mt-2 h-7 w-7 sm:h-9 sm:w-8" viewBox="0 0 32 36" fill="none" aria-hidden="true">
         <path d="M16 0V36" stroke="#D21D61" strokeWidth="1.5" strokeDasharray="3 5" className="ecosystem-flow ecosystem-flow-reverse" />
       </svg>
     </div>
@@ -129,7 +134,7 @@ const HubConnector: React.FC = () => (
 );
 
 export const EcosystemSection: React.FC = () => (
-  <section className="relative isolate overflow-hidden border-b border-slate-200/70 bg-[#FFF9F6] py-16 sm:py-20 lg:py-24">
+  <section className="relative isolate overflow-hidden border-b border-slate-200/70 bg-[#FFF9F6] py-12 sm:py-16 lg:py-20 xl:py-24">
     <div
       aria-hidden="true"
       className="pointer-events-none absolute -left-40 top-16 h-80 w-80 rounded-full bg-[#F98F33]/[0.08] blur-3xl"
@@ -167,31 +172,31 @@ export const EcosystemSection: React.FC = () => (
         </div>
       </ScrollReveal>
 
-      <div className="mx-auto mt-12 grid max-w-7xl grid-cols-1 items-center gap-0 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_230px_minmax(0,1fr)]">
-        <ScrollReveal direction="left" className="relative z-10 lg:pr-8">
+      <div className="mx-auto mt-10 sm:mt-12 md:mt-14 lg:mt-16 grid max-w-7xl grid-cols-1 items-center gap-0 md:grid-cols-[minmax(0,1fr)_160px_minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_220px_minmax(0,1fr)] xl:grid-cols-[minmax(0,1fr)_240px_minmax(0,1fr)]">
+        <ScrollReveal direction="left" className="relative z-10 md:pr-3 lg:pr-8">
           <div className="pointer-events-none absolute -left-12 -top-10 h-48 w-48 rounded-full bg-[#F98F33]/[0.06] blur-3xl" aria-hidden="true" />
-          <div className="relative">
+          <div className="relative w-full max-w-xl mx-auto md:max-w-none">
             <p className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#F05E47]">
               For Project Owners
             </p>
-            <h3 className="mt-4 font-heading text-3xl font-extrabold tracking-tight text-[#080B2E] sm:text-4xl lg:text-4xl">
+            <h3 className="mt-4 font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#080B2E]">
               Define the need.
             </h3>
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-600 sm:text-base">
               Start with a defined business need and establish the right foundation for a coordinated engagement.
             </p>
 
-            <div className="mt-8 max-w-xl">
+            <div className="mt-6 sm:mt-8 w-full">
               {ownerDuties.map((duty, index) => (
                 <div
                   key={duty.title}
-                  className="group flex items-start gap-4 border-b border-slate-200/70 py-4 first:pt-0 last:border-0"
+                  className="group flex items-start gap-3 lg:gap-4 border-b border-slate-200/70 py-3.5 sm:py-4 first:pt-0 last:border-0"
                 >
                   <duty.icon
-                    className="mt-0.5 h-5 w-5 shrink-0 text-[#F05E47] transition-transform duration-300 group-hover:scale-110"
+                    className="mt-0.5 h-4 w-4 sm:h-5 sm:w-5 shrink-0 text-[#F05E47] transition-transform duration-300 group-hover:scale-110"
                     aria-hidden="true"
                   />
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <h4 className="text-sm font-bold leading-snug text-[#080B2E] sm:text-[15px]">
                       {duty.title}
                     </h4>
@@ -199,7 +204,7 @@ export const EcosystemSection: React.FC = () => (
                       {duty.detail}
                     </p>
                   </div>
-                  <span className="ml-auto hidden pt-1 font-mono text-xs font-bold text-[#F05E47]/65 sm:block">
+                  <span className="ml-auto hidden xl:block pt-1 font-mono text-xs font-bold text-[#F05E47]/65">
                     0{index + 1}
                   </span>
                 </div>
@@ -208,7 +213,7 @@ export const EcosystemSection: React.FC = () => (
 
             <Link
               href="/contact"
-              className="group mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#F05E47] transition-colors hover:text-[#D21D61] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F05E47]"
+              className="group mt-6 sm:mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#F05E47] transition-colors hover:text-[#D21D61] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F05E47]"
             >
               Discuss a project
               <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -218,30 +223,30 @@ export const EcosystemSection: React.FC = () => (
 
         <HubConnector />
 
-        <ScrollReveal direction="right" delay={120} className="relative z-10 lg:pl-8">
+        <ScrollReveal direction="right" delay={120} className="relative z-10 md:pl-3 lg:pl-8">
           <div className="pointer-events-none absolute -bottom-12 -right-12 h-52 w-52 rounded-full bg-[#D21D61]/[0.07] blur-3xl" aria-hidden="true" />
-          <div className="relative">
+          <div className="relative w-full max-w-xl mx-auto md:max-w-none">
             <p className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#D21D61]">
               For Delivery Organizations
             </p>
-            <h3 className="mt-4 font-heading text-3xl font-extrabold tracking-tight text-[#080B2E] sm:text-4xl lg:text-4xl">
+            <h3 className="mt-4 font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#080B2E]">
               Bring the capability.
             </h3>
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-600 sm:text-base">
               Present your capabilities, explore relevant opportunities and align on expectations before an engagement moves forward.
             </p>
 
-            <div className="mt-8 max-w-xl">
+            <div className="mt-6 sm:mt-8 w-full">
               {partnerDuties.map((duty, index) => (
                 <div
                   key={duty.title}
-                  className="group flex items-start gap-4 border-b border-slate-200/70 py-4 first:pt-0 last:border-0"
+                  className="group flex items-start gap-3 lg:gap-4 border-b border-slate-200/70 py-3.5 sm:py-4 first:pt-0 last:border-0"
                 >
                   <duty.icon
-                    className="mt-0.5 h-5 w-5 shrink-0 text-[#D21D61] transition-transform duration-300 group-hover:scale-110"
+                    className="mt-0.5 h-4 w-4 sm:h-5 sm:w-5 shrink-0 text-[#D21D61] transition-transform duration-300 group-hover:scale-110"
                     aria-hidden="true"
                   />
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <h4 className="text-sm font-bold leading-snug text-[#080B2E] sm:text-[15px]">
                       {duty.title}
                     </h4>
@@ -249,7 +254,7 @@ export const EcosystemSection: React.FC = () => (
                       {duty.detail}
                     </p>
                   </div>
-                  <span className="ml-auto hidden pt-1 font-mono text-xs font-bold text-[#D21D61]/65 sm:block">
+                  <span className="ml-auto hidden xl:block pt-1 font-mono text-xs font-bold text-[#D21D61]/65">
                     0{index + 1}
                   </span>
                 </div>
@@ -258,7 +263,7 @@ export const EcosystemSection: React.FC = () => (
 
             <Link
               href="/partnerships"
-              className="group mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#D21D61] transition-colors hover:text-[#950B6D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D21D61]"
+              className="group mt-6 sm:mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#D21D61] transition-colors hover:text-[#950B6D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D21D61]"
             >
               Explore partnerships
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
